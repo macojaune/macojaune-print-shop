@@ -19,7 +19,7 @@
               :data-item-price="product.price"
               :data-item-image="product.image"
               :data-item-max-quantity="product.stock"
-              :data-item-url="`http://localhost:3000/${currentUrl}`")  J'en veux
+              :data-item-url="`https://kind-noether-a52a72.netlify.app/${currentUrl}`")  J'en veux
 </template>
 
 <script>
