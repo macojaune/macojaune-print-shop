@@ -33,9 +33,11 @@ fields:
   - type: text
     name: price
     label: price
+    default: '66'
   - type: text
     name: stock
     label: stock
+    default: '3'
   - name: image
     type: file
     config:
