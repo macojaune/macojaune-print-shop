@@ -36,3 +36,8 @@ fields:
   - type: text
     name: stock
     label: stock
+  - name: image
+    type: file
+    config:
+      maxSize: 64
+    label: image
