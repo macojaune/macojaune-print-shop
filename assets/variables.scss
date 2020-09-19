@@ -2,3 +2,11 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+$heading-font-family: "Righteous", sans-serif;
+$body-font-family: "Teko", sans-serif;
+$font-size-root: 22px;
+
+$font-weights: ('bold': 600);
+
+@import '~vuetify/src/styles/main.sass';

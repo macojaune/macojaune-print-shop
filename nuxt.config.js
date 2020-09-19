@@ -1,13 +1,7 @@
 import path from 'path'
 import colors from 'vuetify/es5/util/colors'
-// import runs from './contents/runs'
 
 export default {
-  /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
-   */
-  mode: 'universal',
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
@@ -30,7 +24,7 @@ export default {
       { rel: 'preconnect', href: 'https://cdn.snipcart.com' },
       {
         rel: 'stylesheet',
-        href: 'https://cdn.snipcart.com/themes/v3.0.15/default/snipcart.css',
+        href: 'https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.css',
       },
     ],
   },
@@ -42,7 +36,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/formatDate.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -54,26 +48,33 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa'],
+  modules: ['@nuxtjs/pwa', 'nuxt-webfontloader'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
+    customVariables: ['./assets/variables.scss'],
     theme: {
+      options: { customProperties: true },
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
+          primary: colors.yellow.darken2,
+          accent: colors.red.base,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
-          warning: colors.amber.base,
+          warning: colors.red.darken1,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+          success: colors.teal.accent3,
         },
       },
+    },
+  },
+  webfontloader: {
+    google: {
+      families: ['Righteous:400', 'Teko:400,600'],
     },
   },
   /*
