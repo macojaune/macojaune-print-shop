@@ -1,23 +1,28 @@
 <template lang="pug">
   v-container(justify-center align-center)
-    v-row.run(v-for="(run, i) in runs" :key="i")
-      v-col.run-text(cols="4")
-        small.run-date {{$formatDate(run.attributes.date)}}
-        h2.mb-2.run-title.text-uppercase
-          nuxt-link(:to="`/series/${run.attributes.slug}`") {{run.attributes.title}}
-        p.run-description {{run.attributes.description}}
-      v-col
-        v-row
-          v-col(v-for="(product, index) in run.attributes.products" :key="index")
-            v-skeleton-loader(loading type="image" height="120px" )
-              v-img
+    .runs(v-if="runs.length>0")
+      v-row.run(v-for="(run, i) in runs" :key="i")
+        v-col.run-text(md="4")
+          small.run-date {{$formatDate(run.date)}}
+          h2.mb-2.run-title.text-uppercase
+            nuxt-link(:to="`/series/${run.slug}`") {{run.title}}
+          p.run-description {{run.description}}
+        v-col(md="6")
+          v-row
+            v-col(:cols="12/run.products.length" v-for="(product, index) in run.products" :key="index")
+              nuxt-link(:to="`/series/${run.slug}`")
+                v-img( v-if="product.image.length>0" :src="require(`~/assets/pictures/${product.image[0]}`)")
+                v-avatar.white--text(v-else color="primary" tile size="100%" ) {{product.title}}
+    .empty(v-else)
+      v-row
+        v-col
+          h3.text-center.warning--text Oups ! Pas de série disponible à la vente.
 </template>
 
 <script>
-import runs from '../contents/runs'
-
 export default {
-  asyncData({ route }) {
+  async asyncData({ $content }) {
+    const runs = await $content('runs').fetch()
     return { runs }
   },
 }

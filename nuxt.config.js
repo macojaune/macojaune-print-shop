@@ -1,4 +1,3 @@
-import path from 'path'
 import colors from 'vuetify/es5/util/colors'
 
 export default {
@@ -48,7 +47,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', 'nuxt-webfontloader'],
+  modules: ['@nuxtjs/pwa', 'nuxt-webfontloader', '@nuxt/content'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -77,17 +76,11 @@ export default {
       families: ['Righteous:400', 'Teko:400,600'],
     },
   },
+  content: {},
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {
-    extend(config, ctx) {
-      config.module.rules.push({
-        test: /\.md$/,
-        loader: 'frontmatter-markdown-loader',
-        include: path.resolve(__dirname, 'contents'),
-      })
-    },
   },
 }
