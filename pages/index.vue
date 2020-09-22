@@ -22,7 +22,7 @@
 <script>
 export default {
   async asyncData({ $content }) {
-    const runs = await $content('runs').fetch()
+    const runs = await $content('runs').sortBy('date', 'desc').fetch()
     return { runs }
   },
 }
