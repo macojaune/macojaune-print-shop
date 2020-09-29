@@ -38,6 +38,10 @@ fields:
     name: stock
     label: stock
     default: '3'
+  - name: images
+    type: image_gallery
+    config: {}
+    label: images
   - name: image
     type: file
     config:
