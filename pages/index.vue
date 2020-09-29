@@ -9,9 +9,9 @@
           p.run-description {{run.description}}
         v-col(md="6")
           v-row
-            v-col(:cols="12/run.products.length" v-for="(product, index) in run.products" :key="index")
+            v-col(:cols="Math.floor(12/run.products.length)" v-for="(product, index) in run.products" :key="index")
               nuxt-link(:to="`/series/${run.slug}`")
-                v-img( v-if="product.image.length>0" :src="require(`~/assets/pictures/${product.image[0]}`)")
+                v-img( v-if="product.images.length>0" :src="require(`~/assets/pictures${product.images[0]}`)")
                 v-avatar.white--text(v-else color="primary" tile size="100%" ) {{product.title}}
     .empty(v-else)
       v-row

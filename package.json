@@ -1,9 +1,9 @@
 {
   "name": "macojaune-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --max_old_space_size=8192 --optimize_for_size",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
