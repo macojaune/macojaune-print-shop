@@ -48,4 +48,5 @@ fields:
       maxSize: 64
     label: image
 pages:
+- content/runs/lancement.md
 - content/runs/run-2.md

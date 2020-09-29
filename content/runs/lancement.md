@@ -8,22 +8,25 @@ products:
 - sku: product-1
   title: Ma premiere photo
   slug: photo-1
-  image: 
-   - joranieBeach1.png
-   - joranieBeach1.png
+  image:
+  - joranieBeach1.png
+  - joranieBeach1.png
   price: "66"
   stock: "3"
+  images:
+  - "/joraniebeach1-1.png"
 - sku: product-2
   title: Ma deuxième photo
   slug: photo-2
-  image: 
-   - joranieBeach1.png
-   - joranieBeach1.png
-   - joranieBeach1.png
+  image:
+  - joranieBeach1.png
+  - joranieBeach1.png
+  - joranieBeach1.png
   price: "66"
   stock: "3"
----
+  images: []
 
+---
 Nous y voilà, c'est parti. La boutique est lancée.  
 On s'y prendra par séries, avec uniquement des tirages en éditions limitées.
 
