@@ -54,7 +54,6 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    treeShake: true,
     customVariables: ['./assets/variables.scss'],
     theme: {
       options: { customProperties: true },
