@@ -5,9 +5,9 @@ cover: ''
 description: Premier lancement
 date: 2020-06-20
 products:
-- sku: product-1
-  title: Ma premiere photo
-  slug: photo-1
+- sku: beauty-on-the-beach
+  title: Beauty on the Beach
+  slug: beauty-on-the-beach
   image:
   - joranieBeach1.png
   - joranieBeach1.png
