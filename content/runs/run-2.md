@@ -2,7 +2,7 @@
 title: Le Rituel
 slug: le-rituel
 cover: ''
-description: 3 photos, 3 exemplaires et c'est tout.
+description: '3 photos, 3 exemplaires et c''est tout. '
 date: 2020-10-03T00:00:00-04:00
 products:
 - sku: le-rituel-3
