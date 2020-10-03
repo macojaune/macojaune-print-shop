@@ -4,8 +4,6 @@
       Header
       nuxt
     Footer
-    div#snipcart(hidden data-api-key="MjNjODE4YjgtMDFmMC00NzY4LTg1ZjAtNzE3NDZiMzMxNWJiNjM2NzYyNzk2OTg2NjgwMTEz")
-    script(src="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.js" async)
 </template>
 
 <script>
