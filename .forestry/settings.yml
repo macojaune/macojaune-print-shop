@@ -9,7 +9,7 @@ sections:
   label: Series
   create: documents
   match: "**/*"
-upload_dir: assets/pictures
+upload_dir: static/pictures
 public_path: ''
 front_matter_path: ''
 use_front_matter_path: 
