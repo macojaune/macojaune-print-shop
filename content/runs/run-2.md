@@ -16,7 +16,8 @@ products:
   slug: le-rituel-2
   price: "66"
   stock: "3"
-  images: []
+  images:
+  - "/insta_dsc09863.jpg"
   sku: le-rituel-2
 - sku: le-rituel-3
   title: Meditate (32x40cm)
