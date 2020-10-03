@@ -11,7 +11,7 @@ products:
   price: "66"
   stock: "3"
   images:
-  - "/img/insta_dsc09845.jpg"
+  - "/insta_dsc09845.jpg"
 - title: L'appel (32x40cm)
   slug: le-rituel-1
   price: "66"
