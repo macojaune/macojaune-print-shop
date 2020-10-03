@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "nuxt --max_old_space_size=8192 --optimize_for_size",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -20,13 +20,11 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.9.0",
-    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/pwa": "^3.0.2",
     "moment": "^2.28.0",
-    "nuxt": "^2.13.0",
+    "nuxt": "^2.14.6",
     "nuxt-webfontloader": "^1.1.0",
-    "path": "^0.12.7",
-    "stylus": "^0.54.8",
-    "stylus-loader": "^3.0.2"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@nuxt/types": "~2.13.0",
@@ -43,8 +41,11 @@
     "lint-staged": "^10.2.11",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
-    "pug": "^3.0.0",
+    "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^3.0.2",
+    "vuetify": "^2.3.12"
   }
 }

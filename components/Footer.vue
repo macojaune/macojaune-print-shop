@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-footer(app)
+  v-footer
     v-row
       v-col.text-center
         p Propulsé avec

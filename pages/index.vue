@@ -1,13 +1,13 @@
 <template lang="pug">
   v-container(justify-center align-center)
     .runs(v-if="runs.length>0")
-      v-row.run(v-for="(run, i) in runs" :key="i")
-        v-col.run-text(md="4")
+      v-row.run.mt-2(v-for="(run, i) in runs" :key="i")
+        v-col.run-text(cols="12" md="4" order="2" order-md="1")
           small.run-date {{$formatDate(run.date)}}
           h2.mb-2.run-title.text-uppercase
             nuxt-link(:to="`/series/${run.slug}`") {{run.title}}
           p.run-description {{run.description}}
-        v-col(md="6")
+        v-col(cols="12" md="6" order="1" offset-md="2")
           v-row
             v-col(:cols="Math.floor(12/run.products.length)" v-for="(product, index) in run.products" :key="index")
               nuxt-link(:to="`/series/${run.slug}`")
@@ -34,4 +34,6 @@ export default {
     font-family 'Righteous'
     font-size 66px
     line-height 88%
+    @media screen and (max-width: 767px)
+      font-size 45px
 </style>

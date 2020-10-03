@@ -19,8 +19,8 @@
           :data-item-price="product.price"
           :data-item-image="require(`assets/pictures/${product.image[0]}`)"
           :data-item-max-quantity="product.stock"
-          :data-item-url="`https://yellowartshop.netlify.app${currentUrl}`") J'en veux
-    v-dialog(v-model="showModal" dark max-width="88%" overlay-color="#fbc02d" overlay-opacity="0.3")
+          :data-item-url="`https://macojaune.com${currentUrl}`") J'en veux
+    v-dialog(v-model="showModal" dark max-width="88%" :fullscreen="$vuetify.breakpoint.smAndDown" overlay-color="#fbc02d" overlay-opacity="0.3")
       v-card( v-if="modalProduct!==null")
         v-card-title {{modalProduct.title}}
           v-spacer
@@ -32,8 +32,15 @@
               v-img.ma-3(contain :src="require(`@/assets/pictures${image}`)")
         v-card-text
           v-row
-            v-col(md="2" v-for="(image,i) in modalProduct.images" :key="i")
+            v-col(cols="3" md="2" v-for="(image,i) in modalProduct.images" :key="i")
               v-img(contain :src="require(`@/assets/pictures${image}`)" @click="showImage=i" )
+        v-card-actions
+          v-btn.buy-button.snipcart-add-item(color="red" large block :data-item-id="modalProduct.sku"
+            :data-item-name="modalProduct.title"
+            :data-item-price="modalProduct.price"
+            :data-item-image="require(`assets/pictures/${modalProduct.image[0]}`)"
+            :data-item-max-quantity="modalProduct.stock"
+            :data-item-url="`https://macojaune.com${currentUrl}`") J'en veux
 </template>
 
 <script>

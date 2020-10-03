@@ -1,9 +1,15 @@
 <template lang="pug">
-  header
-    nuxt-link(to="/")
-      h1.text-center.main-title(v-if="$nuxt.$route.name==='index'") YELLOW ART SHOP
-      h3.text-center(v-else) YELLOW ART SHOP
-    p.text-center @MACOJAUNE
+  v-container
+    v-row
+      v-col(cols=12)
+        header
+          nuxt-link(to="/")
+            h1.text-center.main-title(v-if="$nuxt.$route.name==='index'") YELLOW
+              br.d-block.d-md-none
+              |
+              | ART SHOP
+            h3.text-center.main-title(v-else) YELLOW ART SHOP
+          p.text-center @MACOJAUNE
 </template>
 
 <script>
@@ -12,4 +18,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="stylus" scoped></style>
