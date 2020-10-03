@@ -6,7 +6,7 @@ description: Premier lancement
 date: 2020-06-20
 products:
 - sku: beauty-on-the-beach
-  title: Beauty on the Beach
+  title: Beauty on the Beach (40x22.5cm)
   slug: beauty-on-the-beach
   image:
   - joranieBeach1.png
@@ -16,16 +16,18 @@ products:
   images:
   - "/dsc08950.jpg"
   - "/joraniebeach1-1.png"
-- sku: product-2
-  title: Ma deuxième photo
-  slug: photo-2
+- sku: green-path
+  title: Reconnexion (32x40cm)
+  slug: green-path
   image:
   - joranieBeach1.png
   - joranieBeach1.png
   - joranieBeach1.png
   price: "66"
   stock: "3"
-  images: []
+  images:
+  - "/img/dsc09578-1.jpg"
+  - "/img/nature.jpg"
 
 ---
 Nous y voilà, c'est parti. La boutique est lancée.  
