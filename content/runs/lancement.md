@@ -15,6 +15,7 @@ products:
   stock: "3"
   images:
   - "/joraniebeach1-1.png"
+  - "/dsc08950.jpg"
 - sku: product-2
   title: Ma deuxième photo
   slug: photo-2
