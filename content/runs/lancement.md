@@ -14,8 +14,8 @@ products:
   price: "66"
   stock: "3"
   images:
-  - "/joraniebeach1-1.png"
   - "/dsc08950.jpg"
+  - "/joraniebeach1-1.png"
 - sku: green-path
   title: Reconnexion (32x40cm)
   slug: green-path
