@@ -26,8 +26,8 @@ products:
   price: "66"
   stock: "3"
   images:
-  - "/img/dsc09578-1.jpg"
-  - "/img/nature.jpg"
+  - "/dsc09578-1.jpg"
+  - "/nature.jpg"
 
 ---
 Nous y voilà, c'est parti. La boutique est lancée.  
