@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-footer
+  v-footer#footer
     v-row
       v-col.text-center
         p Propulsé avec
@@ -23,4 +23,7 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="stylus" scoped>
+#footer
+  background-color rgba(0,0,0,0.7)
+</style>

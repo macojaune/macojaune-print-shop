@@ -11,7 +11,7 @@
           v-row
             v-col(:cols="Math.floor(12/run.products.length)" v-for="(product, index) in run.products" :key="index")
               nuxt-link(:to="`/series/${run.slug}`")
-                v-img( v-if="product.images.length>0" :src="`/pictures${product.images[0]}`")
+                v-img( v-if="product.images.length>0" :src="`/pictures${product.images[0]}?nf_resize=fit&w=400`")
                 v-avatar.white--text(v-else color="primary" tile size="100%" ) {{product.title}}
     .empty(v-else)
       v-row
@@ -24,6 +24,9 @@ export default {
   async asyncData({ $content }) {
     const runs = await $content('runs').sortBy('date', 'desc').fetch()
     return { runs }
+  },
+  head: {
+    title: 'Homepage',
   },
 }
 </script>
