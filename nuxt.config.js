@@ -79,7 +79,12 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', 'nuxt-webfontloader', '@nuxt/content'],
+  modules: [
+    '@nuxtjs/pwa',
+    'nuxt-webfontloader',
+    '@nuxt/content',
+    '@nuxtjs/gtm',
+  ],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -105,10 +110,13 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Righteous:400', 'Teko:400,600'],
+      families: ['Righteous:400', 'Hind:400,600'],
     },
   },
   content: {},
+  gtm: {
+    id: 'GTM-P5TVD3V',
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

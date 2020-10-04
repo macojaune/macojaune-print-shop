@@ -70,6 +70,7 @@ export default {
     openModal(product) {
       this.modalProduct = product
       this.showModal = !this.showModal
+      this.$gtm.push({ event: 'showDetails', product })
     },
   },
 }
