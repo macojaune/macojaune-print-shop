@@ -31,10 +31,10 @@ export default {
       },
       {
         property: 'og:image',
-        content: 'https://aprc.it/api/1200x628/http://macojaune.com/',
+        content: require('~/static/screen.png'), // https://aprc.it/api/1200x630/http://macojaune.com/',
       },
       { property: 'twitter:card', content: 'summary_large_image' },
-      { property: 'twitter:url', content: 'https://metatags.io/' },
+      { property: 'twitter:url', content: 'https://macojaune.com/' },
       {
         property: 'twitter:title',
         content: 'Yellow Art Shop — La boutique de @Macojaune',
@@ -46,7 +46,7 @@ export default {
       },
       {
         property: 'twitter:image',
-        content: 'https://aprc.it/api/1200x628/http://macojaune.com/',
+        content: require('~/static/screen.png'), // 'https://aprc.it/api/1200x630/http://macojaune.com/',
       },
     ],
     link: [
