@@ -117,6 +117,15 @@ export default {
   gtm: {
     id: 'GTM-P5TVD3V',
   },
+  pwa: {
+    meta: {
+      name: 'Yellow Art Shop — La boutique de @Macojaune',
+      author: 'MarvinL.com',
+      description:
+        'Commandez vos tirages photos en ligne. Éditions limitées. Livraison partout.',
+      theme_color: colors.yellow.darken2,
+    },
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
