@@ -28,3 +28,6 @@ products:
   - "/insta_dsc09845.jpg"
 
 ---
+Vous avez surement suivi la courte histoire qui accompagne cette série sur Instagram. 
+
+Si ce n'est pas le cas je vous invite à y faire un tour avant de passer commande, il vous faut vous imprégner de l'énergie de la séance.

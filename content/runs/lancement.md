@@ -35,4 +35,4 @@ On s'y prendra par séries, avec uniquement des tirages en éditions limitées.
 
 On parle bien de tirage papier haute qualité, signé, numéroté… Les cadres sont la pour une meilleure visualisation uniquement. 
 
-La première série, fait suite à vos suggestions sur Instagram, les 3 photos que vous aimeriez voir dans vos salons (à l'époque du sondage, Juin 2020).
+La première série, fait suite à vos suggestions sur Instagram, les 2 photos que vous aimeriez voir dans vos salons (à l'époque du sondage, Juin 2020).
