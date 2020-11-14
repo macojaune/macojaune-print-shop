@@ -20,6 +20,13 @@ products:
   stock: "10"
   images:
   - "/dsc01800.jpg"
+- sku: rose-porcelaine
+  title: Rose de porcelaine
+  slug: balata-1
+  price: "33"
+  stock: "10"
+  images:
+  - "/dsc01781.jpg"
 - sku: plant-drip
   title: Drip
   slug: plant-drip
@@ -34,13 +41,6 @@ products:
   images:
   - "/dsc01807.jpg"
   price: "33"
-- sku: rose-porcelaine
-  title: Rose de porcelaine
-  slug: balata-1
-  price: "33"
-  stock: "10"
-  images:
-  - "/dsc01781.jpg"
 
 ---
 Une jeune escapade en Martinique, un passage au Jardin de Balata et une balade sous la pluie. 
