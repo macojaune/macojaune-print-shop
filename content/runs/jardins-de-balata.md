@@ -21,7 +21,7 @@ products:
   images:
   - "/dsc01800.jpg"
 - sku: rose-porcelaine
-  title: Rose de porcelaine
+  title: Rose de porcelaine (16x20cm)
   slug: balata-1
   price: "33"
   stock: "10"
