@@ -7,7 +7,7 @@ description: Nature nature, laquelle vas-tu admirer depuis ton trône de cérami
 date: 2020-11-14T00:00:00-04:00
 products:
 - sku: plant-crowd
-  title: Crowded
+  title: Crowded (16x20cm)
   slug: plant-crowd
   price: "33"
   stock: "10"
