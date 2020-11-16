@@ -28,7 +28,7 @@ products:
   images:
   - "/dsc01781.jpg"
 - sku: plant-drip
-  title: Drip
+  title: Drip (16x20cm)
   slug: plant-drip
   price: "33"
   stock: "10"
