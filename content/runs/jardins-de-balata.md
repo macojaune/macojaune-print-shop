@@ -35,7 +35,7 @@ products:
   images:
   - "/dsc01771.jpg"
 - sku: bananaflower
-  title: Banane en fleur (16x20cm)
+  title: Flower Split (16x20cm)
   slug: banana-flower
   stock: "10"
   images:
