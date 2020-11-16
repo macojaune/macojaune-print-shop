@@ -14,7 +14,7 @@ products:
   images:
   - "/dsc01798.jpg"
 - sku: plant-arrow
-  title: Arrow
+  title: Arrow (16x20cm)
   slug: plant-arrow
   price: "33"
   stock: "10"
