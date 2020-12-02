@@ -84,6 +84,7 @@ export default {
     'nuxt-webfontloader',
     '@nuxt/content',
     '@nuxtjs/gtm',
+    'nuxt-facebook-pixel-module',
   ],
   /*
    ** vuetify module configuration
@@ -125,6 +126,10 @@ export default {
         'Commandez vos tirages photos en ligne. Éditions limitées. Livraison partout.',
       theme_color: colors.yellow.darken2,
     },
+  },
+  facebook: {
+    pixelId: '1593015487639738',
+    autoPageView: true,
   },
   /*
    ** Build configuration
