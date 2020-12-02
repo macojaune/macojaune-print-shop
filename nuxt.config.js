@@ -128,7 +128,7 @@ export default {
     },
   },
   facebook: {
-    pixelId: '1593015487639738',
+    pixelId: '1440562519475788',
     autoPageView: true,
   },
   /*
