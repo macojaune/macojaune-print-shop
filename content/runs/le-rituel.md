@@ -23,7 +23,7 @@ products:
   title: Meditate (32x40cm)
   slug: le-rituel-3
   price: "66"
-  stock: "3"
+  stock: "0"
   images:
   - "/insta_dsc09845.jpg"
 
