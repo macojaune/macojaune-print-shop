@@ -31,7 +31,7 @@ export default {
       },
       {
         property: 'og:image',
-        content: require('~/static/screen.png'), // https://aprc.it/api/1200x630/http://macojaune.com/',
+        content: 'https://aprc.it/api/1200x630/http://macojaune.com/',
       },
       { property: 'twitter:card', content: 'summary_large_image' },
       { property: 'twitter:url', content: 'https://macojaune.com/' },
@@ -46,7 +46,7 @@ export default {
       },
       {
         property: 'twitter:image',
-        content: require('~/static/screen.png'), // 'https://aprc.it/api/1200x630/http://macojaune.com/',
+        content: 'https://aprc.it/api/1200x630/http://macojaune.com/',
       },
     ],
     link: [
@@ -84,6 +84,7 @@ export default {
     'nuxt-webfontloader',
     '@nuxt/content',
     '@nuxtjs/gtm',
+    'nuxt-facebook-pixel-module',
   ],
   /*
    ** vuetify module configuration
@@ -125,6 +126,10 @@ export default {
         'Commandez vos tirages photos en ligne. Éditions limitées. Livraison partout.',
       theme_color: colors.yellow.darken2,
     },
+  },
+  facebook: {
+    pixelId: '1440562519475788',
+    autoPageView: true,
   },
   /*
    ** Build configuration

@@ -3,7 +3,7 @@ title: Le Rituel
 slug: le-rituel
 cover: ''
 description: '3 photos, 3 exemplaires et c''est tout. '
-date: 2020-10-03T00:00:00-04:00
+date: 2020-10-03T00:00:00.000-04:00
 products:
 - title: L'appel (32x40cm)
   slug: le-rituel-1
@@ -28,3 +28,8 @@ products:
   - "/insta_dsc09845.jpg"
 
 ---
+Vous avez surement suivi la courte histoire qui accompagne cette série sur Instagram.
+
+Si ce n'est pas le cas je vous invite à y faire un tour avant de passer commande, il vous faut vous imprégner de l'énergie de la séance.
+
+Tirage sur papier Baryté (reflets cuivrés) très haute qualité.

@@ -1,6 +1,7 @@
 ---
 label: Serie
-hide_body: true
+hide_body: false
+display_field: title
 fields:
 - type: text
   name: title
@@ -43,4 +44,5 @@ fields:
     config: {}
     label: images
 pages:
+- content/runs/jardins-de-balata.md
 - content/runs/lancement.md
