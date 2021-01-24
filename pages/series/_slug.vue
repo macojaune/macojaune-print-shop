@@ -9,17 +9,24 @@
       v-col(cols="12" md="4" v-for="(product, index) in content.products" :key="index")
         v-img.primary(v-if="product.images" :aspect-ratio="5/4" :src="`/pictures${product.images[0]}?nf_resize=fit&w=400`" @click="openModal(product)")
         v-avatar.white--text(v-else color="primary" tile width="100%" height="220px") {{product.title}}
-        p.my-2.text-center.red--text {{product.price}}€
+        p.my-2.text-center.yellow--text {{product.price}}€
         p.text-center.product-title
           | {{product.title}}
           br
-          span.text-caption Édition limitée à {{product.stock}} exemplaires
-        v-btn.buy-button.snipcart-add-item(color="red" large block :data-item-id="product.sku"
+          span.text-caption(v-if="product.stock >0") Édition limitée à {{product.stock}} exemplaires
+          span.text-caption.font-weight-bold.red--text(v-else) Épuisé
+        v-btn.buy-button.snipcart-add-item(
+          v-if="product.stock > 0"
+          color="red" large block :data-item-id="product.sku"
           :data-item-name="product.title"
           :data-item-price="product.price"
           :data-item-image="`/pictures/${product.images[0]}`"
           :data-item-max-quantity="product.stock"
           :data-item-url="`https://macojaune.com${currentUrl}`") J'en veux
+    v-row
+      v-col
+        h3.text-uppercase Laisse-moi ton avis
+        Disqus
     v-dialog(v-model="showModal" dark max-width="88%" :fullscreen="$vuetify.breakpoint.smAndDown" overlay-color="#fbc02d" overlay-opacity="0.3")
       v-card( v-if="modalProduct!==null")
         v-card-title {{modalProduct.title}}
@@ -68,9 +75,11 @@ export default {
   },
   methods: {
     openModal(product) {
-      this.modalProduct = product
-      this.showModal = !this.showModal
-      this.$gtm.push({ event: 'showDetails', product })
+      if (product.stock > 0) {
+        this.modalProduct = product
+        this.showModal = !this.showModal
+        this.$gtm.push({ event: 'showDetails', product })
+      }
     },
   },
 }

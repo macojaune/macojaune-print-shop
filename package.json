@@ -1,6 +1,6 @@
 {
   "name": "macojaune-web",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -26,7 +26,8 @@
     "nuxt": "^2.14.6",
     "nuxt-facebook-pixel-module": "^1.5.0",
     "nuxt-webfontloader": "^1.1.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "vue-disqus": "^4.0.1"
   },
   "devDependencies": {
     "@nuxt/types": "~2.13.0",

@@ -8,8 +8,8 @@
             nuxt-link(:to="`/series/${run.slug}`") {{run.title}}
           p.run-description {{run.description}}
         v-col(cols="12" md="6" order="1" offset-md="2")
-          v-row
-            v-col(:cols="Math.floor(12/run.products.length)" v-for="(product, index) in run.products" :key="index")
+          v-row.align-center.px-2
+            v-col(cols="4" v-for="(product, index) in run.products.slice(0,3)" :key="index")
               nuxt-link(:to="`/series/${run.slug}`")
                 v-img( v-if="product.images.length>0" :src="`/pictures${product.images[0]}?nf_resize=fit&w=400`")
                 v-avatar.white--text(v-else color="primary" tile size="100%" ) {{product.title}}
