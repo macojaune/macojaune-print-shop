@@ -7,8 +7,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    titleTemplate: '%s - YELLOW ART SHOP',
-    title: 'Yellow Art Shop — La boutique de @Macojaune',
+    titleTemplate: '%s - @MACOJAUNE',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -85,6 +84,7 @@ export default {
     '@nuxt/content',
     '@nuxtjs/gtm',
     'nuxt-facebook-pixel-module',
+    '@nuxtjs/axios',
   ],
   /*
    ** vuetify module configuration
