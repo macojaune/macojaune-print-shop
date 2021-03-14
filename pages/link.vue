@@ -13,12 +13,12 @@
 <script>
 export default {
   layout: 'links',
-  async asyncData({ $axios, redirect }) {
-    const { data } = await $axios.get('https://api.marvinl.com/links')
+  async fetch() {
+    const { data } = await this.$axios.get('https://api.marvinl.com/links')
 
-    if (data.length === 1) redirect(data[0].url)
+    if (data.length === 1) this.redirect(data[0].url)
 
-    return { links: data }
+    this.links = data
   },
   data() {
     return {
