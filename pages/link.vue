@@ -7,17 +7,18 @@
           v-card-subtitle(v-if="link.description") {{link.description}}
           v-card-actions
             v-spacer
-            v-btn(:href="link.url" target="_blank" ) Y Aller
+            v-btn(@click="goTo(link)") Y Aller
 </template>
 
 <script>
 export default {
   layout: 'links',
-  async fetch({ redirect, $axios }) {
-    const { data } = await $axios.get('https://api.marvinl.com/links')
-
-    if (data.length === 1) redirect(data[0].url)
-
+  async fetch() {
+    const { data } = await this.$axios.get('https://api.marvinl.com/links')
+    if (data.length === 1) {
+      this.$gtm.push({ event: 'linkClick' })
+      this.$nuxt.context.redirect(data[0].url)
+    }
     this.links = data
   },
   data() {
@@ -26,6 +27,10 @@ export default {
     }
   },
   methods: {
+    goTo(link) {
+      this.$gtm.push({ event: 'linkClick' })
+      window.location = link.url
+    },
     pickRandomProperty(obj) {
       let result
       let count = 0
