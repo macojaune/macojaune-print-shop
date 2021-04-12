@@ -26,6 +26,9 @@ export default {
       links: [],
     }
   },
+  mounted() {
+    this.$fetch()
+  },
   methods: {
     goTo(link) {
       this.$gtm.push({ event: 'linkClick' })
