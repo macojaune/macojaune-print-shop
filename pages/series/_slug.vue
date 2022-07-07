@@ -9,20 +9,20 @@
       v-col(cols="12" md="4" v-for="(product, index) in content.products" :key="index")
         v-img.primary(v-if="product.images" :aspect-ratio="5/4" :src="`/pictures${product.images[0]}?nf_resize=fit&w=400`" @click="openModal(product)")
         v-avatar.white--text(v-else color="primary" tile width="100%" height="220px") {{product.title}}
-        p.my-2.text-center.yellow--text {{product.price}}€
+        //p.my-2.text-center.yellow--text {{product.price}}€
         p.text-center.product-title
           | {{product.title}}
           br
-          span.text-caption(v-if="product.stock >0") Édition limitée à {{product.stock}} exemplaires
+          span.text-caption.text-decoration-line-through(v-if="product.stock >0") Édition limitée à {{product.stock}} exemplaires
           span.text-caption.font-weight-bold.red--text(v-else) Épuisé
-        v-btn.buy-button.snipcart-add-item(
-          v-if="product.stock > 0"
-          color="red" large block :data-item-id="product.sku"
-          :data-item-name="product.title"
-          :data-item-price="product.price"
-          :data-item-image="`/pictures/${product.images[0]}`"
-          :data-item-max-quantity="product.stock"
-          :data-item-url="`https://macojaune.com${currentUrl}`") J'en veux
+        // v-btn.buy-button.snipcart-add-item(
+            v-if="product.stock > 0"
+            color="red" large block :data-item-id="product.sku"
+            :data-item-name="product.title"
+            :data-item-price="product.price"
+            :data-item-image="`/pictures/${product.images[0]}`"
+            :data-item-max-quantity="product.stock"
+            :data-item-url="`https://macojaune.com${currentUrl}`") J'en veux
     v-row
       v-col
         h3.text-uppercase Laisse-moi ton avis
@@ -33,16 +33,20 @@
           v-spacer
           v-btn(rounded icon @click="showModal = false")
             v-icon mdi-close
-        v-col
-          v-carousel(hide-delimiters height="auto" v-model="showImage")
-            v-carousel-item(v-for="(image, i) in modalProduct.images" :key="i")
-              v-img.ma-3(contain :src="`/pictures${image}`")
-        v-card-text
-          v-row
-            v-col(cols="3" md="2" v-for="(image,i) in modalProduct.images" :key="i")
-              v-img(contain :src="`/pictures${image}?nf_resize=fit&w=400`" @click="showImage=i" )
+        template(v-if="modalProduct.images.length >1")
+          v-col
+            v-carousel(hide-delimiters height="auto" v-model="showImage")
+              v-carousel-item(v-for="(image, i) in modalProduct.images" :key="i")
+                v-img.ma-3(contain :src="`/pictures${image}`")
+          v-card-text
+            v-row
+              v-col(cols="3" md="2" v-for="(image,i) in modalProduct.images" :key="i")
+                v-img(contain :src="`/pictures${image}?nf_resize=fit&w=400`" @click="showImage=i" )
+        template(v-else)
+          v-col
+            v-img.ma-3(contain :src="`/pictures${modalProduct.images[0]}`")
         v-card-actions
-          v-btn.buy-button.snipcart-add-item(color="red" large block :data-item-id="modalProduct.sku"
+         //  v-btn.buy-button.snipcart-add-item(color="red" large block :data-item-id="modalProduct.sku"
             :data-item-name="modalProduct.title"
             :data-item-price="modalProduct.price"
             :data-item-image="`/pictures/${modalProduct.images[0]}`"

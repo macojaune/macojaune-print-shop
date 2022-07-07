@@ -2,6 +2,8 @@
   v-app(dark)
     v-main
       Header
+      v-container
+        v-alert(type="info") La boutique est momentanément suspendue. Les tirages reviennent bientôt #stayConnect
       nuxt
     Footer
 </template>
