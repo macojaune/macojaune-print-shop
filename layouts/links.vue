@@ -1,9 +1,8 @@
 <template lang="pug">
-.app.dark
-    main
-      Header
-      slot
-    Footer
+.main.flex.flex-col.justify-between.h-full.overflow-auto
+  Header
+  slot
+  Footer
 </template>
 
 <script setup>

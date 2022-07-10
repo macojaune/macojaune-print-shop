@@ -1,8 +1,8 @@
 <template lang="pug">
-.homepage.align-center.justify-center
+.homepage.px-4
   ContentList.runs( path="/runs" v-slot="{list}")
-    .run.mt-12.flex.flex-row.justify-between.items-between(v-for="run in list" :key="run._path")
-      .run-text(class="basis-full md:basis-2/4 order-2 md:order-1")
+    .run(v-for="run in list" :key="run._path" class="mb-12 md:mt-12 flex flex-col md:flex-row justify-between items-between")
+      .run-text(class="basis-full md:basis-2/4 mt-3 md:mt-0  order-2 md:order-1")
         small.run-date.text-white {{formatDate(run.date)}}
         br
         NuxtLink.mb-2.run-title.uppercase.text-amber-400(class="text-4xl md:text-7xl hover:text-orange-600" :to="`/series/${run.slug}`") {{run.title}}

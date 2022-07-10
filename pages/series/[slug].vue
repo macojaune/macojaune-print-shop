@@ -1,13 +1,13 @@
 <template lang="pug">
-.serie-page
+.serie-page.px-4
   ContentDoc(:path="`/runs/${$route.params.slug}`" v-slot="{doc}")
     .content
       h1.mt-6.mb-3.text-5xl.uppercase.text-amber-500 {{doc.title}}
         | 
         small.text-sm.text-white {{formatDate(doc.date)}}
-      ContentRenderer.text-white.text-lg(:value="doc")
-      .picture-list.my-6.grid.grid-flow-row-dense.grid-cols-3.gap-4.justify-evenly
-        .picture(v-for="(product, index) in doc.products" :key="index" class="basis-1/4 hover:cursor-pointer" )
+      ContentRenderer.text-white.text-lg(class="text-base md:text-lg" :value="doc")
+      .picture-list.my-6.grid.grid-flow-row-dense.gap-4.justify-evenly( class="grid-cols-1 md:grid-cols-3")
+        .picture(v-for="(product, index) in doc.products" :key="index" class="hover:cursor-pointer" )
           img.primary.border-radius(v-if="product.images" :aspect-ratio="5/4" :src="`/pictures${product.images[0]}?nf_resize=fit&w=400`" @click="openModal(product)")
           p.my-2.text-2xl.text-center.text-amber-400.font-semibold {{product.price}}€
           p.text-center.text-white
