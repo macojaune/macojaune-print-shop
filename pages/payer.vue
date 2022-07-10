@@ -42,32 +42,12 @@ useHead({
   ]
 })
 const route = useRoute()
-const router = useRouter()
 const config = useRuntimeConfig()
 
-const {stripe, stripeElements} = useStripe({
+const {stripe} = useStripe({
   key: config.public.stripePublicKey || '',
 })
-const colors = {
-  base: {
-    iconColor: '#fbbf24',
-    color: '#fbbf24',
-    fontWeight: 500,
-    fontFamily: 'Hind, Roboto, sans-serif',
-    fontSize: '18px',
-    fontSmoothing: 'antialiased',
-    ':-webkit-autofill': {
-      color: '#fbbf24',
-    },
-    '::placeholder': {
-      color: '#fff',
-    },
-  },
-  invalid: {
-    iconColor: '#DC3545',
-    color: '#DC3545',
-  },
-}
+
 const state = reactive({
   show: false,
   error: '',
@@ -75,11 +55,7 @@ const state = reactive({
   intent: {},
   amount: route.params.amount,
   name: route.params.name,
-  successUrl: 'https://macojaune.com/merci/',
-  cancelUrl: route.fullPath, // maybe ajouter param cancel (?)
   card: null,
-  iconStyle: 'solid',
-
 })
 
 const initPayment = async () => {
@@ -94,7 +70,6 @@ const initPayment = async () => {
         },
       }
     )
-    console.log(data)
     state.intent = data // todo check error
     state.loading = false
     state.show = true
@@ -115,12 +90,12 @@ const initPayment = async () => {
     })
   } catch (e) {
     console.error(e)
-    // if (e) {
-    //   alert(
-    //     "Une erreur s'est produite, dis moi ça sur Telegram que je corrige"
-    //   )
-    //  // window.location = 'https://t.me/macojaune'
-    // }
+    if (e) {
+      alert(
+        "Une erreur s'est produite, ping moi sur Telegram que je corrige"
+      )
+      window.location = 'https://t.me/macojaune'
+    }
   }
 }
 
@@ -129,7 +104,7 @@ const doPay = async () => {
   const {paymentIntent, error} = await stripe.value?.confirmPayment({
     elements: state.elements,
     confirmParams: {
-      return_url: 'http://localhost:3000/merci/' + state.amount
+      return_url: 'https://macojaune.com/merci/' + state.amount
     }
   })
   state.loading = false

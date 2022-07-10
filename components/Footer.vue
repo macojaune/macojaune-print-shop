@@ -1,5 +1,5 @@
 <template lang="pug">
-footer.mt-20.pt-12.bg-black
+footer.mt-20.pt-12.bg-black.justify-self-end
   .text-center
     p.text-white Machouillé avec
       | !{' '}
