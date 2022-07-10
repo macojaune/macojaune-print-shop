@@ -1,10 +1,10 @@
 <template lang="pug">
 .container
-  ContentDoc( v-slot="{doc}")
+  ContentDoc(:path="`/mentions/${$route.params.slug}`" v-slot="{doc}")
     .row
       .col
-        h1.text-uppercase.text-orange-400 {{doc.title}}
-        ContentRenderer(:value="doc")
+        h1.my-3.text-4xl.uppercase.text-orange-400 {{doc.title}}
+        ContentRenderer.text-white(:value="doc")
 </template>
 
 <script>

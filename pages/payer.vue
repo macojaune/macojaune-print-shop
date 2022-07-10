@@ -1,33 +1,32 @@
 <template lang="pug">
-.container.mx-auto
+.page-payer.px-4
   h1.mt-8.mb-3.text-5xl.text-amber-400.uppercase Par ici les paiements !
   p.text-white Régler une séance, un tirage, ou un simple don ? C'est possible.
   .amount.mt-8(v-show="!state.show")
-    p.mb-3.text-start.text-4xl.text-white Tout d'abord, le montant
-    .flex.gap-3
+    .flex.gap-3(class="flex-col md:flex-row justify-center")
       .relative.grow
-        input.p-4.pr-12.w-full.block.rounded-md.bg-stone-800.text-white.font-bold(class="focus:outline-none focus:ring-amber-300" v-model="state.amount" @change.prevent="initPayment" type="number" placeholder="Entre le nombre de millions que tu veux me lancer" autofocus )
+        input.p-4.pr-12.w-full.block.rounded-md.bg-stone-800.text-white.font-bold(class="focus:outline-none focus:ring-amber-300" v-model="state.amount" @change.prevent="initPayment" type="number" placeholder="Rentre le montant ici (ex: 667.00)" autofocus )
         .absolute.inset-y-0.right-0.pr-6.flex.items-center.pointer-events-none
           span.text-white.font-bold.leading-none €
       button.p-4.rounded-md.bg-amber-400.text-black.text-center(@click="initPayment")
-        span.font-bold(v-if="!state.loading") Ensuite
-        svg(v-else class="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24")
+        span.font-bold.text-center(v-if="!state.loading") Ensuite, clique ici
+        svg.text-center(v-else class="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24")
           circle( class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4")
           path( class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z")
   .info.mt-8(v-show="state.show")
-    p.mb-3.text-2xl.text-white.text-center Régler 
-      span.text-4xl.font-bold.text-orange-400 {{ state.amount}}€ 
-      |
+    p.mb-4.text-2xl.text-white.text-center Régler 
+      span.text-4xl.font-bold.text-orange-400(@click="state.show=false") {{ state.amount}}€ 
+      |  
       span.text-white ?
-      |
+      |   
       span.text-xl Simple comme bonjour.
-    p.text-white Insérez vos informations en toute tranquilité.
-  .m-8(v-show="state.show")
+  .payment(v-show="state.show")
+    p.text-center.text-white Insérez vos informations en toute tranquilité.
     form#payme-form(@submit.prevent="doPay")
-      #card-errors.text-danger.font-weight-bold.h5.fadeIn.my-4(role='alert') {{state.error}}
+      #card-errors.text-red-500.font-bold.my-4(role='alert') {{state.error}}
       #card.p-4.rounded
-      .form-group.ma-4.text-center
-        button.p-5.bg-amber-400.text-black.rounded-md.font-bold(type="submit") BOOM !
+      .p-4
+        button.p-5.block.w-full.text-center.bg-amber-400.text-black.rounded-md.font-bold(type="submit") BOOM !
 </template>
 
 <script setup>

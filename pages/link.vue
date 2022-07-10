@@ -1,13 +1,12 @@
 <template lang="pug">
-.links-page
-  .row
-    .col(cols="12" v-for="link in data" :key="link.url")
-      .card(:class="'text-'+colorList" )
-        .card-title.headline {{link.text}}
-        .card-subtitle(v-if="link.description") {{link.description}}
-        .card-actions
-          .spacer
-          button(@click="goTo(link)") Y Aller
+.links-page.px-4.h-full.flex.flex-col.gap-4
+  .flex.p-2.rounded.grow.justify-evenly(v-for="link in data" :key="link.url" :style="{backgroundColor:colorList()}" class="p-2 md:p-3")
+    .text.flex.items-evenly
+      a(:href="link.url" target="_blank")
+       h2.uppercase.text-white(class="text-2xl md:text-4xl") {{link.text}}
+      p.text-white(v-if="link.description") {{link.description}}
+    a.p-3.ml-auto.rounded-md.text-right.font-bold(class="hidden md:block hover:bg-black text-black hover:text-white transition-all duration-100" :href="link.url" target="_blank") Y Aller
+    a.p-3.ml-auto.rounded-md.text-right.flex.items-center(class="block md:hidden bg-black text-white" :href="link.url" target="_blank") Go
 </template>
 
 <script setup>
@@ -346,7 +345,5 @@ const colors = {
 }
 // pick random property
 // var property = pickRandomProperty(colors);
-const colorList = colors[pickRandomProperty(colors)]?.[700]
+const colorList = ()=> colors[pickRandomProperty(colors)]?.[700]
 </script>
-
-<style scoped></style>
