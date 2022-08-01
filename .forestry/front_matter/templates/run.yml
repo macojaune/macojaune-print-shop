@@ -1,0 +1,44 @@
+---
+label: Run
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: slug
+  label: slug
+- type: text
+  name: cover
+  label: cover
+- type: text
+  name: description
+  label: description
+- type: datetime
+  name: date
+  label: date
+- type: field_group_list
+  name: products
+  label: products
+  fields:
+  - type: text
+    name: sku
+    label: sku
+  - type: text
+    name: title
+    label: title
+  - type: text
+    name: slug
+    label: slug
+  - type: image_gallery
+    name: image
+    label: image
+  - type: text
+    name: price
+    label: price
+  - type: text
+    name: stock
+    label: stock
+  - type: image_gallery
+    name: images
+    label: images
