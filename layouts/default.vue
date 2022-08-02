@@ -8,20 +8,21 @@
       b.font-bold.text-white #stayConnect
     slot
   Footer
-  Script. 
-    window.axeptioSettings = {
-        clientId: "62e86de9c231db01ef04b2cc",
-      };
-
-    (function(d, s) {
-        let t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-        e.async = true; e.src = "//static.axept.io/sdk.js";
-        t.parentNode.insertBefore(e, t);
-      })(document, "script");
 </template>
 
-<script>
-
+<script setup>
+import {onMounted} from 'vue'
+onMounted(()=>{
+  window.axeptioSettings = {
+    clientId: "62e86de9c231db01ef04b2cc",
+  };
+   
+  (function(d, s) {
+    let t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+    e.async = true; e.src = "//static.axept.io/sdk.js";
+    t.parentNode.insertBefore(e, t);
+  })(document, "script");
+})
 </script>
 
 <style lang="stylus" scoped>
