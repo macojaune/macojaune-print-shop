@@ -12,12 +12,13 @@ products:
   stock: ''
   images:
   - public/dsc06270.jpg
-- sku: ''
-  title: ''
+- sku: veil-2
+  title: "2"
   slug: ''
   price: ''
   stock: ''
-  images: []
+  images:
+  - public/dsc06252-1.jpg
 
 ---
 Enivré par le chant du vent, baladé par ses mains habiles, il va et vient observant ses reins, caressant ses seins… Quel coquin ce bout de satin.
