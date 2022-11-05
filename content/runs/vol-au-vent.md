@@ -11,7 +11,7 @@ products:
   price: ''
   stock: ''
   images:
-  - public/dsc06261.jpg
+  - "/dsc06261.jpg"
 - sku: veil-1
   title: "1"
   slug: ''
