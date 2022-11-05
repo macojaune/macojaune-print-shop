@@ -10,6 +10,13 @@ products:
   slug: ''
   price: ''
   stock: ''
+  images:
+  - public/dsc06270.jpg
+- sku: ''
+  title: ''
+  slug: ''
+  price: ''
+  stock: ''
   images: []
 
 ---
