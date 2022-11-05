@@ -30,9 +30,6 @@ fields:
   - type: text
     name: slug
     label: slug
-  - type: image_gallery
-    name: image
-    label: image
   - type: text
     name: price
     label: price
