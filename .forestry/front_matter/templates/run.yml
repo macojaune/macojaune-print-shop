@@ -39,3 +39,5 @@ fields:
   - type: image_gallery
     name: images
     label: images
+pages:
+- content/runs/vol-au-vent.md
