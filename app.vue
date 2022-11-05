@@ -5,7 +5,23 @@
 </template>
 
 <script setup>
-
+import "@/assets/css/tailwind.css";
+useHead({
+  link: [
+    { rel: "preconnect", href: "https://app.snipcart.com" },
+    { rel: "preconnect", href: "https://cdn.snipcart.com" },
+    {
+      rel: "stylesheet",
+      href: "https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.css",
+    },
+  ],
+  script: [
+    {
+      src: "https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.js",
+      async: true,
+    },
+  ],
+});
 </script>
 <style lang="stylus">
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Righteous&display=swap')
@@ -20,4 +36,17 @@
     background-position 0 0
   to
     background-position 1000px 1000px
+
+.page-enter-active
+.page-leave-active
+  transition: all 0.4s
+
+.page-enter-from
+.page-leave-to
+  opacity: 0
+  filter: blur(1rem)
+
+//snipcart
+.snipcart-button-primary
+  background-color var(--bgColor-buttonPrimary,#1a4db3)
 </style>

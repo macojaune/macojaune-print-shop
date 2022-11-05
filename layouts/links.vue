@@ -1,6 +1,6 @@
 <template lang="pug">
 .main.flex.flex-col.justify-between.h-full.overflow-auto
-  Header
+  LinksHeader
   slot
   Footer
 </template>
