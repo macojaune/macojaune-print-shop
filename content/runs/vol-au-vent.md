@@ -25,7 +25,7 @@ products:
   price: ''
   stock: ''
   images:
-  - public/dsc06252-1.jpg
+  - "/dsc06252-1.jpg"
 
 ---
 Enivré par le chant du vent, baladé par ses mains habiles, il va et vient observant ses reins, caressant ses seins… Quel coquin ce bout de satin.
