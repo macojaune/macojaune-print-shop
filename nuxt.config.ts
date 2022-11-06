@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      stripePublicKey: process.env.NUXT_ENV_STRIPE_PUBLIC,
-      serverURL: process.env.NUXT_ENV_SERVER,
+      stripePublicKey: process.env.STRIPE_PUBLIC,
+      serverURL: process.env.SERVER,
       snipcartKey: process.env.SNIPCART_KEY,
     },
   },
