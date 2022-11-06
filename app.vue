@@ -7,6 +7,13 @@
 <script setup>
 import "@/assets/css/tailwind.css";
 useHead({
+  meta: [
+    {
+      name: "description",
+      content:
+        "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée.",
+    },
+  ],
   link: [
     { rel: "preconnect", href: "https://app.snipcart.com" },
     { rel: "preconnect", href: "https://cdn.snipcart.com" },
@@ -19,6 +26,18 @@ useHead({
     {
       src: "https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.js",
       async: true,
+    },
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "http://schema.org",
+        "@type": "ArtGallery",
+        name: "Macojaune",
+        url: "macojaune.com",
+        email: "hello@macojaune.com",
+        paymentAccepted:
+          "Visa, Master Card, Amex, ApplePay, AndroidPay, Bitcoin",
+      }),
     },
   ],
 });

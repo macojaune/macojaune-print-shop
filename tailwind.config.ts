@@ -15,6 +15,7 @@ export default <Partial<Config>>{
   theme: {
     fontFamily: {
       sans: ["Hind", "sans-serif"],
+      display: ["Righteous", "sans-serif"],
     },
     extend: {},
   },

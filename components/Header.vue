@@ -1,12 +1,12 @@
 <template lang="pug">
 header(class="flex items-center md:justify-center py-6 md:py-32 flex-col md:flex-row")
   nav(class="md:flex-2 md:mr-auto md:grow")
-    NuxtLink.text-center.text-amber-400(class="hover:text-orange-600 transition-colors ease-in-out duration-150" to="/")
-      h1(v-if="route.path==='/'" class="text-5xl md:text-7xl") YELLOW
+    NuxtLink.text-center.text-amber-400(class="hover:text-orange-600 transition-colors ease-in-out duration-150" to="/" itemprop="brand" itemtype="http://schema.org/Organization")
+      h1(v-if="route.path==='/'" class="text-5xl md:text-7xl font-display") YELLOW
         br.block(class="md:hidden")
         |
         | ART SHOP
-      h3(v-else class="text-3xl md:text-6xl") YELLOW ART SHOP
+      h3(v-else class="font-display text-3xl md:text-6xl" itemprop="name") YELLOW ART SHOP
     p.text-center.text-white.font-semibold @MACOJAUNE
   button.text-white.snipcart-checkout.flex.items-center.mt-3(class="md:mt-0 md:mx-5 hover:bg-black hover:text-amber-400 active:bg-amber-500 active:text-black rounded py-2 px-3")
     svg(viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title="" class="snipcart-cart-header__icon snipcart__icon")
