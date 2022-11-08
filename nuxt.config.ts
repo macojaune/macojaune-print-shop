@@ -9,7 +9,18 @@ export default defineNuxtConfig({
   },
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxt/image-edge"],
   tailwindcss: {},
-  content: {},
+  content: {
+    markdown: {
+      remarkPlugins: ["remark-emoji"],
+      rehypePlugins: ["rehype-external-links"],
+      remarkExternalLinks: {
+        target: "_blank",
+      },
+      rehypeExternalLinks: {
+        target: "_blank",
+      },
+    },
+  },
   css: ["~/assets/css/tailwind.css"],
   build: {
     transpile: ["moment"],

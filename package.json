@@ -21,6 +21,8 @@
     "@nuxt/image-edge": "^1.0.0-27769790.4b27db3",
     "axios": "^0.27.2",
     "moment": "^2.29.4",
+    "rehype-external-links": "^2.0.1",
+    "remark-emoji": "^3.0.2",
     "vue-use-stripe": "^0.1.1"
   }
 }
