@@ -1,0 +1,62 @@
+---
+title: Dorures - Salon Français
+slug: dorures
+cover: ''
+description: ''
+date: 
+products:
+- title: mains
+  slug: mains
+  price: "555"
+  stock: "11"
+  images:
+  - "/insta_dsc07643.jpg"
+  sku: dorures-mains
+  description: |-
+    Mains. Extrémités et complexités.
+    À la fois souples et rigides, douces et frappantes, sensibles et blessantes. Elles vont
+    par deux qu’elles soient nôtres ou échangées.
+    Leur placement spontané, se soumet à l&#39;interprétation:
+    Chaleur pour certain·es, elles se veulent rassurantes, apposées sur cette partie
+    discrète qui portera un jour la vie.
+    Douleur pour d’autres, chroniques, incomprises, banalisées, elles seront à peine
+    soulagées par l’appui de ces mains sur ces parties qui dysfonctionnent sans raison
+    apparente.
+    Outils de création, ustensiles de destruction. Dorées, car précieuses.
+- sku: dorures-contour
+  title: Contour
+  slug: contour
+  description: |-
+    Photo volée durant les préparatifs, elle fait maintenant partie de mes préférées.
+
+    Cette liberté capturée laisse s’échapper l’insouciance du naturel.
+    Dorée, tel un trophée, sculptée par les mains du temps.
+  price: "555"
+  stock: "11"
+  images:
+  - "/insta_dsc07780.jpg"
+- sku: dorures-trois
+  title: Trois
+  slug: trois
+  description: |-
+    Certain·es y verront une symétrie, d’autres une opposition.
+    Un contraste, métallique d’abord, le noir de l’acier contre l’or.
+    Géométrique ensuite, lignes horizontales perpendiculaires aux courbes féminines.
+    Lumineux enfin, les ombres camouflent la différence et la lumière met en avant
+    l’unicité.
+    Trois êtres venu·es d’ailleurs, dorées pour ne pas nous ressembler.
+  price: "555"
+  stock: "11"
+  images:
+  - "/insta_dsc07681-2.jpg"
+
+---
+Partis sur un coup de tête, nous voilà élancés sur une séance photo entre amis. 2 photographes, 4 modèles, un lieu en chantier et une idée loufoque de peinture corporelle ont donné vie à cette série. Dorées et multiples.
+
+Que serait un Salon Français sans ses dorures ?
+
+Série présentée  à l'occasion de l'exposition Salon Français dans le cadre du Festival Art+Rhum autour de la Route du rhum 2022.
+
+Exposition du 7 au 15 Novembre 2022 à l'hôtel ARAWAK au Gosier (Guadeloupe).
+
+Modèles : [Kingmaax](https://www.instagram.com/kingmaaax_/), [Tessa](https://www.instagram.com/tessanaime), Melissa
