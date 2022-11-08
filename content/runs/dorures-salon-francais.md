@@ -11,7 +11,7 @@ products:
   stock: "11"
   images:
   - "/insta_dsc07643.jpg"
-  sku: mains
+  sku: dorures-mains
   description: |-
     Mains. Extrémités et complexités.
     À la fois souples et rigides, douces et frappantes, sensibles et blessantes. Elles vont
