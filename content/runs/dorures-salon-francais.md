@@ -12,17 +12,14 @@ products:
   images:
   - "/insta_dsc07643.jpg"
   sku: dorures-mains
-  description: |-
-    Mains. Extrémités et complexités.
-    À la fois souples et rigides, douces et frappantes, sensibles et blessantes. Elles vont
-    par deux qu’elles soient nôtres ou échangées.
-    Leur placement spontané, se soumet à l&#39;interprétation:
-    Chaleur pour certain·es, elles se veulent rassurantes, apposées sur cette partie
-    discrète qui portera un jour la vie.
-    Douleur pour d’autres, chroniques, incomprises, banalisées, elles seront à peine
-    soulagées par l’appui de ces mains sur ces parties qui dysfonctionnent sans raison
-    apparente.
-    Outils de création, ustensiles de destruction. Dorées, car précieuses.
+  description: "Extrémités et complexités.  \nÀ la fois souples et rigides, douces
+    et frappantes, sensibles et blessantes. Elles vont par deux qu’elles soient nôtres
+    ou échangées. \n\nLeur placement spontané, se soumet à l'interprétation: Chaleur
+    pour certain·es, elles se veulent rassurantes, apposées sur cette partie discrète
+    qui portera un jour la vie. \n\nDouleur pour d’autres, chroniques, incomprises,
+    banalisées, elles seront à peine soulagées par l’appui de ces mains sur ces parties
+    qui dysfonctionnent sans raison apparente. \n\nOutils de création, ustensiles
+    de destruction.   \nDorées, car précieuses."
 - sku: dorures-contour
   title: Contour
   slug: contour
