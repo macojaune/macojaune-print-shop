@@ -3,7 +3,7 @@ title: Dorures - Salon Français
 slug: dorures
 cover: ''
 description: ''
-date: 
+date: 2022-11-07T00:00:00-04:00
 products:
 - title: mains
   slug: mains

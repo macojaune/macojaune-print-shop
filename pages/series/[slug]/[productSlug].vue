@@ -1,8 +1,8 @@
 <template lang="pug">
 .serie-page.px-4
-    ContentDoc(:path="`/runs/${$route.params.slug}`" v-slot="{doc}")
+    ContentRenderer(:value="serie")
         NuxtLink(to="./")
-            p.mt-6.mb-3.text-2xl.uppercase.text-amber-400.font-display &lt; {{doc.title}}
+            p.mt-6.mb-3.text-2xl.uppercase.text-amber-400.font-display &lt; {{serie.title}}
         h1.mt-6.mb-3.text-5xl.uppercase.text-amber-500.font-display(itemprop="name") {{product.title}} 
             br
             small.font-sans.text-sm.text-white.normal-case
@@ -32,9 +32,9 @@ const router = useRoute();
 definePageMeta({
     layout: "default",
 });
-const serie = await queryContent("/runs/" + router.params.slug).findOne();
+const serie = await queryContent("runs").where({ slug: router.params.slug }).findOne();
 const product = serie.products.find(
-    (p) => p.slug === router.params.productSlug
+    (p: { slug: string | string[]; }) => p.slug === router.params.productSlug
 );
 useHead({
     //   title: product.title + " - Macojaune.com",

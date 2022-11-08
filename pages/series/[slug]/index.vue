@@ -1,13 +1,13 @@
 <template lang="pug">
 .serie-page.px-4
-  ContentDoc(:path="`/runs/${$route.params.slug}`" v-slot="{doc}")
+  ContentRenderer(:value="serie")
     .content
-      h1.mt-6.mb-3.text-5xl.uppercase.text-amber-500.font-display {{doc.title}}
+      h1.mt-6.mb-3.text-5xl.uppercase.text-amber-500.font-display {{serie.title}}
         | 
-        small.font-sans.text-sm.text-white {{formatDate(doc.date)}}
-      ContentRenderer.text-white.text-lg(class="text-base md:text-lg" :value="doc")
-      .picture-list.my-6.grid.grid-flow-row-dense.gap-4.justify-evenly.items-end(:class="`grid-cols-1 ${doc.products.length>2?'md:grid-cols-3':'md:grid-cols-2'}`")
-        .picture(v-for="(product, index) in doc.products" :key="index" class="hover:cursor-pointer" )
+        small.font-sans.text-sm.text-white {{formatDate(serie.date)}}
+      ContentRendererMarkdown.text-white.text-lg(class="text-base md:text-lg" :value="serie")
+      .picture-list.my-6.grid.grid-flow-row-dense.gap-4.justify-evenly.items-end(:class="`grid-cols-1 ${serie.products.length>2?'md:grid-cols-3':'md:grid-cols-2'}`")
+        .picture(v-for="(product, index) in serie.products" :key="index" class="hover:cursor-pointer" )
           NuxtLink(:to="product.slug" )
             img.primary.border-radius.mb-2(
               v-if="product.images" 
@@ -44,11 +44,9 @@ const router = useRoute();
 definePageMeta({
   layout: "default",
 });
-
-const { title } = await queryContent("/runs/" + router.params.slug).findOne();
-
+const serie = await queryContent("runs").where({ slug: router.params.slug }).findOne();
 useHead({
-  title: title + " - Macojaune.com",
+  title: serie.title + " - Macojaune.com",
   script: [
     {
       type: "application/ld+json",
@@ -70,7 +68,7 @@ useHead({
             position: 2,
             item: {
               "@id": "https://macojaune.com" + router.fullPath,
-              name: title,
+              name: serie.title,
             },
           },
         ],
