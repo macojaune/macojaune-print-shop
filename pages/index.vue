@@ -6,13 +6,13 @@
         .run-text(class="basis-full lg:basis-2/4 mt-3 lg:mt-0  order-2 lg:order-1")
           small.run-date.text-white {{formatDate(run.date)}}
           br
-          NuxtLink.mb-2.uppercase.text-amber-400.font-display(class="text-4xl lg:text-7xl hover:text-orange-600" :to="`/series/${run.slug}`") {{run.title}}
+          NuxtLink.mb-2.uppercase.text-amber-400.font-display(class="text-4xl lg:text-7xl hover:text-orange-600" :to="`/series/${run.slug}/`") {{run.title}}
           p.run-description.text-white {{run.description}}
         .run-pictures.flex.gap-3(class="basis-full lg:basis-2/5 order-1 lg:order-2")
-            .run-picture.grow(v-for="(product, index) in run.products.slice(0,3)" :key="index" class="hover:scale-150 hover:rounded-none transition-all ease-in-out")
-              NuxtLink.h-full(:to="`/series/${run.slug}`")
-                img.rounded-md.h-full.w-full(v-if="product.images.length>0" :src="`/pictures/${product.images[0]}`" sizes="sm:100vw" loading="lazy" quality="60")
-                span.white--text(v-else) {{product.title}}
+          .run-picture.grow(v-for="(product, index) in run.products.slice(0,3)" :key="index" class="hover:scale-150 hover:rounded-none transition-all ease-in-out")
+            NuxtLink.h-full(:to="`/series/${run.slug}/${product.slug}`")
+              img.rounded-md.h-full.w-full(v-if="product.images.length>0" :src="`/pictures/${product.images[0]}`" sizes="sm:100vw" loading="lazy" quality="60")
+              span.white--text(v-else) {{product.title}}
       //template(#not-found)
       //  .empty
       //    h3.text-center.warning--text Oups ! Pas de série disponible à la vente.
