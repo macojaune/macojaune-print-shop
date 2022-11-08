@@ -21,6 +21,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  image: {
+    provider:'netlify'
+  },
   css: ["~/assets/css/tailwind.css"],
   build: {
     transpile: ["moment"],
