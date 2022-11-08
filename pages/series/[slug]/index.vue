@@ -32,19 +32,22 @@
           :data-item-price="product.price"
           :data-item-image="`/pictures/${product.images[0]}`"
           :data-item-max-quantity="product.stock"
-          :data-item-url="`https://macojaune.com${router.path}`" ) J'en veux
+          :data-item-url="`https://macojaune.com${router.path}/${product.slug}`" ) Ajouter au panier
 </template>
 
 <script lang="ts" setup>
 import moment from "moment";
-import { reactive } from "vue";
-
 moment.locale("fr");
+
 const router = useRoute();
+console.log(router)
+
 definePageMeta({
   layout: "default",
 });
+
 const { title } = await queryContent("/runs/" + router.params.slug).findOne();
+
 useHead({
   title: title + " - Macojaune.com",
   script: [
@@ -76,15 +79,7 @@ useHead({
     },
   ],
 });
-const state = reactive<{
-  showModal: boolean;
-  showImage: number;
-  modalProduct: Product | null;
-}>({
-  showModal: false,
-  showImage: 0,
-  modalProduct: null,
-});
+
 type Product = {
   stock: number;
   images?: string[];
@@ -92,11 +87,5 @@ type Product = {
   title: string;
 };
 const formatDate = (date: string) => moment(date).format("ll");
-const openModal = (product: Product) => {
-  if (product.stock > 0) {
-    state.modalProduct = product;
-    state.showModal = !state.showModal;
-    //$gtm.push({event: 'showDetails', product})
-  }
-};
+
 </script>
