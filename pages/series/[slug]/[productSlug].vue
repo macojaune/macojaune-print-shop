@@ -27,8 +27,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
-
 const router = useRoute();
 definePageMeta({
     layout: "default",
@@ -76,27 +74,4 @@ useHead({
         },
     ],
 });
-const state = reactive<{
-    showModal: boolean;
-    showImage: number;
-    modalProduct: Product | null;
-}>({
-    showModal: false,
-    showImage: 0,
-    modalProduct: null,
-});
-type Product = {
-    stock: number;
-    images?: string[];
-    price?: number;
-    title: string;
-};
-const formatDate = (date: string) => moment(date).format("ll");
-const openModal = (product: Product) => {
-    if (product.stock > 0) {
-        state.modalProduct = product;
-        state.showModal = !state.showModal;
-        //$gtm.push({event: 'showDetails', product})
-    }
-};
 </script>
