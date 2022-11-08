@@ -35,13 +35,20 @@ products:
   stock: "11"
   images:
   - "/insta_dsc07780.jpg"
-- sku: ''
-  title: ''
-  slug: ''
-  description: ''
-  price: ''
-  stock: ''
-  images: []
+- sku: dorures-trois
+  title: Trois
+  slug: trois
+  description: |-
+    Certain·es y verront une symétrie, d’autres une opposition.
+    Un contraste, métallique d’abord, le noir de l’acier contre l’or.
+    Géométrique ensuite, lignes horizontales perpendiculaires aux courbes féminines.
+    Lumineux enfin, les ombres camouflent la différence et la lumière met en avant
+    l’unicité.
+    Trois êtres venu·es d’ailleurs, dorées pour ne pas nous ressembler.
+  price: "555"
+  stock: "11"
+  images:
+  - "/insta_dsc07681-2.jpg"
 
 ---
 Partis sur un coup de tête, nous voilà élancés sur une séance photo entre amis. 2 photographes, 4 modèles, un lieu en chantier et une idée loufoque de peinture corporelle ont donné vie à cette série. Dorées et multiples.
