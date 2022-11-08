@@ -58,3 +58,5 @@ Que serait un Salon Français sans ses dorures ?
 Série présentée  à l'occasion de l'exposition Salon Français dans le cadre du Festival Art+Rhum autour de la Route du rhum 2022.
 
 Exposition du 7 au 15 Novembre 2022 à l'hôtel ARAWAK au Gosier (Guadeloupe).
+
+Modèles : [Kingmaax](https://www.instagram.com/kingmaaax_/), [Tessa](https://www.instagram.com/tessanaime), Melissa
