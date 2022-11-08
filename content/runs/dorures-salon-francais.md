@@ -23,7 +23,7 @@ products:
     soulagées par l’appui de ces mains sur ces parties qui dysfonctionnent sans raison
     apparente.
     Outils de création, ustensiles de destruction. Dorées, car précieuses.
-- sku: dorure-contour
+- sku: dorures-contour
   title: Contour
   slug: contour
   description: |-
