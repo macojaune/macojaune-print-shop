@@ -40,7 +40,6 @@ import moment from "moment";
 moment.locale("fr");
 
 const router = useRoute();
-console.log(router)
 
 definePageMeta({
   layout: "default",
