@@ -1,14 +1,15 @@
 <template lang="pug">
 .serie-page.px-4
-    ContentDoc(:path="`/runs/${$route.params.slug}`" v-slot="{doc}")
+    ContentRenderer(:value="serie")
         NuxtLink(to="./")
-            p.mt-6.mb-3.text-2xl.uppercase.text-amber-400.font-display &lt; {{doc.title}}
+            p.mt-6.mb-3.text-2xl.uppercase.text-amber-400.font-display &lt; {{serie.title}}
         h1.mt-6.mb-3.text-5xl.uppercase.text-amber-500.font-display(itemprop="name") {{product.title}} 
             br
             small.font-sans.text-sm.text-white.normal-case
                 span.text-caption.text-decoration-line-through(v-if="product.stock>0" itemprop="availability" href="http://schema.org/InStock") Édition limitée à {{product.stock}} exemplaires
                 span.font-bold.text-red-500(v-else itemprop="availability" href="http://schema.org/OutOfStock") Épuisé
-        p(v-if="product.description") {{ product.description }}
+        p.text-white.text-lg(class="text-base md:text-lg")
+            ContentSlot(:use="$slots.default") {{ product.description }}
         .flex.flex-col.justify-end.pt-4.gap-4.items-center(v-if="product.stock>0&&product.price")
             p.text-2xl.text-center.text-amber-400.font-semibold(v-if="product.price") {{product.price}}€
                 Meta(itemprop="price" :content="product.price")
@@ -31,9 +32,9 @@ const router = useRoute();
 definePageMeta({
     layout: "default",
 });
-const serie = await queryContent("/runs/" + router.params.slug).findOne();
+const serie = await queryContent("runs").where({ slug: router.params.slug }).findOne();
 const product = serie.products.find(
-    (p) => p.slug === router.params.productSlug
+    (p: { slug: string | string[]; }) => p.slug === router.params.productSlug
 );
 useHead({
     //   title: product.title + " - Macojaune.com",
@@ -75,3 +76,8 @@ useHead({
     ],
 });
 </script>
+
+<style lang="stylus" scoped>
+p a 
+ color var(--tw-yellow-500)
+</style>
