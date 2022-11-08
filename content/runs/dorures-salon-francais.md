@@ -23,13 +23,18 @@ products:
     soulagées par l’appui de ces mains sur ces parties qui dysfonctionnent sans raison
     apparente.
     Outils de création, ustensiles de destruction. Dorées, car précieuses.
-- sku: ''
-  title: ''
-  slug: ''
-  description: ''
-  price: ''
-  stock: ''
-  images: []
+- sku: dorure-contour
+  title: Contour
+  slug: contour
+  description: |-
+    Photo volée durant les préparatifs, elle fait maintenant partie de mes préférées.
+
+    Cette liberté capturée laisse s’échapper l’insouciance du naturel.
+    Dorée, tel un trophée, sculptée par les mains du temps.
+  price: "555"
+  stock: "11"
+  images:
+  - "/insta_dsc07780.jpg"
 - sku: ''
   title: ''
   slug: ''
