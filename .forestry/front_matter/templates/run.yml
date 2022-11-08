@@ -30,6 +30,15 @@ fields:
   - type: text
     name: slug
     label: slug
+  - name: description
+    type: textarea
+    default: ''
+    config:
+      required: false
+      wysiwyg: false
+      schema:
+        format: markdown
+    label: description
   - type: text
     name: price
     label: price
@@ -39,5 +48,3 @@ fields:
   - type: image_gallery
     name: images
     label: images
-pages:
-- content/runs/vol-au-vent.md
