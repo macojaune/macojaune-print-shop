@@ -14,7 +14,7 @@ sections:
   label: Runs
   create: documents
   match: "**/*"
-upload_dir: pictures
+upload_dir: public/pictures
 public_path: https://macojaune.com/pictures
 front_matter_path: ''
 use_front_matter_path: true
