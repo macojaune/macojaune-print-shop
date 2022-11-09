@@ -14,7 +14,7 @@
               nuxt-img.rounded-md.h-full(
                 v-if="product.images.length>0" 
                 :src="`/pictures${product.images[0]}`" 
-                sizes="sm:100vw lg:400px"
+                sizes="xs:33vw lg:300px"
                 format="webp"
                 :loading="index>1 ? 'lazy':''" 
                 :alt="(index+1) + '-'+product.title"

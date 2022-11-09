@@ -9,11 +9,12 @@
       .picture-list.my-6.grid.grid-flow-row-dense.gap-4.justify-evenly.items-end(:class="`grid-cols-1 ${serie.products.length>2?'md:grid-cols-3':'md:grid-cols-2'}`")
         .picture(v-for="(product, index) in serie.products" :key="index" class="hover:cursor-pointer" )
           NuxtLink(:to="product.slug" )
-            img.primary.border-radius.mb-2(
+            NuxtImg.primary.border-radius.mb-2(
               v-if="product.images" 
-              :aspect-ratio="5/4" 
               :src="`/pictures${product.images[0]}`" 
-              fit="cover" 
+              sizes="xs:100vw lg:500px"
+              format="webp"
+              quality="60"
               itemprop="image" 
               :alt="product.title")
           p.text-2xl.text-center.text-amber-400.font-semibold(v-if="product.price") {{product.price}}€
