@@ -56,7 +56,7 @@ useHead({
             property: "og:description",
             content: serie.description
         },
-        { property: "og:image", content: `/pictures/${serie?.products?.[0].images?.[0]}` },
+        { property: "og:image", content: `https://macojaune.com/pictures/${serie?.products?.[0].images?.[0]}` },
         {
             property: "twitter:card", content: "summary_large_image"
         },
@@ -66,7 +66,7 @@ useHead({
             property: "twitter:description",
             content: serie.description
         },
-        { property: "twitter:image", content: `/pictures/${serie?.products?.[0].images?.[0]}` }
+        { property: "twitter:image", content: `https://macojaune.com/pictures/${serie?.products?.[0].images?.[0]}` }
     ], script: [
         {
             type: "application/ld+json",
