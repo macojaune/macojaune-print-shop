@@ -24,7 +24,7 @@
                 :data-item-url="`https://macojaune.com${router.path}/${product.slug}`" ) Ajouter au panier
         .picture-list.my-6.grid.grid-flow-row-dense.gap-4.justify-around.items-end(:class="`grid-cols-1 ${product.images.length>2?'md:grid-cols-3':'md:grid-cols-2'}`")
             .picture(v-for="(imageURL, index) in product.images" :key="index" class="hover:cursor-pointer")
-                img.primary.border-radius.mb-2(:src="`/pictures${imageURL}`" fit="cover" itemprop="image" :alt="product.title")
+                NuxtImg.border-radius(:src="`/pictures${imageURL}`" sizes="xs:100vw lg:800px" quality="80" format="webp" itemprop="image" :alt="product.title")
 </template>
 
 <script lang="ts" setup>
