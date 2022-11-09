@@ -28,7 +28,39 @@
 <script lang="ts" setup>
 import moment from "moment";
 moment.locale("fr-FR");
+
+const description = "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée."
+
 useHead({
+  title: "Yellow art shop - La boutique du Macojaune",
+  meta: [
+    {
+      name: "title",
+      content: "Yellow art shop - La boutique du Macojaune"
+    },
+    {
+      name: "description",
+      content: description
+    },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://macojaune.com/" },
+    { property: "og:title", content: "YELLOW ART SHOP" },
+    {
+      property: "og:description",
+      content: description
+    },
+    { property: "og:image", content: "/pictures/dsc06261.jpg" },
+    {
+      property: "twitter:card", content: "summary_large_image"
+    },
+    { property: "twitter:url", content: "https://macojaune.com/" },
+    { property: "twitter:title", content: "YELLOW ART SHOP" },
+    {
+      property: "twitter:description",
+      content: description
+    },
+    { property: "twitter:image", content: "/pictures/dsc06261.jpg" }
+  ],
   script: [
     {
       type: "application/ld+json",
