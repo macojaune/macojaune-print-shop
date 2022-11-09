@@ -11,13 +11,13 @@
         .run-pictures.flex.gap-3(class="basis-full lg:basis-2/5 order-1 lg:order-2")
           .run-picture.grow(v-for="(product, index) in run.products.slice(0,3)" :key="index" class="hover:scale-150 hover:rounded-none transition-all ease-in-out")
             NuxtLink.h-full(:to="`/series/${run.slug}/${product.slug}`")
-              nuxt-img.rounded-md.h-full.w-full(
+              nuxt-img.rounded-md.h-full(
                 v-if="product.images.length>0" 
                 :src="`/pictures${product.images[0]}`" 
-                width="400"
-                loading="lazy" 
                 format="webp"
-                quality="60")
+                :loading="index>2 && 'lazy'" 
+                :alt="(index+1) + '-'+product.title"
+                quality="30")
               span.white--text(v-else) {{product.title}}
       //template(#not-found)
       //  .empty
