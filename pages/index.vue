@@ -59,7 +59,7 @@ useHead({
       property: "twitter:description",
       content: description
     },
-    { property: "twitter:image", content: "/pictures/dsc06261.jpg" }
+    { property: "twitter:image", content: "https://macojaune.com/pictures/dsc06261.jpg" }
   ],
   script: [
     {
