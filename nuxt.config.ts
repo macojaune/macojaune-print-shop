@@ -5,6 +5,7 @@ export default defineNuxtConfig({
       stripePublicKey: process.env.STRIPE_PUBLIC,
       serverURL: process.env.SERVER,
       snipcartKey: process.env.SNIPCART_KEY,
+      gtmID: process.env.GTM_ID,
     },
   },
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxt/image-edge"],
