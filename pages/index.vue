@@ -69,14 +69,17 @@
             :to="`/blog/${blog.permalink}`"
             class="group relative aspect-square rounded-sm bg-amber-400/60 "
           >
+            <div
+              class="absolute inset-0 z-10 bg-amber-400/30 backdrop-blur-sm transition-all group-hover:bg-amber-400/10 group-hover:backdrop-blur-none"
+            />
             <nuxt-img
               :src="`/pictures${blog.image}`"
               fit="cover"
               placeholder
-              class="absolute inset-0 z-0 h-full bg-black/30  bg-blend-darken transition-all group-hover:bg-black/90 group-hover:bg-blend-multiply"
+              class="absolute inset-0 z-0 h-full"
             />
-            <div class="absolute bottom-0 lg:p-5">
-              <h4 class=" font-display z-10 text-4xl text-white group-hover:text-amber-600">
+            <div class="absolute bottom-0 z-20 lg:p-5">
+              <h4 class=" font-display  text-4xl text-white group-hover:text-amber-600">
                 {{
                   blog.title
                 }}
@@ -97,6 +100,36 @@
         </div>
       </ContentList>
     </div>
+
+    <div class="flex flex-row items-center lg:gap-5 lg:pt-5">
+      <div class="lg:aspect-portrait lg:h-screen lg:w-auto">
+        <iframe
+          class="lg:aspect-portrait lg:w-full"
+          src="https://www.youtube.com/embed?list=UULF4b9BIgf07NzGhrdL2zpQ8w"
+        />
+      </div>
+      <div class="flex flex-col justify-evenly lg:h-full lg:w-full">
+        <h2 class="font-display text-6xl/7 text-white">
+          Ma dernière vidéo Youtube <br>
+          <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
+        </h2>
+        <div class="flex flex-col self-end bg-amber-400/20 lg:ml-auto lg:mt-24 lg:aspect-square lg:gap-4 lg:p-4">
+          <h2 class="font-display text-right text-4xl text-white">
+            Le podcast est dispo juste là
+          </h2>
+          <iframe class="h-full grow" src="https://pod.link/1369562721" />
+        </div>
+      </div>
+    </div>
+    <p class="my-16 text-center font-sans text-base text-white">
+      J'ai surement d'autres choses à rajouter mais je sèche… il est 4H du
+      mat,
+      je
+      crois que
+      c'est le
+      moment de
+      publier cette mise à jour
+    </p>
   </div>
 </template>
 
@@ -106,7 +139,7 @@ import moment from 'moment'
 import { reactive } from 'vue'
 
 moment.locale('fr-FR')
-const state = reactive({ nbToShow: -8 })
+const state = reactive({ nbToShow: -4 })
 
 function showMore () {
   state.nbToShow -= 8

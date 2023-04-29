@@ -14,10 +14,15 @@ export default <Partial<Config>>{
   ],
   theme: {
     fontFamily: {
-      sans: ['Hind', 'sans-serif'],
-      display: ['Righteous', 'sans-serif']
+      sans: ['Hind', 'sans-serif']
     },
     extend: {
+      fontFamily: {
+        display: ['Righteous', 'sans-serif']
+      },
+      aspectRatio: {
+        portrait: '9 / 16'
+      }
     }
   },
   plugins: []

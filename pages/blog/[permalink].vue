@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h2 class="font-display my-3 text-5xl uppercase text-amber-600">
+    <h2 class="font-display uppercase text-amber-600 lg:my-3 lg:text-7xl">
       {{ data?.title ?? "" }}
     </h2>
-    <ContentRenderer class="text-lg text-white" :value="data" />
+    <div class="  lg:w-7/12 ">
+      <ContentRenderer class="text-lg text-white" :value="data" />
+    </div>
   </div>
 </template>
 
