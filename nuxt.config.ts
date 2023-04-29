@@ -5,36 +5,38 @@ export default defineNuxtConfig({
       stripePublicKey: process.env.STRIPE_PUBLIC,
       serverURL: process.env.SERVER,
       snipcartKey: process.env.SNIPCART_KEY,
-      gtmID: process.env.GTM_ID,
-    },
+      gtmID: process.env.GTM_ID
+    }
   },
-  modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxt/image-edge"],
+  modules: [
+    '@nuxtjs/eslint-module',
+    '@nuxt/content', '@nuxtjs/tailwindcss', '@nuxt/image-edge'],
   tailwindcss: {},
   content: {
     markdown: {
-      remarkPlugins: ["remark-emoji"],
-      rehypePlugins: ["rehype-external-links"],
+      remarkPlugins: ['remark-emoji'],
+      rehypePlugins: ['rehype-external-links'],
       remarkExternalLinks: {
-        target: "_blank",
+        target: '_blank'
       },
       rehypeExternalLinks: {
-        target: "_blank",
-      },
-    },
+        target: '_blank'
+      }
+    }
   },
   image: {
-    provider: "netlify",
+    provider: 'netlify'
   },
-  css: ["~/assets/css/tailwind.css"],
+  css: ['~/assets/css/tailwind.css'],
   build: {
-    transpile: ["moment"],
+    transpile: ['moment']
   },
   app: {
     head: {
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1",
-      title: "Macojaune.com",
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      title: 'Macojaune.com'
     },
-    pageTransition: { name: "page", mode: "out-in" },
-  },
-});
+    pageTransition: { name: 'page', mode: 'out-in' }
+  }
+})
