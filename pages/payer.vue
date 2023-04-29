@@ -14,11 +14,11 @@
           circle( class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4")
           path( class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z")
   .info.mt-8(v-show="state.show")
-    p.mb-4.text-2xl.text-white.text-center Régler 
-      span.text-4xl.font-bold.text-orange-400(@click="state.show=false") {{ state.amount}}€ 
-      |  
+    p.mb-4.text-2xl.text-white.text-center Régler
+      span.text-4xl.font-bold.text-orange-400(@click="state.show=false") {{ state.amount}}€
+      |
       span.text-white ?
-      |   
+      |
       span.text-xl Simple comme bonjour.
   .payment(v-show="state.show")
     p.text-center.text-white Insérez vos informations en toute tranquilité.
@@ -30,21 +30,21 @@
 </template>
 
 <script setup>
-import {reactive} from "vue"
-import axios from "axios"
-import {useStripe} from 'vue-use-stripe'
+import { reactive } from 'vue'
+import axios from 'axios'
+import { useStripe } from 'vue-use-stripe'
 
 useHead({
-  title:"Payer - Macojaune.com",
+  title: 'Payer - Macojaune.com',
   script: [
-    {src: "https://js.stripe.com/v3", async: true}
+    { src: 'https://js.stripe.com/v3', async: true }
   ]
 })
 const route = useRoute()
 const config = useRuntimeConfig()
 
-const {stripe} = useStripe({
-  key: config.public.stripePublicKey || '',
+const { stripe } = useStripe({
+  key: config.public.stripePublicKey || ''
 })
 
 const state = reactive({
@@ -54,25 +54,25 @@ const state = reactive({
   intent: {},
   amount: route.params.amount,
   name: route.params.name,
-  card: null,
+  card: null
 })
 
 const initPayment = async () => {
   try {
     state.loading = true
-    const {data} = await axios.get(
+    const { data } = await axios.get(
       `${config.public.serverURL}/payme`,
       {
         params: {
           amount: state.amount,
-          name: state.name,
-        },
+          name: state.name
+        }
       }
     )
     state.intent = data // todo check error
     state.loading = false
     state.show = true
-    //stripe
+    // stripe
     state.elements = stripe.value?.elements({
       clientSecret: data.client_secret,
       locale: 'fr-FR',
@@ -81,10 +81,10 @@ const initPayment = async () => {
         labels: 'floating'
       }
     })
-    
+
     state.card = state.elements?.create('payment')
     state.card.mount('#card')
-    state.card.addEventListener('change', ({error}) => {
+    state.card.addEventListener('change', ({ error }) => {
       state.error = error ? error.message : ''
     })
   } catch (e) {
@@ -100,7 +100,7 @@ const initPayment = async () => {
 
 const doPay = async () => {
   state.loading = true
-  const {paymentIntent, error} = await stripe.value?.confirmPayment({
+  const { paymentIntent, error } = await stripe.value?.confirmPayment({
     elements: state.elements,
     confirmParams: {
       return_url: 'https://macojaune.com/merci/' + state.amount
@@ -110,9 +110,8 @@ const doPay = async () => {
   if (error) {
     state.error = error.message
     console.error(error)
-  } else if (paymentIntent.status === 'succeeded')
-    await navigateTo('/merci/'+state.amount,{replace:true})
-    console.log('success payment')
+  } else if (paymentIntent.status === 'succeeded') { await navigateTo('/merci/' + state.amount, { replace: true }) }
+  console.log('success payment')
 }
 </script>
 

@@ -1,23 +1,29 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 export default <Partial<Config>>{
   content: [
-    `./components/**/*.{vue,js,ts}`,
-    `./layouts/**/*.vue`,
-    `./pages/**/*.vue`,
-    `./composables/**/*.{js,ts}`,
-    `./plugins/**/*.{js,ts}`,
-    `./App.{js,ts,vue}`,
-    `./app.{js,ts,vue}`,
-    `./Error.{js,ts,vue}`,
-    `./error.{js,ts,vue}`,
+    './components/**/*.{vue,js,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './composables/**/*.{js,ts}',
+    './plugins/**/*.{js,ts}',
+    './App.{js,ts,vue}',
+    './app.{js,ts,vue}',
+    './Error.{js,ts,vue}',
+    './error.{js,ts,vue}'
   ],
   theme: {
     fontFamily: {
-      sans: ["Hind", "sans-serif"],
-      display: ["Righteous", "sans-serif"],
+      sans: ['Hind', 'sans-serif']
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        display: ['Righteous', 'sans-serif']
+      },
+      aspectRatio: {
+        portrait: '9 / 16'
+      }
+    }
   },
-  plugins: [],
-};
+  plugins: []
+}

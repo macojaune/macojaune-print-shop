@@ -1,87 +1,211 @@
-<template lang="pug">
-.homepage.px-4
-  ContentList(v-slot="{list}" path="/runs" )
-    .list.runs.flex.flex-col-reverse.gap-12
-      .run(v-for="run in list" :key="run._path" class="flex flex-col lg:flex-row justify-between items-between")
-        .run-text(class="basis-full lg:basis-2/4 mt-3 lg:mt-0  order-2 lg:order-1")
-          small.run-date.text-white {{formatDate(run.date)}}
-          br
-          NuxtLink.mb-2.uppercase.text-amber-400.font-display(class="text-4xl lg:text-7xl hover:text-orange-600" :to="`/series/${run.slug}/`") {{run.title}}
-          p.run-description.text-white {{run.description}}
-        .run-pictures.flex.gap-3(class="basis-full lg:basis-2/5 order-1 lg:order-2")
-          .run-picture.grow(v-for="(product, index) in run.products.slice(0,3)" :key="index" class="hover:scale-150 hover:rounded-none transition-all ease-in-out")
-            NuxtLink.h-full(:to="`/series/${run.slug}/${product.slug}`")
-              nuxt-img.rounded-md.h-full(
-                v-if="product.images.length>0" 
-                :src="`/pictures${product.images[0]}`" 
-                sizes="xs:33vw lg:300px"
-                format="webp"
-                :loading="index>1 ? 'lazy':''" 
-                :alt="(index+1) + '-'+product.title"
-                quality="30")
-              span.white--text(v-else) {{product.title}}
-      //template(#not-found)
-      //  .empty
-      //    h3.text-center.warning--text Oups ! Pas de série disponible à la vente.
+<template>
+  <div class="relative w-full px-4">
+    <div class="flex flex-col gap-5 lg:flex-row lg:justify-around">
+      <section class="lg:w-1/4">
+        <h2 class="font-display  mb-2 text-2xl text-amber-600 lg:text-3xl">
+          Selon notre ami CHATGPT:
+        </h2>
+        <p class="text-white lg:text-right">
+          Macojaune est un personnage public jeune et dynamique, passionné par la vie, la
+          photographie et l'entrepreneuriat. Il est connu pour ses talents de photographe et ses compétences en
+          développement web, ainsi que pour son parcours et sa personnalité atypique. Macojaune partage
+          régulièrement son travail et ses projets sur les réseaux sociaux et son site internet, où il vend également
+          des
+          tirages de ses clichés.
+        </p>
+      </section>
+      <section class="lg:w-2/4">
+        <h2 class="font-display mb-2 text-2xl text-amber-400 lg:text-3xl">
+          Selon moi…
+        </h2>
+        <p class="text-white lg:text-lg">
+          C'est plutôt juste, oui ? Assez bluffé je suis. <br class="inline lg:hidden"> Bon, d'accord… <br
+            class="hidden lg:inline"
+          >
+          Poster
+          régulièrement sur son site internet c'est pas spécialement vrai.
+          <br class="inline lg:hidden">
+          Si tu lis ceci, c'est que j'ai
+          publié cette mise à jour tant repoussée et que je tente d'organiser un fonctionnement cool et dynamique par
+          ici.
+        </p>
+        <div
+          class="group mt-5 rounded-sm bg-amber-400/20  p-5 transition-all ease-in hover:bg-amber-400/40"
+        >
+          <h3 class="font-display mb-4 text-4xl text-white lg:mb-2">
+            La boutique s'est déplacée !
+          </h3>
+          <p class="font-sans text-base text-white">
+            Elle n'a pas résisté à l'appel du mouvement
+            #DigitalNomad
+            et a
+            fait
+            ses
+            valises
+            pour un
+            nouvel
+            emplacement ! <br class="inline lg:hidden">
+            Pour découvrir ma sélection de tirages et ajouter une touche de créativité à ton salon
+          </p>
+          <div class="mt-2 flex w-full justify-end">
+            <nuxt-link
+              class="bg-black p-3 text-white transition-colors hover:text-yellow-400 group-hover:animate-pulse"
+              to="/shop"
+            >
+              <span class="text-white hover:text-yellow-400">C'est par ici !</span>
+            </nuxt-link>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="pt-4">
+      <p class="mb-2 text-white lg:mb-0">
+        On continue avec les nouveautés
+      </p>
+      <h2 class="font-display mb-3 text-center text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
+        Mon blog s'installe ici
+        <small class=" font-sans text-base italic text-red-500 ">fini JauneAttitude.fr</small>
+      </h2>
+      <ContentList v-slot="{list}" path="/blog">
+        <div class="mb-2 grid grid-rows-4 gap-5 lg:grid-cols-4 lg:grid-rows-none">
+          <nuxt-link
+            v-for="blog in list.slice(state.nbToShow).reverse()"
+            :key="blog.id"
+            :to="`/blog/${blog.permalink}`"
+            class="group relative aspect-square rounded-sm bg-amber-400/60"
+          >
+            <div
+              class="absolute inset-0 z-10 bg-amber-400/10 transition-all group-hover:bg-amber-400/20 group-hover:backdrop-blur-none lg:bg-amber-400/30 lg:backdrop-blur-sm"
+            />
+            <nuxt-img
+              :src="`/pictures${blog.image}`"
+              fit="cover"
+              placeholder
+              class="absolute inset-0 z-0 h-full"
+            />
+            <div class="absolute bottom-0 z-20 p-5">
+              <h4 class=" font-display  text-4xl text-white group-hover:text-amber-600">
+                {{
+                  blog.title
+                }}
+              </h4>
+              <p>{{ moment(blog.date).format('ll') }}</p>
+            </div>
+          </nuxt-link>
+        </div>
+        <div class="mt-5 flex w-full justify-center">
+          <button
+            v-if="state.nbToShow>=-list.length"
+            class=" bg-amber-400 p-3 text-black hover:text-amber-600"
+            @click="showMore"
+          >
+            C'est
+            tout ?
+          </button>
+        </div>
+      </ContentList>
+    </div>
+    <div class="mt-8 flex flex-col gap-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-5 lg:pt-5">
+      <h2 class="font-display block text-4xl/7 text-white lg:hidden lg:text-4xl">
+        Ma dernière vidéo Youtube
+        <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
+      </h2>
+      <div class="aspect-portrait w-auto lg:h-screen">
+        <iframe
+          class="aspect-portrait w-full"
+          src="https://www.youtube.com/embed?list=UULF4b9BIgf07NzGhrdL2zpQ8w"
+        />
+      </div>
+      <div class="mt-4 flex flex-col justify-evenly lg:mt-0 lg:h-full lg:w-full">
+        <h2 class="font-display hidden text-6xl/7 text-white lg:block">
+          Ma dernière vidéo Youtube <br>
+          <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
+        </h2>
+        <div class="flex aspect-square flex-col gap-4 bg-amber-400/20 p-4 lg:ml-auto lg:mt-24 lg:self-end">
+          <h2 class="font-display text-4xl text-white lg:text-right">
+            Le podcast est toujours dispo
+          </h2>
+          <iframe class="h-full grow" src="https://pod.link/1369562721" />
+        </div>
+      </div>
+    </div>
+    <p class="my-4 text-center font-sans text-base text-white lg:my-16">
+      J'ai surement d'autres choses à rajouter mais je sèche… il est 4H du
+      mat,
+      je
+      crois que
+      c'est le
+      moment de
+      publier cette mise à jour
+    </p>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import moment from "moment";
-moment.locale("fr-FR");
+import { useHead } from 'unhead'
+import moment from 'moment'
+import { reactive } from 'vue'
 
-const description = "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée."
+moment.locale('fr-FR')
+const state = reactive({ nbToShow: -4 })
+
+function showMore () {
+  state.nbToShow -= 8
+}
+
+const description =
+  "Rencontrez Macojaune, le photographe-entrepreneur-développeur méga curieux ! Ce personnage public jeune et dynamique est avide de découvertes et ne recule devant rien pour vivre pleinement sa vie. Avec ses compétences en photographie et en développement web, il vous emmène dans un univers fascinant où la créativité et la technologie se mêlent harmonieusement. Suivez ses aventures entrepreneuriales les plus folles et ses projets les plus étonnants sur son site. Et n'oubliez pas de le rejoindre sur les réseaux sociaux pour vivre l'expérience Macojaune à fond !"
 
 useHead({
-  title: "Yellow art shop - La boutique du Macojaune",
+  title: 'Yellow art shop - La boutique du Macojaune',
   meta: [
     {
-      name: "title",
-      content: "Yellow art shop - La boutique du Macojaune"
+      name: 'title',
+      content: 'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux'
     },
     {
-      name: "description",
+      name: 'description',
       content: description
     },
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://macojaune.com/" },
-    { property: "og:title", content: "YELLOW ART SHOP" },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://macojaune.com/' },
+    { property: 'og:title', content: 'YELLOW ART SHOP' },
     {
-      property: "og:description",
+      property: 'og:description',
       content: description
     },
-    { property: "og:image", content: "/pictures/dsc06261.jpg" },
+    { property: 'og:image', content: '/pictures/dsc06261.jpg' },
     {
-      property: "twitter:card", content: "summary_large_image"
+      property: 'twitter:card', content: 'summary_large_image'
     },
-    { property: "twitter:url", content: "https://macojaune.com/" },
-    { property: "twitter:title", content: "YELLOW ART SHOP" },
+    { property: 'twitter:url', content: 'https://macojaune.com/' },
+    { property: 'twitter:title', content: 'YELLOW ART SHOP' },
     {
-      property: "twitter:description",
+      property: 'twitter:description',
       content: description
     },
-    { property: "twitter:image", content: "https://macojaune.com/pictures/dsc06261.jpg" }
+    { property: 'twitter:image', content: 'https://macojaune.com/pictures/dsc06261.jpg' }
   ],
   script: [
     {
-      type: "application/ld+json",
+      type: 'application/ld+json',
       children: [
-        { "@context": "http://schema.org/" },
-        { "@type": "BreadcrumbList" },
+        { '@context': 'http://schema.org/' },
+        { '@type': 'BreadcrumbList' },
         {
           itemListElement: [
             {
-              "@type": "ListItem",
+              '@type': 'ListItem',
               position: 1,
               item: {
-                "@id": "https://macojaune.com",
-                name: "Homepage",
-              },
-            },
-          ],
-        },
-      ],
-    },
-  ],
-});
-const formatDate = (date: string) => moment(date).format("ll");
+                '@id': 'https://macojaune.com',
+                name: 'Homepage'
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+})
 </script>
