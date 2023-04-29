@@ -1,11 +1,11 @@
 <template>
-  <div class=" relative w-full px-4">
-    <div class="flex flex-row justify-around">
+  <div class="relative w-full px-4">
+    <div class="flex flex-col gap-5 lg:flex-row lg:justify-around">
       <section class="lg:w-1/4">
-        <h2 class="font-display text-3xl text-amber-600 lg:mb-2">
+        <h2 class="font-display  mb-2 text-2xl text-amber-600 lg:text-3xl">
           Selon notre ami CHATGPT:
         </h2>
-        <p class="text-right text-white">
+        <p class="text-white lg:text-right">
           Macojaune est un personnage public jeune et dynamique, passionné par la vie, la
           photographie et l'entrepreneuriat. Il est connu pour ses talents de photographe et ses compétences en
           développement web, ainsi que pour son parcours et sa personnalité atypique. Macojaune partage
@@ -15,20 +15,24 @@
         </p>
       </section>
       <section class="lg:w-2/4">
-        <h2 class="font-display text-3xl text-amber-400 lg:mb-2">
+        <h2 class="font-display mb-2 text-2xl text-amber-400 lg:text-3xl">
           Selon moi…
         </h2>
-        <p class="text-lg text-white">
-          C'est plutôt juste, oui ? Assez bluffé je suis. Bon, d'accord… <br>
+        <p class="text-white lg:text-lg">
+          C'est plutôt juste, oui ? Assez bluffé je suis. <br class="inline lg:hidden"> Bon, d'accord… <br
+            class="hidden lg:inline"
+          >
           Poster
-          régulièrement sur son site internet c'est pas spécialement vrai. Si tu lis ceci, c'est que j'ai
+          régulièrement sur son site internet c'est pas spécialement vrai.
+          <br class="inline lg:hidden">
+          Si tu lis ceci, c'est que j'ai
           publié cette mise à jour tant repoussée et que je tente d'organiser un fonctionnement cool et dynamique par
           ici.
         </p>
         <div
-          class="group rounded-sm bg-amber-400/20 transition-all ease-in hover:bg-amber-400/40 lg:mt-5 lg:p-5"
+          class="group mt-5 rounded-sm bg-amber-400/20  p-5 transition-all ease-in hover:bg-amber-400/40"
         >
-          <h3 class="font-display text-4xl text-white lg:mb-2">
+          <h3 class="font-display mb-4 text-4xl text-white lg:mb-2">
             La boutique s'est déplacée !
           </h3>
           <p class="font-sans text-base text-white">
@@ -40,7 +44,8 @@
             valises
             pour un
             nouvel
-            emplacement ! Pour découvrir ma sélection de tirages et ajouter une touche de créativité à ton salon
+            emplacement ! <br class="inline lg:hidden">
+            Pour découvrir ma sélection de tirages et ajouter une touche de créativité à ton salon
           </p>
           <div class="mt-2 flex w-full justify-end">
             <nuxt-link
@@ -53,24 +58,24 @@
         </div>
       </section>
     </div>
-    <div class="lg:pt-4">
-      <p class="text-white">
+    <div class="pt-4">
+      <p class="mb-2 text-white lg:mb-0">
         On continue avec les nouveautés
       </p>
-      <h2 class="font-display text-4xl text-amber-400 lg:mb-3">
+      <h2 class="font-display mb-3 text-center text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
         Mon blog s'installe ici
-        <small class="font-sans text-base italic text-red-500">fini JauneAttitude.fr</small>
+        <small class=" font-sans text-base italic text-red-500 ">fini JauneAttitude.fr</small>
       </h2>
       <ContentList v-slot="{list}" path="/blog">
-        <div class="lg:mb-2 lg:grid lg:grid-cols-4 lg:gap-5">
+        <div class="mb-2 grid grid-rows-4 gap-5 lg:grid-cols-4 lg:grid-rows-none">
           <nuxt-link
             v-for="blog in list.slice(state.nbToShow).reverse()"
             :key="blog.id"
             :to="`/blog/${blog.permalink}`"
-            class="group relative aspect-square rounded-sm bg-amber-400/60 "
+            class="group relative aspect-square rounded-sm bg-amber-400/60"
           >
             <div
-              class="absolute inset-0 z-10 bg-amber-400/30 backdrop-blur-sm transition-all group-hover:bg-amber-400/10 group-hover:backdrop-blur-none"
+              class="absolute inset-0 z-10 bg-amber-400/10 transition-all group-hover:bg-amber-400/20 group-hover:backdrop-blur-none lg:bg-amber-400/30 lg:backdrop-blur-sm"
             />
             <nuxt-img
               :src="`/pictures${blog.image}`"
@@ -78,7 +83,7 @@
               placeholder
               class="absolute inset-0 z-0 h-full"
             />
-            <div class="absolute bottom-0 z-20 lg:p-5">
+            <div class="absolute bottom-0 z-20 p-5">
               <h4 class=" font-display  text-4xl text-white group-hover:text-amber-600">
                 {{
                   blog.title
@@ -100,28 +105,31 @@
         </div>
       </ContentList>
     </div>
-
-    <div class="flex flex-row items-center lg:gap-5 lg:pt-5">
-      <div class="lg:aspect-portrait lg:h-screen lg:w-auto">
+    <div class="mt-8 flex flex-col gap-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-5 lg:pt-5">
+      <h2 class="font-display block text-4xl/7 text-white lg:hidden lg:text-4xl">
+        Ma dernière vidéo Youtube
+        <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
+      </h2>
+      <div class="aspect-portrait w-auto lg:h-screen">
         <iframe
-          class="lg:aspect-portrait lg:w-full"
+          class="aspect-portrait w-full"
           src="https://www.youtube.com/embed?list=UULF4b9BIgf07NzGhrdL2zpQ8w"
         />
       </div>
-      <div class="flex flex-col justify-evenly lg:h-full lg:w-full">
-        <h2 class="font-display text-6xl/7 text-white">
+      <div class="mt-4 flex flex-col justify-evenly lg:mt-0 lg:h-full lg:w-full">
+        <h2 class="font-display hidden text-6xl/7 text-white lg:block">
           Ma dernière vidéo Youtube <br>
           <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
         </h2>
-        <div class="flex flex-col self-end bg-amber-400/20 lg:ml-auto lg:mt-24 lg:aspect-square lg:gap-4 lg:p-4">
-          <h2 class="font-display text-right text-4xl text-white">
-            Le podcast est dispo juste là
+        <div class="flex aspect-square flex-col gap-4 bg-amber-400/20 p-4 lg:ml-auto lg:mt-24 lg:self-end">
+          <h2 class="font-display text-4xl text-white lg:text-right">
+            Le podcast est toujours dispo
           </h2>
           <iframe class="h-full grow" src="https://pod.link/1369562721" />
         </div>
       </div>
     </div>
-    <p class="my-16 text-center font-sans text-base text-white">
+    <p class="my-4 text-center font-sans text-base text-white lg:my-16">
       J'ai surement d'autres choses à rajouter mais je sèche… il est 4H du
       mat,
       je

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-full px-4">
     <h2 class="font-display uppercase text-amber-600 lg:my-3 lg:text-7xl">
       {{ data?.title ?? "" }}
     </h2>

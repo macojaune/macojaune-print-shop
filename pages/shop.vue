@@ -1,5 +1,5 @@
 <template lang="pug">
-.shop-page
+.shop-page(class="w-full px-4")
   ContentList(v-slot="{list}" path="/runs" )
     .list.runs.flex.flex-col-reverse.gap-12
       .run(v-for="run in list" :key="run._path" class="flex flex-col lg:flex-row justify-between items-between")
