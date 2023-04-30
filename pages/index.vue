@@ -79,7 +79,8 @@
             />
             <nuxt-img
               :src="`/pictures${blog.image}`"
-              fit="fill"
+              sizes="xs:25vw lg:360px"
+              format="webp"
               placeholder
               class="absolute inset-0 z-0 h-full"
             />
