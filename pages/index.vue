@@ -79,7 +79,7 @@
             />
             <nuxt-img
               :src="`/pictures${blog.image}`"
-              fit="cover"
+              fit="fill"
               placeholder
               class="absolute inset-0 z-0 h-full"
             />
