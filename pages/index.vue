@@ -79,7 +79,8 @@
             />
             <nuxt-img
               :src="`/pictures${blog.image}`"
-              fit="cover"
+              sizes="xs:25vw lg:360px"
+              format="webp"
               placeholder
               class="absolute inset-0 z-0 h-full"
             />
@@ -169,7 +170,7 @@ useHead({
     },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://macojaune.com/' },
-    { property: 'og:title', content: 'YELLOW ART SHOP' },
+    { property: 'og:title', content: 'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux' },
     {
       property: 'og:description',
       content: description
@@ -179,7 +180,7 @@ useHead({
       property: 'twitter:card', content: 'summary_large_image'
     },
     { property: 'twitter:url', content: 'https://macojaune.com/' },
-    { property: 'twitter:title', content: 'YELLOW ART SHOP' },
+    { property: 'twitter:title', content: 'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux' },
     {
       property: 'twitter:description',
       content: description

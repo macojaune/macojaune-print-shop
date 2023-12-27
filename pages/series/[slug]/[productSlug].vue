@@ -9,7 +9,7 @@
                 span.text-caption.text-decoration-line-through(v-if="product.stock>0" itemprop="availability" href="http://schema.org/InStock") Édition limitée à {{product.stock}} exemplaires
                 span.font-bold.text-red-500(v-else itemprop="availability" href="http://schema.org/OutOfStock") Épuisé
         p.text-white.text-lg(class="text-base md:text-lg")
-            ContentSlot(:use="$slots.default") {{ product.description }}
+            ContentSlot(:use="$slots.default" v-html="product.description" )
         .flex.flex-col.justify-end.pt-4.gap-4.items-center(v-if="product.stock>0&&product.price")
             p.text-2xl.text-center.text-amber-400.font-semibold(v-if="product.price") {{product.price}}€
                 Meta(itemprop="price" :content="product.price")
