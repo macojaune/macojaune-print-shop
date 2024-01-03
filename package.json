@@ -2,7 +2,7 @@
   "name": "macojaune-print-shop",
   "private": true,
   "scripts": {
-    "build": "nuxi build",
+    "build": "tinacms build && nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
@@ -14,6 +14,8 @@
     "@nuxtjs/eslint-config": "^12.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/tailwindcss": "^6.6.7",
+    "@tinacms/cli": "^1.5.39",
+    "@types/node": "^20.10.5",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.39.0",
     "eslint-plugin-tailwindcss": "^3.11.0",
@@ -32,6 +34,7 @@
     "pixelarticons": "^1.7.0",
     "rehype-external-links": "^2.0.1",
     "remark-emoji": "^3.0.2",
+    "tinacms": "^1.5.28",
     "vue-use-stripe": "^0.1.1"
   }
 }
