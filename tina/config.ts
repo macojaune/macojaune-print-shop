@@ -1,7 +1,4 @@
-import { defineConfig } from "tinacms";
-
-import { pageFields } from "./templates";
-import { runFields } from "./templates";
+import {defineConfig, Form, TinaCMS} from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -18,7 +15,7 @@ export default defineConfig({
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
 
-  client: { skip: true },
+  client: {skip: true},
   build: {
     outputFolder: "admin",
     publicFolder: "public",
@@ -41,6 +38,7 @@ export default defineConfig({
           include: "**/*",
         },
         fields: [
+          {type: "string", label: 'Slug', name: 'slug'},
           {
             type: "rich-text",
             name: "body",
@@ -49,6 +47,20 @@ export default defineConfig({
             isBody: true,
           },
         ],
+        ui: {
+          beforeSubmit: async ({
+                                 form, cms, values
+                               }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            return {
+              ...values,
+              slug: values.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+            }
+          }
+        }
       },
       {
         format: "md",
@@ -59,19 +71,21 @@ export default defineConfig({
           include: "**/*",
         },
         fields: [
-          {type:"string", label: 'Title',name:'title'},
-          {type:"rich-text", label: 'Description',name:'description'},
-          {type:"string", label: 'Slug',name:'slug'},
-          {type:"datetime", label: 'Date',name:'date'},
-          {type:"object", label: 'Products',name:'products', list:true,fields:[
-              {type:"string", label: 'SKU',name:'sku'},
-              {type:"string", label: 'Title',name:'title'},
-              {type:"string", label: 'Slug',name:'slug'},
-              {type:"rich-text", label: 'Description',name:'description'},
-              {type:"number", label: 'Price',name:'price'},
-              {type:"number", label: 'Stock',name:'stock'},
-              {type:"image", label: 'Images',name:'images',list:true},
-            ]},
+          {type: "string", label: 'Title', name: 'title', isTitle: true, required: true},
+          {type: "rich-text", label: 'Description', name: 'description'},
+          {type: "string", label: 'Slug', name: 'slug'},
+          {type: "datetime", label: 'Date', name: 'date'},
+          {
+            type: "object", label: 'Products', name: 'products', list: true, fields: [
+              {type: "string", label: 'SKU', name: 'sku'},
+              {type: "string", label: 'Title', name: 'title'},
+              {type: "string", label: 'Slug', name: 'slug'},
+              {type: "rich-text", label: 'Description', name: 'description'},
+              {type: "number", label: 'Price', name: 'price'},
+              {type: "number", label: 'Stock', name: 'stock'},
+              {type: "image", label: 'Images', name: 'images', list: true},
+            ]
+          },
           {
             type: "rich-text",
             name: "body",
@@ -80,7 +94,65 @@ export default defineConfig({
             isBody: true,
           },
         ],
+        ui: {
+          beforeSubmit: async ({
+                                 form, cms, values
+                               }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            return {
+              ...values,
+              slug: values.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+              date: form.crudType === 'create' ? new Date().toISOString() : values.date
+            }
+          }
+        }
       },
+      {
+        format: "md",
+        label: "Articles",
+        name: "blog",
+        path: "content/blog",
+        match: {
+          include: "**/*",
+        },
+        fields: [
+          {type: "string", label: 'Title', name: 'title', isTitle: true, required: true},
+          {type: "string", label: 'Permalink', name: 'permalink'},
+          {type: "string", label: 'Author', name: 'author'},
+          {type: "string", label: 'Disqus', name: 'dsq_thread_id'},
+          {type: "number", label: 'id', name: 'id', uid: true},
+          {type: "datetime", label: 'Date', name: 'date'},
+          {type: "string", label: 'Layout', name: 'layout', options: [{value: 'post', label: 'post'}]},
+          {type: "image", label: 'Cover', name: 'image'},
+          {type: "string", label: 'Categories', name: 'categories', list: true},
+          {type: "string", label: 'Tags', name: 'tags', list: true},
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body of Document",
+            description: "This is the markdown body",
+            isBody: true,
+          },
+        ],
+        ui: {
+          beforeSubmit: async ({
+                                 form, cms, values
+                               }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            return {
+              ...values,
+              permalink: values.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+              date: form.crudType === 'create' ? new Date().toISOString() : values.date
+            }
+          }
+        }
+      }
     ],
   },
 });

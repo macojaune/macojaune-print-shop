@@ -1,7 +1,7 @@
 ---
 id: 8
 title: Yellow World !
-date: 2016-06-04T20:00:38+00:00
+date: 2016-06-04T20:00:38+00:00[2016-06-04-yellow-world.md](2016-06-04-yellow-world.md)
 author: MarvinL
 layout: post
 permalink:  yellow-world/
