@@ -123,7 +123,7 @@ export default defineConfig({
           {type: "string", label: 'Permalink', name: 'permalink'},
           {type: "string", label: 'Author', name: 'author'},
           {type: "string", label: 'Disqus', name: 'dsq_thread_id'},
-          {type: "number", label: 'id', name: 'id', uid: true},
+          {type: "number", label: 'id', name: 'id'},
           {type: "datetime", label: 'Date', name: 'date'},
           {type: "string", label: 'Layout', name: 'layout', options: [{value: 'post', label: 'post'}]},
           {type: "image", label: 'Cover', name: 'image'},
