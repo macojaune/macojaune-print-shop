@@ -7,13 +7,13 @@
       |
       b.font-bold.text-white #stayConnect
     slot
-    #snipcart(hidden :data-api-key="snipcartKey")
+    #snipcart(hidden :data-api-key="cPublic.snipcartKey")
   Footer
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
-const { snipcartKey } = useRuntimeConfig()
+const { public: cPublic } = useRuntimeConfig()
 onMounted(() => {
   window.axeptioSettings = {
     clientId: '62e86de9c231db01ef04b2cc'

@@ -2,13 +2,13 @@
 id: 8
 title: Yellow World !
 date: 2016-06-04T20:00:38+00:00
+updatedAt: 2024-01-05T20:00:38+00:00
 author: MarvinL
 layout: post
 permalink:  yellow-world/
 xyz_fbap:
   - "1"
-dsq_thread_id:
-  - "5936454970"
+dsq_thread_id: "593454970"
 image: /2016/06/yellowsuit.jpg
 categories:
   - Autre
