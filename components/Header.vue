@@ -2,10 +2,16 @@
 header(class="flex items-center md:justify-center py-6 md:py-32 flex-col md:flex-row")
   nav(class="md:flex-2 md:mr-auto md:grow")
     NuxtLink.text-center.text-amber-400(class="hover:text-orange-600 transition-colors ease-in-out duration-150" to="/" itemprop="brand" itemtype="http://schema.org/Organization")
-      h1(v-if="route.path !=='/shop'" class="text-5xl/7 md:text-7xl font-display") @MACOJAUNE
+      h1(v-if="route.path ==='/'" class="text-5xl/7 md:text-7xl font-display") @MACOJAUNE
         br.block(class="md:hidden")
         |
-        span.text-xl.text-white  LE SITE
+        span.text-xl.text-white(v-if="route.path.includes('blog')")  LE BLOG
+        span.text-xl.text-white(v-else)  LE SITE
+      h2(v-else-if="route.path !=='/shop'" class="text-5xl/7 md:text-7xl font-display") @MACOJAUNE
+        br.block(class="md:hidden")
+        |
+        span.text-xl.text-white(v-if="route.path.includes('blog')")  LE BLOG
+        span.text-xl.text-white(v-else)  LE SITE
       h1.text-3xl(v-else class="font-display text-3xl md:text-6xl" itemprop="name") YELLOW ART SHOP
         p.text-lg.text-center.text-white.font-semibold.uppercase {{route.path === '/shop' ? 'La boutique' : 'Le site'}}
   button.text-white.snipcart-checkout.flex.items-center.mt-3(class="md:mt-0 md:mx-5 hover:bg-black hover:text-amber-400 active:bg-amber-500 active:text-black rounded py-2 px-3")

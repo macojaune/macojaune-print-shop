@@ -8,7 +8,7 @@
 <script setup>
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 a
   box-shadow none
   text-decoration none
