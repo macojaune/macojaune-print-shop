@@ -7,7 +7,7 @@ layout: post
 permalink:  jaune-et-content/
 xyz_fbap:
   - "1"
-image: /2016/06/typemachine-yellow.jpg
+image: /pictures/2016/06/typemachine-yellow.jpg
 categories:
   - Ergonomie
 tags:

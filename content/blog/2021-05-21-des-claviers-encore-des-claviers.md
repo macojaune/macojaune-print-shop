@@ -1,7 +1,7 @@
 ---
-date: 2021-05-21 20:00:53 -0400
+date: 2021-05-21T20:00:53
 layout: post
-image: "/2021/05/blurrystock-HIbAmybJHVs-unsplash.jpg"
+image: "/pictures/2021/05/blurrystock-HIbAmybJHVs-unsplash.jpg"
 categories:
 - ergonomie
 - clavier

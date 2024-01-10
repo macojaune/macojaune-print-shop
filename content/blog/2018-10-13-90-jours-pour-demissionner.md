@@ -4,7 +4,7 @@ date: 2018-10-13T20:16:50+00:00
 author: MarvinL
 layout: post
 permalink:  90-jours-pour-demissionner/
-image: /2018/10/i-quit-5b525e-e1539476090996.jpg
+image: /pictures/2018/10/i-quit-5b525e-e1539476090996.jpg
 categories:
   - Business
   - JauneVie

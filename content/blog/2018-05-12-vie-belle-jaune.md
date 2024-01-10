@@ -10,7 +10,7 @@ xyz_fbap:
   - "1"
 xyz_fbap_insert_og:
   - "1"
-image: /2018/05/mindblown.png
+image: /pictures/2018/05/mindblown.png
 categories:
   - JauneVie
 ---

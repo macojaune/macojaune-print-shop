@@ -6,7 +6,7 @@ layout: post
 permalink: "je-ne-sais-pas-pourquoi"
 categories:
 - JauneVie
-image: "/2019/07/jo-szczepanska-lCYoIM-fbuU-unsplash.jpg"
+image: /pictures/2019/07/jo-szczepanska-lCYoIM-fbuU-unsplash.jpg
 
 ---
 # Je ne sais pas pourquoi j'écris ceci

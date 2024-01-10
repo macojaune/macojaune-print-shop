@@ -78,7 +78,7 @@
               class="absolute inset-0 z-10 bg-amber-400/10 transition-all group-hover:bg-amber-400/20 group-hover:backdrop-blur-none lg:bg-amber-400/30 lg:backdrop-blur-sm"
             />
             <nuxt-img
-              :src="`/pictures${blog.image}`"
+              :src="blog.image"
               sizes="xs:25vw lg:360px"
               format="webp"
               placeholder

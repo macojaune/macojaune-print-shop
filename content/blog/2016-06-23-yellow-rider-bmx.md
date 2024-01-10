@@ -7,7 +7,7 @@ layout: post
 permalink:  yellow-rider-bmx/
 xyz_fbap:
   - "1"
-image: /2016/06/photo562882930912896963.jpg
+image: /pictures/2016/06/photo562882930912896963.jpg
 categories:
   - Loisirs
 ---

@@ -1,7 +1,7 @@
 ---
 date: 2020-03-30 22:49:01 -0400
 layout: post
-image: uploads/2020/03/frank-busch-ChDWtI3N9w4-unsplash.jpg
+image: /pictures//2020/03/frank-busch-ChDWtI3N9w4-unsplash.jpg
 title: "#YelloWatch - Veille du 30 Mars 2020"
 author: macojaune
 permalink: yellowatch-veille-tech-du-30-mars-2020

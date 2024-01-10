@@ -4,7 +4,7 @@ date: 2019-01-25T11:30:00+00:00
 author: MarvinL
 layout: post
 permalink: scorpion-intelligent-ne-frappe-qu-une-fois
-image: uploads/2019/01/aisha-askhadova-1266466-unsplash.jpg
+image: /pictures//2019/01/aisha-askhadova-1266466-unsplash.jpg
 categories:
    - JauneVie
 ---

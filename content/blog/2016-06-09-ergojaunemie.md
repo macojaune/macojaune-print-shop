@@ -9,7 +9,7 @@ xyz_fbap:
   - "1"
 dsq_thread_id:
   - "6619277471"
-image: /2016/06/backlit-with-led-computer-desk-set-up-three-monitors.jpg
+image: /pictures/2016/06/backlit-with-led-computer-desk-set-up-three-monitors.jpg
 categories:
   - Ergonomie
 tags:

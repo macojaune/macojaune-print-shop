@@ -7,7 +7,7 @@ layout: post
 permalink:  le-jaune-et-la-tortue/
 xyz_fbap:
   - "1"
-image: /2016/06/Back-to-Work.png
+image: /pictures/2016/06/Back-to-Work.png
 categories:
   - Business
 ---

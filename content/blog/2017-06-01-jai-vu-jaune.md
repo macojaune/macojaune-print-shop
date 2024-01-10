@@ -10,7 +10,7 @@ xyz_fbap:
   - "1"
 dsq_thread_id:
   - "5994596846"
-image: /2017/06/vizion-vintage-gaming-glasses-blue-light-blocking-anti-fatigue-eyewear-7_grande.jpg
+image: /pictures/2017/06/vizion-vintage-gaming-glasses-blue-light-blocking-anti-fatigue-eyewear-7_grande.jpg
 categories:
   - Ergonomie
 tags:

@@ -10,7 +10,7 @@ xyz_fbap:
   - "1"
 dsq_thread_id:
   - "6608083119"
-image: /2018/04/theyellowmaco.jpg
+image: /pictures/2018/04/theyellowmaco.jpg
 categories:
   - JauneVie
 tags:

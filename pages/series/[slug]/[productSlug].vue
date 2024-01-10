@@ -19,12 +19,12 @@
                 :data-item-id="product.sku"
                 :data-item-name="product.title"
                 :data-item-price="product.price"
-                :data-item-image="`/pictures/${product.images[0]}`"
+                :data-item-image="product.images[0]"
                 :data-item-max-quantity="product.stock"
                 :data-item-url="`https://macojaune.com${router.path}/${product.slug}`" ) Ajouter au panier
         .picture-list.my-6.grid.grid-flow-row-dense.gap-4.justify-around.items-end(:class="`grid-cols-1 ${product.images.length>2?'md:grid-cols-3':'md:grid-cols-2'}`")
             .picture(v-for="(imageURL, index) in product.images" :key="index" class="hover:cursor-pointer")
-                NuxtImg.border-radius(:src="`/pictures${imageURL}`" sizes="xs:100vw lg:800px" quality="80" format="webp" itemprop="image" :alt="product.title")
+                NuxtImg.border-radius(:src="imageURL" sizes="xs:100vw lg:800px" quality="80" format="webp" itemprop="image" :alt="product.title")
 </template>
 
 <script lang="ts" setup>
@@ -56,7 +56,7 @@ useHead({
       property: 'og:description',
       content: serie.description
     },
-    { property: 'og:image', content: `https://macojaune.com/pictures/${serie?.products?.[0].images?.[0]}` },
+    { property: 'og:image', content: `https://macojaune.com/${serie?.products?.[0].images?.[0]}` },
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
@@ -66,7 +66,7 @@ useHead({
       property: 'twitter:description',
       content: serie.description
     },
-    { property: 'twitter:image', content: `https://macojaune.com/pictures/${serie?.products?.[0].images?.[0]}` }
+    { property: 'twitter:image', content: `https://macojaune.com${serie?.products?.[0].images?.[0]}` }
   ],
   script: [
     {

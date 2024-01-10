@@ -4,7 +4,7 @@ date: 2019-09-10T19:00:00.000+00:00
 author: macojaune
 layout: post
 permalink: "nouveau-defi-100-days-of-code"
-image: "/2019/09/code.png"
+image: "/pictures/2019/09/code.png"
 categories:
 - geek
 - web

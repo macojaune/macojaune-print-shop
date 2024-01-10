@@ -4,7 +4,7 @@ date: 2018-10-15T12:05:28+00:00
 author: MarvinL
 layout: post
 permalink:  ton-bureau-veut-te-tuer-reagis/
-image: /2018/10/bad_posture_resized.jpg
+image: /pictures/2018/10/bad_posture_resized.jpg
 categories:
   - Ergonomie
 ---
