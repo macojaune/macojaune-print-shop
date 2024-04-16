@@ -156,6 +156,20 @@ export default defineConfig({
             }
           }
         }
+      },
+      {
+        name: 'links',
+        format: 'yaml',
+        path: 'content/',
+        label: 'Links',
+        fields: [{
+          label: 'link',
+          name: 'link',
+          type: 'object',
+          list: true,
+          fields: [{ type: 'string', label: 'Title', name: 'text', isTitle: true, required: true }, { type: 'string', label: 'URL', name: 'url' }, { type: 'string', label: 'Description', name: 'description' }]
+        }],
+        ui: { allowedActions: { create: false, delete: false } }
       }
     ]
   }

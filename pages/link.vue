@@ -3,9 +3,9 @@
   .flex.p-2.rounded.grow.justify-evenly(v-for="link in data" :key="link.url" :style="{backgroundColor:colorList()}" class="p-2 md:p-3")
     .text.flex.items-evenly
       a(:href="link.url" target="_blank")
-       h2.uppercase.text-white(class="text-2xl md:text-4xl") {{link.text}}
+       h2.uppercase.text-white.font-display(class="text-2xl md:text-4xl") {{link.text}}
       p.text-white(v-if="link.description") {{link.description}}
-    a.p-3.ml-auto.rounded-md.text-right.font-bold(class="hidden md:block hover:bg-black text-black hover:text-white transition-all duration-100" :href="link.url" target="_blank") Y Aller
+    a.p-3.ml-auto.rounded-md.text-right.font-bold(class="hidden md:block hover:bg-black text-black hover:text-white border-black border transition-all duration-100" :href="link.url" target="_blank") Y Aller
     a.p-3.ml-auto.rounded-md.text-right.flex.items-center(class="block md:hidden bg-black text-white" :href="link.url" target="_blank") Go
 </template>
 
@@ -17,9 +17,9 @@ useHead({
     { description: "Retrouve toute l'actualité de @Macojaune" }
   ]
 })
-
-const { data } = await useFetch('https://api.marvinl.com/links')
-
+const { data: res } = await useAsyncData('get-links', () =>
+  queryContent('links').find())
+const data = computed(() => res.value?.[0].link)
 if (data.length === 1) {
   this.$gtm.push({ event: 'linkClick' })
   window.location = data[0].url
