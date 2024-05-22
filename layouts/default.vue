@@ -14,6 +14,7 @@
 <script setup>
 import { onMounted } from 'vue'
 const { public: cPublic } = useRuntimeConfig()
+useHead({script:[{src:"https://analytics.marvinl.com/script.js", "data-website-id":"e5e9b232-675e-4172-b463-32c56e9dc567", defer:true}]})
 onMounted(() => {
   window.axeptioSettings = {
     clientId: '62e86de9c231db01ef04b2cc'

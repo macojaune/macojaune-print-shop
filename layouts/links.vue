@@ -5,7 +5,9 @@
   Footer
 </template>
 
-<script setup>
+<script lang="ts" setup>
+useHead({script:[{src:"https://analytics.marvinl.com/script.js", "data-website-id":"e5e9b232-675e-4172-b463-32c56e9dc567", defer:true}]})
+
 </script>
 
 <style lang="stylus" scoped>
