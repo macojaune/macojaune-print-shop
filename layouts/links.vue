@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-useHead({script:[{src:"https://analytics.marvinl.com/script.js", "data-website-id":"e5e9b232-675e-4172-b463-32c56e9dc567", defer:true}]})
+useHead({script:[{src:"https://analytics.marvinl.com/script.js", "data-website-id":"0b0e019d-fed5-4e0d-aa0b-01c8811b7a53", defer:true}]})
 
 </script>
 
