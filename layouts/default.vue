@@ -7,7 +7,7 @@
       |
       b.font-bold.text-white #stayConnect
     slot
-    #snipcart(hidden :data-api-key="cPublic.snipcartKey")
+    // #snipcart(hidden :data-api-key="cPublic.snipcartKey")
   Footer
 </template>
 
