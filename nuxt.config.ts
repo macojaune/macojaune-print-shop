@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@nuxtjs/eslint-module',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
     '@unlok-co/nuxt-stripe',
