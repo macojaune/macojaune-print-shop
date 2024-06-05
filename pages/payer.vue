@@ -29,23 +29,18 @@
         button.p-5.block.w-full.text-center.bg-amber-400.text-black.rounded-md.font-bold(type="submit") BOOM !
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { reactive } from 'vue'
 import axios from 'axios'
-import { useStripe } from 'vue-use-stripe'
+// import { useStripe } from 'vue-use-stripe'
 
 useHead({
-  title: 'Payer - Macojaune.com',
-  script: [
-    { src: 'https://js.stripe.com/v3', async: true }
-  ]
+  title: 'Payer - Macojaune.com'
 })
 const route = useRoute()
 const config = useRuntimeConfig()
 
-const { stripe } = useStripe({
-  key: config.public.stripePublicKey || ''
-})
+const stripe = useClientStripe()
 
 const state = reactive({
   show: false,
