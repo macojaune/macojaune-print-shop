@@ -65,7 +65,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: [
+      innerHTML: [
         { '@context': 'http://schema.org/' },
         { '@type': 'BreadcrumbList' },
         {

@@ -2,7 +2,7 @@
   <div class="relative w-full px-4">
     <div class="flex flex-col gap-5 lg:flex-row lg:justify-around">
       <section class="lg:w-1/4">
-        <h2 class="font-display  mb-2 text-2xl text-amber-600 lg:text-3xl">
+        <h2 class="mb-2  font-display text-2xl text-amber-600 lg:text-3xl">
           Selon notre ami CHATGPT:
         </h2>
         <p class="text-white lg:text-right">
@@ -15,7 +15,7 @@
         </p>
       </section>
       <section class="lg:w-2/4">
-        <h2 class="font-display mb-2 text-2xl text-amber-400 lg:text-3xl">
+        <h2 class="mb-2 font-display text-2xl text-amber-400 lg:text-3xl">
           Selon moi…
         </h2>
         <p class="text-white lg:text-lg">
@@ -32,7 +32,7 @@
         <div
           class="group mt-5 rounded-sm bg-amber-400/20  p-5 transition-all ease-in hover:bg-amber-400/40"
         >
-          <h3 class="font-display mb-4 text-4xl text-white lg:mb-2">
+          <h3 class="mb-4 font-display text-4xl text-white lg:mb-2">
             La boutique s'est déplacée !
           </h3>
           <p class="font-sans text-base text-white">
@@ -62,7 +62,7 @@
       <p class="mb-2 text-white lg:mb-0">
         On continue avec les nouveautés
       </p>
-      <h2 class="font-display mb-3 text-center text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
+      <h2 class="mb-3 text-center font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
         Mon blog s'installe ici
         <small class=" font-sans text-base italic text-red-500 ">fini JauneAttitude.fr</small>
       </h2>
@@ -107,7 +107,7 @@
       </ContentList>
     </div>
     <div class="mt-8 flex flex-col gap-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-5 lg:pt-5">
-      <h2 class="font-display block text-4xl/7 text-white lg:hidden lg:text-4xl">
+      <h2 class="block font-display text-4xl/7 text-white lg:hidden lg:text-4xl">
         Ma dernière vidéo Youtube
         <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
       </h2>
@@ -117,8 +117,8 @@
           src="https://www.youtube.com/embed?list=UULF4b9BIgf07NzGhrdL2zpQ8w"
         />
       </div>
-      <div class="mt-4 flex flex-col justify-evenly lg:mt-0 lg:h-full lg:w-full">
-        <h2 class="font-display hidden text-6xl/7 text-white lg:block">
+      <div class="mt-4 flex flex-col justify-evenly lg:mt-0 lg:size-full">
+        <h2 class="hidden font-display text-6xl/7 text-white lg:block">
           Ma dernière vidéo Youtube <br>
           <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
         </h2>
@@ -190,7 +190,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: [
+      innerHTML: [
         { '@context': 'http://schema.org/' },
         { '@type': 'BreadcrumbList' },
         {

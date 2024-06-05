@@ -21,7 +21,7 @@
                 :data-item-price="product.price"
                 :data-item-image="product.images[0]"
                 :data-item-max-quantity="product.stock"
-                :data-item-url="`https://macojaune.com${router.path}/${product.slug}`" ) Ajouter au panier
+                :data-item-url="`https://macojaune.com${router.path}/${product.slug}`" ) Acheter
         .picture-list.my-6.grid.grid-flow-row-dense.gap-4.justify-around.items-end(:class="`grid-cols-1 ${product.images.length>2?'md:grid-cols-3':'md:grid-cols-2'}`")
             .picture(v-for="(imageURL, index) in product.images" :key="index" class="hover:cursor-pointer")
                 NuxtImg.border-radius(:src="imageURL" sizes="xs:100vw lg:800px" quality="80" format="webp" itemprop="image" :alt="product.title")
@@ -71,7 +71,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'http://schema.org/',
         '@type': 'BreadcrumbList',
 

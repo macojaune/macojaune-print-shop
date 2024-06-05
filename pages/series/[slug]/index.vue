@@ -11,7 +11,7 @@
           NuxtLink(:to="product.slug" )
             NuxtImg.primary.border-radius.mb-2(
               v-if="product.images"
-              :src="`${product.images[0]}`"                                
+              :src="`${product.images[0]}`"
               sizes="xs:100vw lg:500px"
               format="webp"
               quality="60"
@@ -33,7 +33,7 @@
           :data-item-price="product.price"
           :data-item-image="`${product.images[0]}`"
           :data-item-max-quantity="product.stock"
-          :data-item-url="`https://macojaune.com${router.path}/${product.slug}`" ) Ajouter au panier
+          :data-item-url="`https://macojaune.com${router.path}/${product.slug}`" ) Acheter
 </template>
 
 <script lang="ts" setup>
@@ -80,7 +80,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'http://schema.org/',
         '@type': 'BreadcrumbList',
 
