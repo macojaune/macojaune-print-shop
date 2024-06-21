@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full px-4">
+  <div class="relative w-full px-4 py-8">
     <div class="flex flex-col gap-5 lg:flex-row lg:justify-around">
       <section class="lg:w-1/4">
         <h2 class="mb-2  font-display text-2xl text-amber-600 lg:text-3xl">
@@ -30,7 +30,7 @@
           ici.
         </p>
         <div
-          class="group mt-5 rounded-sm bg-amber-400/20  p-5 transition-all ease-in hover:bg-amber-400/40"
+          class="group mt-12 rounded-sm bg-amber-400/40 p-5 transition-all ease-in hover:bg-amber-400/40"
         >
           <h3 class="mb-4 font-display text-4xl text-white lg:mb-2">
             La boutique s'est déplacée !
@@ -58,13 +58,13 @@
         </div>
       </section>
     </div>
-    <div class="pt-4">
+    <div class="pt-8">
       <p class="mb-2 text-white lg:mb-0">
         On continue avec les nouveautés
       </p>
       <h2 class="mb-3 text-center font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
         Mon blog s'installe ici
-        <small class=" font-sans text-base italic text-red-500 ">fini JauneAttitude.fr</small>
+        <small class="font-sans text-base font-normal italic text-red-500">fini JauneAttitude.fr</small>
       </h2>
       <ContentList v-slot="{list}" path="/blog">
         <div class="mb-2 grid grid-rows-4 gap-5 lg:grid-cols-4 lg:grid-rows-none">
@@ -95,14 +95,13 @@
           </nuxt-link>
         </div>
         <div class="mt-5 flex w-full justify-center">
-          <button
-            v-if="state.nbToShow>=-list.length"
-            class=" bg-amber-400 p-3 text-black hover:text-amber-600"
-            @click="showMore"
+          <nuxt-link
+            class="font-bold bg-amber-400 p-3 text-black hover:text-amber-600"
+            to="/blog"
           >
             C'est
             tout ?
-          </button>
+          </nuxt-link>
         </div>
       </ContentList>
     </div>
@@ -149,10 +148,6 @@ import { reactive } from 'vue'
 
 moment.locale('fr-FR')
 const state = reactive({ nbToShow: -4 })
-
-function showMore () {
-  state.nbToShow -= 8
-}
 
 const description =
   "Rencontrez Macojaune, le photographe-entrepreneur-développeur méga curieux ! Ce personnage public jeune et dynamique est avide de découvertes et ne recule devant rien pour vivre pleinement sa vie. Avec ses compétences en photographie et en développement web, il vous emmène dans un univers fascinant où la créativité et la technologie se mêlent harmonieusement. Suivez ses aventures entrepreneuriales les plus folles et ses projets les plus étonnants sur son site. Et n'oubliez pas de le rejoindre sur les réseaux sociaux pour vivre l'expérience Macojaune à fond !"
