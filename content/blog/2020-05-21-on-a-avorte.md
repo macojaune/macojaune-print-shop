@@ -9,7 +9,7 @@ categories:
 - JauneVie
 
 ---
-> Cet Article a été publié dans l'[Édition n°3 du Neg Magazine](https://negmagazine.art/)
+> Cet Article a été publié dans l'[Édition n°3 du Neg Magazine](https://revueneg.com/)
 
 Après presque 10 ans, j'ai pour la première fois déposé ma femme à l'hôpital.  
 Oui. Déposée, gestes barrières et pandémie oblige, je n'ai pas pu l'accompagner.
