@@ -1,9 +1,9 @@
 ---
 title: 'Je réalise mes rêves : ma DUCATI'
-permalink: je-realise-mes-reves-ma-ducati
+permalink: je-ralise-mes-rves--ma-ducati
 author: macojaune
 date: 2024-06-24T21:17:42.898Z
-updatedAt: 2024-06-24T21:17:42.898Z
+updatedAt: 2024-06-24T21:40:18.122Z
 layout: post
 categories:
   - Lifestyle
@@ -33,8 +33,6 @@ Les vidéos youtube se sont enchainées, les fonds d'écrans ont changé de regi
 Mon esprit était concentré. Je me sentais bien, j'avais l'impression d'être déjà cet heureux propriétaire qui vous écrit actuellement et ça c'est une des clés qui change la donne.
 
 Prochaine étape, rajouter les magasins de moto à mon itinéraire, passer devant 1 puis 2 puis 3 fois, oser rentrer regarder, se faire recevoir comme une merde dans l'un puis le rayer de la liste, passer dans l'autre et se faire attraper par un commercial très virulent ! Énergique, un peu brusque mais le courant est passé. On discute, on échange, il cherche à me vendre un modèle "ridicule" selon moi (je n'ai rien contre les demoiselles qui roulent en mt-07, c'est de l'humour les gars doucement…), mes yeux sont déja tombés sur le modèle qui a fait chavirer mon coeur. Devinez de quelle couleur ? Oui vous l'aurez compris. Jaune.
-
-\[img ducati monster yellow]
 
 Mon choix est fait, je ne suis toujours pas acheteur pour autant, ma réflexion s'intensifie, mes doutes arrivent et perturbent ma vision.
 Ils chuchotent à propos du prix, du neuf, de l'entretien, des factures, des dettes, des projets. C'est un achat égoïste qu'ils disent. Penses un peu aux autres qu'ils disent.
