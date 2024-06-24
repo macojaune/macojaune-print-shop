@@ -10,6 +10,7 @@ xyz_fbap:
 dsq_thread_id:
   - "6073341814"
 image: /pictures/2016/11/stw.png
+draft: false
 categories:
   - Business
   - Événement

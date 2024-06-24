@@ -137,7 +137,8 @@ export default defineConfig({
             label: 'Body of Document',
             description: 'This is the markdown body',
             isBody: true
-          }
+          },
+          {name:'draft',type:'boolean',label:'Draft',description:'This is a draft',required: true},
         ],
         ui: {
           beforeSubmit: async ({
@@ -171,5 +172,11 @@ export default defineConfig({
         ui: { allowedActions: { create: false, delete: false } }
       }
     ]
+  },
+  search                 :{
+    tina:{
+      indexerToken:process.env.TINA_TOKEN,
+      stopwordLanguages:['en','fra'],
+    }
   }
 })

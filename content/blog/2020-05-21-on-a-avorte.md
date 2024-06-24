@@ -5,6 +5,7 @@ image: "/pictures/2020/06/avinash-kumar-K1T4pKWpr8k-unsplash.jpg"
 title: Juste une pilule
 author: macojaune
 permalink: juste-une-pilule
+draft: false
 categories:
 - JauneVie
 

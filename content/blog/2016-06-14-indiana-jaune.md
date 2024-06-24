@@ -8,6 +8,7 @@ permalink:  indiana-jaune/
 xyz_fbap:
   - "1"
 image: /pictures/2016/06/IndianaJonesLogo.gif
+draft: false
 categories:
   - 'Loisirs &amp; Découvertes'
 tags:

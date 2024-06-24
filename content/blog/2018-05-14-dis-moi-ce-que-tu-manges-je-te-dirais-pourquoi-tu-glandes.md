@@ -13,6 +13,7 @@ xyz_fbap:
 xyz_fbap_insert_og:
   - "0"
 image: /pictures/2018/05/overcoming-laziness-1.jpg
+draft: false
 categories:
   - Alimentation
   - Découvertes

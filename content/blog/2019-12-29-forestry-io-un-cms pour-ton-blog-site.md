@@ -1,10 +1,11 @@
 ---
-date: 2019-12-29 23:53:09 -0400
+date: 2019-12-29T23:53:09-04:00
 layout: post
 image: "/pictures/2019/12/forestry.png"
 title: Forestry.io - Un CMS pour ton blog/site
 author: macojaune
 permalink: forestry-io-un-cms-pour-ton-blog
+draft: false
 categories:
 - work
 - web

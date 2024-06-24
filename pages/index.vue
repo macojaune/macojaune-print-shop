@@ -20,8 +20,8 @@
         </h2>
         <p class="text-white lg:text-lg">
           C'est plutôt juste, oui ? Assez bluffé je suis. <br class="inline lg:hidden"> Bon, d'accord… <br
-            class="hidden lg:inline"
-          >
+          class="hidden lg:inline"
+        >
           Poster
           régulièrement sur son site internet c'est pas spécialement vrai.
           <br class="inline lg:hidden">
@@ -66,10 +66,10 @@
         Mon blog s'installe ici
         <small class="font-sans text-base font-normal italic text-red-500">fini JauneAttitude.fr</small>
       </h2>
-      <ContentList v-slot="{list}" path="/blog">
+      <ContentList v-slot="{list}" :query="query">
         <div class="mb-2 grid grid-rows-4 gap-5 lg:grid-cols-4 lg:grid-rows-none">
           <nuxt-link
-            v-for="blog in list.slice(state.nbToShow).reverse()"
+            v-for="blog in list"
             :key="blog.id"
             :to="`/blog/${blog.permalink}`"
             class="group relative aspect-square rounded-sm bg-amber-400/60"
@@ -90,18 +90,18 @@
                   blog.title
                 }}
               </h4>
-              <p>{{ moment(blog.date).format('ll') }}</p>
+              <p v-if="blog.date">{{ moment(blog.date).format('ll') }}</p>
             </div>
           </nuxt-link>
         </div>
         <div class="mt-5 flex w-full justify-center">
-          <nuxt-link
+          <NuxtLink
             class="font-bold bg-amber-400 p-3 text-black hover:text-amber-600"
             to="/blog"
           >
             C'est
             tout ?
-          </nuxt-link>
+          </NuxtLink>
         </div>
       </ContentList>
     </div>
@@ -125,7 +125,7 @@
           <h2 class="font-display text-4xl text-white lg:text-right">
             Le podcast est toujours dispo
           </h2>
-          <iframe class="h-full grow" src="https://pod.link/1369562721" />
+          <iframe class="h-full grow" src="https://pod.link/1369562721"/>
         </div>
       </div>
     </div>
@@ -142,13 +142,15 @@
 </template>
 
 <script lang="ts" setup>
-import { useHead } from 'unhead'
+import {useHead} from 'unhead'
 import moment from 'moment'
-import { reactive } from 'vue'
+import type {QueryBuilderParams} from "@nuxt/content/types";
 
 moment.locale('fr-FR')
-const state = reactive({ nbToShow: -4 })
-
+const query: QueryBuilderParams = {
+  path: "/blog",
+  where: {draft:false}, limit:4, sort: {date: -1}
+}
 const description =
   "Rencontrez Macojaune, le photographe-entrepreneur-développeur méga curieux ! Ce personnage public jeune et dynamique est avide de découvertes et ne recule devant rien pour vivre pleinement sa vie. Avec ses compétences en photographie et en développement web, il vous emmène dans un univers fascinant où la créativité et la technologie se mêlent harmonieusement. Suivez ses aventures entrepreneuriales les plus folles et ses projets les plus étonnants sur son site. Et n'oubliez pas de le rejoindre sur les réseaux sociaux pour vivre l'expérience Macojaune à fond !"
 
@@ -163,31 +165,31 @@ useHead({
       name: 'description',
       content: description
     },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://macojaune.com/' },
-    { property: 'og:title', content: 'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux' },
+    {property: 'og:type', content: 'website'},
+    {property: 'og:url', content: 'https://macojaune.com/'},
+    {property: 'og:title', content: 'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux'},
     {
       property: 'og:description',
       content: description
     },
-    { property: 'og:image', content: '/pictures/dsc06261.jpg' },
+    {property: 'og:image', content: '/pictures/dsc06261.jpg'},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
-    { property: 'twitter:url', content: 'https://macojaune.com/' },
-    { property: 'twitter:title', content: 'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux' },
+    {property: 'twitter:url', content: 'https://macojaune.com/'},
+    {property: 'twitter:title', content: 'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux'},
     {
       property: 'twitter:description',
       content: description
     },
-    { property: 'twitter:image', content: 'https://macojaune.com/pictures/dsc06261.jpg' }
+    {property: 'twitter:image', content: 'https://macojaune.com/pictures/dsc06261.jpg'}
   ],
   script: [
     {
       type: 'application/ld+json',
       innerHTML: [
-        { '@context': 'http://schema.org/' },
-        { '@type': 'BreadcrumbList' },
+        {'@context': 'http://schema.org/'},
+        {'@type': 'BreadcrumbList'},
         {
           itemListElement: [
             {

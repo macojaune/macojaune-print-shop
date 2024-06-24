@@ -10,6 +10,7 @@ xyz_fbap:
 dsq_thread_id:
   - "6114959542"
 image: /pictures/2016/09/avendre.jpg
+draft: false
 categories:
   - Business
 tags:

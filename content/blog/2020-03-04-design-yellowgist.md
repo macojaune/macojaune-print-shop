@@ -1,10 +1,11 @@
 ---
-date: 2020-03-04 08:41:48 -0400
+date: 2020-03-04T08:41:48-04:00
 layout: post
 image: /pictures//2020/03/joanna-kosinska-bF2vsubyHcQ-unsplash.jpg
 title: Design - YellowGist
 author: macojaune
 permalink: design-gist
+draft: false
 categories:
 - DESIGN
 - Gist

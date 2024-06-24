@@ -12,6 +12,7 @@ dsq_thread_id:
 dsq_needs_sync:
   - "1"
 image: /pictures/2017/01/FabLab-Maastricht-2.jpg
+draft: false
 categories:
   - Découvertes
   - 'Loisirs &amp; Découvertes'

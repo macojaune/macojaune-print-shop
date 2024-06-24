@@ -10,6 +10,7 @@ xyz_fbap:
 dsq_thread_id:
   - "6202272679"
 image: /pictures/2016/07/nappydecompagnie.jpeg
+draft: false
 categories:
   - Nappy de Compagnie
 ---

@@ -13,6 +13,7 @@ dsq_thread_id:
 dsq_needs_sync:
   - "1"
 image: /pictures/2018/05/komodo.png
+draft: false
 categories:
   - Développement
   - Geekeries

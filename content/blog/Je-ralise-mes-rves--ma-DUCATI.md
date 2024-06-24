@@ -1,11 +1,12 @@
 ---
 title: 'Je réalise mes rêves : ma DUCATI'
-permalink: je-ralise-mes-rves--ma-ducati
+permalink: je-realise-mes-reves-ducati
 author: macojaune
 date: 2024-06-24T21:17:42.898Z
 updatedAt: 2024-06-24T21:45:24.696Z
 layout: post
 image: /pictures/monsterYellow.jpg
+draft: true
 categories:
   - Lifestyle
   - JauneVie

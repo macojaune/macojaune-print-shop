@@ -1,7 +1,8 @@
 ---
-date: 2022-04-24 14:54:15 -0400
+date: 2022-04-24T14:54:15-04:00
 layout: post
 image: "/pictures/2022/04/kanchanara-ow-rGjlqJkM-unsplash.jpg"
+draft: false
 categories:
 - web3
 - Gist

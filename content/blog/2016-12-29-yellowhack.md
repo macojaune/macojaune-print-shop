@@ -11,6 +11,7 @@ xyz_fbap:
 dsq_thread_id:
 - '6073341147'
 image: /pictures/2016/12/anonymous.png
+draft: false
 categories:
 - BioHacking
 

@@ -5,6 +5,7 @@ author: macojaune
 layout: post
 permalink: "nouveau-defi-100-days-of-code"
 image: "/pictures/2019/09/code.png"
+draft: false
 categories:
 - geek
 - web

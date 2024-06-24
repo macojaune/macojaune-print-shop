@@ -8,6 +8,7 @@ permalink:  allo-docteur-jaune-suis-malade/
 xyz_fbap:
   - "1"
 image: /pictures/2016/07/psycho.jpg
+draft: false
 categories:
   - Business
 ---

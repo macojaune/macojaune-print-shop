@@ -4,6 +4,7 @@ layout: post
 image: "/pictures/2020/06/toa-heftiba-9GFyyS-Rl2M-unsplash.jpg"
 title: Rien envie de faire ou l'envie de ne rien faire ?
 author: macojaune
+draft: false
 categories:
 - JauneVie
 

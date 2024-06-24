@@ -5,6 +5,7 @@ author: MarvinL
 layout: post
 permalink: burnout-non-cest-pour-les-autres-ca
 image: /pictures//2019/07/priscilla-du-preez-ksMmG5vk9pE-unsplash.jpg
+draft: false
 categories:
   - JauneVie
 ---

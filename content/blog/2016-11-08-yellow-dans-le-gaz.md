@@ -10,6 +10,7 @@ xyz_fbap:
 dsq_thread_id:
   - "6114959358"
 image: /pictures/2016/11/problem.jpg
+draft: false
 categories:
   - JauneVie
 ---

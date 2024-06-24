@@ -5,6 +5,7 @@ author: marvinL
 layout: post
 permalink:  ton-fauteuil-veut-te-tuer-debout/
 image: /pictures/2018/10/samule-sun-645270-unsplash.jpg
+draft: false
 categories:
   - Ergonomie
 ---

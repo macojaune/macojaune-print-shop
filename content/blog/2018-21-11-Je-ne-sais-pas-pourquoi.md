@@ -4,6 +4,7 @@ date: 2018-11-21T02:28:28.000+00:00
 author: MarvinL
 layout: post
 permalink: "je-ne-sais-pas-pourquoi"
+draft: false
 categories:
 - JauneVie
 image: /pictures/2019/07/jo-szczepanska-lCYoIM-fbuU-unsplash.jpg

@@ -11,6 +11,7 @@ xyz_fbap:
 dsq_thread_id:
   - "5994597977"
 image: /pictures/2017/05/bgTir2.jpg
+draft: false
 categories:
   - Tir Sportif
 tags:

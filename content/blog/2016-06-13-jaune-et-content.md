@@ -9,6 +9,7 @@ date: 2016-06-13T12:36:30.000Z
 updatedAt: 2024-06-05T16:04:48.239Z
 layout: post
 image: /pictures/2016/06/typemachine-yellow.jpg
+draft: false
 categories:
   - Clavier
   - Ergonomie

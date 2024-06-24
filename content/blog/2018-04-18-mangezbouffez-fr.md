@@ -11,6 +11,7 @@ xyz_fbap:
 dsq_thread_id:
   - "6620867173"
 image: /pictures/2018/04/butter.jpg
+draft: false
 categories:
   - Alimentation
   - BioHacking

@@ -10,6 +10,7 @@ xyz_fbap:
 dsq_thread_id:
   - "5937838146"
 image: /pictures/2017/01/brice-de-nice-photo-559110fdac800.jpg
+draft: false
 categories:
   - Business
   - Découvertes

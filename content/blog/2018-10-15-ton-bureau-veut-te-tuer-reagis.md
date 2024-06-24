@@ -5,6 +5,7 @@ author: MarvinL
 layout: post
 permalink:  ton-bureau-veut-te-tuer-reagis/
 image: /pictures/2018/10/bad_posture_resized.jpg
+draft: false
 categories:
   - Ergonomie
 ---

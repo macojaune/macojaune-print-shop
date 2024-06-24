@@ -6,6 +6,7 @@ date: 2021-05-21T20:00:53.000Z
 updatedAt: 2024-06-05T16:03:46.456Z
 layout: post
 image: /pictures/2021/05/blurrystock-HIbAmybJHVs-unsplash.jpg
+draft: false
 categories:
   - ergonomie
   - clavier
