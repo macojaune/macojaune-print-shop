@@ -5,7 +5,7 @@
         {{ data?.title ?? "" }}
       </h1>
       <div class="w-full lg:w-7/12">
-        <ContentRenderer class="text-white" :value="data" />
+        <ContentRenderer class="text-white" :value="data"/>
       </div>
     </div>
     <div v-if="nextPost" class="mt-8 flex w-full flex-row justify-end px-0 lg:mt-12 lg:px-8 ">
@@ -19,10 +19,10 @@
 </template>
 
 <script setup lang="ts">
-const { path, params } = useRoute()
-const { data } = await useAsyncData('get-document', () =>
-  queryContent('/blog').where({ permalink: `${params?.permalink}` }).findOne())
-const nextPost = await queryContent('/blog').where({ date: { $lt: data.value?.date } }).sort({ _id: -1 }).findOne()
+const {path, params} = useRoute()
+const {data} = await useAsyncData('get-document', () =>
+  queryContent('/blog').where({permalink: `${params?.permalink}`}).findOne())
+const nextPost = await queryContent('/blog').where({date: {$lt: data.value?.date}}).sort({_id: -1}).findOne()
 
 const title = data.value?.title ? `${data.value?.title} | Le blog du Macojaune` : 'Le blog du Macojaune'
 useHead({
@@ -30,31 +30,31 @@ useHead({
   meta: [
     {
       name: 'title',
-      content: title
+      content: title + ' | Le blog du Macojaune'
     },
     {
       name: 'description',
       content: data.value?.description
 
     },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: `https://macojaune.com${path}` },
-    { property: 'og:title', content: title },
+    {property: 'og:type', content: 'website'},
+    {property: 'og:url', content: `https://macojaune.com${path}`},
+    {property: 'og:title', content: title},
     {
       property: 'og:description',
       content: data.value?.description
     },
-    { property: 'og:image', content: `https://macojaune.com/${data.value?.image}` },
+    {property: 'og:image', content: `https://macojaune.com/${data.value?.image}`},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
-    { property: 'twitter:url', content: `https://macojaune.com${path}` },
-    { property: 'twitter:title', content: title },
+    {property: 'twitter:url', content: `https://macojaune.com${path}`},
+    {property: 'twitter:title', content: title + ' | Le blog du Macojaune'},
     {
       property: 'twitter:description',
       content: data.value?.description
     },
-    { property: 'twitter:image', content: `https://macojaune.com/${data.value?.image}` }
+    {property: 'twitter:image', content: `https://macojaune.com/${data.value?.image}`}
   ],
   script: [
     {
@@ -75,6 +75,13 @@ useHead({
           {
             '@type': 'ListItem',
             position: 2,
+            item: {
+              '@id': 'https://macojaune.com/blog/',
+              name: "Blog"
+            }
+          }, {
+            '@type': 'ListItem',
+            position: 3,
             item: {
               '@id': 'https://macojaune.com/blog/' + params.permalink,
               name: params.permalink
