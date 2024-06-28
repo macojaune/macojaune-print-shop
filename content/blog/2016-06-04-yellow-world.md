@@ -9,7 +9,8 @@ permalink:  yellow-world/
 xyz_fbap:
   - "1"
 dsq_thread_id: "593454970"
-image: /2016/06/yellowsuit.jpg
+image: /pictures/2016/06/yellowsuit.jpg
+draft: false
 categories:
   - Autre
 tags:

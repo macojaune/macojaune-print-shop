@@ -4,7 +4,7 @@
     NuxtPage
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import '@/assets/css/tailwind.css'
 const config = useRuntimeConfig()
 useHead({
@@ -15,23 +15,10 @@ useHead({
         "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée."
     }
   ],
-  link: [
-    { rel: 'preconnect', href: 'https://app.snipcart.com' },
-    { rel: 'preconnect', href: 'https://cdn.snipcart.com' },
-    {
-      rel: 'stylesheet',
-      href: 'https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.css',
-      defer: true
-    }
-  ],
   script: [
     {
-      src: 'https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.js',
-      async: true
-    },
-    {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'http://schema.org',
         '@type': 'ArtGallery',
         name: 'Macojaune',
@@ -42,7 +29,7 @@ useHead({
       })
     },
     {
-      children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(), event: 'gtm.js'
     }); var f = d.getElementsByTagName(s)[0],
       j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
@@ -51,9 +38,8 @@ new Date().getTime(), event: 'gtm.js'
     }
   ],
   noscript: [{
-    children: `<iframe src="https://www.googletagmanager.com/ns.html?id=${config.gtmID}"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-    body: true
+    innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=${config.gtmID}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>`
   }]
 })
 </script>
@@ -81,7 +67,4 @@ html
   opacity: 0
   filter: blur(1rem)
 
-//snipcart
-.snipcart-button-primary
-  background-color var(--bgColor-buttonPrimary, #1a4db3)
 </style>

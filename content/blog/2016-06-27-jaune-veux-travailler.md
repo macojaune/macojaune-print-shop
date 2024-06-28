@@ -7,7 +7,8 @@ layout: post
 permalink:  jaune-veux-travailler/
 xyz_fbap:
   - "1"
-image: /2016/06/timerun.jpg
+image: /pictures/2016/06/timerun.jpg
+draft: false
 categories:
   - Business
 ---

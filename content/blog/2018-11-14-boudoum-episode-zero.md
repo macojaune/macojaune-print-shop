@@ -4,7 +4,8 @@ date: 2018-11-14T11:35:28+00:00
 author: MarvinL
 layout: post
 permalink:  boudoum-episode-zero/
-image: uploads/2018/10/aaron-burden-521422-unsplash.jpg
+image: /pictures//2018/10/aaron-burden-521422-unsplash.jpg
+draft: false
 categories:
   - Ergonomie
 ---

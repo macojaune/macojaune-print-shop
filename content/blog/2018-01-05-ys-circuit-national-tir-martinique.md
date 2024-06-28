@@ -9,6 +9,7 @@ xyz_fbap:
   - "1"
 xyz_fbap_insert_og:
   - "1"
+draft: false
 categories:
   - Loisirs
   - 'Loisirs &amp; Découvertes'

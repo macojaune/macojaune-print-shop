@@ -10,7 +10,8 @@ xyz_fbap:
   - "1"
 dsq_thread_id:
   - "6275118179"
-image: /2017/10/cheminjaune.png
+image: /pictures/2017/10/cheminjaune.png
+draft: false
 categories:
   - Business
   - JauneVie

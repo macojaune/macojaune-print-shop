@@ -13,7 +13,7 @@
             NuxtLink.h-full(:to="`/series/${run.slug}/${product.slug}`")
               nuxt-img.rounded-md.h-full(
                 v-if="product.images.length>0"
-                :src="`/pictures${product.images[0]}`"
+                :src="product.images[0]"
                 sizes="xs:33vw lg:300px"
                 format="webp"
                 :loading="index>1 ? 'lazy':''"
@@ -65,7 +65,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: [
+      innerHTML: [
         { '@context': 'http://schema.org/' },
         { '@type': 'BreadcrumbList' },
         {

@@ -1,6 +1,6 @@
 ---
 id: 152
-title: 'J&rsquo;ai vu jaune !'
+title: "J'ai vu jaune !"
 date: 2017-06-01T11:01:02+00:00
 author: MarvinL
 layout: post
@@ -10,7 +10,8 @@ xyz_fbap:
   - "1"
 dsq_thread_id:
   - "5994596846"
-image: /2017/06/vizion-vintage-gaming-glasses-blue-light-blocking-anti-fatigue-eyewear-7_grande.jpg
+image: /pictures/2017/06/vizion-vintage-gaming-glasses-blue-light-blocking-anti-fatigue-eyewear-7_grande.jpg
+draft: false
 categories:
   - Ergonomie
 tags:

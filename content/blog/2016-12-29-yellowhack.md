@@ -10,7 +10,8 @@ xyz_fbap:
 - '1'
 dsq_thread_id:
 - '6073341147'
-image: "/2016/12/anonymous.png"
+image: /pictures/2016/12/anonymous.png
+draft: false
 categories:
 - BioHacking
 

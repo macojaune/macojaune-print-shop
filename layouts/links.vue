@@ -5,10 +5,12 @@
   Footer
 </template>
 
-<script setup>
+<script lang="ts" setup>
+useHead({script:[{src:"https://analytics.marvinl.com/script.js", "data-website-id":"0b0e019d-fed5-4e0d-aa0b-01c8811b7a53", defer:true}]})
+
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 a
   box-shadow none
   text-decoration none

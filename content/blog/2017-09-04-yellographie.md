@@ -10,7 +10,8 @@ xyz_fbap:
   - "1"
 dsq_thread_id:
   - "6119215500"
-image: /2017/09/photography.jpg
+image: /pictures/2017/09/photography.jpg
+draft: false
 categories:
   - Photographie
 ---

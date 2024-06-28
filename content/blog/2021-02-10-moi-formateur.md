@@ -1,7 +1,8 @@
 ---
-date: 2021-02-10 14:40:32 -0400
+date: 2021-02-10T14:40:32-04:00
 layout: post
-image: "/2021/04/philippe-bout-93W0xn4961g-unsplash.jpg"
+image: "/pictures/2021/04/philippe-bout-93W0xn4961g-unsplash.jpg"
+draft: false
 categories:
 - formateur
 - podcast
