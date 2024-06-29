@@ -1,7 +1,8 @@
 <template>
-  <div class="my-10">
-    <h1 class="text-5xl text-amber-600 font-display mb-4">Projets photographiques</h1>
-    <p class="text-white text-base">Je me suis enfin décidé à publier mes idées de projets photo sur ce site. Le but est bien entendu d'arriver à les mener à bien. 
+  <div class="my-6 lg:my-10">
+    <h1 class="text-4xl lg:text-5xl text-amber-600 font-display mb-4">Projets photographiques</h1>
+    <p class="text-white text-base">Je me suis enfin décidé à publier mes idées de projets photo sur ce site. Le but est
+      bien entendu d'arriver à les mener à bien.
       <br>
       Tu retrouveras le brief, les moodboards, inspirations et un formulaire pour y participer si ça te chante !
     </p>
@@ -21,12 +22,13 @@
             }}
             <span class="font-sans text-sm">{{ moment(project.date).format('ll') }}</span>
           </h4>
-          <prose-p class="text-white text-base ml-6 w-8/12 line-clamp-2">{{ project?.description }}</prose-p>
+          <prose-p class="text-white text-base ml-6 w-4/5 lg:w-8/12 line-clamp-4">{{ project?.description }}</prose-p>
         </div>
-        <div>
-          <nuxt-img :src="project.image" sizes="xs:25vw lg:360px" format="webp" placeholder
-                    class="aspect-portrait"/>
-        </div>
+        <!--        <div v-if="project.image">-->
+        <!--          <nuxt-img-->
+        <!--            :src="project.image" class="aspect-portrait" format="webp" placeholder-->
+        <!--            sizes="xs:25vw lg:360px"/>-->
+        <!--        </div>-->
       </nuxt-link>
     </div>
   </ContentList>

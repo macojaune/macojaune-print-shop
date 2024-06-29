@@ -43,7 +43,7 @@ export default defineNuxtConfig({
     }
   },
   build: {
-    transpile: ['moment']
+    // transpile: ['moment']
   },
   app: {
     head: {

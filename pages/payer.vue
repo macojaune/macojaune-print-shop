@@ -64,6 +64,7 @@ const initPayment = async () => {
         }
       }
     )
+    console.log(data)
     state.intent = data // todo check error
     state.loading = false
     state.show = true
@@ -84,12 +85,12 @@ const initPayment = async () => {
     })
   } catch (e) {
     console.error(e)
-    if (e) {
-      alert(
-        "Une erreur s'est produite, ping moi sur Telegram que je corrige"
-      )
-      window.location = 'https://t.me/macojaune'
-    }
+    // if (e) {
+    //   alert(
+    //     "Une erreur s'est produite, ping moi sur Telegram que je corrige"
+    //   )
+    //   window.location = 'https://t.me/macojaune'
+    // }
   }
 }
 
