@@ -220,10 +220,10 @@ export default defineConfig({
       }
     ]
   },
-  search: {
-    tina: {
-      indexerToken: process.env.TINA_TOKEN,
-      // stopwordLanguages: ['en', 'fra'],
-    }
-  }
+  // search: {
+  //   tina: {
+  //     indexerToken: process.env.TINA_TOKEN,
+  //     // stopwordLanguages: ['en', 'fra'],
+  //   }
+  // }
 })
