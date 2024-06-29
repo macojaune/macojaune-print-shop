@@ -62,8 +62,8 @@
       <p class="mb-2 text-white lg:mb-0">
         On continue avec les nouveautés
       </p>
-      <h2 class="mb-3 text-center font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
-        Découvre et participe à mes projets photo en cours
+      <h2 class="mb-3 leading-10 font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
+        Participe à mes projets photo en cours
         <small class="font-sans text-base font-normal italic text-red-500">c'est le moment !</small>
       </h2>
       <ContentList v-slot="{list}" :query="projectQuery">
@@ -71,7 +71,7 @@
           <nuxt-link
             v-for="project in list"
             :key="project.id"
-            :to="`/blog/${project.permalink}?project=${project.permalink.substring(7)}`"
+            :to="`/projets/${project.permalink}?project=${project.permalink}`"
             class="group relative aspect-video rounded-sm"
           >
             <div
