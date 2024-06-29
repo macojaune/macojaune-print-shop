@@ -5,12 +5,14 @@
         {{ data?.title ?? "" }}
       </h1>
       <div class="w-full lg:w-7/12">
-        <ContentRenderer class="text-white" :value="data"/>
+        <ContentRenderer class="text-white" :value="data" v-if="data"/>
       </div>
     </div>
     <div v-if="nextPost" class="mt-8 flex w-full flex-row justify-end px-0 lg:mt-12 lg:px-8 ">
-      <nuxt-link :href="'/blog/'+nextPost.permalink" class="w-1/2 text-right md:w-auto">
-        <span class="font-display text-xl font-medium text-white lg:text-3xl">Article suivant</span>
+      <nuxt-link :href="`/blog/${nextPost.permalink}`" class="w-1/2 text-right md:w-auto">
+        <span class="font-display text-xl font-medium text-white lg:text-3xl">{{
+            nextPost?.title?.toLowerCase().startsWith('[projet]') ? 'Projet' : "Article"
+          }} suivant</span>
         <br>
         <span class="font-sans text-base/snug italic text-amber-300 md:text-lg">{{ nextPost.title }}</span>
       </nuxt-link>
@@ -89,21 +91,11 @@ useHead({
           }
         ]
       })
-    }
+    },
   ]
 })
 </script>
 
 <style>
-h1, h2, h3, h4, h5, h6 {
-  @apply font-display font-bold text-lg mt-3 mb-2 lg:mt-4 lg:mb-3;
-}
 
-p {
-  @apply text-base mb-4;
-}
-
-a {
-  @apply text-amber-400 hover:text-amber-600 font-bold;
-}
 </style>
