@@ -4,7 +4,7 @@ title: 'LANG '
 permalink: lang
 date: 2024-01-06T05:21:34.634Z
 updatedAt: 2024-06-29T01:22:59.030Z
-image: /pictures/MCO09198 (Large).jpg
+image: "/pictures/MCO09198 (Large).jpg"
 categories:
   - anatomie
 pinterestUrl: 'https://www.pinterest.com/macojaune/projet-lang/'
