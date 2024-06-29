@@ -5,26 +5,14 @@
         {{ data?.title ?? "" }}
       </h1>
       <div class="w-full lg:w-7/12">
-        <ContentRenderer class="text-white" :value="data"/>
+        <ContentRenderer class="text-white" :value="data" v-if="data"/>
       </div>
     </div>
-    <div v-if="isProject">
-      <h3 class="font-display my-2 text-2xl text-amber-400 lg:my-3 lg:text-3xl">
-        Je veux participer, comment on fait
-        ?
-      </h3>
-      <p class="text-xl text-white">
-        Très simple, contacte-moi via Instagram ou Telegram <span
-          class="text-sm italic text-orange-500"
-        >(ou
-          klaxonne
-          moi dans la
-          rue)</span>
-      </p>
-    </div>
     <div v-if="nextPost" class="mt-8 flex w-full flex-row justify-end px-0 lg:mt-12 lg:px-8 ">
-      <nuxt-link :href="'/blog/'+nextPost.permalink" class="w-1/2 text-right md:w-auto">
-        <span class="font-display text-xl font-medium text-white lg:text-3xl">Article suivant</span>
+      <nuxt-link :href="`/blog/${nextPost.permalink}`" class="w-1/2 text-right md:w-auto">
+        <span class="font-display text-xl font-medium text-white lg:text-3xl">{{
+            nextPost?.title?.toLowerCase().startsWith('[projet]') ? 'Projet' : "Article"
+          }} suivant</span>
         <br>
         <span class="font-sans text-base/snug italic text-amber-300 md:text-lg">{{ nextPost.title }}</span>
       </nuxt-link>
@@ -37,7 +25,6 @@ const {path, params} = useRoute()
 const {data} = await useAsyncData('get-document', () =>
   queryContent('/blog').where({permalink: `${params?.permalink}`}).findOne())
 const nextPost = await queryContent('/blog').where({date: {$lt: data.value?.date}}).sort({_id: -1}).findOne()
-const isProject = computed(() => !!data?.title?.startsWith('[PROJET]'))
 
 const title = data.value?.title ? `${data.value?.title} | Le blog du Macojaune` : 'Le blog du Macojaune'
 useHead({
@@ -104,21 +91,11 @@ useHead({
           }
         ]
       })
-    }
+    },
   ]
 })
 </script>
 
 <style>
-h1, h2, h3, h4, h5, h6 {
-  @apply font-display font-bold text-lg mt-3 mb-2 lg:mt-4 lg:mb-3;
-}
 
-p {
-  @apply text-base mb-4;
-}
-
-a {
-  @apply text-amber-400 hover:text-amber-600 font-bold;
-}
 </style>

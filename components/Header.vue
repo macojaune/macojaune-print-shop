@@ -1,6 +1,6 @@
 <template>
     <header
-        class="flex items-center md:justify-center py-6 md:py-32 flex-col md:flex-row"
+        class="flex items-center md:justify-center py-6 md:py-20 flex-col md:flex-row"
     >
         <nav class="md:flex-2 md:mr-auto md:grow">
             <NuxtLink

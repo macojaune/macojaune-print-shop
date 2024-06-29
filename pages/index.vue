@@ -63,10 +63,51 @@
         On continue avec les nouveautés
       </p>
       <h2 class="mb-3 text-center font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
+        Découvre et participe à mes projets photo en cours
+        <small class="font-sans text-base font-normal italic text-red-500">c'est le moment !</small>
+      </h2>
+      <ContentList v-slot="{list}" :query="projectQuery">
+        <div class="mb-2 grid grid-cols-2 gap-5 lg:grid-cols-3 lg:grid-rows-none">
+          <nuxt-link
+            v-for="project in list"
+            :key="project.id"
+            :to="`/blog/${project.permalink}?project=${project.permalink.substring(7)}`"
+            class="group relative aspect-video rounded-sm"
+          >
+            <div
+              class="absolute inset-0 z-10 bg-amber-400/10 transition-all group-hover:bg-amber-400/20 group-hover:backdrop-blur-none lg:bg-amber-400/30 lg:backdrop-blur-sm"
+            />
+            <nuxt-img
+              :src="project.image"
+              sizes="xs:25vw lg:360px"
+              format="webp"
+              placeholder
+              class="absolute inset-0 z-0 h-full"
+            />
+            <div class="absolute bottom-0 z-20 p-5">
+              <h4 class=" font-display  text-4xl text-white group-hover:text-amber-600">
+                {{
+                  project.title
+                }}
+              </h4>
+              <p v-if="project.date">{{ moment(project.date).format('ll') }}</p>
+            </div>
+          </nuxt-link>
+        </div>
+        <div v-if="list.length > 3" class="mt-5 flex w-full justify-center">
+          <NuxtLink
+            class="font-bold bg-amber-400 p-3 text-black hover:text-amber-600"
+            to="/projets"
+          >
+            Voir tous les projets
+          </NuxtLink>
+        </div>
+      </ContentList>
+    <h2 class="mt-10 mb-5 text-center font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
         Mon blog s'installe ici
         <small class="font-sans text-base font-normal italic text-red-500">fini JauneAttitude.fr</small>
       </h2>
-      <ContentList v-slot="{list}" :query="query">
+      <ContentList v-slot="{list}" :query="blogQuery">
         <div class="mb-2 grid grid-rows-4 gap-5 lg:grid-cols-4 lg:grid-rows-none">
           <nuxt-link
             v-for="blog in list"
@@ -147,9 +188,14 @@ import moment from 'moment'
 import type {QueryBuilderParams} from "@nuxt/content/types";
 
 moment.locale('fr-FR')
-const query: QueryBuilderParams = {
+const blogQuery: QueryBuilderParams = {
   path: "/blog",
-  where: {draft:false}, limit:4, sort: {date: -1}
+  where: {draft: {$eq:false},}, limit: 4, sort: {date: -1}
+}
+const projectQuery: QueryBuilderParams = {
+  path: "/projects",
+  where: {draft: {$eq: false}}, limit: 4, sort: 
+    {date: -1}
 }
 const description =
   "Rencontrez Macojaune, le photographe-entrepreneur-développeur méga curieux ! Ce personnage public jeune et dynamique est avide de découvertes et ne recule devant rien pour vivre pleinement sa vie. Avec ses compétences en photographie et en développement web, il vous emmène dans un univers fascinant où la créativité et la technologie se mêlent harmonieusement. Suivez ses aventures entrepreneuriales les plus folles et ses projets les plus étonnants sur son site. Et n'oubliez pas de le rejoindre sur les réseaux sociaux pour vivre l'expérience Macojaune à fond !"
