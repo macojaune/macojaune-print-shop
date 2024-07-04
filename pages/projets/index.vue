@@ -39,38 +39,38 @@ import moment from "moment/moment";
 import type {QueryBuilderParams} from "@nuxt/content/types";
 
 const query: QueryBuilderParams = {path: "/projects", where: [{draft: false}], sort: [{date: -1}]}
-
+                     const title =  'Les Projets photo du Macojaune'
 const description =
   "Moodboards, idées de projets photo, inspirations, et tout ce qu'il faut pour y participer. Créons ensemble des œuvres qui nous ressemblent."
 useHead({
-  title: 'Les Projets photo du Macojaune',
+  title,
   meta: [
     {
       name: 'title',
-      content: 'Le blog du Macojaune'
+      content: title
     },
     {
       name: 'description',
       content: description
     },
     {property: 'og:type', content: 'website'},
-    {property: 'og:url', content: 'https://macojaune.com/blog'},
-    {property: 'og:title', content: 'Le blog du Macojaune'},
+    {property: 'og:url', content: 'https://macojaune.com/projets'},
+    {property: 'og:title', content: title},
     {
       property: 'og:description',
       content: description
     },
-    {property: 'og:image', content: '/pictures/dsc06261.jpg'},
+    {property: 'og:image', content: '/pictures/MCO09198 (Large).jpg'},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
-    {property: 'twitter:url', content: 'https://macojaune.com/'},
-    {property: 'twitter:title', content: 'Le blog du Macojaune'},
+    {property: 'twitter:url', content: 'https://macojaune.com/projets'},
+    {property: 'twitter:title', content:title},
     {
       property: 'twitter:description',
       content: description
     },
-    {property: 'twitter:image', content: 'https://macojaune.com/pictures/dsc06261.jpg'}
+    {property: 'twitter:image', content: 'https://macojaune.com/pictures/MCO09198 (Large).jpg'}
   ],
   script: [
     {
@@ -91,8 +91,8 @@ useHead({
               '@type': 'ListItem',
               position: 2,
               item: {
-                '@id': 'https://macojaune.com/blog',
-                name: 'Blog'
+                '@id': 'https://macojaune.com/projets',
+                name: 'Projets photographiques'
               }
             }
           ]
