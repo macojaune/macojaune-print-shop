@@ -1,8 +1,8 @@
 ---
 title: 'Artistes ? Tenez : un conseil périmé.'
-permalink: artistes--tenez--un-conseil-prim
+permalink: artistes-tenez-un-conseil-perime
 date: 2024-06-24T23:51:46.828Z
-updatedAt: 2024-06-24T23:51:46.828Z
+updatedAt: 2024-07-23T06:09:03.951Z
 draft: true
 ---
 
