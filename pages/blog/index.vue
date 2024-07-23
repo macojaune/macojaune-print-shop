@@ -18,7 +18,7 @@
         </div>
         <div>
           <nuxt-img :src="blog.image" sizes="xs:25vw lg:360px" format="webp" placeholder
-                    class="aspect-portrait"/>
+                    class=""/>
         </div>
       </nuxt-link>
     </div>
