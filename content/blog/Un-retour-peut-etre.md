@@ -1,11 +1,12 @@
 ---
 title: Un retour peut-être ?
-permalink: un-retour-peut-tre-
+permalink: un-retour-peut-etre
+image: /pictures/resizeMCO00391.jpg
 author: macojaune
 date: 2024-07-23T06:27:34.359Z
 updatedAt: 2024-07-23T06:27:34.359Z
 layout: post
-draft: true
+draft: false
 ---
 
 > Document don't create − Gary Vee
