@@ -9,7 +9,7 @@ layout: post
 draft: false
 ---
 
-> Document don't create − Gary Vee
+> "Document don't create" − Gary Vee
 
 J’ai envie de me remettre à créer du contenu, non, j’ai envie de recommencer à documenter mon quotidien. 
 
