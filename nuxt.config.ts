@@ -5,7 +5,6 @@ export default defineNuxtConfig({
     public: {
       stripePublicKey: '',
       serverURL: '',
-      gtmID: ''
     }
   },
   modules: [
