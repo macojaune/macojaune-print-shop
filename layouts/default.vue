@@ -3,9 +3,9 @@
   Header
   .container.mx-auto.px-4.w-full
     .mb-4.p-3.rounded-md.bg-gradient-to-r.from-red-500.to-orange-500.text-black.font-semibold.text-center
-      | La boutique est momentanément suspendue. Les tirages reviennent bientôt
+      | La boutique est momentanément suspendue.
       |
-      b.font-bold.text-white #stayConnect
+      b.font-bold.text-white Contacte-moi en DM (IG, Twitter) pour commander tes tirages photo
     slot
     // #snipcart(hidden :data-api-key="cPublic.snipcartKey")
   Footer
