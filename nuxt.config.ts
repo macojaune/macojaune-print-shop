@@ -41,14 +41,12 @@ export default defineNuxtConfig({
       options: {}
     }
   },
-  build: {
-    // transpile: ['moment']
-  },
   app: {
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Macojaune.com'
+      title: 'Macojaune.com',
+      htmlAttrs:{lang:'fr'}
     },
     pageTransition: { name: 'page', mode: 'out-in' }
   }

@@ -86,12 +86,13 @@ const initPayment = async () => {
     })
   } catch (e) {
     console.error(e)
-    // if (e) {
-    //   alert(
-    //     "Une erreur s'est produite, ping moi sur Telegram que je corrige"
-    //   )
-    //   window.location = 'https://t.me/macojaune'
-    // }
+    if (e) {
+      alert(
+        "Une erreur s'est produite, ping moi sur Telegram (ou en DM) que je corrige"
+      )
+      window?.umami?.track('PayMeError', e) 
+      window.location = 'https://t.me/macojaune'
+    }
   }
 }
 
@@ -107,6 +108,8 @@ const doPay = async () => {
   if (error) {
     state.error = error.message
     console.error(error)
+    window?.umami?.track('PayMePayError', error) 
+    
   } else if (paymentIntent.status === 'succeeded') {
     await navigateTo('/merci/' + state.amount, {replace: true})
   }
