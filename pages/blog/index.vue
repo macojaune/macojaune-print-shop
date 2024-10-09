@@ -17,7 +17,8 @@
           <prose-p class="text-white text-base ml-6 w-8/12 line-clamp-2">{{ blog?.description }}</prose-p>
         </div>
         <div>
-          <nuxt-img :src="blog.image" sizes="xs:25vw lg:360px" format="webp" placeholder
+          <nuxt-img
+:src="blog.image" sizes="xs:25vw lg:360px" format="webp" placeholder
                     class=""/>
         </div>
       </nuxt-link>

@@ -5,7 +5,7 @@
         {{ data?.title ?? "" }}
       </h1>
       <div class="w-full lg:w-7/12">
-        <ContentRenderer class="text-white" :value="data" v-if="data"/>
+        <ContentRenderer v-if="data" class="text-white" :value="data"/>
       </div>
     </div>
     <div v-if="nextPost" class="mt-8 flex w-full flex-row justify-end px-0 lg:mt-12 lg:px-8 ">

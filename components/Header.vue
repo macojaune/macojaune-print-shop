@@ -10,30 +10,30 @@
                 itemtype="http://schema.org/Organization"
             >
                 <h1
-                    class="text-5xl/7 md:text-7xl font-display"
                     v-if="route.path === '/'"
+                    class="text-5xl/7 md:text-7xl font-display"
                 >
-                    @MACOJAUNE<br class="block md:hidden" /><span
-                        class="text-xl text-white"
+                    @MACOJAUNE<br class="block md:hidden" ><span
                         v-if="route.path.includes('blog')"
+                        class="text-xl text-white"
                     >
                         LE BLOG</span
-                    ><span class="text-xl text-white" v-else> LE SITE</span>
+                    ><span v-else class="text-xl text-white"> LE SITE</span>
                 </h1>
                 <h2
-                    class="text-5xl/7 md:text-7xl font-display"
                     v-else-if="route.path !== '/shop'"
+                    class="text-5xl/7 md:text-7xl font-display"
                 >
-                    @MACOJAUNE<br class="block md:hidden" /><span
-                        class="text-xl text-white"
+                    @MACOJAUNE<br class="block md:hidden" ><span
                         v-if="route.path.includes('blog')"
+                        class="text-xl text-white"
                     >
                         LE BLOG</span
-                    ><span class="text-xl text-white" v-else> LE SITE</span>
+                    ><span v-else class="text-xl text-white"> LE SITE</span>
                 </h2>
                 <h1
-                    class="text-3xl font-display text-3xl md:text-6xl"
                     v-else
+                    class="text-3xl font-display text-3xl md:text-6xl"
                     itemprop="name"
                 >
                     YELLOW ART SHOP

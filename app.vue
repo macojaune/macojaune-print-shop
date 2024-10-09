@@ -1,34 +1,36 @@
-<template lang="pug">
-.app.h-screen.relative.w-screen
-  NuxtLayout
-    NuxtPage
+<template>
+    <div class="app">
+        <NuxtLayout>
+            <NuxtPage />
+        </NuxtLayout>
+    </div>
 </template>
 
 <script lang="ts" setup>
 import '@/assets/css/tailwind.css'
 const config = useRuntimeConfig()
 useHead({
-  meta: [
-    {
-      name: 'description',
-      content:
-        "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée."
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'http://schema.org',
-        '@type': 'ArtGallery',
-        name: 'Macojaune',
-        url: 'macojaune.com',
-        email: 'hello@macojaune.com',
-        paymentAccepted:
-          'Visa, Master Card, Amex, ApplePay, AndroidPay, Bitcoin'
-      })
-    }
-  ]
+    meta: [
+        {
+            name: 'description',
+            content:
+                "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée."
+        }
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'http://schema.org',
+                '@type': 'ArtGallery',
+                name: 'Macojaune',
+                url: 'macojaune.com',
+                email: 'hello@macojaune.com',
+                paymentAccepted:
+                    'Visa, Master Card, Amex, ApplePay, AndroidPay, Bitcoin'
+            })
+        }
+    ]
 })
 </script>
 <style lang="stylus">

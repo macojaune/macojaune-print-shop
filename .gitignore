@@ -83,6 +83,7 @@ dist
 
 # IDE / Editor
 .idea
+.zed
 
 # Service worker
 sw.*
@@ -98,3 +99,4 @@ sw.*
 
 node_modules
 .env
+.output

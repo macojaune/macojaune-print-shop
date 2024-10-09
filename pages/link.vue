@@ -2,11 +2,12 @@
 .links-page.px-4.h-full.flex.flex-col.gap-4
   .flex.p-2.rounded.grow.justify-evenly(v-for="link in data" :key="link.url" :style="{backgroundColor:colorList()}" class="p-2 md:p-3")
     .text.flex.items-evenly
-      a(:href="link.url" target="_blank")
+      a(:href="link.url" target="_blank" data-umami-event="LinkClick")
        h2.uppercase.text-white.font-display(class="text-2xl md:text-4xl") {{link.text}}
       p.text-white(v-if="link.description") {{link.description}}
-    a.p-3.ml-auto.rounded-md.text-right.font-bold(class="hidden md:block hover:bg-black text-black hover:text-white border-black border transition-all duration-100" :href="link.url" target="_blank") Y Aller
-    a.p-3.ml-auto.rounded-md.text-right.flex.items-center(class="block md:hidden bg-black text-white" :href="link.url" target="_blank") Go
+    a.p-3.ml-auto.rounded-md.text-right.font-bold(class="hidden md:block hover:bg-black text-black hover:text-white border-black border transition-all duration-100" :href="link.url" target="_blank" data-umami-event="LinkClick") Y Aller
+    a.p-3.ml-auto.rounded-md.text-right.flex.items-center(class="block md:hidden bg-black text-white" 
+      :href="link.url" target="_blank" data-umami-event="LinkClick") Go
 </template>
 
 <script setup>
@@ -20,12 +21,10 @@ useHead({
 const { data: res } = await useAsyncData('get-links', () =>
   queryContent('links').find())
 const data = computed(() => res.value?.[0].link)
-if (data.length === 1) {
-  this.$gtm.push({ event: 'linkClick' })
-  window.location = data[0].url
+if (data.value.length === 1) {
+  window.location = data.value[0].url
 }
 const goTo = (link) => {
-  this.$gtm.push({ event: 'linkClick' })
   window.location = link.url
 }
 const pickRandomProperty = (obj) => {

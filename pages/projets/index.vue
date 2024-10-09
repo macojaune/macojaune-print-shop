@@ -16,12 +16,12 @@
         class="group flex flex-row justify-between"
       >
         <div>
-          <h4 class="font-display text-4xl text-amber-300 group-hover:text-amber-600">
+          <h3 class="font-display text-4xl text-amber-300 group-hover:text-amber-600">
             {{
               project.title
             }}
             <span class="font-sans text-sm">{{ moment(project.date).format('ll') }}</span>
-          </h4>
+          </h3>
           <prose-p class="text-white text-base ml-6 w-4/5 lg:w-8/12 line-clamp-4">{{ project?.description }}</prose-p>
         </div>
         <!--        <div v-if="project.image">-->
@@ -39,7 +39,8 @@ import moment from "moment/moment";
 import type {QueryBuilderParams} from "@nuxt/content/types";
 
 const query: QueryBuilderParams = {path: "/projects", where: [{draft: false}], sort: [{date: -1}]}
-                     const title =  'Les Projets photo du Macojaune'
+
+const title = 'Les Projets photo du Macojaune'
 const description =
   "Moodboards, idées de projets photo, inspirations, et tout ce qu'il faut pour y participer. Créons ensemble des œuvres qui nous ressemblent."
 useHead({
@@ -65,7 +66,7 @@ useHead({
       property: 'twitter:card', content: 'summary_large_image'
     },
     {property: 'twitter:url', content: 'https://macojaune.com/projets'},
-    {property: 'twitter:title', content:title},
+    {property: 'twitter:title', content: title},
     {
       property: 'twitter:description',
       content: description
