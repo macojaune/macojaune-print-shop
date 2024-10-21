@@ -1,4 +1,7 @@
 link:
+  - text: "\U0001F4A1 ou \U0001F56F ? La carte interactive des délestages EDF"
+    url: 'https://pani-limie.netlify.app'
+    description: ''
   - text: J'ai créé un jeu en ligne !
     url: 'https://lejustecoin.marvinl.com'
     description: 'Un petit jeu pour dénoncer l''état des annonces immo aux antilles '
