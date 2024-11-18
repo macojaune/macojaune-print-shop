@@ -3,83 +3,38 @@
     <div class="text-center">
       <p class="text-white">
         Machouillé avec
-        <svg
-          class="inline h-8 w-8 text-amber-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg class="inline h-8 w-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-          />
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
         </svg>
         par
-        <a
-          class="text-red-500 text-semibold hover:text-amber-400 hover:text-bold ease-in transition-all hover:underline"
-          href="https://marvinl.com?ref=yellowartshop"
-          target="_blank"
-        >MarvinL.com</a
-        >
+        <a class="text-red-500 text-semibold hover:text-amber-400 hover:text-bold ease-in transition-all hover:underline"
+          href="https://marvinl.com?ref=yellowartshop" target="_blank">MarvinL.com</a>
       </p>
     </div>
     <div class="my-6 flex flex-row justify-center gap-4 md:gap-3">
-      <a
-        class="text-white hover:text-amber-400"
-        href="https://facebook.com/macojaune"
-        v-html="facebook"
-      /><a
-      class="text-white hover:text-amber-400"
-      href="https://twitter.com/macojaune"
-      v-html="twitter"
-    /><a
-      class="text-white hover:text-amber-400"
-      href="https://instagram.com/macojaune"
-      v-html="instagram"
-    />
+      <a class="text-white hover:text-amber-400" href="https://facebook.com/macojaune" v-html="facebook" /><a
+        class="text-white hover:text-amber-400" href="https://twitter.com/macojaune" v-html="twitter" /><a
+        class="text-white hover:text-amber-400" href="https://instagram.com/macojaune" v-html="instagram" />
     </div>
     <div class="container mx-auto py-8">
       <div class="grid grid-cols-2 lg:grid-cols-5 justify-center gap-5 grid-flow-row-dense text-amber-300">
-        <NuxtLink
-          class="text-center text-amber-400 hover:text-orange-500"
-          to="/a-propos"
-        >À propos
-        </NuxtLink
-        >
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/a-propos">À propos
+        </NuxtLink>
 
-        <NuxtLink
-          class=" text-center lg:text-left text-amber-400 hover:text-orange-500"
-          to="/payer"
-        >Paiement
-        </NuxtLink
-        >
-        <NuxtLink
-          class=" text-center lg:text-left text-amber-400 hover:text-orange-500"
-          to="/link"
-        >Liens utiles
-        </NuxtLink
-        >
-        <NuxtLink
-          class=" text-center lg:text-left text-amber-400 hover:text-orange-500"
-          to="/mentions-legales"
-        >Mentions Légales
-        </NuxtLink
-        >
-        <NuxtLink
-          class=" text-center lg:text-left text-amber-400 hover:text-orange-500"
-          to="/conditions-generales-de-vente"
-        >CGV
-        </NuxtLink
-        >
-
-        <NuxtLink
-          class=" text-center lg:text-left text-amber-400 hover:text-orange-500"
-          to="/blog"
-        >Blog
-        </NuxtLink
-        >
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/payer">Paiement
+        </NuxtLink>
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/link">Liens utiles
+        </NuxtLink>
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/mentions-legales">Mentions
+          Légales
+        </NuxtLink>
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500"
+          to="/conditions-generales-de-vente">CGV
+        </NuxtLink>
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/blog">Blog
+        </NuxtLink>
       </div>
     </div>
   </footer>
