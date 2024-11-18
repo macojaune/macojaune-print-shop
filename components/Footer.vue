@@ -35,6 +35,8 @@
         </NuxtLink>
         <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/blog">Blog
         </NuxtLink>
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/photozine">Photozine #1
+        </NuxtLink>
       </div>
     </div>
   </footer>
