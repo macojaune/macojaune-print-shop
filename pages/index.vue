@@ -53,6 +53,7 @@
       </section>
     </div>
       <ProjectsSection/>
+    <RunsSection/>
       <BlogSection/>
     <div
         class="mt-8 flex flex-col gap-5 lg:mt-0 lg:flex-row  lg:gap-5">
