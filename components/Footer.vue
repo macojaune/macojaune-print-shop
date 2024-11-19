@@ -18,7 +18,7 @@
         class="text-white hover:text-amber-400" href="https://twitter.com/macojaune" v-html="twitter" /><a
         class="text-white hover:text-amber-400" href="https://instagram.com/macojaune" v-html="instagram" />
     </div>
-    <div class="container mx-auto py-8">
+    <div class="container mx-auto py-8 mb-12">
       <div class="grid grid-cols-2 lg:grid-cols-5 justify-center gap-5 grid-flow-row-dense text-amber-300">
         <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/a-propos">À propos
         </NuxtLink>

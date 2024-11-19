@@ -1,6 +1,7 @@
 <template>
     <header
-        class="flex items-center md:justify-center py-6 md:py-20 flex-col md:flex-row"
+        :class="['flex flex-col md:flex-row', props.isSmall ?
+        'items-left w-fit p-4 md:justify-right': 'py-6 md:py-20 items-center md:justify-center']"
     >
         <nav class="md:flex-2 md:mr-auto md:grow">
             <NuxtLink
@@ -22,14 +23,14 @@
                 </h1>
                 <h2
                     v-else-if="route.path !== '/shop'"
-                    class="text-5xl/7 md:text-7xl font-display"
+                    :class="[props.isSmall?'text-2xl md:text-3xl':'text-5xl/7 md:text-7xl font-display']"
                 >
-                    @MACOJAUNE<br class="block md:hidden" ><span
+                    @MACOJAUNE<br :class="[props.isSmall?'hidden':'block md:hidden']" ><span
                         v-if="route.path.includes('blog')"
                         class="text-xl text-white"
                     >
                         LE BLOG</span
-                    ><span v-else class="text-xl text-white"> LE SITE</span>
+                    ><span v-else :class="[props.isSmall?'text-sm':'text-xl','text-white']"> LE SITE</span>
                 </h2>
                 <h1
                     v-else
@@ -52,6 +53,11 @@
 import { useRoute } from "vue-router";
 
 const route = useRoute();
+const props = withDefaults(defineProps<{
+    isSmall: boolean;
+}>(),{
+    isSmall: false
+})
 </script>
 
 <style lang="stylus" scoped></style>

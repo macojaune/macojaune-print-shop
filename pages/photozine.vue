@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="flex min-h-dvh flex-col">
+    <Header isSmall/>
+    <section class="flex flex-col grow items-center justify-center overflow-hidden">
       <div class="absolute inset-0">
         <!-- <img src="/images/photozine-cover.jpg" alt="Photozine cover" class="w-full h-full object-cover" /> -->
         <div class="absolute inset-0 bg-opacity-50" />
       </div>
       <div class="relative text-center flex flex-col z-10 max-w-3xl px-4">
-        <h1 class="text-5xl md:text-7xl text-amber-400 font-bold mb-6">Jòn - PhotoZine #1</h1>
+        <h1 class="text-4xl md:text-7xl text-amber-400 font-bold mb-6">Jòn - PhotoZine #1</h1>
 
         <p class="text-xl md:text-2xl mb-8 font-sans leading-relaxed ">
           Je lance les pré-commandes pour mon premier <b>PhotoZine</b> !
@@ -60,7 +61,7 @@ J'ai choisi un papier mat de haute qualité, pour qu'il dure au moins 100 ans. <
           age (32 ans) en prix de départ.
         </p>
 
-        <span class="text-5xl font-light text-white font-display mb-8" v-if="data">
+        <span class="text-5xl font-light text-white font-display" v-if="data">
           {{ data.price }} €
         </span>
 
@@ -69,11 +70,13 @@ J'ai choisi un papier mat de haute qualité, pour qu'il dure au moins 100 ans. <
           />
           <input type="hidden" :value="product.description" name="description"/>
           <input type="hidden" name="url" value="/photozine" />
-          <button type="submit" role="link" class="bg-amber-400 p-3 transition-colors hover:bg-black hover:border-amber-400 border border-transparent hover:text-amber-400 hover:animate-pulse text-black text-lg w-fit self-center"
+          <button type="submit" role="link"
+                  class="bg-amber-400 p-3 my-8 transition-colors hover:bg-black hover:border-amber-400 border border-transparent hover:text-amber-400 hover:animate-pulse text-black text-lg w-full md:w-fit self-center"
 >Pré-commander</button>
         </form>
       </div>
     </section>
+    <Footer/>
   </div>
 </template>
 
