@@ -1,6 +1,0 @@
-const links_vue_vue_type_style_index_0_scoped_9d3cb355_lang = `a[data-v-9d3cb355]{box-shadow:none;text-decoration:none}a[data-v-9d3cb355]:hover{color:var(--v-accent-base)}h1[data-v-9d3cb355],h2[data-v-9d3cb355],h3[data-v-9d3cb355],h4[data-v-9d3cb355],h5[data-v-9d3cb355],h6[data-v-9d3cb355]{font-family:Righteous}#app[data-v-9d3cb355]{animation:move-background-9d3cb355 100s linear infinite;background-color:#000;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath fill='%23f44336' fill-opacity='.08' fill-rule='evenodd' d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m0-2A6 6 0 1 0 8 2a6 6 0 0 0 0 12m33.414-6 5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414zM40 48a8 8 0 1 0 0-16 8 8 0 0 0 0 16m0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12M9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414z'/%3E%3C/svg%3E")}@keyframes move-background-9d3cb355{0%{background-position:0 0}to{background-position:1000px 1000px}}`;
-
-const linksStyles_C1YY_183 = [links_vue_vue_type_style_index_0_scoped_9d3cb355_lang];
-
-export { linksStyles_C1YY_183 as default };
-//# sourceMappingURL=links-styles.C1YY_183.mjs.map
