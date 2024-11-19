@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0">
         <!-- <img src="/images/photozine-cover.jpg" alt="Photozine cover" class="w-full h-full object-cover" /> -->
         <div class="absolute inset-0 bg-opacity-50" />
