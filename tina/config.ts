@@ -1,4 +1,5 @@
-import {defineConfig, Form, TinaCMS} from 'tinacms'
+import type { Form, TinaCMS} from 'tinacms';
+import {defineConfig} from 'tinacms'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -20,7 +21,7 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: '',
+      mediaRoot: 'pictures',
       publicFolder: 'public'
     }
   },
@@ -220,10 +221,10 @@ export default defineConfig({
       }
     ]
   },
-  search: {
-    tina: {
-      indexerToken: process.env.TINA_TOKEN,
-      // stopwordLanguages: ['en', 'fra'],
-    }
-  }
+  // search: {
+  //   tina: {
+  //     indexerToken: process.env.TINA_TOKEN,
+  //     // stopwordLanguages: ['en', 'fra'],
+  //   }
+  // }
 })

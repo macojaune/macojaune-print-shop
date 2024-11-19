@@ -1,46 +1,36 @@
-<template lang="pug">
-.app.h-screen.relative.w-screen
-  NuxtLayout
-    NuxtPage
+<template>
+    <div class="app">
+        <NuxtLayout>
+            <NuxtPage />
+        </NuxtLayout>
+    </div>
 </template>
 
 <script lang="ts" setup>
 import '@/assets/css/tailwind.css'
 const config = useRuntimeConfig()
 useHead({
-  meta: [
-    {
-      name: 'description',
-      content:
-        "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée."
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'http://schema.org',
-        '@type': 'ArtGallery',
-        name: 'Macojaune',
-        url: 'macojaune.com',
-        email: 'hello@macojaune.com',
-        paymentAccepted:
-          'Visa, Master Card, Amex, ApplePay, AndroidPay, Bitcoin'
-      })
-    },
-    {
-      innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(), event: 'gtm.js'
-    }); var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-}) (window, document, 'script', 'dataLayer', '${config.gtmID}');`
-    }
-  ],
-  noscript: [{
-    innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=${config.gtmID}"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>`
-  }]
+    meta: [
+        {
+            name: 'description',
+            content:
+                "La boutique du Macojaune, vente de tirages photos, paiement en ligne sécurisé et livraison à l'international. Pour ton salon ou tes WC, procure toi ton œuvre préférée en édition limitée."
+        }
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'http://schema.org',
+                '@type': 'ArtGallery',
+                name: 'Macojaune',
+                url: 'macojaune.com',
+                email: 'hello@macojaune.com',
+                paymentAccepted:
+                    'Visa, Master Card, Amex, ApplePay, AndroidPay, Bitcoin'
+            })
+        }
+    ]
 })
 </script>
 <style lang="stylus">

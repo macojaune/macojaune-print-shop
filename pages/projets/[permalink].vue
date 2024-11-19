@@ -7,14 +7,15 @@
         {{ data?.title ?? "" }}
       </h1>
       <div class="w-full">
-        <ContentRenderer class="text-white lg:max-w-5xl" :value="data" v-if="data"/>
-        <div class="my-4 lg:my-8" v-if="data?.pinterestUrl">
+        <ContentRenderer v-if="data" class="text-white lg:max-w-5xl" :value="data"/>
+        <div v-if="data?.pinterestUrl" class="my-4 lg:my-8">
           <h3 class="font-display text-2xl text-amber-400 mb-3 lg:text-3xl">Le Petit 
           Moodboard   <small class="font-sans text-base font-normal italic text-red-500">pour la 
               route</small></h3>
-          <a data-pin-do="embedBoard" 
+          <a
+data-pin-do="embedBoard" 
                                                                        data-pin-scale-height="240"
-                data-pin-scale-width="220" :href="data?.pinterestUrl"></a></div>
+                data-pin-scale-width="220" :href="data?.pinterestUrl"/></div>
       </div>
     </div>
     <div class="mt-8 bg-stone-900/50 p-5">
@@ -34,7 +35,7 @@
       <iframe
         data-tally-src="https://tally.so/embed/n0MpAj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
         loading="lazy" width="100%" height="638" frameborder="0" marginheight="0" marginwidth="0"
-        title="Participer à un Projet Photo avec Macojaune"></iframe>
+        title="Participer à un Projet Photo avec Macojaune"/>
     </div>
   </div>
 </template>
@@ -122,7 +123,7 @@ onMounted(() => {
   Tally.loadEmbeds();
   // Load Pinterest board embed
   (function (d) {
-     var f = d.getElementsByTagName('SCRIPT')[0],
+     const f = d.getElementsByTagName('SCRIPT')[0],
        p = d.createElement('SCRIPT');
      p.type = 'text/javascript';
      p.async = true;

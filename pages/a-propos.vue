@@ -55,12 +55,14 @@
             <a href="https://tessanaime.fr" target="_blank" class="text-amber-400 hover:text-amber-600">Tessa Naime</a>
           </li>
           <li>
-            <a                   class="text-orange-400 hover:text-amber-300"
+            <a
+class="text-orange-400 hover:text-amber-300"
               href="https://www.calameo.com/books/006255475d8f8ef49b8aa"
               target="_blank"
             >NEG #3</a> Rap Poézi Poilitik 
           </li>
-          <li><a target="_blank" class="text-orange-400 hover:text-amber-300" 
+          <li><a
+target="_blank" class="text-orange-400 hover:text-amber-300" 
                  href="https://www.associationvagueslitteraires.org/revue-dokreis">DOKRE.I.S #5</a> Fête / Fèt</li>
         </ul>
       </section>

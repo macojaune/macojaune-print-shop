@@ -1,9 +1,21 @@
 link:
-  - text: "L'article sur les claviers"
-    url: 'https://macojaune.com/blog/des-claviers-encore-des-claviers'
-  - text: "Ma playlist Spotify: Découvertes Macophoniques 🎶"
-    url: "https://open.spotify.com/playlist/2UHXtjXBvq5Bz5xmeUr4vs?si=aaa8e5fb4e574ea6"
-  - text: "T'as vu ma dernière vidéo ?"
-    url: "https://www.youtube.com/@macojaune"
-  - text: "Mon podcast 🎙"
-    url: "https://pod.link/1369562721"
+  - text: "\U0001F4A1 ou \U0001F56F ? La carte interactive des délestages EDF"
+    url: 'https://pani-limye.marvinl.com'
+    description: ''
+  - text: J'ai créé un jeu en ligne !
+    url: 'https://lejustecoin.marvinl.com'
+    description: 'Un petit jeu pour dénoncer l''état des annonces immo aux antilles '
+  - text: J'ai créé une extension chrome !
+    url: >-
+      chromewebstore.google.com/detail/autosonglink/gndjompcjcpibmidddkjmnhimgepoodo?hl=fr&authuser=0
+    description: Partage plus facilement les morceaux de tes artistes préféré·es
+  - text: Mon dernier article
+    url: 'https://macojaune.com/blog/un-retour-peut-etre'
+    description: Un retour peut-être…
+  - text: "Ma playlist Spotify: Découvertes Macophoniques \U0001F3B6"
+    url: >-
+      https://open.spotify.com/playlist/2UHXtjXBvq5Bz5xmeUr4vs?si=aaa8e5fb4e574ea6
+  - text: T'as vu ma dernière vidéo ?
+    url: 'https://www.youtube.com/@macojaune'
+  - text: "Mon podcast \U0001F399"
+    url: 'https://pod.link/1369562721'
