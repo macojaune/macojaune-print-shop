@@ -36,7 +36,7 @@
     "radash": "^12.1.0",
     "rehype-external-links": "^3.0.0",
     "remark-emoji": "^5.0.0",
-    "stripe": "^17.3.1",
+    "stripe": "^17.4.0",
     "tinacms": "^1.6.4"
   }
 }
