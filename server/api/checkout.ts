@@ -30,8 +30,12 @@ export default defineEventHandler(async (event) => {
           currency: 'eur',
           unit_amount: price * 100
         },
-        quantity: 1
+        quantity: 1,
+        adjustable_quantity: {
+          enabled: true
+        }
       }],
+
       mode: 'payment',
       shipping_address_collection: {
         allowed_countries: ['FR', 'BE', 'DE', 'GF', 'PF', 'TF', 'ES', 'IT', 'NL', 'AT', 'CH', 'GP', 'MQ', 'GB', 'US', 'CA', 'AU', 'JP', 'MX', 'PT', 'BR', 'CZ', 'DK', 'FI', 'HU', 'NO', 'RU', 'SG', 'SE', 'KR', 'TW', 'VN', 'HK']
