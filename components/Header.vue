@@ -11,9 +11,11 @@
                 </h1>
                 <h2 v-else-if="route.path !== '/shop'"
                     :class="[props.isSmall ? 'text-2xl md:text-3xl' : 'text-5xl/7 md:text-7xl font-display']">
-                    @MACOJAUNE<br :class="[props.isSmall ? 'hidden' : 'block md:hidden']"><span
-                        v-if="route.path.includes('blog')" class="text-xl text-white">
-                        LE BLOG</span><span v-else :class="[props.isSmall ? 'text-sm' : 'text-xl', 'text-white']"> LE SITE</span>
+                    @MACOJAUNE
+                    <br :class="[props.isSmall ? 'hidden' : 'block md:hidden']">
+                    <span v-if="route.path.includes('blog')" class="text-xl text-white">
+                        LE BLOG</span>
+                    <span v-else :class="[props.isSmall ? 'text-sm' : 'text-xl', 'text-white']"> LE SITE</span>
                 </h2>
                 <h1 v-else class="text-3xl font-display text-3xl md:text-6xl" itemprop="name">
                     YELLOW ART SHOP
@@ -36,5 +38,3 @@ const props = withDefaults(defineProps<{
     isSmall: false
 })
 </script>
-
-<style lang="stylus" scoped></style>

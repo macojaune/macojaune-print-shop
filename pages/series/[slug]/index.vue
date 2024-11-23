@@ -9,9 +9,9 @@
 
                 <ContentRendererMarkdown :value="serie" class="text-white text-base md:text-lg" />
 
-                <div class="picture-list my-6 grid grid-flow-row-dense gap-4 justify-evenly items-end"
-                    :class="`grid-cols-1 ${serie.products.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`">
-                    <div v-for="(product, index) in serie.products" :key="index" class="picture">
+                <div
+                    :class="`my-6 grid grid-flow-row-dense gap-4 justify-evenly items-end grid-cols-1 ${serie.products.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`">
+                    <div v-for="(product, index) in serie.products" :key="index" class="flex flex-col items-center">
                         <NuxtLink :to="product.slug">
                             <NuxtImg v-if="product.images" class="primary border-radius mb-2" :src="`${product.images[0]}`"
                                 sizes="xs:100vw lg:500px" format="webp" quality="60" itemprop="image"
