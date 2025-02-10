@@ -1,17 +1,12 @@
 link:
-  - text: "\U0001F4A1 ou \U0001F56F ? La carte interactive des délestages EDF"
-    url: 'https://pani-limye.marvinl.com'
+  - text: 'O Mas La ? '
+    url: 'https://omasla.fr'
+    description: Localise tes groupes de carnaval en direct !
+  - text: Vote pour mon prochain projet !
+    url: 'https://marvinl.com/ideas'
     description: ''
-  - text: J'ai créé un jeu en ligne !
-    url: 'https://lejustecoin.marvinl.com'
-    description: 'Un petit jeu pour dénoncer l''état des annonces immo aux antilles '
-  - text: J'ai créé une extension chrome !
-    url: >-
-      chromewebstore.google.com/detail/autosonglink/gndjompcjcpibmidddkjmnhimgepoodo?hl=fr&authuser=0
-    description: Partage plus facilement les morceaux de tes artistes préféré·es
-  - text: Mon dernier article
-    url: 'https://macojaune.com/blog/un-retour-peut-etre'
-    description: Un retour peut-être…
+  - text: Mes photos dans tes WC ?! Par ici !
+    url: 'https://macojaune.com'
   - text: "Ma playlist Spotify: Découvertes Macophoniques \U0001F3B6"
     url: >-
       https://open.spotify.com/playlist/2UHXtjXBvq5Bz5xmeUr4vs?si=aaa8e5fb4e574ea6
