@@ -1,13 +1,13 @@
 link:
+  - text: Vote pour mon prochain projet !
+    url: 'https://marvinl.com/ideas'
+    description: ''
   - text: 'O Mas La ? '
     url: 'https://omasla.fr'
     description: Localise tes groupes de carnaval en direct !
   - text: 'Pani Dlo / Pani Limyè '
     url: 'https://pani-limye.marvinl.com'
     description: Carte collaborative des coupures d'eau et d'électricité
-  - text: Vote pour mon prochain projet !
-    url: 'https://marvinl.com/ideas'
-    description: ''
   - text: Mes photos dans tes WC ?! Par ici !
     url: 'https://macojaune.com'
   - text: "Ma playlist Spotify: Découvertes Macophoniques \U0001F3B6"
@@ -15,5 +15,6 @@ link:
       https://open.spotify.com/playlist/2UHXtjXBvq5Bz5xmeUr4vs?si=aaa8e5fb4e574ea6
   - text: T'as vu ma dernière vidéo ?
     url: 'https://www.youtube.com/@macojaune'
-  - text: "Mon podcast \U0001F399"
+  - text: "On parle Business sur Sauce Digitales \U0001F399"
     url: 'https://pod.link/1369562721'
+    description: Nalaa m'a invité sur son podcast tech aux antilles
