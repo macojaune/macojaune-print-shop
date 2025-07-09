@@ -1,17 +1,12 @@
 link:
+  - text: '#StayConnect '
+    url: 'https://stayconnect.marvinl.com'
+    description: Toutes les sorties musicales des 97x à 1 seul endroit.
   - text: Vote pour mon prochain projet !
     url: 'https://marvinl.com/ideas'
     description: ''
   - text: "On parle Business sur Sauce Digitales \U0001F399"
     url: 'https://nalaa.co/podcast-maco-jaune/'
     description: Nalaa m'a invité sur son podcast tech aux antilles
-  - text: '#StayConnect '
-    url: 'https://stayconnect.marvinl.com'
-    description: Toutes les sorties musicales des 97x à 1 seul endroit.
-  - text: Mes photos dans tes WC ?! Par ici !
-    url: 'https://macojaune.com'
-  - text: "Ma playlist Spotify: Découvertes Macophoniques \U0001F3B6"
-    url: >-
-      https://open.spotify.com/playlist/2UHXtjXBvq5Bz5xmeUr4vs?si=aaa8e5fb4e574ea6
   - text: T'as vu ma dernière vidéo ?
     url: 'https://www.youtube.com/@macojaune'
