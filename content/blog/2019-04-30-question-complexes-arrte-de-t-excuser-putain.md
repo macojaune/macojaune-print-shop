@@ -12,15 +12,13 @@ tags: ["self-image", "excuses", "social-media", "psychologie", "confiance"]
 
 <iframe src="https://podcasters.spotify.com/pod/show/macojaune/episodes/Question-complexes--Arrte-de-texcuser-putain-e3r51f" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>
 
-<img src="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/395788/395788-1625177064887-87acf72b6dbb8.jpg" alt="Image podcast" style="max-width:100%;height:auto;" />
-
 ## Pourquoi on s'excuse pour ce qu'on est ?
 
 Dans ce podcast, Marvin pose une question simple mais puissante : **Pourquoi t'excuses pour ton état naturel ?**
 
 > *« Je suis fatigué, décoiffé, pas maquillé, en chien »* – c'est un exemple de ce qu'il appelle un **complexe de l'image**.
 
-### Le problème des excusations
+### Le problème des excuses
 
 - **L'auto‑critique** : On se juge à chaque détail, même les plus insignifiants.
 - **La pression sociale** : Les réseaux sociaux amplifient ces petites failles.
