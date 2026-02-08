@@ -1,0 +1,13 @@
+{
+  "lastAgent": "agent-d6e2df9a-6feb-4264-8f35-b1cfe505f45b",
+  "lastSession": {
+    "agentId": "agent-d6e2df9a-6feb-4264-8f35-b1cfe505f45b",
+    "conversationId": "default"
+  },
+  "sessionsByServer": {
+    "letta.marvinl.com": {
+      "agentId": "agent-d6e2df9a-6feb-4264-8f35-b1cfe505f45b",
+      "conversationId": "default"
+    }
+  }
+}

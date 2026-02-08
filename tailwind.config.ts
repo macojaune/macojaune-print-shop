@@ -14,7 +14,8 @@ export default <Partial<Config>>{
   ],
   theme: {
     fontFamily: {
-      sans: ['Hind', 'sans-serif']
+      sans: ['Hind', 'sans-serif'],
+      mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
     },
     extend: {
       fontFamily: {
@@ -22,6 +23,12 @@ export default <Partial<Config>>{
       },
       aspectRatio: {
         portrait: '9 / 16'
+      },
+      colors: {
+        'crt-green': '#00ff41',
+        'crt-magenta': '#ff00ff',
+        'crt-cyan': '#00ffff',
+        'crt-yellow': '#ffff00'
       }
     }
   },
