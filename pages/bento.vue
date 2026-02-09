@@ -118,36 +118,93 @@
                     <h2 class="text-xl font-black text-white uppercase tracking-widest text-center">Boutique</h2>
                 </div>
 
-                <!-- Boutique Products - From runs -->
-                <ContentList v-slot="{ list }" :query="runsQuery" :limit="2">
-                    <template v-for="run in list" :key="run._path">
-                        <!-- Serie Header -->
-                        <div class="lg:col-span-8 bg-zinc-900/30 rounded-2xl px-6 py-3 border border-zinc-800 flex items-center justify-between">
-                            <h3 class="text-lg font-bold">{{ run.title }}</h3>
-                            <span class="text-xs text-gray-500">{{ run.products?.length || 0 }} tirages</span>
-                        </div>
-                        
-                        <!-- Products Grid -->
-                        <div class="lg:col-span-8 bg-zinc-900/30 rounded-3xl p-6 border border-zinc-800">
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <article v-for="(product, idx) in run.products?.slice(0, 4)" :key="product.sku"
-                                    :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative', idx === 3 ? 'md:col-span-2' : '']">
-                                    <div :class="['relative overflow-hidden', idx === 3 ? 'aspect-[16/10]' : 'aspect-[3/4]']">
-                                        <img v-if="product.images && product.images[0]" :src="product.images[0]" :alt="product.title"
-                                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                        <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
-                                            <span class="text-2xl font-bold text-[#FFD700]">{{ product.title }}</span>
-                                        </div>
-                                        <!-- Hover overlay that fades -->
-                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                                        </div>
-                                        <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
-                                            <span class="text-[#FFD700] font-bold block">{{ product.price }}€</span>
-                                        </div>
+                <!-- Boutique Products - From runs with varied layouts -->
+                <ContentList v-slot="{ list }" :query="runsQuery" :limit="3">
+                    <template v-for="(run, runIdx) in list" :key="run._path">
+                        <!-- Layout variation 1: Description + Products (5+3) -->
+                        <template v-if="runIdx === 0">
+                            <!-- Description Block -->
+                            <div class="lg:col-span-3 bg-zinc-900/50 rounded-3xl p-6 border border-zinc-800 flex flex-col justify-between">
+                                <div>
+                                    <span class="text-[#FFD700] text-xs uppercase tracking-wider">Série</span>
+                                    <h3 class="text-2xl font-bold mt-2 mb-4">{{ run.title }}</h3>
+                                    <p class="text-gray-400 text-sm leading-relaxed line-clamp-6">{{ run.description }}</p>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between">
+                                    <span class="text-xs text-gray-500">{{ run.products?.length || 0 }} tirages</span>
+                                    <NuxtLink :to="`/series/${run.slug}`" class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Voir →</NuxtLink>
+                                </div>
+                            </div>
+                            <!-- Products - 5 cols -->
+                            <div class="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-3">
+                                <article v-for="(product, idx) in run.products?.slice(0, 3)" :key="product.sku"
+                                    :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative', idx === 0 ? 'col-span-2 aspect-[16/9]' : 'aspect-[3/4]']">
+                                    <img v-if="product.images && product.images[0]" :src="product.images[0]" :alt="product.title"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                    <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
+                                        <span class="text-xl font-bold text-[#FFD700]">{{ product.title }}</span>
+                                    </div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
+                                    <div class="absolute bottom-0 left-0 right-0 p-3 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                        <span class="text-[#FFD700] font-bold text-sm">{{ product.price }}€</span>
                                     </div>
                                 </article>
                             </div>
-                        </div>
+                        </template>
+
+                        <!-- Layout variation 2: Full width products (8 cols) with mixed sizes -->
+                        <template v-if="runIdx === 1">
+                            <!-- Header -->
+                            <div class="lg:col-span-8 bg-zinc-900/30 rounded-2xl px-6 py-3 border border-zinc-800 flex items-center justify-between">
+                                <h3 class="text-lg font-bold">{{ run.title }}</h3>
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xs text-gray-500">{{ run.products?.length || 0 }} tirages</span>
+                                    <NuxtLink :to="`/series/${run.slug}`" class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Voir tout →</NuxtLink>
+                                </div>
+                            </div>
+                            <!-- Products - Mixed grid -->
+                            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <article v-for="(product, idx) in run.products?.slice(0, 4)" :key="product.sku"
+                                    :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative', idx === 0 || idx === 3 ? 'md:col-span-2 aspect-[16/10]' : 'aspect-[3/4]']">
+                                    <img v-if="product.images && product.images[0]" :src="product.images[0]" :alt="product.title"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                    <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
+                                        <span class="text-2xl font-bold text-[#FFD700]">{{ product.title }}</span>
+                                    </div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
+                                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                        <span class="text-[#FFD700] font-bold block">{{ product.price }}€</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </template>
+
+                        <!-- Layout variation 3: Compact row (4+4) -->
+                        <template v-if="runIdx === 2">
+                            <div class="lg:col-span-4 bg-zinc-900/30 rounded-2xl p-5 border border-zinc-800 flex flex-col justify-center">
+                                <span class="text-[#FFD700] text-xs uppercase tracking-wider">Série</span>
+                                <h3 class="text-xl font-bold mt-1">{{ run.title }}</h3>
+                                <p class="text-gray-400 text-sm mt-2 line-clamp-2">{{ run.description }}</p>
+                                <div class="mt-3 flex items-center justify-between">
+                                    <span class="text-xs text-gray-500">{{ run.products?.length || 0 }} tirages</span>
+                                    <NuxtLink :to="`/series/${run.slug}`" class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Découvrir →</NuxtLink>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-4 grid grid-cols-3 gap-3">
+                                <article v-for="(product, idx) in run.products?.slice(0, 3)" :key="product.sku"
+                                    class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
+                                    <img v-if="product.images && product.images[0]" :src="product.images[0]" :alt="product.title"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                    <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
+                                        <span class="text-lg font-bold text-[#FFD700]">{{ product.title }}</span>
+                                    </div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
+                                    <div class="absolute bottom-0 left-0 right-0 p-2 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                        <span class="text-[#FFD700] font-bold text-sm">{{ product.price }}€</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </template>
                     </template>
                 </ContentList>
 
@@ -164,33 +221,27 @@
                     <h2 class="text-xl font-black text-white uppercase tracking-widest text-center">Projects</h2>
                 </div>
 
-                <!-- Projects Grid -->
-                <div class="lg:col-span-7 bg-zinc-900/30 rounded-3xl p-6 border border-zinc-800">
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <!-- Project 1 -->
-                        <ContentList v-slot="{ list }" :query="projectQuery" :limit="6">
-                            <article v-for="(project, idx) in list" :key="project.permalink"
-                                class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative">
-                                <div class="aspect-[4/3] relative overflow-hidden">
-                                    <img v-if="project.image" :src="project.image" :alt="project.title"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                    <div v-else class="w-full h-full bg-zinc-700 flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-[#FFD700]">MJ</span>
-                                    </div>
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-                                    </div>
-                                    <div class="absolute bottom-0 left-0 right-0 p-3">
-                                        <h3 class="text-sm font-bold truncate group-hover:text-[#FFD700] transition-colors">
-                                            {{ project.title }}</h3>
-                                        <p class="text-xs text-gray-400 mt-1 line-clamp-2">{{ project.description }}</p>
-                                    </div>
-                                </div>
-                                <NuxtLink :to="`/projets/${project.permalink}`" class="absolute inset-0 z-10"></NuxtLink>
-                            </article>
-                        </ContentList>
-                    </div>
-                </div>
+                <!-- Projects - Individual cards without container -->
+                <ContentList v-slot="{ list }" :query="projectQuery" :limit="6">
+                    <article v-for="(project, idx) in list" :key="project.permalink"
+                        :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative hover:bg-zinc-700 transition-colors', 
+                                 idx === 0 ? 'lg:col-span-3' : idx === 1 ? 'lg:col-span-2' : idx === 2 ? 'lg:col-span-3' : 'lg:col-span-2']">
+                        <div :class="['relative overflow-hidden', idx === 0 ? 'aspect-[16/9]' : idx === 2 ? 'aspect-[4/3]' : 'aspect-[3/4]']">
+                            <img v-if="project.image" :src="project.image" :alt="project.title"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div v-else class="w-full h-full bg-zinc-700 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-[#FFD700]">MJ</span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="text-base font-bold truncate group-hover:text-[#FFD700] transition-colors">
+                                    {{ project.title }}</h3>
+                                <p class="text-xs text-gray-400 mt-1 line-clamp-2">{{ project.description }}</p>
+                            </div>
+                        </div>
+                        <NuxtLink :to="`/projets/${project.permalink}`" class="absolute inset-0 z-10"></NuxtLink>
+                    </article>
+                </ContentList>
 
                 <!-- ==================== VIDEO + STATS ==================== -->
                 <!-- Video - Vertical -->
