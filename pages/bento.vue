@@ -111,170 +111,178 @@
                         </article>
                     </ContentList>
                 </div>
-                <!-- Newsletter -->
-                <div class="bg-zinc-800 rounded-3xl lg:col-span-2  p-6 flex flex-col justify-between">
-                    <div>
-                        <span class="text-gray-500 text-xs uppercase">Stay Updated</span>
-                        <h2 class="text-xl font-bold mt-2">Newsletter</h2>
-                    </div>
-                    <div class="space-y-3 mt-4">
-                        <input type="email" placeholder="your@email.com"
-                            class="w-full bg-zinc-700 border-0 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500" />
-                        <button
-                            class="w-full bg-[#FFD700] text-black py-3 rounded-xl font-bold hover:bg-white transition-colors">Subscribe</button>
-                    </div>
+
+                <!-- ==================== BOUTIQUE ==================== -->
+                <!-- Boutique Title -->
+                <div class="bg-zinc-800/50 rounded-2xl p-4 flex items-center justify-center">
+                    <h2 class="text-xl font-black text-white uppercase tracking-widest text-center">Boutique</h2>
                 </div>
 
-                <!-- Photozine -->
-                <NuxtLink to="/photozine"
-                    class="bg-zinc-800 rounded-3xl p-6 flex flex-col justify-between hover:bg-zinc-700 transition-colors">
-                    <div>
-                        <span class="text-gray-500 text-xs uppercase">New</span>
-                        <h2 class="text-2xl font-bold text-white mt-2">Photozine #1</h2>
-                    </div>
-                    <span
-                        class="inline-block bg-[#FFD700] text-black px-4 py-2 rounded-xl font-bold text-center text-sm">Pre-order</span>
-                </NuxtLink>
-
-
-
-                <!-- Blog Section Title -->
-                <div class="lg:col-span-4 bg-transparent rounded-2xl p-2 flex items-center justify-start pl-0">
-                    <span class="text-gray-500 text-xs uppercase tracking-wider">Tous les articles →</span>
-                </div>
-
-                <!-- Boutique -->
-                <div class="lg:col-span-4 bg-zinc-900/30 rounded-3xl p-8 border border-zinc-800">
-                    <!-- Boutique Header -->
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-2xl font-black text-white uppercase tracking-tight">Boutique</h2>
-                        <span class="text-[#FFD700] text-xs uppercase tracking-wider">Tirages Limited</span>
-                    </div>
-
-                    <!-- Boutique Content -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Boutique Products Row 1 -->
+                <div class="lg:col-span-7 bg-zinc-900/30 rounded-3xl p-6 border border-zinc-800">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 h-full">
                         <!-- Product Card 1 -->
-                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer">
-                            <div class="aspect-[3/4] relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=533&fit=crop"
-                                    alt="Print 1"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                <div class="absolute bottom-2 left-2">
-                                    <span class="text-[#FFD700] font-bold">25€</span>
-                                </div>
+                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=533&fit=crop"
+                                alt="Print 1"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <!-- Hover overlay that fades -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             </div>
-                            <div class="p-3">
-                                <span class="text-xs text-gray-500 uppercase block">Serie A</span>
-                                <h3 class="text-sm font-bold truncate">Portrait #1</h3>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                <span class="text-[#FFD700] font-bold block">25€</span>
                             </div>
                         </article>
 
                         <!-- Product Card 2 -->
-                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer">
-                            <div class="aspect-[3/4] relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop"
-                                    alt="Print 2"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                <div class="absolute bottom-2 left-2">
-                                    <span class="text-[#FFD700] font-bold">30€</span>
-                                </div>
+                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop"
+                                alt="Print 2"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             </div>
-                            <div class="p-3">
-                                <span class="text-xs text-gray-500 uppercase block">Serie B</span>
-                                <h3 class="text-sm font-bold truncate">Street #1</h3>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                <span class="text-[#FFD700] font-bold block">30€</span>
                             </div>
                         </article>
 
-                        <!-- Product Card 3 -->
-                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer">
-                            <div class="aspect-[3/4] relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=533&fit=crop"
-                                    alt="Print 3"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                <div class="absolute bottom-2 left-2">
-                                    <span class="text-[#FFD700] font-bold">28€</span>
-                                </div>
+                        <!-- Product Card 3 - Large -->
+                        <article class="lg:col-span-2 bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-auto lg:aspect-[4/3]">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=533&fit=crop"
+                                alt="Print 3"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             </div>
-                            <div class="p-3">
-                                <span class="text-xs text-gray-500 uppercase block">Serie A</span>
-                                <h3 class="text-sm font-bold truncate">Portrait #2</h3>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                <span class="text-[#FFD700] font-bold block">28€</span>
                             </div>
                         </article>
-
-                        <!-- Product Card 4 -->
-                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer">
-                            <div class="aspect-[3/4] relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=533&fit=crop"
-                                    alt="Print 4"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                <div class="absolute bottom-2 left-2">
-                                    <span class="text-[#FFD700] font-bold">35€</span>
-                                </div>
-                            </div>
-                            <div class="p-3">
-                                <span class="text-xs text-gray-500 uppercase block">Serie C</span>
-                                <h3 class="text-sm font-bold truncate">Urban #1</h3>
-                            </div>
-                        </article>
-
-                        <!-- More Products -->
-                        <NuxtLink to="/shop"
-                            class="bg-zinc-800 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-zinc-700 transition-colors">
-                            <span class="text-3xl mb-2">→</span>
-                            <span class="text-xs uppercase tracking-wider text-gray-500">Voir tout</span>
-                        </NuxtLink>
                     </div>
                 </div>
 
-                <!-- Section Title: Projects -->
-                <div class="lg:col-span-4 bg-zinc-900/30 rounded-2xl p-4 flex items-center justify-center mt-6">
+                <!-- Boutique Row 2 -->
+                <div class="lg:col-span-8 bg-zinc-900/30 rounded-3xl p-6 border border-zinc-800">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- Product Card 4 -->
+                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=533&fit=crop"
+                                alt="Print 4"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                <span class="text-[#FFD700] font-bold block">35€</span>
+                            </div>
+                        </article>
+
+                        <!-- Product Card 5 -->
+                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=533&fit=crop"
+                                alt="Print 5"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                <span class="text-[#FFD700] font-bold block">22€</span>
+                            </div>
+                        </article>
+
+                        <!-- Product Card 6 -->
+                        <article class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=400&h=533&fit=crop"
+                                alt="Print 6"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                <span class="text-[#FFD700] font-bold block">40€</span>
+                            </div>
+                        </article>
+
+                        <!-- Product Card 7 - Large -->
+                        <article class="lg:col-span-2 bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-auto lg:aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=533&fit=crop"
+                                alt="Print 7"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                <span class="text-[#FFD700] font-bold block">45€</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Boutique Link -->
+                <div class="lg:col-span-8 bg-zinc-800 rounded-xl p-4 flex items-center justify-center hover:bg-zinc-700 transition-colors">
+                    <NuxtLink to="/shop" class="text-[#FFD700] font-bold uppercase tracking-wider hover:text-white transition-colors">
+                        Voir toute la boutique →
+                    </NuxtLink>
+                </div>
+
+                <!-- ==================== PROJECTS ==================== -->
+                <!-- Projects Title -->
+                <div class="bg-zinc-800/50 rounded-2xl p-4 flex items-center justify-center">
                     <h2 class="text-xl font-black text-white uppercase tracking-widest text-center">Projects</h2>
                 </div>
 
-                <!-- Projects -->
-                <ContentList v-slot="{ list }" :query="projectQuery" :limit="4">
-                    <article v-for="(project, idx) in list" :key="project.permalink"
-                        class="bg-zinc-800 rounded-3xl overflow-hidden group cursor-pointer hover:bg-zinc-700 transition-colors relative">
-                        <div class="aspect-[4/3] relative overflow-hidden">
-                            <img v-if="project.image" :src="project.image" :alt="project.title"
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                            <div v-else class="w-full h-full bg-zinc-700 flex items-center justify-center">
-                                <span class="text-4xl font-bold text-[#FFD700]">MJ</span>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4">
-                                <span class="text-gray-500 text-xs uppercase">Project {{ idx + 1 }}</span>
-                                <h3 class="text-lg font-bold mt-1 group-hover:text-[#FFD700] transition-colors">{{
-                                    project.title }}</h3>
-                                <p class="text-xs text-gray-400 mt-2 line-clamp-2">{{ project.description }}</p>
-                            </div>
-                        </div>
-                        <NuxtLink :to="`/projets/${project.permalink}`" class="absolute inset-0 z-10" />
-                    </article>
-                </ContentList>
+                <!-- Projects Grid -->
+                <div class="lg:col-span-7 bg-zinc-900/30 rounded-3xl p-6 border border-zinc-800">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Project 1 -->
+                        <ContentList v-slot="{ list }" :query="projectQuery" :limit="6">
+                            <article v-for="(project, idx) in list" :key="project.permalink"
+                                class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative">
+                                <div class="aspect-[4/3] relative overflow-hidden">
+                                    <img v-if="project.image" :src="project.image" :alt="project.title"
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                    <div v-else class="w-full h-full bg-zinc-700 flex items-center justify-center">
+                                        <span class="text-2xl font-bold text-[#FFD700]">MJ</span>
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                                    </div>
+                                    <div class="absolute bottom-0 left-0 right-0 p-3">
+                                        <h3 class="text-sm font-bold truncate group-hover:text-[#FFD700] transition-colors">
+                                            {{ project.title }}</h3>
+                                        <p class="text-xs text-gray-400 mt-1 line-clamp-2">{{ project.description }}</p>
+                                    </div>
+                                </div>
+                                <NuxtLink :to="`/projets/${project.permalink}`" class="absolute inset-0 z-10"></NuxtLink>
+                            </article>
+                        </ContentList>
+                    </div>
+                </div>
 
-                <!-- Video Embed -->
-                <div class="lg:col-span-2 bg-zinc-800 rounded-3xl overflow-hidden">
-                    <div class="aspect-video bg-zinc-700 relative">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Latest Video" frameborder="0"
+                <!-- ==================== VIDEO + STATS ==================== -->
+                <!-- Video - Vertical -->
+                <div class="lg:col-span-1 lg:row-span-2 bg-zinc-800 rounded-3xl overflow-hidden">
+                    <div class="aspect-[9/16] max-h-full relative">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Latest Video"
+                            frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen class="absolute inset-0 w-full h-full"></iframe>
-                    </div>
-                    <div class="p-4">
-                        <span class="text-xs text-gray-500 uppercase tracking-wider">Latest</span>
-                        <h2 class="text-lg font-bold mt-1">Nouvelle vidéo</h2>
                     </div>
                 </div>
 
                 <!-- Stats -->
-                <div class="bg-zinc-800 rounded-3xl p-6">
+                <div class="lg:col-span-7 bg-zinc-800 rounded-3xl p-6">
                     <h2 class="text-sm font-bold mb-4 text-gray-500 uppercase tracking-wider">Stats</h2>
-                    <div class="space-y-3">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="flex justify-between items-center">
                             <span class="text-gray-400 text-sm">Articles</span>
                             <span class="text-[#FFD700] font-bold">50+</span>
