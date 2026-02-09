@@ -3,7 +3,7 @@ title: Skinz
 permalink: skinz
 date: 2024-07-05T04:55:18.650Z
 updatedAt: 2024-07-05T04:55:18.650Z
-draft: true
+draft: false
 ---
 
 #### Concept
