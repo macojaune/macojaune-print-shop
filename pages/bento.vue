@@ -114,7 +114,7 @@
 
                 <!-- ==================== BOUTIQUE ==================== -->
                 <!-- Boutique Title -->
-                <div class="bg-zinc-800/50 rounded-2xl p-4 flex items-center justify-center">
+                <div class="lg:col-span-3 bg-zinc-800/50 rounded-2xl p-4 flex items-center justify-center">
                     <h2 class="text-xl font-black text-white uppercase tracking-widest text-center">Boutique</h2>
                 </div>
 
@@ -124,93 +124,122 @@
                         <!-- Layout variation 1: Description + Products (5+3) -->
                         <template v-if="runIdx === 0">
                             <!-- Description Block -->
-                            <div class="lg:col-span-3 bg-zinc-900/50 rounded-3xl p-6 border border-zinc-800 flex flex-col justify-between">
+                            <div
+                                class="lg:col-span-2 bg-zinc-900/50 rounded-3xl p-6 border border-zinc-800 flex flex-col justify-between">
                                 <div>
                                     <span class="text-[#FFD700] text-xs uppercase tracking-wider">Série</span>
                                     <h3 class="text-2xl font-bold mt-2 mb-4">{{ run.title }}</h3>
-                                    <p class="text-gray-400 text-sm leading-relaxed line-clamp-6">{{ run.description }}</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed line-clamp-6">{{ run.description }}
+                                    </p>
                                 </div>
                                 <div class="mt-4 flex items-center justify-between">
-                                    <span class="text-xs text-gray-500">{{ run.products?.length || 0 }} tirages</span>
-                                    <NuxtLink :to="`/series/${run.slug}`" class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Voir →</NuxtLink>
+                                    <span class="text-xs text-gray-500">{{ getDisplayItems(run).length }} tirages</span>
+                                    <NuxtLink :to="`/series/${run.slug}`"
+                                        class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Voir
+                                        →</NuxtLink>
                                 </div>
                             </div>
                             <!-- Products - 5 cols -->
                             <div class="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-3">
-                                <article v-for="(product, idx) in run.products?.slice(0, 3)" :key="product.sku"
-                                    :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative', idx === 0 ? 'col-span-2 aspect-[16/9]' : 'aspect-[3/4]']">
-                                    <img v-if="product.images && product.images[0]" :src="product.images[0]" :alt="product.title"
-                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                    <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
-                                        <span class="text-xl font-bold text-[#FFD700]">{{ product.title }}</span>
-                                    </div>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-0 left-0 right-0 p-3 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
-                                        <span class="text-[#FFD700] font-bold text-sm">{{ product.price }}€</span>
-                                    </div>
-                                </article>
+                                <template v-for="(item, idx) in getDisplayItems(run).slice(0, 3)" :key="idx">
+                                    <article
+                                        :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative', idx === 0 ? 'col-span-2 aspect-[16/9]' : 'aspect-[3/4]']">
+                                        <img v-if="item.displayImage" :src="item.displayImage"
+                                            :alt="item.displayTitle"
+                                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                        <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
+                                            <span class="text-xl font-bold text-[#FFD700]">{{ item.displayTitle }}</span>
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                                        </div>
+                                        <div
+                                            class="absolute bottom-0 left-0 right-0 p-3 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                            <span class="text-[#FFD700] font-bold text-sm">{{ item.price }}€</span>
+                                        </div>
+                                    </article>
+                                </template>
                             </div>
                         </template>
 
                         <!-- Layout variation 2: Full width products (8 cols) with mixed sizes -->
                         <template v-if="runIdx === 1">
                             <!-- Header -->
-                            <div class="lg:col-span-8 bg-zinc-900/30 rounded-2xl px-6 py-3 border border-zinc-800 flex items-center justify-between">
+                            <div
+                                class="lg:col-span-8 bg-zinc-900/30 rounded-2xl px-6 py-3 border border-zinc-800 flex items-center justify-between">
                                 <h3 class="text-lg font-bold">{{ run.title }}</h3>
                                 <div class="flex items-center gap-4">
-                                    <span class="text-xs text-gray-500">{{ run.products?.length || 0 }} tirages</span>
-                                    <NuxtLink :to="`/series/${run.slug}`" class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Voir tout →</NuxtLink>
+                                    <span class="text-xs text-gray-500">{{ getDisplayItems(run).length }} tirages</span>
+                                    <NuxtLink :to="`/series/${run.slug}`"
+                                        class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Voir
+                                        tout →</NuxtLink>
                                 </div>
                             </div>
                             <!-- Products - Mixed grid -->
                             <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <article v-for="(product, idx) in run.products?.slice(0, 4)" :key="product.sku"
-                                    :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative', idx === 0 || idx === 3 ? 'md:col-span-2 aspect-[16/10]' : 'aspect-[3/4]']">
-                                    <img v-if="product.images && product.images[0]" :src="product.images[0]" :alt="product.title"
-                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                    <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-[#FFD700]">{{ product.title }}</span>
-                                    </div>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
-                                        <span class="text-[#FFD700] font-bold block">{{ product.price }}€</span>
-                                    </div>
-                                </article>
+                                <template v-for="(item, idx) in getDisplayItems(run).slice(0, 4)" :key="idx">
+                                    <article
+                                        :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative', idx === 0 || idx === 3 ? 'md:col-span-2 aspect-[16/10]' : 'aspect-[3/4]']">
+                                        <img v-if="item.displayImage" :src="item.displayImage"
+                                            :alt="item.displayTitle"
+                                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                        <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
+                                            <span class="text-2xl font-bold text-[#FFD700]">{{ item.displayTitle }}</span>
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                                        </div>
+                                        <div
+                                            class="absolute bottom-0 left-0 right-0 p-4 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                            <span class="text-[#FFD700] font-bold block">{{ item.price }}€</span>
+                                        </div>
+                                    </article>
+                                </template>
                             </div>
                         </template>
 
                         <!-- Layout variation 3: Compact row (4+4) -->
                         <template v-if="runIdx === 2">
-                            <div class="lg:col-span-4 bg-zinc-900/30 rounded-2xl p-5 border border-zinc-800 flex flex-col justify-center">
+                            <div
+                                class="lg:col-span-4 bg-zinc-900/30 rounded-2xl p-5 border border-zinc-800 flex flex-col justify-center">
                                 <span class="text-[#FFD700] text-xs uppercase tracking-wider">Série</span>
                                 <h3 class="text-xl font-bold mt-1">{{ run.title }}</h3>
                                 <p class="text-gray-400 text-sm mt-2 line-clamp-2">{{ run.description }}</p>
                                 <div class="mt-3 flex items-center justify-between">
-                                    <span class="text-xs text-gray-500">{{ run.products?.length || 0 }} tirages</span>
-                                    <NuxtLink :to="`/series/${run.slug}`" class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Découvrir →</NuxtLink>
+                                    <span class="text-xs text-gray-500">{{ getDisplayItems(run).length }} tirages</span>
+                                    <NuxtLink :to="`/series/${run.slug}`"
+                                        class="text-[#FFD700] text-sm font-bold hover:text-white transition-colors">Découvrir
+                                        →</NuxtLink>
                                 </div>
                             </div>
                             <div class="lg:col-span-4 grid grid-cols-3 gap-3">
-                                <article v-for="(product, idx) in run.products?.slice(0, 3)" :key="product.sku"
-                                    class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
-                                    <img v-if="product.images && product.images[0]" :src="product.images[0]" :alt="product.title"
-                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                    <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
-                                        <span class="text-lg font-bold text-[#FFD700]">{{ product.title }}</span>
-                                    </div>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-0 left-0 right-0 p-2 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
-                                        <span class="text-[#FFD700] font-bold text-sm">{{ product.price }}€</span>
-                                    </div>
-                                </article>
+                                <template v-for="(item, idx) in getDisplayItems(run).slice(0, 3)" :key="idx">
+                                    <article
+                                        class="bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative aspect-[3/4]">
+                                        <img v-if="item.displayImage" :src="item.displayImage"
+                                            :alt="item.displayTitle"
+                                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                        <div v-else class="absolute inset-0 bg-zinc-700 flex items-center justify-center">
+                                            <span class="text-lg font-bold text-[#FFD700]">{{ item.displayTitle }}</span>
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
+                                        <div
+                                            class="absolute bottom-0 left-0 right-0 p-2 translate-y-0 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+                                            <span class="text-[#FFD700] font-bold text-sm">{{ item.price }}€</span>
+                                        </div>
+                                    </article>
+                                </template>
                             </div>
                         </template>
                     </template>
                 </ContentList>
 
                 <!-- Boutique Link -->
-                <div class="lg:col-span-8 bg-zinc-800 rounded-xl p-4 flex items-center justify-center hover:bg-zinc-700 transition-colors">
-                    <NuxtLink to="/shop" class="text-[#FFD700] font-bold uppercase tracking-wider hover:text-white transition-colors">
+                <div
+                    class="lg:col-span-8 bg-zinc-800 rounded-xl p-4 flex items-center justify-center hover:bg-zinc-700 transition-colors">
+                    <NuxtLink to="/shop"
+                        class="text-[#FFD700] font-bold uppercase tracking-wider hover:text-white transition-colors">
                         Voir toute la boutique →
                     </NuxtLink>
                 </div>
@@ -224,15 +253,17 @@
                 <!-- Projects - Individual cards without container -->
                 <ContentList v-slot="{ list }" :query="projectQuery" :limit="6">
                     <article v-for="(project, idx) in list" :key="project.permalink"
-                        :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative hover:bg-zinc-700 transition-colors', 
-                                 idx === 0 ? 'lg:col-span-3' : idx === 1 ? 'lg:col-span-2' : idx === 2 ? 'lg:col-span-3' : 'lg:col-span-2']">
-                        <div :class="['relative overflow-hidden', idx === 0 ? 'aspect-[16/9]' : idx === 2 ? 'aspect-[4/3]' : 'aspect-[3/4]']">
+                        :class="['bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer relative hover:bg-zinc-700 transition-colors',
+                            idx === 0 ? 'lg:col-span-3' : idx === 1 ? 'lg:col-span-2' : idx === 2 ? 'lg:col-span-3' : 'lg:col-span-2']">
+                        <div
+                            :class="['relative overflow-hidden', idx === 0 ? 'aspect-[16/9]' : idx === 2 ? 'aspect-[4/3]' : 'aspect-[3/4]']">
                             <img v-if="project.image" :src="project.image" :alt="project.title"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div v-else class="w-full h-full bg-zinc-700 flex items-center justify-center">
                                 <span class="text-2xl font-bold text-[#FFD700]">MJ</span>
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                            </div>
                             <div class="absolute bottom-0 left-0 right-0 p-4">
                                 <h3 class="text-base font-bold truncate group-hover:text-[#FFD700] transition-colors">
                                     {{ project.title }}</h3>
@@ -247,8 +278,7 @@
                 <!-- Video - Vertical -->
                 <div class="lg:col-span-1 lg:row-span-2 bg-zinc-800 rounded-3xl overflow-hidden">
                     <div class="aspect-[9/16] max-h-full relative">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Latest Video"
-                            frameborder="0"
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Latest Video" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen class="absolute inset-0 w-full h-full"></iframe>
                     </div>
@@ -316,13 +346,28 @@ const runsQuery: QueryBuilderParams = {
     sort: [{ date: -1 }]
 }
 
-useHead({
-    title: 'Macojaune - Bento Grid',
-    meta: [{ name: 'description', content: 'Portfolio de Macojaune - Style Bento Grid' }],
-    link: [
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap' }
-    ]
-})
+const getDisplayItems = (run: any) => {
+    const items: any[] = []
+    if (!run.products) return items
+    
+    run.products.forEach((product: any) => {
+        if (product.images && product.images.length > 0) {
+            product.images.forEach((img: string, imgIdx: number) => {
+                items.push({
+                    ...product,
+                    displayImage: img,
+                    displayTitle: product.images.length > 1 ? `${product.title} #${imgIdx + 1}` : product.title
+                })
+            })
+        } else {
+            items.push({
+                ...product,
+                displayImage: null,
+                displayTitle: product.title
+            })
+        }
+    })
+    
+    return items
+}
 </script>
