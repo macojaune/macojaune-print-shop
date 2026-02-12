@@ -9,13 +9,7 @@
       </div>
     </div>
     <div v-if="nextPost" class="mt-8 flex w-full flex-row justify-end px-0 lg:mt-12 lg:px-8 ">
-      <nuxt-link
-        :to="{
-          name: 'blog-permalink',
-          params: { permalink: nextPost.permalink }
-        }"
-        class="w-1/2 text-right md:w-auto"
-      >
+      <nuxt-link :href="`/blog/${nextPost.permalink}`" class="w-1/2 text-right md:w-auto">
         <span class="font-display text-xl font-medium text-white lg:text-3xl">{{
             nextPost?.title?.toLowerCase().startsWith('[projet]') ? 'Projet' : "Article"
           }} suivant</span>
@@ -28,11 +22,9 @@
 
 <script setup lang="ts">
 const {path, params} = useRoute()
-const { data } = await useAsyncData('get-document', () =>
-  queryContent('/blog').where({permalink: `${params?.permalink}`}).findOne(),
-  { immediate: false }
-)
-const nextPost = await queryContent('/blog').where({ date: { $lt: data.value?.date } }).sort({ _id: -1 }).findOne()
+const {data} = await useAsyncData('get-document', () =>
+  queryContent('/blog').where({permalink: `${params?.permalink}`}).findOne())
+const nextPost = await queryContent('/blog').where({date: {$lt: data.value?.date}}).sort({_id: -1}).findOne()
 
 const title = data.value?.title ? `${data.value?.title} | Le blog du Macojaune` : 'Le blog du Macojaune'
 useHead({
