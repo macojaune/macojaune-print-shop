@@ -1,7 +1,7 @@
 <template>
   <div class="w-full px-4">
     <div>
-      <h1 class="my-4 font-display text-5xl uppercase text-amber-600 lg:my-3 lg:text-7xl">
+      <h1 :style="{ viewTransitionName: data?.permalink ? `blog-${data.permalink}` : '' }" class="my-4 font-display text-5xl uppercase text-amber-600 lg:my-3 lg:text-7xl">
         {{ data?.title ?? "" }}
       </h1>
       <div class="w-full lg:w-7/12">

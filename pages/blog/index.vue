@@ -1,36 +1,40 @@
 <template>
-  <ContentList v-slot="{list}" :query="query">
-    <div class="mb-2 flex flex-col gap-5">
-      <nuxt-link
-        v-for="blog in list"
-        :key="blog.permalink"
-        :to="`/blog/${blog.permalink}`"
-        class="group flex flex-row justify-between"
-      >
-        <div>
-          <h4 class="font-display text-4xl text-amber-300 group-hover:text-amber-600">
-            {{
-              blog.title
-            }}
-            <span class="font-sans text-sm">{{ moment(blog.date).format('ll') }}</span>
-          </h4>
-          <prose-p class="text-white text-base ml-6 w-8/12 line-clamp-2">{{ blog?.description }}</prose-p>
-        </div>
-        <div>
-          <nuxt-img
-:src="blog.image" sizes="xs:25vw lg:360px" format="webp" placeholder
-                    class=""/>
-        </div>
-      </nuxt-link>
-    </div>
-  </ContentList>
+  <div v-if="list" class="mb-2 flex flex-col gap-5">
+    <NuxtLink
+      v-for="blog in list"
+      :key="blog.permalink"
+      :to="`/blog/${blog.permalink}`"
+      :style="{ viewTransitionName: `blog-${blog.permalink}` }"
+      class="group flex flex-row justify-between"
+    >
+      <div>
+        <h4 class="font-display text-4xl text-amber-300 group-hover:text-amber-600">
+          {{ blog.title }}
+          <span class="font-sans text-sm">{{ moment(blog.date).format('ll') }}</span>
+        </h4>
+        <prose-p class="text-white text-base ml-6 w-8/12 line-clamp-2">{{ blog?.description }}</prose-p>
+      </div>
+      <div>
+        <NuxtImg
+          :src="blog.image"
+          sizes="xs:25vw lg:360px"
+          format="webp"
+          placeholder
+          :style="{ viewTransitionName: `img-${blog.permalink}` }"
+          class=""
+        />
+      </div>
+    </NuxtLink>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import moment from "moment/moment";
 import type {QueryBuilderParams} from "@nuxt/content/types";
 
-const query: QueryBuilderParams = {path: "/blog", where: [{draft: false}], sort: [{date: -1}]}
+const { data: list } = await useAsyncData('blog-list', () =>
+  queryContent('/blog').where({draft: false}).sort({date: -1}).find()
+)
 
 const description =
   "Pensées et tribulations d'un grand curieux guadeloupéen, artiste photographe, geek, développeur et entrepreneur."
