@@ -2,6 +2,8 @@
 title: "J'ai le droit de ne rien faire ! N'est-ce pas ?"
 description: "Aujourd'hui j'ai été à la plage, oui c'est un des bienfaits de l'entrepreneuriat que je ne m'accordais pas parce que j'étais constamment en train de penser productivité, résultat, deadline. En gros je me tue à la tâche."
 date: "2019-07-13T21:58:59.000Z"
+updatedAt: "2026-02-12T00:00:00.000Z"
+draft: false
 tags: ["entrepreneuriat", "productivité", "bien-être", "burnout", "lifestyle"]
 podcast: true
 ---

@@ -1,9 +1,9 @@
 ---
 title: "Question complexes : Arrête de t'excuser putain !"
 description: "Podcast d'humeur : on soulève la question de pourquoi on s'excuse pour ce qu'on est. Pourquoi s'excuser pour son état naturel ?"
-isDraft: false
-createdAt: 2019-04-30T13:31:13.000Z
+date: 2019-04-30T13:31:13.000Z
 updatedAt: 2026-01-07T00:00:00.000Z
+draft: false
 podcast: true
 tags: ["self-image", "excuses", "social-media", "psychologie", "confiance"]
 ---

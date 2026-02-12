@@ -1,9 +1,9 @@
 ---
 title: "J'aime pas téléphoner... Putain"
 description: "Pourquoi les appels téléphoniques sont devenus une agression en 2019. Débat sur l'intrusion et la gestion de son temps."
-isDraft: false
-createdAt: 2019-06-26T23:18:49.000Z
+date: 2019-06-26T23:18:49.000Z
 updatedAt: 2026-01-07T00:00:00.000Z
+draft: false
 podcast: true
 tags: ["téléphone", "intimité", "temps", "communication", "tech"]
 ---

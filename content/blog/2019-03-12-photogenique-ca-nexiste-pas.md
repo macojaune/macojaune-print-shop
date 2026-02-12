@@ -1,9 +1,9 @@
 ---
 title: "Photogénique : ça n'existe pas"
 description: "Tu penses ne pas être photogénique ? Découvre pourquoi ce mot est vide de sens et comment accepter ta beauté naturelle à travers l'objectif."
-isDraft: false
-createdAt: 2019-03-12T07:22:43.000Z
+date: 2019-03-12T07:22:43.000Z
 updatedAt: 2026-01-12T00:00:00.000Z
+draft: false
 podcast: true
 tags: ["photographie", "photogénie", "confiance en soi", "mentalité", "beauté"]
 ---
