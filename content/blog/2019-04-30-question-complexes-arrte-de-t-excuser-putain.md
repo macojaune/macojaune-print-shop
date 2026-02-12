@@ -5,6 +5,10 @@ date: 2019-04-30T13:31:13.000Z
 updatedAt: 2026-01-07T00:00:00.000Z
 draft: false
 podcast: true
+author: "Glob le blogger"
+permalink: question-complexes-arrte-de-t-excuser-putain
+layout: post
+categories: ["psychologie"]
 tags: ["self-image", "excuses", "social-media", "psychologie", "confiance"]
 ---
 

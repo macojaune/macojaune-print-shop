@@ -5,6 +5,10 @@ date: 2019-06-26T23:18:49.000Z
 updatedAt: 2026-01-07T00:00:00.000Z
 draft: false
 podcast: true
+author: "Glob le blogger"
+permalink: jai-le-droit-de-ne-rien-faire-nest-ce-pas
+layout: post
+categories: ["communication"]
 tags: ["téléphone", "intimité", "temps", "communication", "tech"]
 ---
 

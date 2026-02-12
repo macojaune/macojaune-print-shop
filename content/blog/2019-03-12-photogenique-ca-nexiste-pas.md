@@ -5,6 +5,10 @@ date: 2019-03-12T07:22:43.000Z
 updatedAt: 2026-01-12T00:00:00.000Z
 draft: false
 podcast: true
+author: "Glob le blogger"
+permalink: photogenique-ca-nexiste-pas
+layout: post
+categories: ["photographie"]
 tags: ["photographie", "photogénie", "confiance en soi", "mentalité", "beauté"]
 ---
 

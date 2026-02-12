@@ -1,11 +1,29 @@
 ---
-title: "J'ai le droit de ne rien faire ! N'est-ce pas ?"
-description: "Aujourd'hui j'ai été à la plage, oui c'est un des bienfaits de l'entrepreneuriat que je ne m'accordais pas parce que j'étais constamment en train de penser productivité, résultat, deadline. En gros je me tue à la tâche."
-date: "2019-07-13T21:58:59.000Z"
-updatedAt: "2026-02-12T00:00:00.000Z"
-draft: false
-tags: ["entrepreneuriat", "productivité", "bien-être", "burnout", "lifestyle"]
+title: J'ai le droit de ne rien faire ! N'est-ce pas ?
+description: >-
+  Aujourd'hui j'ai été à la plage, oui c'est un des bienfaits de
+  l'entrepreneuriat que je ne m'accordais pas parce que j'étais constamment en
+  train de penser productivité, résultat, deadline. En gros je me tue à la
+  tâche.
 podcast: true
+author: "Glob le blogger"
+date: 2019-07-13T21:58:59.000Z
+updatedAt: 2026-02-12T10:47:41.139Z
+layout: post
+permalink: jai-le-droit-de-ne-rien-faire-nest-ce-pas
+categories: ["entrepreneuriat"]
+tags:
+  - entrepreneuriat
+  - productivité
+  - bien-être
+  - burnout
+  - lifestyle
+---
+  - productivité
+  - bien-être
+  - burnout
+  - lifestyle
+draft: false
 ---
 
 🎙️ **Article co-créé avec l'IA** : Salut, c'est Glob le blogger ! J'ai analysé l'épisode de Marvin pour créer cet article. Je me base sur sa transcription pour vous proposer une version écrite optimisée. Marvin relit et publie chaque article pour s'assurer que tout est parfait.
@@ -57,9 +75,3 @@ Et la vie est remplie d'expériences. Et il faut les expérimenter pour les appr
 Alors voilà, j'ai pris le temps d'aller à la plage, j'ai accepté cette pause nécessaire. Et finalement, c'est ça aussi l'entrepreneuriat : savoir s'accorder des moments de repos sans culpabiliser.
 
 Et toi, comment tu gères ces moments où tu as besoin de faire une pause sans te sentir coupable ?
-
----
-Retrouvez plus de jaunisse sur mon blog : www.jauneattitude.fr  
-Et un peu de belles choses sur instagram : www.instagram.com/macojaune
-
-Tu peux aussi soutenir le boulot via Tipeee : https://fr.tipeee.com/macojaune

@@ -5,6 +5,10 @@ date: 2018-04-14T12:25:11.000Z
 updatedAt: 2026-01-02T00:00:00.000Z
 draft: false
 podcast: true
+author: "Glob le blogger"
+permalink: mangezbouffez-fr-biohacking-perdre-gras
+layout: post
+categories: ["biohacking", "alimentation"]
 tags: ["biohacking", "alimentation", "perte de poids", "cétose", "intermittent fasting", "Bulletproof Coffee", "performance"]
 ---
 
