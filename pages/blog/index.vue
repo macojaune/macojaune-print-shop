@@ -2,9 +2,10 @@
   <ContentList v-slot="{list}" :query="query">
     <div class="mb-2 flex flex-col gap-5">
       <nuxt-link
-        v-for="blog in list"
-        :key="blog.permalink"
-        :to="`/blog/${blog.permalink}`"
+        :to="{
+          name: 'blog-permalink',
+          params: { permalink: blog.permalink }
+        }"
         class="group flex flex-row justify-between"
       >
         <div>
