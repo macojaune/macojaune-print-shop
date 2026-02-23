@@ -70,9 +70,9 @@ J'ai choisi un papier mat de haute qualité, pour qu'il dure au moins 100 ans. <
           />
           <input type="hidden" :value="product.description" name="description"/>
           <input type="hidden" name="url" value="/photozine" />
-          <button type="submit" role="link"
-                  class="bg-amber-400 p-3 my-8 transition-colors hover:bg-black hover:border-amber-400 border border-transparent hover:text-amber-400 hover:animate-pulse text-black text-lg w-full md:w-fit self-center"
->Pré-commander</button>
+          <button type="submit" role="link" disabled
+                  class="bg-amber-400 p-3 my-8 transition-colors hover:bg-black hover:border-amber-400 border border-transparent hover:text-amber-400 hover:animate-pulse text-black text-lg w-full md:w-fit self-center disabled:opacity-50 disabled:cursor-not-allowed"
+>Projet annulé</button>
         </form>
       </div>
     </section>
