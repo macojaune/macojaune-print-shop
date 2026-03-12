@@ -1,6 +1,9 @@
 {
   "name": "macojaune-print-shop",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "tinacms build && nuxi build",
     "dev": "tinacms dev -c \"nuxt dev\"",
