@@ -72,6 +72,7 @@ target="_blank" class="text-orange-400 hover:text-amber-300"
 
 <script lang="ts" setup>
 import { useHead } from 'unhead'
+const { toAssetUrl } = useAssetUrls()
 const description = 'À propos de Macojaune, expositions collectives et publications artistiques'
 useHead({
   title: 'Macojaune - À propos',
@@ -96,7 +97,7 @@ useHead({
       property: 'og:description',
       content: description
     },
-    { property: 'og:image', content: '/pictures/dsc06261.jpg' },
+    { property: 'og:image', content: toAssetUrl('/pictures/dsc06261.jpg') },
     {
       property: 'twitter:card',
       content: 'summary_large_image'
@@ -113,7 +114,7 @@ useHead({
     },
     {
       property: 'twitter:image',
-      content: 'https://macojaune.com/pictures/dsc06261.jpg'
+      content: toAssetUrl('/pictures/dsc06261.jpg')
     }
   ],
   script: [

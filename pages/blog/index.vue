@@ -16,7 +16,7 @@
       </div>
       <div>
         <NuxtImg
-          :src="blog.image"
+          :src="toAssetUrl(blog.image)"
           sizes="xs:25vw lg:360px"
           format="webp"
           placeholder
@@ -31,6 +31,8 @@
 <script lang="ts" setup>
 import moment from "moment/moment";
 import type {QueryBuilderParams} from "@nuxt/content/types";
+
+const { toAssetUrl } = useAssetUrls()
 
 const { data: list } = await useAsyncData('blog-list', () =>
   queryContent('/blog').where({draft: false}).sort({date: -1}).find()
@@ -56,7 +58,7 @@ useHead({
       property: 'og:description',
       content: description
     },
-    {property: 'og:image', content: '/pictures/dsc06261.jpg'},
+    {property: 'og:image', content: toAssetUrl('/pictures/dsc06261.jpg')},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
@@ -66,7 +68,7 @@ useHead({
       property: 'twitter:description',
       content: description
     },
-    {property: 'twitter:image', content: 'https://macojaune.com/pictures/dsc06261.jpg'}
+    {property: 'twitter:image', content: toAssetUrl('/pictures/dsc06261.jpg')}
   ],
   script: [
     {
@@ -98,4 +100,3 @@ useHead({
   ]
 })
 </script>
-

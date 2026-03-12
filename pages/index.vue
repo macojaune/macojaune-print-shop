@@ -84,6 +84,7 @@ import type { QueryBuilderParams } from "@nuxt/content/types";
 
 moment.locale('fr-FR')
 
+const { toAssetUrl } = useAssetUrls()
 
 const description =
     "Rencontrez Macojaune, le photographe-entrepreneur-développeur méga curieux ! Ce personnage public jeune et dynamique est avide de découvertes et ne recule devant rien pour vivre pleinement sa vie. Avec ses compétences en photographie et en développement web, il vous emmène dans un univers fascinant où la créativité et la technologie se mêlent harmonieusement. Suivez ses aventures entrepreneuriales les plus folles et ses projets les plus étonnants sur son site. Et n'oubliez pas de le rejoindre sur les réseaux sociaux pour vivre l'expérience Macojaune à fond !"
@@ -106,7 +107,7 @@ useHead({
             property: 'og:description',
             content: description
         },
-        { property: 'og:image', content: '/pictures/dsc06261.jpg' },
+        { property: 'og:image', content: toAssetUrl('/pictures/dsc06261.jpg') },
         {
             property: 'twitter:card', content: 'summary_large_image'
         },
@@ -116,7 +117,7 @@ useHead({
             property: 'twitter:description',
             content: description
         },
-        { property: 'twitter:image', content: 'https://macojaune.com/pictures/dsc06261.jpg' }
+        { property: 'twitter:image', content: toAssetUrl('/pictures/dsc06261.jpg') }
     ],
     script: [
         {

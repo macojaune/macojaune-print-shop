@@ -16,7 +16,7 @@
             class="absolute inset-0 z-10 bg-amber-400/10 transition-all group-hover:bg-amber-400/20 group-hover:backdrop-blur-none lg:bg-amber-400/30 lg:backdrop-blur-sm"
           />
           <nuxt-img
-            :src="blog.image"
+            :src="toAssetUrl(blog.image)"
             class="absolute inset-0 z-0 h-full"
             format="webp"
             placeholder
@@ -48,6 +48,8 @@
 <script lang="ts" setup>
 import moment from "moment/moment";
 import type {QueryBuilderParams} from "@nuxt/content/types";
+
+const { toAssetUrl } = useAssetUrls()
 
 const blogQuery: QueryBuilderParams = {
   path: "/blog",

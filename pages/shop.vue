@@ -13,7 +13,7 @@
             NuxtLink.h-full(:to="`/series/${run.slug}/${product.slug}`")
               nuxt-img.rounded-md.h-full(
                 v-if="product.images.length>0"
-                :src="product.images[0]"
+                :src="toAssetUrl(product.images[0])"
                 sizes="xs:33vw lg:300px"
                 format="webp"
                 :loading="index>1 ? 'lazy':''"
@@ -28,6 +28,7 @@
 <script lang="ts" setup>
 import moment from 'moment'
 moment.locale('fr-FR')
+const { toAssetUrl } = useAssetUrls()
 const formatDate = (date: string) => moment(date).format('ll')
 
 const description =
@@ -50,7 +51,7 @@ useHead({
       property: 'og:description',
       content: description
     },
-    { property: 'og:image', content: '/pictures/dsc06261.jpg' },
+    { property: 'og:image', content: toAssetUrl('/pictures/dsc06261.jpg') },
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
@@ -60,7 +61,7 @@ useHead({
       property: 'twitter:description',
       content: description
     },
-    { property: 'twitter:image', content: 'https://macojaune.com/pictures/dsc06261.jpg' }
+    { property: 'twitter:image', content: toAssetUrl('/pictures/dsc06261.jpg') }
   ],
   script: [
     {

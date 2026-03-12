@@ -21,6 +21,8 @@
 </template>
 
 <script setup lang="ts">
+const { toAssetUrl, toSiteUrl } = useAssetUrls()
+
 const {path, params} = useRoute()
 const {data} = await useAsyncData('get-document', () =>
   queryContent('/blog').where({permalink: `${params?.permalink}`}).findOne())
@@ -40,23 +42,23 @@ useHead({
 
     },
     {property: 'og:type', content: 'website'},
-    {property: 'og:url', content: `https://macojaune.com${path}`},
+    {property: 'og:url', content: toSiteUrl(path)},
     {property: 'og:title', content: title},
     {
       property: 'og:description',
       content: data.value?.description
     },
-    {property: 'og:image', content: `https://macojaune.com/${data.value?.image}`},
+    {property: 'og:image', content: toAssetUrl(data.value?.image)},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
-    {property: 'twitter:url', content: `https://macojaune.com${path}`},
+    {property: 'twitter:url', content: toSiteUrl(path)},
     {property: 'twitter:title', content: title + ' | Le blog du Macojaune'},
     {
       property: 'twitter:description',
       content: data.value?.description
     },
-    {property: 'twitter:image', content: `https://macojaune.com/${data.value?.image}`}
+    {property: 'twitter:image', content: toAssetUrl(data.value?.image)}
   ],
   script: [
     {

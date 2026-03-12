@@ -15,7 +15,7 @@
             class="absolute inset-0 z-10 bg-amber-400/10 transition-all group-hover:bg-amber-400/20 group-hover:backdrop-blur-none lg:bg-amber-400/30 lg:backdrop-blur-sm"
         />
         <nuxt-img
-            :src="project.image"
+            :src="toAssetUrl(project.image)"
             format="webp"
             sizes="xs:100vw lg:33vw"
             placeholder
@@ -43,6 +43,8 @@
 <script setup lang="ts">
 import type {QueryBuilderParams} from "@nuxt/content/types";
 import moment from "moment/moment";
+
+const { toAssetUrl } = useAssetUrls()
 
 const projectQuery: QueryBuilderParams = {
   path: "/projects",

@@ -38,6 +38,8 @@
 import moment from "moment/moment";
 import type {QueryBuilderParams} from "@nuxt/content/types";
 
+const { toAssetUrl } = useAssetUrls()
+
 const query: QueryBuilderParams = {path: "/projects", where: [{draft: false}], sort: [{date: -1}]}
 
 const title = 'Les Projets photo du Macojaune'
@@ -61,7 +63,7 @@ useHead({
       property: 'og:description',
       content: description
     },
-    {property: 'og:image', content: '/pictures/MCO09198 (Large).jpg'},
+    {property: 'og:image', content: toAssetUrl('/pictures/MCO09198 (Large).jpg')},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
@@ -71,7 +73,7 @@ useHead({
       property: 'twitter:description',
       content: description
     },
-    {property: 'twitter:image', content: 'https://macojaune.com/pictures/MCO09198 (Large).jpg'}
+    {property: 'twitter:image', content: toAssetUrl('/pictures/MCO09198 (Large).jpg')}
   ],
   script: [
     {
@@ -103,4 +105,3 @@ useHead({
   ]
 })
 </script>
-

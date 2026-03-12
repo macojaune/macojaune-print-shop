@@ -1,3 +1,6 @@
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://macojaune.com'
+const assetBaseUrl = process.env.NUXT_PUBLIC_ASSET_BASE_URL || 'https://cdn.macojaune.com'
+
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -8,6 +11,8 @@ export default defineNuxtConfig({
     public: {
       stripeApiKey: '',
       serverURL: '',
+      siteUrl,
+      assetBaseUrl,
     }
   },
   modules: [
@@ -25,7 +30,7 @@ export default defineNuxtConfig({
     }
   },
   image: {
-    provider: 'netlify'
+    provider: 'none'
   },
   css: ['~/assets/css/tailwind.css'],
   stripe: {

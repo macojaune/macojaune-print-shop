@@ -6,9 +6,11 @@
     "dev": "tinacms dev -c \"nuxt dev\"",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "upload:pictures": "node scripts/upload-pictures-to-r2.mjs"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1008.0",
     "@nuxt/content": "^2.13.1",
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/eslint-config": "^0.3.13",

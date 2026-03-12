@@ -25,7 +25,7 @@
                             class="flex flex-row lg:w-1/3 gap-2 lg:gap-1">
                             <NuxtLink v-for="image in product.images.slice(0, 4)" :key="image"
                                 :to="`/series/${serie.slug}/${product.slug}`">
-                                <NuxtImg :src="image" format="webp" sizes="25vw" placeholder />
+                                <NuxtImg :src="toAssetUrl(image)" format="webp" sizes="25vw" placeholder />
                             </NuxtLink>
                         </div>
                     </div>
@@ -42,6 +42,8 @@
 <script setup lang="ts">
 import type { QueryBuilderParams } from "@nuxt/content/types";
 import moment from "moment/moment";
+
+const { toAssetUrl } = useAssetUrls()
 
 const runQuery: QueryBuilderParams = {
     path: "/runs", limit: 3, sort:

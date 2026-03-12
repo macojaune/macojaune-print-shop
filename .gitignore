@@ -100,3 +100,4 @@ sw.*
 node_modules
 .env
 .output
+public/pictures/
