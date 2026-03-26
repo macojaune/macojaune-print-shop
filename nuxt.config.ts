@@ -1,5 +1,8 @@
-const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://macojaune.com'
-const assetBaseUrl = process.env.NUXT_PUBLIC_ASSET_BASE_URL || 'https://cdn.macojaune.com'
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || "https://macojaune.com"
+const assetBaseUrl =
+  process.env.NUXT_PUBLIC_ASSET_BASE_URL ||
+  process.env.R2_PUBLIC_BASE_URL ||
+  "https://cdn.macojaune.com"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -8,9 +11,19 @@ export default defineNuxtConfig({
     stripeWebhookSecret: '',
     tursoDB:'',
     tursoToken:'',
+    r2: {
+      accountId: process.env.R2_ACCOUNT_ID || '',
+      accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+      secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+      bucket: process.env.R2_BUCKET || process.env.R2_BUCKET_NAME || '',
+      mastersPrefix: 'masters/runs',
+      publicPrefix: 'pictures/runs',
+      manifestPrefix: 'manifests/runs',
+    },
     public: {
       stripeApiKey: '',
       serverURL: '',
+      mediaBaseUrl: process.env.NUXT_PUBLIC_MEDIA_BASE_URL || process.env.R2_PUBLIC_BASE_URL || assetBaseUrl,
       siteUrl,
       assetBaseUrl,
     }

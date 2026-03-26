@@ -13,9 +13,15 @@
                     :class="`my-6 grid grid-flow-row-dense gap-4 justify-evenly items-end grid-cols-1 ${serie.products.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`">
                     <div v-for="(product, index) in serie.products" :key="index" class="flex flex-col items-center">
                         <NuxtLink :to="product.slug">
-                            <NuxtImg v-if="product.images" class="primary border-radius mb-2" :src="toAssetUrl(product.images[0])"
-                                sizes="xs:100vw lg:500px" format="webp" quality="60" itemprop="image"
-                                :alt="product.title" />
+                            <RunImage
+                                v-if="getProductHeroImage(product)"
+                                class="primary border-radius mb-2"
+                                :src="getProductHeroImage(product)"
+                                sizes="(max-width: 767px) 100vw, 500px"
+                                variant="card"
+                                itemprop="image"
+                                :alt="product.title"
+                            />
 
                             <p v-if="product.price" class="text-2xl text-center text-amber-400 font-semibold">
                                 {{ product.price }}€
@@ -50,15 +56,26 @@
 
 <script lang="ts" setup>
 import moment from 'moment'
+import {
+    getProductHeroImage,
+    getRunImageUrl,
+    getSeriesCoverImage,
+    getSeriesHeroImage,
+} from '../../../utils/runs'
+import { toAbsoluteUrl } from '../../../utils/run-media'
 moment.locale('fr')
 
-const { toAssetUrl, toSiteUrl } = useAssetUrls()
+const { toSiteUrl } = useAssetUrls()
 const router = useRoute()
 
 definePageMeta({
     layout: 'default'
 })
 const serie = await queryContent('runs').where({ slug: router.params.slug }).findOne()
+const coverImage = getSeriesCoverImage(serie)
+const heroImage = getSeriesHeroImage(serie)
+const socialImage = getRunImageUrl(heroImage || coverImage, 'social')
+const socialImageUrl = toAbsoluteUrl(socialImage, 'https://macojaune.com')
 const title = 'Série photo ' + serie.title + ' - Macojaune.com'
 useHead({
     title,
@@ -78,7 +95,7 @@ useHead({
             property: 'og:description',
             content: serie.description
         },
-        { property: 'og:image', content: toAssetUrl(serie?.products?.[0].images?.[0]) },
+        { property: 'og:image', content: socialImageUrl },
         {
             property: 'twitter:card', content: 'summary_large_image'
         },
@@ -88,7 +105,7 @@ useHead({
             property: 'twitter:description',
             content: serie.description
         },
-        { property: 'twitter:image', content: toAssetUrl(serie?.products?.[0].images?.[0]) }
+        { property: 'twitter:image', content: socialImageUrl }
     ],
     script: [
         {

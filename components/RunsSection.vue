@@ -6,8 +6,8 @@
         </h2>
         <ContentList v-slot="{ list }" :query="runQuery">
             <div class="mb-2 flex flex-col gap-5">
-                <div v-for="serie in list">
-                    <NuxtLink :key="serie.slug" :to="`/series/${serie.slug}`" class="group">
+                <div v-for="serie in list" :key="serie.slug">
+                    <NuxtLink :to="`/series/${serie.slug}`" class="group">
                         <h4 class=" font-display  text-4xl text-white group-hover:text-amber-600">
                             <span class="font-sans text-xl text-amber-500">Série:</span> {{
                                 serie.title
@@ -23,9 +23,9 @@
                         </div>
                         <div v-for="product in serie.products" :key="product.slug"
                             class="flex flex-row lg:w-1/3 gap-2 lg:gap-1">
-                            <NuxtLink v-for="image in product.images.slice(0, 4)" :key="image"
+                            <NuxtLink v-for="image in getProductImages(product).slice(0, 4)" :key="image"
                                 :to="`/series/${serie.slug}/${product.slug}`">
-                                <NuxtImg :src="toAssetUrl(image)" format="webp" sizes="25vw" placeholder />
+                                <RunImage :src="image" :alt="product.title" variant="thumb" sizes="25vw" />
                             </NuxtLink>
                         </div>
                     </div>
@@ -42,8 +42,7 @@
 <script setup lang="ts">
 import type { QueryBuilderParams } from "@nuxt/content/types";
 import moment from "moment/moment";
-
-const { toAssetUrl } = useAssetUrls()
+import { getProductImages } from "../utils/runs";
 
 const runQuery: QueryBuilderParams = {
     path: "/runs", limit: 3, sort:
