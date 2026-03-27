@@ -1,5 +1,6 @@
-import type { Form, TinaCMS } from "tinacms"
+import type { Form, TinaField } from "tinacms"
 import { defineConfig } from "tinacms"
+import { slugifyRunValue } from "../utils/runs"
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -8,6 +9,49 @@ const branch =
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   "main"
+
+type TinaValues = Record<string, unknown>
+type TinaProductValue = TinaValues & { title?: string; slug?: string }
+
+const stringValue = (value: unknown) => (typeof value === "string" ? value : "")
+const listValue = <T>(value: unknown) => (Array.isArray(value) ? (value as T[]) : [])
+
+const galleryImageFields: TinaField[] = [
+  { type: "image", label: "Source", name: "src", required: true },
+  { type: "string", label: "Alt text", name: "alt" },
+  { type: "string", label: "Caption", name: "caption", ui: { component: "textarea" } },
+  {
+    type: "string",
+    label: "Orientation",
+    name: "orientation",
+    options: [
+      { value: "landscape", label: "Landscape" },
+      { value: "portrait", label: "Portrait" },
+      { value: "square", label: "Square" },
+      { value: "detail", label: "Detail" },
+    ],
+  },
+] 
+
+const storyBlockFields: TinaField[] = [
+  {
+    type: "string",
+    label: "Block type",
+    name: "type",
+    options: [
+      { value: "text", label: "Text" },
+      { value: "image", label: "Image" },
+      { value: "quote", label: "Quote" },
+      { value: "callout", label: "Callout" },
+    ],
+    required: true,
+  },
+  { type: "string", label: "Eyebrow", name: "eyebrow" },
+  { type: "string", label: "Title", name: "title" },
+  { type: "rich-text", label: "Body", name: "body" },
+  { type: "image", label: "Image", name: "image" },
+  { type: "string", label: "Image alt text", name: "imageAlt" },
+]
 
 export default defineConfig({
   branch,
@@ -21,9 +65,9 @@ export default defineConfig({
     publicFolder: "public",
   },
   media: {
-    tina: {
-      mediaRoot: "pictures",
-      publicFolder: "public",
+    loadCustomStore: async () => {
+      const mod = await import("./r2-media-store")
+      return mod.R2MediaStore
     },
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
@@ -49,20 +93,17 @@ export default defineConfig({
         ],
         ui: {
           beforeSubmit: async ({
-            form,
-            cms,
+            form: _form,
+            cms: _cms,
             values,
           }: {
             form: Form
-            cms: TinaCMS
-            values: Record<string, any>
+            cms: unknown
+            values: TinaValues
           }) => {
             return {
               ...values,
-              slug: values.title
-                .toLowerCase()
-                .replace(/ /g, "-")
-                .replace(/[^\w-]+/g, ""),
+              slug: slugifyRunValue(stringValue(values.title)),
             }
           },
         },
@@ -83,9 +124,47 @@ export default defineConfig({
             isTitle: true,
             required: true,
           },
-          { type: "rich-text", label: "Description", name: "description" },
+          { type: "string", label: "Description", name: "description", ui: { component: "textarea" } },
           { type: "string", label: "Slug", name: "slug" },
           { type: "datetime", label: "Date", name: "date" },
+          {
+            type: "string",
+            label: "Status",
+            name: "status",
+            required: true,
+            options: [
+              { value: "draft", label: "Draft" },
+              { value: "scheduled", label: "Scheduled" },
+              { value: "published", label: "Published" },
+              { value: "archived", label: "Archived" },
+            ],
+          },
+          {
+            type: "image",
+            label: "Series cover image",
+            name: "coverImage",
+            description: "Primary thumbnail for listing pages and social previews.",
+          },
+          {
+            type: "image",
+            label: "Series hero image",
+            name: "heroImage",
+            description: "Lead visual for the series page. Falls back to the cover image.",
+          },
+          {
+            type: "object",
+            label: "Series gallery",
+            name: "gallery",
+            list: true,
+            fields: galleryImageFields,
+          },
+          {
+            type: "object",
+            label: "Story blocks",
+            name: "storyBlocks",
+            list: true,
+            fields: storyBlockFields,
+          },
           {
             type: "object",
             label: "Products",
@@ -98,7 +177,26 @@ export default defineConfig({
               { type: "rich-text", label: "Description", name: "description" },
               { type: "number", label: "Price", name: "price" },
               { type: "number", label: "Stock", name: "stock" },
-              { type: "image", label: "Images", name: "images", list: true },
+              {
+                type: "image",
+                label: "Hero image",
+                name: "heroImage",
+                description: "Primary image for cards and Open Graph previews.",
+              },
+              {
+                type: "object",
+                label: "Gallery",
+                name: "gallery",
+                list: true,
+                fields: galleryImageFields,
+              },
+              {
+                type: "image",
+                label: "Legacy images",
+                name: "images",
+                list: true,
+                description: "Legacy fallback. The migration script keeps this in sync for older templates.",
+              },
             ],
           },
           {
@@ -112,23 +210,27 @@ export default defineConfig({
         ui: {
           beforeSubmit: async ({
             form,
-            cms,
+            cms: _cms,
             values,
           }: {
             form: Form
-            cms: TinaCMS
-            values: Record<string, any>
+            cms: unknown
+            values: TinaValues
           }) => {
+            const title = stringValue(values.title)
+
             return {
               ...values,
-              slug: values.title
-                .toLowerCase()
-                .replace(/ /g, "-")
-                .replace(/[^\w-]+/g, ""),
+              slug: stringValue(values.slug) || slugifyRunValue(title),
               date:
                 form.crudType === "create"
                   ? new Date().toISOString()
                   : values.date,
+              status: stringValue(values.status) || "draft",
+              products: listValue<TinaProductValue>(values.products).map((product) => ({
+                ...product,
+                slug: stringValue(product.slug) || slugifyRunValue(stringValue(product.title)),
+              })),
             }
           },
         },
@@ -196,17 +298,14 @@ export default defineConfig({
             values,
           }: {
             form: Form
-            cms: TinaCMS
-            values: Record<string, any>
+            cms: unknown
+            values: TinaValues
           }) => {
             return {
               ...values,
               permalink:
                 form.crudType === "create"
-                  ? values.title
-                      .toLowerCase()
-                      .replace(/ /g, "-")
-                      .replace(/[^\w-]+/g, "")
+                  ? slugifyRunValue(stringValue(values.title))
                   : values.permalink,
               date:
                 form.crudType === "create"
@@ -274,17 +373,14 @@ export default defineConfig({
             values,
           }: {
             form: Form
-            cms: TinaCMS
-            values: Record<string, any>
+            cms: unknown
+            values: TinaValues
           }) => {
             return {
               ...values,
               permalink:
                 form.crudType === "create"
-                  ? values.title
-                      .toLowerCase()
-                      .replace(/ /g, "-")
-                      .replace(/[^\w-]+/g, "")
+                  ? slugifyRunValue(stringValue(values.title))
                   : values.permalink,
               date:
                 form.crudType === "create"

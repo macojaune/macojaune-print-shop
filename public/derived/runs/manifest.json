@@ -1,0 +1,4205 @@
+{
+  "generatedAt": "2026-03-27T09:46:16.592Z",
+  "images": {
+    "/media/runs/runs-backfill/dsc01771-a92c6e219f": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1280.avif",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1680.avif",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1280.webp",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1680.webp",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-1200.avif",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-1200.webp",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc01781-6b782e0378": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1280.avif",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1680.avif",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1280.webp",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1680.webp",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-1200.avif",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-2771.avif",
+            "width": 2771,
+            "height": 3463
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-1200.webp",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-2771.webp",
+            "width": 2771,
+            "height": 3463
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc01798-30d63e9eec": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1280.avif",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1680.avif",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1280.webp",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1680.webp",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-1200.avif",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-1200.webp",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc01800-1faa8e6b07": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1280.avif",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1680.avif",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1280.webp",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1680.webp",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-1200.avif",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-2850.avif",
+            "width": 2850,
+            "height": 3563
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-1200.webp",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-2850.webp",
+            "width": 2850,
+            "height": 3563
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc01807-1e43b18dbd": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-2800.avif",
+            "width": 2800,
+            "height": 3500
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-2800.webp",
+            "width": 2800,
+            "height": 3500
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-2800.avif",
+            "width": 2800,
+            "height": 3500
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-2800.webp",
+            "width": 2800,
+            "height": 3500
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1280.avif",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1680.avif",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-2800.avif",
+            "width": 2800,
+            "height": 3500
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1280.webp",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1680.webp",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-2800.webp",
+            "width": 2800,
+            "height": 3500
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-1200.avif",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-2800.avif",
+            "width": 2800,
+            "height": 3500
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-1200.webp",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-2800.webp",
+            "width": 2800,
+            "height": 3500
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc06252-1-9c22a98c69": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-1080.avif",
+            "width": 1080,
+            "height": 1080
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-1080.webp",
+            "width": 1080,
+            "height": 1080
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-1080.avif",
+            "width": 1080,
+            "height": 1080
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-1080.webp",
+            "width": 1080,
+            "height": 1080
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/social-1080.avif",
+            "width": 1080,
+            "height": 1080
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/social-1080.webp",
+            "width": 1080,
+            "height": 1080
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc06261-8f3e3c6e21": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/social-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/social-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc06270-0a9806a7ef": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-320.avif",
+            "width": 320,
+            "height": 256
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-640.avif",
+            "width": 640,
+            "height": 512
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-1080.avif",
+            "width": 1080,
+            "height": 864
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-320.webp",
+            "width": 320,
+            "height": 256
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-640.webp",
+            "width": 640,
+            "height": 512
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-1080.webp",
+            "width": 1080,
+            "height": 864
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-480.avif",
+            "width": 480,
+            "height": 384
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-768.avif",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-1080.avif",
+            "width": 1080,
+            "height": 864
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-480.webp",
+            "width": 480,
+            "height": 384
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-768.webp",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-1080.webp",
+            "width": 1080,
+            "height": 864
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-768.avif",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-1080.avif",
+            "width": 1080,
+            "height": 864
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-768.webp",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-1080.webp",
+            "width": 1080,
+            "height": 864
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/social-1080.avif",
+            "width": 1080,
+            "height": 864
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/social-1080.webp",
+            "width": 1080,
+            "height": 864
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc08950-3e6d9ad29f": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-320.avif",
+            "width": 320,
+            "height": 213
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-640.avif",
+            "width": 640,
+            "height": 427
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-2048.avif",
+            "width": 2048,
+            "height": 1367
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-320.webp",
+            "width": 320,
+            "height": 213
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-640.webp",
+            "width": 640,
+            "height": 427
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-2048.webp",
+            "width": 2048,
+            "height": 1367
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-480.avif",
+            "width": 480,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-768.avif",
+            "width": 768,
+            "height": 513
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-1080.avif",
+            "width": 1080,
+            "height": 721
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-2048.avif",
+            "width": 2048,
+            "height": 1367
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-480.webp",
+            "width": 480,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-768.webp",
+            "width": 768,
+            "height": 513
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-1080.webp",
+            "width": 1080,
+            "height": 721
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-2048.webp",
+            "width": 2048,
+            "height": 1367
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-768.avif",
+            "width": 768,
+            "height": 513
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1280.avif",
+            "width": 1280,
+            "height": 854
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1680.avif",
+            "width": 1680,
+            "height": 1121
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-2048.avif",
+            "width": 2048,
+            "height": 1367
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-768.webp",
+            "width": 768,
+            "height": 513
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1280.webp",
+            "width": 1280,
+            "height": 854
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1680.webp",
+            "width": 1680,
+            "height": 1121
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-2048.webp",
+            "width": 2048,
+            "height": 1367
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-1200.avif",
+            "width": 1200,
+            "height": 801
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-2048.avif",
+            "width": 2048,
+            "height": 1367
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-1200.webp",
+            "width": 1200,
+            "height": 801
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-2048.webp",
+            "width": 2048,
+            "height": 1367
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/dsc09578-1-6b32bee4d5": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/social-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/social-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/insta_dsc07643-4f2b6eea17": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-2048.avif",
+            "width": 2048,
+            "height": 2048
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-2048.webp",
+            "width": 2048,
+            "height": 2048
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-2048.avif",
+            "width": 2048,
+            "height": 2048
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-2048.webp",
+            "width": 2048,
+            "height": 2048
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1680.avif",
+            "width": 1680,
+            "height": 1680
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-2048.avif",
+            "width": 2048,
+            "height": 2048
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1680.webp",
+            "width": 1680,
+            "height": 1680
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-2048.webp",
+            "width": 2048,
+            "height": 2048
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-2048.avif",
+            "width": 2048,
+            "height": 2048
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-2048.webp",
+            "width": 2048,
+            "height": 2048
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/insta_dsc07681-2-e9702d72b0": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1280.avif",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1680.avif",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1280.webp",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1680.webp",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-1200.avif",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-1200.webp",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/insta_dsc07780-4732a5e6ac": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1280.avif",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1680.avif",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1280.webp",
+            "width": 1280,
+            "height": 1600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1680.webp",
+            "width": 1680,
+            "height": 2100
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-1200.avif",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-2048.avif",
+            "width": 2048,
+            "height": 2560
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-1200.webp",
+            "width": 1200,
+            "height": 1500
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-2048.webp",
+            "width": 2048,
+            "height": 2560
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/social-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/social-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/insta_dsc09845-2c628750c5": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/social-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/social-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/insta_dsc09863-2cd3a46e0e": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-320.avif",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-640.avif",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-320.webp",
+            "width": 320,
+            "height": 400
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-640.webp",
+            "width": 640,
+            "height": 800
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-480.avif",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-768.avif",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-768.webp",
+            "width": 768,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/social-1080.avif",
+            "width": 1080,
+            "height": 1350
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/social-1080.webp",
+            "width": 1080,
+            "height": 1350
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/joraniebeach1-1-790f7cb47a": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-320.avif",
+            "width": 320,
+            "height": 226
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-640.avif",
+            "width": 640,
+            "height": 451
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-2480.avif",
+            "width": 2480,
+            "height": 1748
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-320.webp",
+            "width": 320,
+            "height": 226
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-640.webp",
+            "width": 640,
+            "height": 451
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-2480.webp",
+            "width": 2480,
+            "height": 1748
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-480.avif",
+            "width": 480,
+            "height": 338
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-768.avif",
+            "width": 768,
+            "height": 541
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-1080.avif",
+            "width": 1080,
+            "height": 761
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-2480.avif",
+            "width": 2480,
+            "height": 1748
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-480.webp",
+            "width": 480,
+            "height": 338
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-768.webp",
+            "width": 768,
+            "height": 541
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-1080.webp",
+            "width": 1080,
+            "height": 761
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-2480.webp",
+            "width": 2480,
+            "height": 1748
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-768.avif",
+            "width": 768,
+            "height": 541
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1280.avif",
+            "width": 1280,
+            "height": 902
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1680.avif",
+            "width": 1680,
+            "height": 1184
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-2480.avif",
+            "width": 2480,
+            "height": 1748
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-768.webp",
+            "width": 768,
+            "height": 541
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1280.webp",
+            "width": 1280,
+            "height": 902
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1680.webp",
+            "width": 1680,
+            "height": 1184
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-2480.webp",
+            "width": 2480,
+            "height": 1748
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-1200.avif",
+            "width": 1200,
+            "height": 846
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-2480.avif",
+            "width": 2480,
+            "height": 1748
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-1200.webp",
+            "width": 1200,
+            "height": 846
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-2480.webp",
+            "width": 2480,
+            "height": 1748
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/mco09842-5d613f7186": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-320.avif",
+            "width": 320,
+            "height": 256
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-640.avif",
+            "width": 640,
+            "height": 512
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-320.webp",
+            "width": 320,
+            "height": 256
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-640.webp",
+            "width": 640,
+            "height": 512
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-480.avif",
+            "width": 480,
+            "height": 384
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-768.avif",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-1080.avif",
+            "width": 1080,
+            "height": 864
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-480.webp",
+            "width": 480,
+            "height": 384
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-768.webp",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-1080.webp",
+            "width": 1080,
+            "height": 864
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-768.avif",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1280.avif",
+            "width": 1280,
+            "height": 1024
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1680.avif",
+            "width": 1680,
+            "height": 1344
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-768.webp",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1280.webp",
+            "width": 1280,
+            "height": 1024
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1680.webp",
+            "width": 1680,
+            "height": 1344
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-1200.avif",
+            "width": 1200,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-1200.webp",
+            "width": 1200,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/mco09875-91a2397ff5": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-320.avif",
+            "width": 320,
+            "height": 256
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-640.avif",
+            "width": 640,
+            "height": 512
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-320.webp",
+            "width": 320,
+            "height": 256
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-640.webp",
+            "width": 640,
+            "height": 512
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-480.avif",
+            "width": 480,
+            "height": 384
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-768.avif",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-1080.avif",
+            "width": 1080,
+            "height": 864
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-480.webp",
+            "width": 480,
+            "height": 384
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-768.webp",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-1080.webp",
+            "width": 1080,
+            "height": 864
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-768.avif",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1280.avif",
+            "width": 1280,
+            "height": 1024
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1680.avif",
+            "width": 1680,
+            "height": 1344
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-768.webp",
+            "width": 768,
+            "height": 614
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1280.webp",
+            "width": 1280,
+            "height": 1024
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1680.webp",
+            "width": 1680,
+            "height": 1344
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-1200.avif",
+            "width": 1200,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-2048.avif",
+            "width": 2048,
+            "height": 1638
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-1200.webp",
+            "width": 1200,
+            "height": 960
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-2048.webp",
+            "width": 2048,
+            "height": 1638
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/nature-7daf2b2f91": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-800.avif",
+            "width": 800,
+            "height": 800
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-800.webp",
+            "width": 800,
+            "height": 800
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-800.avif",
+            "width": 800,
+            "height": 800
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-800.webp",
+            "width": 800,
+            "height": 800
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-800.avif",
+            "width": 800,
+            "height": 800
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-800.webp",
+            "width": 800,
+            "height": 800
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/social-800.avif",
+            "width": 800,
+            "height": 800
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/social-800.webp",
+            "width": 800,
+            "height": 800
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-dee-4f959f8f0a": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-dorure1-00bd75d356": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-fanmk-f087d508f5": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-lamp-9c9adfe7ad": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-2759.avif",
+            "width": 2759,
+            "height": 2758
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-2759.webp",
+            "width": 2759,
+            "height": 2758
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-2759.avif",
+            "width": 2759,
+            "height": 2758
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-2759.webp",
+            "width": 2759,
+            "height": 2758
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1680.avif",
+            "width": 1680,
+            "height": 1679
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-2759.avif",
+            "width": 2759,
+            "height": 2758
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1680.webp",
+            "width": 1680,
+            "height": 1679
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-2759.webp",
+            "width": 2759,
+            "height": 2758
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-2759.avif",
+            "width": 2759,
+            "height": 2758
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-2759.webp",
+            "width": 2759,
+            "height": 2758
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-mak-330c9ddb76": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-2766.avif",
+            "width": 2766,
+            "height": 2765
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-2766.webp",
+            "width": 2766,
+            "height": 2765
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-768.avif",
+            "width": 768,
+            "height": 767
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-2766.avif",
+            "width": 2766,
+            "height": 2765
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-768.webp",
+            "width": 768,
+            "height": 767
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-2766.webp",
+            "width": 2766,
+            "height": 2765
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-768.avif",
+            "width": 768,
+            "height": 767
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1680.avif",
+            "width": 1680,
+            "height": 1679
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-2766.avif",
+            "width": 2766,
+            "height": 2765
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-768.webp",
+            "width": 768,
+            "height": 767
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1680.webp",
+            "width": 1680,
+            "height": 1679
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-2766.webp",
+            "width": 2766,
+            "height": 2765
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-2766.avif",
+            "width": 2766,
+            "height": 2765
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-2766.webp",
+            "width": 2766,
+            "height": 2765
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-paint1-96d072bac5": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-paint2-53e55db11d": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pcs-smoke-ee86f2a31a": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    },
+    "/media/runs/runs-backfill/pticadresexy-2b2f1bf92a": {
+      "thumb": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-320.avif",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-640.avif",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-320.webp",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-640.webp",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "card": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-480.avif",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1080.avif",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1080.webp",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "detail": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-768.avif",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-768.webp",
+            "width": 768,
+            "height": 768
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      },
+      "social": {
+        "avif": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1200.avif",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1280.avif",
+            "width": 1280,
+            "height": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1200.webp",
+            "width": 1200,
+            "height": 1200
+          },
+          {
+            "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1280.webp",
+            "width": 1280,
+            "height": 1280
+          }
+        ]
+      }
+    }
+  }
+}

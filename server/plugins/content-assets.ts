@@ -1,4 +1,4 @@
-import { toAssetUrl } from '../../lib/asset-url'
+import { toAssetUrl } from "../../lib/asset-url"
 
 type ContentNode = {
   children?: ContentNode[]
@@ -18,8 +18,8 @@ type ContentFile = Record<string, unknown> & {
   products?: ContentProduct[]
 }
 
-const defaultSiteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://macojaune.com'
-const defaultAssetBaseUrl = process.env.NUXT_PUBLIC_ASSET_BASE_URL || 'https://cdn.macojaune.com'
+const defaultSiteUrl = process.env.NUXT_PUBLIC_SITE_URL || "https://macojaune.com"
+const defaultAssetBaseUrl = process.env.NUXT_PUBLIC_ASSET_BASE_URL || "https://cdn.macojaune.com"
 
 const visit = (node: ContentNode | undefined, callback: (currentNode: ContentNode) => void) => {
   if (!node) {
@@ -38,7 +38,7 @@ const visit = (node: ContentNode | undefined, callback: (currentNode: ContentNod
 }
 
 const rewriteMaybeAsset = (value: unknown) => {
-  return typeof value === 'string'
+  return typeof value === "string"
     ? toAssetUrl(value, defaultAssetBaseUrl, defaultSiteUrl)
     : value
 }
@@ -53,22 +53,22 @@ const rewriteMaybeAssetList = (value: unknown) => {
 
 const rewriteSrcset = (value: string) => {
   return value
-    .split(',')
+    .split(",")
     .map((entry) => entry.trim())
     .filter(Boolean)
     .map((entry) => {
       const [url, descriptor] = entry.split(/\s+/, 2)
-      const rewrittenUrl = typeof url === 'string' && url.startsWith('/pictures/')
+      const rewrittenUrl = typeof url === "string" && url.startsWith("/pictures/")
         ? toAssetUrl(url, defaultAssetBaseUrl, defaultSiteUrl)
         : url
 
       return descriptor ? `${rewrittenUrl} ${descriptor}` : rewrittenUrl
     })
-    .join(', ')
+    .join(", ")
 }
 
 export default defineNitroPlugin((nitroApp) => {
-  nitroApp.hooks.hook('content:file:afterParse', (file: ContentFile) => {
+  nitroApp.hooks.hook("content:file:afterParse", (file: ContentFile) => {
     file.image = rewriteMaybeAsset(file.image) as string | undefined
     file.cover = rewriteMaybeAsset(file.cover) as string | undefined
     file.images = rewriteMaybeAssetList(file.images) as string[] | undefined
@@ -86,12 +86,12 @@ export default defineNitroPlugin((nitroApp) => {
       }
 
       const src = node.props.src
-      if (typeof src === 'string' && src.startsWith('/pictures/')) {
+      if (typeof src === "string" && src.startsWith("/pictures/")) {
         node.props.src = toAssetUrl(src, defaultAssetBaseUrl, defaultSiteUrl)
       }
 
       const srcset = node.props.srcset
-      if (typeof srcset === 'string' && srcset.includes('/pictures/')) {
+      if (typeof srcset === "string" && srcset.includes("/pictures/")) {
         node.props.srcset = rewriteSrcset(srcset)
       }
     })
