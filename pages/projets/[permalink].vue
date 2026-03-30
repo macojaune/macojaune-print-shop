@@ -1,7 +1,7 @@
 <template>
   <div class="w-full px-4">
     <div>
-      <NuxtLink to="/projets" class="text-amber-400 hover:text-amber-600 text-sm">< Retour aux projets</NuxtLink>
+      <NuxtLink to="/projets" class="text-amber-400 hover:text-amber-600 text-sm">&lt; Retour aux projets</NuxtLink>
       <h1 class="mb-4 font-display text-5xl uppercase text-amber-600 lg:mb-3 lg:text-7xl">
         <!--        <small class="text-white text-xs font-sans normal-case">Nom de code :</small>-->
         {{ data?.title ?? "" }}
@@ -13,9 +13,12 @@
           Moodboard   <small class="font-sans text-base font-normal italic text-red-500">pour la 
               route</small></h3>
           <a
-data-pin-do="embedBoard" 
-                                                                       data-pin-scale-height="240"
-                data-pin-scale-width="220" :href="data?.pinterestUrl"/></div>
+            data-pin-do="embedBoard"
+            data-pin-scale-height="240"
+            data-pin-scale-width="220"
+            :href="data?.pinterestUrl"
+          ></a>
+        </div>
       </div>
     </div>
     <div class="mt-8 bg-stone-900/50 p-5">
@@ -41,13 +44,21 @@ data-pin-do="embedBoard"
 </template>
 
 <script setup lang="ts">
-const { toAssetUrl, toSiteUrl } = useAssetUrls()
+import { findProjectEntryByPermalink } from '~/composables/useContentCollections'
 
-const {path, params} = useRoute()
-const {data} = await useAsyncData('get-document', () =>
-  queryContent('/projects').where({permalink: `${params?.permalink}`}).findOne())
+const { path, params } = useRoute()
+const permalink = computed(() => String(params?.permalink || ''))
 
-const title = data.value?.title ? `${data.value?.title} | Projets photo du Macojaune` : 'Le site du Macojaune'
+const data = await findProjectEntryByPermalink(permalink.value)
+
+if (!data) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Projet introuvable',
+  })
+}
+
+const title = data.title ? `${data.title} | Projets photo du Macojaune` : 'Le site du Macojaune'
 useHead({
   title,
   meta: [
@@ -57,27 +68,27 @@ useHead({
     },
     {
       name: 'description',
-      content: data.value?.description
+      content: data.description
 
     },
     {property: 'og:type', content: 'website'},
-    {property: 'og:url', content: toSiteUrl(path)},
+    {property: 'og:url', content: `https://macojaune.com${path}`},
     {property: 'og:title', content: title},
     {
       property: 'og:description',
-      content: data.value?.description
+      content: data.description
     },
-    {property: 'og:image', content: toAssetUrl(data.value?.image)},
+    {property: 'og:image', content: String(data.image || '')},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
-    {property: 'twitter:url', content: toSiteUrl(path)},
+    {property: 'twitter:url', content: `https://macojaune.com${path}`},
     {property: 'twitter:title', content: title + ' | Le blog du Macojaune'},
     {
       property: 'twitter:description',
-      content: data.value?.description
+      content: data.description
     },
-    {property: 'twitter:image', content: toAssetUrl(data.value?.image)}
+    {property: 'twitter:image', content: String(data.image || '')}
   ],
   script: [
     {

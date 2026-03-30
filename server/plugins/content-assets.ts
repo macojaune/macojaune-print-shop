@@ -7,15 +7,25 @@ type ContentNode = {
 }
 
 type ContentProduct = Record<string, unknown> & {
+  gallery?: ContentGalleryImage[]
+  heroImage?: string
   images?: string[]
+}
+
+type ContentGalleryImage = Record<string, unknown> & {
+  src?: string
 }
 
 type ContentFile = Record<string, unknown> & {
   body?: ContentNode
   cover?: string
+  coverImage?: string
+  gallery?: ContentGalleryImage[]
+  heroImage?: string
   image?: string
   images?: string[]
   products?: ContentProduct[]
+  storyBlocks?: Array<Record<string, unknown> & { image?: string }>
 }
 
 const defaultSiteUrl = process.env.NUXT_PUBLIC_SITE_URL || "https://macojaune.com"
@@ -51,6 +61,23 @@ const rewriteMaybeAssetList = (value: unknown) => {
   return value.map((entry) => rewriteMaybeAsset(entry))
 }
 
+const rewriteMaybeGallery = (value: unknown) => {
+  if (!Array.isArray(value)) {
+    return value
+  }
+
+  return value.map((entry) => {
+    if (!entry || typeof entry !== "object") {
+      return entry
+    }
+
+    return {
+      ...entry,
+      src: rewriteMaybeAsset((entry as ContentGalleryImage).src),
+    }
+  })
+}
+
 const rewriteSrcset = (value: string) => {
   return value
     .split(",")
@@ -71,11 +98,23 @@ export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook("content:file:afterParse", (file: ContentFile) => {
     file.image = rewriteMaybeAsset(file.image) as string | undefined
     file.cover = rewriteMaybeAsset(file.cover) as string | undefined
+    file.coverImage = rewriteMaybeAsset(file.coverImage) as string | undefined
+    file.heroImage = rewriteMaybeAsset(file.heroImage) as string | undefined
     file.images = rewriteMaybeAssetList(file.images) as string[] | undefined
+    file.gallery = rewriteMaybeGallery(file.gallery) as ContentGalleryImage[] | undefined
+
+    if (Array.isArray(file.storyBlocks)) {
+      file.storyBlocks = file.storyBlocks.map((block) => ({
+        ...block,
+        image: rewriteMaybeAsset(block.image) as string | undefined,
+      }))
+    }
 
     if (Array.isArray(file.products)) {
       file.products = file.products.map((product) => ({
         ...product,
+        heroImage: rewriteMaybeAsset(product.heroImage) as string | undefined,
+        gallery: rewriteMaybeGallery(product.gallery) as ContentGalleryImage[] | undefined,
         images: rewriteMaybeAssetList(product.images) as string[] | undefined,
       }))
     }

@@ -69,6 +69,10 @@ export const toAssetUrl = (
       : `pictures/${trimmedValue}`,
   )
 
+  if (normalizedPath.startsWith("/media/")) {
+    return normalizedPath
+  }
+
   if (normalizedPath.startsWith("/pictures/")) {
     return `${stripTrailingSlash(assetBaseUrl || DEFAULT_ASSET_BASE_URL)}${normalizedPath}`
   }

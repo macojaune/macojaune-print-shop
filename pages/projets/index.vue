@@ -1,16 +1,16 @@
 <template>
-  <div class="my-6 lg:my-10">
-    <h1 class="text-4xl lg:text-5xl text-amber-600 font-display mb-4">Projets photographiques</h1>
-    <p class="text-white text-base">Je me suis enfin décidé à publier mes idées de projets photo sur ce site. Le but est
-      bien entendu d'arriver à les mener à bien.
-      <br>
-      Tu retrouveras le brief, les moodboards, inspirations et un formulaire pour y participer si ça te chante !
-    </p>
-  </div>
-  <ContentList v-slot="{list}" :query="query">
+  <div>
+    <div class="my-6 lg:my-10">
+      <h1 class="text-4xl lg:text-5xl text-amber-600 font-display mb-4">Projets photographiques</h1>
+      <p class="text-white text-base">Je me suis enfin décidé à publier mes idées de projets photo sur ce site. Le but est
+        bien entendu d'arriver à les mener à bien.
+        <br>
+        Tu retrouveras le brief, les moodboards, inspirations et un formulaire pour y participer si ça te chante !
+      </p>
+    </div>
     <div class="mb-2 flex flex-col gap-5">
       <nuxt-link
-        v-for="project in list"
+        v-for="project in projects"
         :key="project.permalink"
         :to="`/projets/${project.permalink}?project=${project.permalink}`"
         class="group flex flex-row justify-between"
@@ -31,16 +31,15 @@
         <!--        </div>-->
       </nuxt-link>
     </div>
-  </ContentList>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import moment from "moment/moment";
-import type {QueryBuilderParams} from "@nuxt/content/types";
+import { getProjectEntries } from '~/composables/useContentCollections'
 
-const { toAssetUrl } = useAssetUrls()
-
-const query: QueryBuilderParams = {path: "/projects", where: [{draft: false}], sort: [{date: -1}]}
+const projects = await getProjectEntries()
+const heroImage = String(projects[0]?.image || '')
 
 const title = 'Les Projets photo du Macojaune'
 const description =
@@ -63,7 +62,7 @@ useHead({
       property: 'og:description',
       content: description
     },
-    {property: 'og:image', content: toAssetUrl('/pictures/MCO09198 (Large).jpg')},
+    {property: 'og:image', content: heroImage},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
@@ -73,7 +72,7 @@ useHead({
       property: 'twitter:description',
       content: description
     },
-    {property: 'twitter:image', content: toAssetUrl('/pictures/MCO09198 (Large).jpg')}
+    {property: 'twitter:image', content: heroImage}
   ],
   script: [
     {

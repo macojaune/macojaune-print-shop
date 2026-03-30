@@ -1,13 +1,20 @@
 import { createClient } from '@libsql/client';
+import type { InArgs } from '@libsql/core/api';
+import type { H3Event } from 'h3';
+import { useRuntimeConfig } from '#imports';
 
 export async function fetchDataFromTurso<T>(
+  event: H3Event,
   query: string,
-  params?: any[] = []
+  params: InArgs = []
 ): Promise<T[]> {
   try {
+    const {
+      turso: { url, authToken },
+    } = useRuntimeConfig(event);
     const client = createClient({
-      url: process.env.NUXT_TURSO_DB,
-      authToken: process.env.NUXT_TURSO_TOKEN,
+      url,
+      authToken,
     });
 
     const result = await client.execute({ sql: query, args: params });

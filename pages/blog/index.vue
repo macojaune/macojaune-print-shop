@@ -1,42 +1,36 @@
 <template>
-  <div v-if="list" class="mb-2 flex flex-col gap-5">
-    <NuxtLink
-      v-for="blog in list"
+  <div class="mb-2 flex flex-col gap-5">
+    <nuxt-link
+      v-for="blog in articles"
       :key="blog.permalink"
       :to="`/blog/${blog.permalink}`"
-      :style="{ viewTransitionName: `blog-${blog.permalink}` }"
       class="group flex flex-row justify-between"
     >
       <div>
         <h4 class="font-display text-4xl text-amber-300 group-hover:text-amber-600">
-          {{ blog.title }}
+          {{
+            blog.title
+          }}
           <span class="font-sans text-sm">{{ moment(blog.date).format('ll') }}</span>
         </h4>
         <prose-p class="text-white text-base ml-6 w-8/12 line-clamp-2">{{ blog?.description }}</prose-p>
       </div>
       <div>
-        <NuxtImg
-          :src="toAssetUrl(blog.image)"
-          sizes="xs:25vw lg:360px"
-          format="webp"
-          placeholder
-          :style="{ viewTransitionName: `img-${blog.permalink}` }"
+        <nuxt-img
+          :src="blog.image" sizes="xs:25vw lg:360px" format="webp" placeholder
           class=""
         />
       </div>
-    </NuxtLink>
+    </nuxt-link>
   </div>
 </template>
 
 <script lang="ts" setup>
 import moment from "moment/moment";
-import type {QueryBuilderParams} from "@nuxt/content/types";
+import { getBlogEntries } from '~/composables/useContentCollections'
 
-const { toAssetUrl } = useAssetUrls()
-
-const { data: list } = await useAsyncData('blog-list', () =>
-  queryContent('/blog').where({draft: false}).sort({date: -1}).find()
-)
+const articles = await getBlogEntries()
+const heroImage = String(articles[0]?.image || '')
 
 const description =
   "Pensées et tribulations d'un grand curieux guadeloupéen, artiste photographe, geek, développeur et entrepreneur."
@@ -58,7 +52,7 @@ useHead({
       property: 'og:description',
       content: description
     },
-    {property: 'og:image', content: toAssetUrl('/pictures/dsc06261.jpg')},
+    {property: 'og:image', content: heroImage},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
@@ -68,7 +62,7 @@ useHead({
       property: 'twitter:description',
       content: description
     },
-    {property: 'twitter:image', content: toAssetUrl('/pictures/dsc06261.jpg')}
+    {property: 'twitter:image', content: heroImage}
   ],
   script: [
     {

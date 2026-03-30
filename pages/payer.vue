@@ -53,6 +53,8 @@ const state = reactive({
   card: null
 })
 
+// Used by the Pug template handlers.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const initPayment = async () => {
   try {
     state.loading = true
@@ -96,9 +98,19 @@ const initPayment = async () => {
   }
 }
 
+// Used by the Pug template handlers.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const doPay = async () => {
   state.loading = true
-  const {paymentIntent, error} = await stripe.value?.confirmPayment({
+  const stripeClient = stripe.value
+
+  if (!stripeClient) {
+    state.loading = false
+    state.error = "Le module de paiement n'est pas disponible pour le moment."
+    return
+  }
+
+  const {paymentIntent, error} = await stripeClient.confirmPayment({
     elements: state.elements,
     confirmParams: {
       return_url: 'https://macojaune.com/merci/' + state.amount

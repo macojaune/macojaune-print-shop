@@ -250,6 +250,14 @@ function getDirectoryPrefix(directory: string | undefined) {
   return normalized
 }
 
+function normalizeAssetId(assetId: string) {
+  return assetId
+    .split("/")
+    .map((segment) => sanitizeSegment(segment))
+    .filter(Boolean)
+    .join("/")
+}
+
 function makeAssetId(filename: string, directory: string | undefined, data: Buffer) {
   const basename = sanitizeSegment(path.parse(filename).name) || "image"
   const directoryPrefix = getDirectoryPrefix(directory)
@@ -269,10 +277,10 @@ function pickPreviewSrc(manifest: AssetManifest) {
   )
 }
 
-export async function createR2ImageAsset(file: UploadedFile, directory?: string) {
+export async function createR2ImageAsset(file: UploadedFile, directory?: string, explicitAssetId?: string) {
   const config = getR2Config()
   const client = getS3Client(config)
-  const assetId = makeAssetId(file.filename, directory, file.data)
+  const assetId = explicitAssetId ? normalizeAssetId(explicitAssetId) : makeAssetId(file.filename, directory, file.data)
   const extension = (path.extname(file.filename) || ".jpg").toLowerCase()
   const masterKey = `${config.mastersPrefix}/${assetId}/master${extension}`
 

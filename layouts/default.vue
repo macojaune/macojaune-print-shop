@@ -1,14 +1,17 @@
 <template lang="pug">
-.main.flex.flex-col.justify-between.h-full.w-full.overflow-auto
+.main.flex.flex-col.justify-between.min-h-screen.w-full.overflow-x-hidden
   Header
-  .container.mx-auto.px-4.w-full
+  template(v-if="_route.path === '/'")
+    slot
+  .container.mx-auto.w-full.px-4(v-else)
     slot
   Footer
 </template>
 
 <script setup>
 import { onMounted } from "vue";
-const { public: cPublic } = useRuntimeConfig();
+
+const _route = useRoute();
 useHead({
     script: [
         {

@@ -14,6 +14,7 @@ export default defineEventHandler(async (event) => {
 
   const filePart = parts.find((part) => part.name === "file" && part.data)
   const directoryPart = parts.find((part) => part.name === "directory")
+  const assetIdPart = parts.find((part) => part.name === "assetId")
 
   if (!filePart?.filename || !filePart.data) {
     throw createError({
@@ -29,6 +30,7 @@ export default defineEventHandler(async (event) => {
       data: filePart.data,
     },
     directoryPart?.data?.toString("utf8"),
+    assetIdPart?.data?.toString("utf8"),
   )
 
   return {

@@ -7,7 +7,9 @@ import YAML from "yaml"
 const repoRoot = process.cwd()
 const runsDir = path.join(repoRoot, "content", "runs")
 const publicDir = path.join(repoRoot, "public")
+const originalsDir = path.join(repoRoot, "assets", "photo-originals")
 const write = process.argv.includes("--write")
+const allowLegacyPictures = process.argv.includes("--allow-legacy-pictures")
 
 const validStatuses = new Set(["draft", "scheduled", "published", "archived"])
 
@@ -159,8 +161,33 @@ function normalizeRun(data) {
   }
 }
 
+function isLegacyPicturesRef(src = "") {
+  return src.startsWith("/pictures/")
+}
+
+function isR2RunMediaRef(src = "") {
+  return src.startsWith("/media/runs/")
+}
+
+async function resolveLegacySourcePath(src) {
+  const relativePath = src.replace(/^\//, "")
+  const candidates = [
+    path.join(originalsDir, relativePath),
+    path.join(publicDir, relativePath),
+  ]
+
+  for (const candidate of candidates) {
+    if (await awaitExists(candidate)) {
+      return candidate
+    }
+  }
+
+  return null
+}
+
 async function validateRun(file, run) {
   const problems = []
+  const seenImageSources = new Set()
 
   if (!run.title) problems.push("missing title")
   if (!run.slug) problems.push("missing slug")
@@ -169,15 +196,35 @@ async function validateRun(file, run) {
   if (!run.products.length) problems.push("must contain at least one product")
 
   for (const image of [...run.gallery, ...run.products.flatMap((product) => product.gallery)]) {
-    if (!image?.src?.startsWith("/pictures/")) {
-      problems.push(`image path must start with /pictures/: ${image?.src || "<empty>"}`)
+    const src = image?.src || ""
+
+    if (!src) {
+      problems.push("image src is empty")
       continue
     }
 
-    const publicPath = path.join(publicDir, image.src.replace(/^\//, ""))
-    if (!(await awaitExists(publicPath))) {
-      problems.push(`missing image file: ${image.src}`)
+    if (seenImageSources.has(src)) {
+      continue
     }
+    seenImageSources.add(src)
+
+    if (isLegacyPicturesRef(src)) {
+      if (!allowLegacyPictures) {
+        problems.push(`legacy /pictures/ run image ref is no longer allowed after R2 cutover: ${src}`)
+        continue
+      }
+
+      const sourcePath = await resolveLegacySourcePath(src)
+      if (!sourcePath) {
+        problems.push(`missing legacy source image: ${src}`)
+      }
+      continue
+    }
+
+    if (isR2RunMediaRef(src)) {
+      continue
+    }
+    problems.push(`image path must start with /media/runs/${allowLegacyPictures ? " or /pictures/" : ""}: ${src}`)
   }
 
   for (const product of run.products) {

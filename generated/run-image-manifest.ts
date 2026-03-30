@@ -1,348 +1,36 @@
 export const runImageManifest = {
-  "/pictures/MCO09842.jpg": {
+  "/media/runs/runs-backfill/dsc01771-a92c6e219f": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/MCO09842/thumb-320.avif",
-          "width": 320,
-          "height": 256
-        },
-        {
-          "src": "/derived/runs/MCO09842/thumb-640.avif",
-          "width": 640,
-          "height": 512
-        },
-        {
-          "src": "/derived/runs/MCO09842/thumb-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09842/thumb-320.webp",
-          "width": 320,
-          "height": 256
-        },
-        {
-          "src": "/derived/runs/MCO09842/thumb-640.webp",
-          "width": 640,
-          "height": 512
-        },
-        {
-          "src": "/derived/runs/MCO09842/thumb-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    },
-    "card": {
-      "avif": [
-        {
-          "src": "/derived/runs/MCO09842/card-480.avif",
-          "width": 480,
-          "height": 384
-        },
-        {
-          "src": "/derived/runs/MCO09842/card-768.avif",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09842/card-1080.avif",
-          "width": 1080,
-          "height": 864
-        },
-        {
-          "src": "/derived/runs/MCO09842/card-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09842/card-480.webp",
-          "width": 480,
-          "height": 384
-        },
-        {
-          "src": "/derived/runs/MCO09842/card-768.webp",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09842/card-1080.webp",
-          "width": 1080,
-          "height": 864
-        },
-        {
-          "src": "/derived/runs/MCO09842/card-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    },
-    "detail": {
-      "avif": [
-        {
-          "src": "/derived/runs/MCO09842/detail-768.avif",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09842/detail-1280.avif",
-          "width": 1280,
-          "height": 1024
-        },
-        {
-          "src": "/derived/runs/MCO09842/detail-1680.avif",
-          "width": 1680,
-          "height": 1344
-        },
-        {
-          "src": "/derived/runs/MCO09842/detail-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09842/detail-768.webp",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09842/detail-1280.webp",
-          "width": 1280,
-          "height": 1024
-        },
-        {
-          "src": "/derived/runs/MCO09842/detail-1680.webp",
-          "width": 1680,
-          "height": 1344
-        },
-        {
-          "src": "/derived/runs/MCO09842/detail-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    },
-    "social": {
-      "avif": [
-        {
-          "src": "/derived/runs/MCO09842/social-1200.avif",
-          "width": 1200,
-          "height": 960
-        },
-        {
-          "src": "/derived/runs/MCO09842/social-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09842/social-1200.webp",
-          "width": 1200,
-          "height": 960
-        },
-        {
-          "src": "/derived/runs/MCO09842/social-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    }
-  },
-  "/pictures/MCO09875.jpg": {
-    "thumb": {
-      "avif": [
-        {
-          "src": "/derived/runs/MCO09875/thumb-320.avif",
-          "width": 320,
-          "height": 256
-        },
-        {
-          "src": "/derived/runs/MCO09875/thumb-640.avif",
-          "width": 640,
-          "height": 512
-        },
-        {
-          "src": "/derived/runs/MCO09875/thumb-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09875/thumb-320.webp",
-          "width": 320,
-          "height": 256
-        },
-        {
-          "src": "/derived/runs/MCO09875/thumb-640.webp",
-          "width": 640,
-          "height": 512
-        },
-        {
-          "src": "/derived/runs/MCO09875/thumb-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    },
-    "card": {
-      "avif": [
-        {
-          "src": "/derived/runs/MCO09875/card-480.avif",
-          "width": 480,
-          "height": 384
-        },
-        {
-          "src": "/derived/runs/MCO09875/card-768.avif",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09875/card-1080.avif",
-          "width": 1080,
-          "height": 864
-        },
-        {
-          "src": "/derived/runs/MCO09875/card-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09875/card-480.webp",
-          "width": 480,
-          "height": 384
-        },
-        {
-          "src": "/derived/runs/MCO09875/card-768.webp",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09875/card-1080.webp",
-          "width": 1080,
-          "height": 864
-        },
-        {
-          "src": "/derived/runs/MCO09875/card-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    },
-    "detail": {
-      "avif": [
-        {
-          "src": "/derived/runs/MCO09875/detail-768.avif",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09875/detail-1280.avif",
-          "width": 1280,
-          "height": 1024
-        },
-        {
-          "src": "/derived/runs/MCO09875/detail-1680.avif",
-          "width": 1680,
-          "height": 1344
-        },
-        {
-          "src": "/derived/runs/MCO09875/detail-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09875/detail-768.webp",
-          "width": 768,
-          "height": 614
-        },
-        {
-          "src": "/derived/runs/MCO09875/detail-1280.webp",
-          "width": 1280,
-          "height": 1024
-        },
-        {
-          "src": "/derived/runs/MCO09875/detail-1680.webp",
-          "width": 1680,
-          "height": 1344
-        },
-        {
-          "src": "/derived/runs/MCO09875/detail-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    },
-    "social": {
-      "avif": [
-        {
-          "src": "/derived/runs/MCO09875/social-1200.avif",
-          "width": 1200,
-          "height": 960
-        },
-        {
-          "src": "/derived/runs/MCO09875/social-2048.avif",
-          "width": 2048,
-          "height": 1638
-        }
-      ],
-      "webp": [
-        {
-          "src": "/derived/runs/MCO09875/social-1200.webp",
-          "width": 1200,
-          "height": 960
-        },
-        {
-          "src": "/derived/runs/MCO09875/social-2048.webp",
-          "width": 2048,
-          "height": 1638
-        }
-      ]
-    }
-  },
-  "/pictures/dsc01771.jpg": {
-    "thumb": {
-      "avif": [
-        {
-          "src": "/derived/runs/dsc01771/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01771/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01771/thumb-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01771/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01771/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01771/thumb-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/thumb-2771.webp",
           "width": 2771,
           "height": 3463
         }
@@ -351,44 +39,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01771/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01771/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01771/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-1080.avif",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01771/card-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01771/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01771/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01771/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-1080.webp",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01771/card-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/card-2771.webp",
           "width": 2771,
           "height": 3463
         }
@@ -397,44 +85,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01771/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01771/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1280.avif",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01771/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1680.avif",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01771/detail-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01771/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01771/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1280.webp",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01771/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-1680.webp",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01771/detail-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/detail-2771.webp",
           "width": 2771,
           "height": 3463
         }
@@ -443,62 +131,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01771/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-1200.avif",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01771/social-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01771/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-1200.webp",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01771/social-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01771-a92c6e219f/social-2771.webp",
           "width": 2771,
           "height": 3463
         }
       ]
     }
   },
-  "/pictures/dsc01781.jpg": {
+  "/media/runs/runs-backfill/dsc01781-6b782e0378": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01781/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01781/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01781/thumb-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01781/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01781/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01781/thumb-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/thumb-2771.webp",
           "width": 2771,
           "height": 3463
         }
@@ -507,44 +195,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01781/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01781/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01781/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-1080.avif",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01781/card-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01781/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01781/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01781/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-1080.webp",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01781/card-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/card-2771.webp",
           "width": 2771,
           "height": 3463
         }
@@ -553,44 +241,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01781/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01781/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1280.avif",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01781/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1680.avif",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01781/detail-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01781/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01781/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1280.webp",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01781/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-1680.webp",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01781/detail-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/detail-2771.webp",
           "width": 2771,
           "height": 3463
         }
@@ -599,62 +287,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01781/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-1200.avif",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01781/social-2771.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-2771.avif",
           "width": 2771,
           "height": 3463
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01781/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-1200.webp",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01781/social-2771.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01781-6b782e0378/social-2771.webp",
           "width": 2771,
           "height": 3463
         }
       ]
     }
   },
-  "/pictures/dsc01798.jpg": {
+  "/media/runs/runs-backfill/dsc01798-30d63e9eec": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01798/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01798/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01798/thumb-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01798/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01798/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01798/thumb-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/thumb-2850.webp",
           "width": 2850,
           "height": 3563
         }
@@ -663,44 +351,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01798/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01798/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01798/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-1080.avif",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01798/card-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01798/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01798/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01798/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-1080.webp",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01798/card-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/card-2850.webp",
           "width": 2850,
           "height": 3563
         }
@@ -709,44 +397,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01798/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01798/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1280.avif",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01798/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1680.avif",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01798/detail-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01798/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01798/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1280.webp",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01798/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-1680.webp",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01798/detail-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/detail-2850.webp",
           "width": 2850,
           "height": 3563
         }
@@ -755,62 +443,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01798/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-1200.avif",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01798/social-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01798/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-1200.webp",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01798/social-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01798-30d63e9eec/social-2850.webp",
           "width": 2850,
           "height": 3563
         }
       ]
     }
   },
-  "/pictures/dsc01800.jpg": {
+  "/media/runs/runs-backfill/dsc01800-1faa8e6b07": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01800/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01800/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01800/thumb-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01800/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01800/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01800/thumb-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/thumb-2850.webp",
           "width": 2850,
           "height": 3563
         }
@@ -819,44 +507,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01800/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01800/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01800/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-1080.avif",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01800/card-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01800/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01800/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01800/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-1080.webp",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01800/card-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/card-2850.webp",
           "width": 2850,
           "height": 3563
         }
@@ -865,44 +553,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01800/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01800/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1280.avif",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01800/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1680.avif",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01800/detail-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01800/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01800/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1280.webp",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01800/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-1680.webp",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01800/detail-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/detail-2850.webp",
           "width": 2850,
           "height": 3563
         }
@@ -911,62 +599,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01800/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-1200.avif",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01800/social-2850.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-2850.avif",
           "width": 2850,
           "height": 3563
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01800/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-1200.webp",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01800/social-2850.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01800-1faa8e6b07/social-2850.webp",
           "width": 2850,
           "height": 3563
         }
       ]
     }
   },
-  "/pictures/dsc01807.jpg": {
+  "/media/runs/runs-backfill/dsc01807-1e43b18dbd": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01807/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01807/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01807/thumb-2800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-2800.avif",
           "width": 2800,
           "height": 3500
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01807/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc01807/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc01807/thumb-2800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/thumb-2800.webp",
           "width": 2800,
           "height": 3500
         }
@@ -975,44 +663,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01807/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01807/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01807/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-1080.avif",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01807/card-2800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-2800.avif",
           "width": 2800,
           "height": 3500
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01807/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc01807/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01807/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-1080.webp",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/dsc01807/card-2800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/card-2800.webp",
           "width": 2800,
           "height": 3500
         }
@@ -1021,44 +709,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01807/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01807/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1280.avif",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01807/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1680.avif",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01807/detail-2800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-2800.avif",
           "width": 2800,
           "height": 3500
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01807/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc01807/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1280.webp",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/dsc01807/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-1680.webp",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/dsc01807/detail-2800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/detail-2800.webp",
           "width": 2800,
           "height": 3500
         }
@@ -1067,62 +755,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc01807/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-1200.avif",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01807/social-2800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-2800.avif",
           "width": 2800,
           "height": 3500
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc01807/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-1200.webp",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/dsc01807/social-2800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc01807-1e43b18dbd/social-2800.webp",
           "width": 2800,
           "height": 3500
         }
       ]
     }
   },
-  "/pictures/dsc06252-1.jpg": {
+  "/media/runs/runs-backfill/dsc06252-1-9c22a98c69": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06252-1/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/dsc06252-1/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/dsc06252-1/thumb-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-1080.avif",
           "width": 1080,
           "height": 1080
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06252-1/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/dsc06252-1/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/dsc06252-1/thumb-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/thumb-1080.webp",
           "width": 1080,
           "height": 1080
         }
@@ -1131,34 +819,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06252-1/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/dsc06252-1/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/dsc06252-1/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-1080.avif",
           "width": 1080,
           "height": 1080
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06252-1/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/dsc06252-1/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/dsc06252-1/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/card-1080.webp",
           "width": 1080,
           "height": 1080
         }
@@ -1167,24 +855,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06252-1/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/dsc06252-1/detail-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-1080.avif",
           "width": 1080,
           "height": 1080
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06252-1/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/dsc06252-1/detail-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/detail-1080.webp",
           "width": 1080,
           "height": 1080
         }
@@ -1193,52 +881,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06252-1/social-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/social-1080.avif",
           "width": 1080,
           "height": 1080
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06252-1/social-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06252-1-9c22a98c69/social-1080.webp",
           "width": 1080,
           "height": 1080
         }
       ]
     }
   },
-  "/pictures/dsc06261.jpg": {
+  "/media/runs/runs-backfill/dsc06261-8f3e3c6e21": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06261/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc06261/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc06261/thumb-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06261/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc06261/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc06261/thumb-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/thumb-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -1247,34 +935,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06261/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc06261/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc06261/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06261/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc06261/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc06261/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/card-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -1283,24 +971,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06261/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc06261/detail-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06261/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc06261/detail-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/detail-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -1309,52 +997,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06261/social-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/social-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06261/social-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06261-8f3e3c6e21/social-1080.webp",
           "width": 1080,
           "height": 1350
         }
       ]
     }
   },
-  "/pictures/dsc06270.jpg": {
+  "/media/runs/runs-backfill/dsc06270-0a9806a7ef": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06270/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-320.avif",
           "width": 320,
           "height": 256
         },
         {
-          "src": "/derived/runs/dsc06270/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-640.avif",
           "width": 640,
           "height": 512
         },
         {
-          "src": "/derived/runs/dsc06270/thumb-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-1080.avif",
           "width": 1080,
           "height": 864
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06270/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-320.webp",
           "width": 320,
           "height": 256
         },
         {
-          "src": "/derived/runs/dsc06270/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-640.webp",
           "width": 640,
           "height": 512
         },
         {
-          "src": "/derived/runs/dsc06270/thumb-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/thumb-1080.webp",
           "width": 1080,
           "height": 864
         }
@@ -1363,34 +1051,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06270/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-480.avif",
           "width": 480,
           "height": 384
         },
         {
-          "src": "/derived/runs/dsc06270/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-768.avif",
           "width": 768,
           "height": 614
         },
         {
-          "src": "/derived/runs/dsc06270/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-1080.avif",
           "width": 1080,
           "height": 864
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06270/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-480.webp",
           "width": 480,
           "height": 384
         },
         {
-          "src": "/derived/runs/dsc06270/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-768.webp",
           "width": 768,
           "height": 614
         },
         {
-          "src": "/derived/runs/dsc06270/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/card-1080.webp",
           "width": 1080,
           "height": 864
         }
@@ -1399,24 +1087,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06270/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-768.avif",
           "width": 768,
           "height": 614
         },
         {
-          "src": "/derived/runs/dsc06270/detail-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-1080.avif",
           "width": 1080,
           "height": 864
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06270/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-768.webp",
           "width": 768,
           "height": 614
         },
         {
-          "src": "/derived/runs/dsc06270/detail-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/detail-1080.webp",
           "width": 1080,
           "height": 864
         }
@@ -1425,52 +1113,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc06270/social-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/social-1080.avif",
           "width": 1080,
           "height": 864
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc06270/social-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc06270-0a9806a7ef/social-1080.webp",
           "width": 1080,
           "height": 864
         }
       ]
     }
   },
-  "/pictures/dsc08950.jpg": {
+  "/media/runs/runs-backfill/dsc08950-3e6d9ad29f": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc08950/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-320.avif",
           "width": 320,
           "height": 213
         },
         {
-          "src": "/derived/runs/dsc08950/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-640.avif",
           "width": 640,
           "height": 427
         },
         {
-          "src": "/derived/runs/dsc08950/thumb-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-2048.avif",
           "width": 2048,
           "height": 1367
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc08950/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-320.webp",
           "width": 320,
           "height": 213
         },
         {
-          "src": "/derived/runs/dsc08950/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-640.webp",
           "width": 640,
           "height": 427
         },
         {
-          "src": "/derived/runs/dsc08950/thumb-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/thumb-2048.webp",
           "width": 2048,
           "height": 1367
         }
@@ -1479,44 +1167,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc08950/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-480.avif",
           "width": 480,
           "height": 320
         },
         {
-          "src": "/derived/runs/dsc08950/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-768.avif",
           "width": 768,
           "height": 513
         },
         {
-          "src": "/derived/runs/dsc08950/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-1080.avif",
           "width": 1080,
           "height": 721
         },
         {
-          "src": "/derived/runs/dsc08950/card-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-2048.avif",
           "width": 2048,
           "height": 1367
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc08950/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-480.webp",
           "width": 480,
           "height": 320
         },
         {
-          "src": "/derived/runs/dsc08950/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-768.webp",
           "width": 768,
           "height": 513
         },
         {
-          "src": "/derived/runs/dsc08950/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-1080.webp",
           "width": 1080,
           "height": 721
         },
         {
-          "src": "/derived/runs/dsc08950/card-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/card-2048.webp",
           "width": 2048,
           "height": 1367
         }
@@ -1525,44 +1213,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc08950/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-768.avif",
           "width": 768,
           "height": 513
         },
         {
-          "src": "/derived/runs/dsc08950/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1280.avif",
           "width": 1280,
           "height": 854
         },
         {
-          "src": "/derived/runs/dsc08950/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1680.avif",
           "width": 1680,
           "height": 1121
         },
         {
-          "src": "/derived/runs/dsc08950/detail-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-2048.avif",
           "width": 2048,
           "height": 1367
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc08950/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-768.webp",
           "width": 768,
           "height": 513
         },
         {
-          "src": "/derived/runs/dsc08950/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1280.webp",
           "width": 1280,
           "height": 854
         },
         {
-          "src": "/derived/runs/dsc08950/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-1680.webp",
           "width": 1680,
           "height": 1121
         },
         {
-          "src": "/derived/runs/dsc08950/detail-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/detail-2048.webp",
           "width": 2048,
           "height": 1367
         }
@@ -1571,62 +1259,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc08950/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-1200.avif",
           "width": 1200,
           "height": 801
         },
         {
-          "src": "/derived/runs/dsc08950/social-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-2048.avif",
           "width": 2048,
           "height": 1367
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc08950/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-1200.webp",
           "width": 1200,
           "height": 801
         },
         {
-          "src": "/derived/runs/dsc08950/social-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc08950-3e6d9ad29f/social-2048.webp",
           "width": 2048,
           "height": 1367
         }
       ]
     }
   },
-  "/pictures/dsc09578-1.jpg": {
+  "/media/runs/runs-backfill/dsc09578-1-6b32bee4d5": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/dsc09578-1/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc09578-1/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc09578-1/thumb-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc09578-1/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/dsc09578-1/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/dsc09578-1/thumb-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/thumb-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -1635,34 +1323,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/dsc09578-1/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc09578-1/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc09578-1/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc09578-1/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/dsc09578-1/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc09578-1/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/card-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -1671,24 +1359,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/dsc09578-1/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc09578-1/detail-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc09578-1/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/dsc09578-1/detail-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/detail-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -1697,52 +1385,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/dsc09578-1/social-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/social-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/dsc09578-1/social-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/dsc09578-1-6b32bee4d5/social-1080.webp",
           "width": 1080,
           "height": 1350
         }
       ]
     }
   },
-  "/pictures/insta_dsc07643.jpg": {
+  "/media/runs/runs-backfill/insta_dsc07643-4f2b6eea17": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07643/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/insta_dsc07643/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/insta_dsc07643/thumb-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-2048.avif",
           "width": 2048,
           "height": 2048
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07643/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/insta_dsc07643/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/insta_dsc07643/thumb-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/thumb-2048.webp",
           "width": 2048,
           "height": 2048
         }
@@ -1751,44 +1439,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07643/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/insta_dsc07643/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/insta_dsc07643/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/insta_dsc07643/card-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-2048.avif",
           "width": 2048,
           "height": 2048
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07643/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/insta_dsc07643/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/insta_dsc07643/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/insta_dsc07643/card-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/card-2048.webp",
           "width": 2048,
           "height": 2048
         }
@@ -1797,44 +1485,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07643/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/insta_dsc07643/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1280.avif",
           "width": 1280,
           "height": 1280
         },
         {
-          "src": "/derived/runs/insta_dsc07643/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1680.avif",
           "width": 1680,
           "height": 1680
         },
         {
-          "src": "/derived/runs/insta_dsc07643/detail-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-2048.avif",
           "width": 2048,
           "height": 2048
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07643/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/insta_dsc07643/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1280.webp",
           "width": 1280,
           "height": 1280
         },
         {
-          "src": "/derived/runs/insta_dsc07643/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-1680.webp",
           "width": 1680,
           "height": 1680
         },
         {
-          "src": "/derived/runs/insta_dsc07643/detail-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/detail-2048.webp",
           "width": 2048,
           "height": 2048
         }
@@ -1843,62 +1531,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07643/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/insta_dsc07643/social-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-2048.avif",
           "width": 2048,
           "height": 2048
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07643/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/insta_dsc07643/social-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07643-4f2b6eea17/social-2048.webp",
           "width": 2048,
           "height": 2048
         }
       ]
     }
   },
-  "/pictures/insta_dsc07681-2.jpg": {
+  "/media/runs/runs-backfill/insta_dsc07681-2-e9702d72b0": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/thumb-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/thumb-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/thumb-2048.webp",
           "width": 2048,
           "height": 2560
         }
@@ -1907,44 +1595,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-1080.avif",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-1080.webp",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/card-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/card-2048.webp",
           "width": 2048,
           "height": 2560
         }
@@ -1953,44 +1641,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1280.avif",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1680.avif",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1280.webp",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-1680.webp",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/detail-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/detail-2048.webp",
           "width": 2048,
           "height": 2560
         }
@@ -1999,62 +1687,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-1200.avif",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/social-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07681-2/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-1200.webp",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/insta_dsc07681-2/social-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07681-2-e9702d72b0/social-2048.webp",
           "width": 2048,
           "height": 2560
         }
       ]
     }
   },
-  "/pictures/insta_dsc07780.jpg": {
+  "/media/runs/runs-backfill/insta_dsc07780-4732a5e6ac": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07780/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc07780/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc07780/thumb-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07780/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc07780/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc07780/thumb-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/thumb-2048.webp",
           "width": 2048,
           "height": 2560
         }
@@ -2063,44 +1751,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07780/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc07780/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07780/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-1080.avif",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/insta_dsc07780/card-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07780/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc07780/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07780/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-1080.webp",
           "width": 1080,
           "height": 1350
         },
         {
-          "src": "/derived/runs/insta_dsc07780/card-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/card-2048.webp",
           "width": 2048,
           "height": 2560
         }
@@ -2109,44 +1797,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07780/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07780/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1280.avif",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/insta_dsc07780/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1680.avif",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/insta_dsc07780/detail-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07780/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc07780/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1280.webp",
           "width": 1280,
           "height": 1600
         },
         {
-          "src": "/derived/runs/insta_dsc07780/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-1680.webp",
           "width": 1680,
           "height": 2100
         },
         {
-          "src": "/derived/runs/insta_dsc07780/detail-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/detail-2048.webp",
           "width": 2048,
           "height": 2560
         }
@@ -2155,62 +1843,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc07780/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-1200.avif",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/insta_dsc07780/social-2048.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-2048.avif",
           "width": 2048,
           "height": 2560
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc07780/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-1200.webp",
           "width": 1200,
           "height": 1500
         },
         {
-          "src": "/derived/runs/insta_dsc07780/social-2048.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc07780-4732a5e6ac/social-2048.webp",
           "width": 2048,
           "height": 2560
         }
       ]
     }
   },
-  "/pictures/insta_dsc09720-4.jpg": {
+  "/media/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/thumb-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/thumb-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/thumb-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2219,34 +1907,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/card-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2255,24 +1943,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/detail-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09720-4/detail-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/detail-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2281,52 +1969,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/social-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/social-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09720-4/social-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09720-4-7c660a2ecc/social-1080.webp",
           "width": 1080,
           "height": 1350
         }
       ]
     }
   },
-  "/pictures/insta_dsc09845.jpg": {
+  "/media/runs/runs-backfill/insta_dsc09845-2c628750c5": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09845/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc09845/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc09845/thumb-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09845/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc09845/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc09845/thumb-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/thumb-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2335,34 +2023,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09845/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc09845/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09845/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09845/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc09845/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09845/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/card-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2371,24 +2059,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09845/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09845/detail-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09845/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09845/detail-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/detail-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2397,52 +2085,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09845/social-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/social-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09845/social-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09845-2c628750c5/social-1080.webp",
           "width": 1080,
           "height": 1350
         }
       ]
     }
   },
-  "/pictures/insta_dsc09863.jpg": {
+  "/media/runs/runs-backfill/insta_dsc09863-2cd3a46e0e": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09863/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-320.avif",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc09863/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-640.avif",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc09863/thumb-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09863/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-320.webp",
           "width": 320,
           "height": 400
         },
         {
-          "src": "/derived/runs/insta_dsc09863/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-640.webp",
           "width": 640,
           "height": 800
         },
         {
-          "src": "/derived/runs/insta_dsc09863/thumb-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/thumb-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2451,34 +2139,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09863/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-480.avif",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc09863/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09863/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09863/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-480.webp",
           "width": 480,
           "height": 600
         },
         {
-          "src": "/derived/runs/insta_dsc09863/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09863/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/card-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2487,24 +2175,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09863/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-768.avif",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09863/detail-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09863/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-768.webp",
           "width": 768,
           "height": 960
         },
         {
-          "src": "/derived/runs/insta_dsc09863/detail-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/detail-1080.webp",
           "width": 1080,
           "height": 1350
         }
@@ -2513,52 +2201,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/insta_dsc09863/social-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/social-1080.avif",
           "width": 1080,
           "height": 1350
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/insta_dsc09863/social-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/insta_dsc09863-2cd3a46e0e/social-1080.webp",
           "width": 1080,
           "height": 1350
         }
       ]
     }
   },
-  "/pictures/joraniebeach1-1.png": {
+  "/media/runs/runs-backfill/joraniebeach1-1-790f7cb47a": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/joraniebeach1-1/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-320.avif",
           "width": 320,
           "height": 226
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-640.avif",
           "width": 640,
           "height": 451
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/thumb-2480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-2480.avif",
           "width": 2480,
           "height": 1748
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/joraniebeach1-1/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-320.webp",
           "width": 320,
           "height": 226
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-640.webp",
           "width": 640,
           "height": 451
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/thumb-2480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/thumb-2480.webp",
           "width": 2480,
           "height": 1748
         }
@@ -2567,44 +2255,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/joraniebeach1-1/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-480.avif",
           "width": 480,
           "height": 338
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-768.avif",
           "width": 768,
           "height": 541
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-1080.avif",
           "width": 1080,
           "height": 761
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/card-2480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-2480.avif",
           "width": 2480,
           "height": 1748
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/joraniebeach1-1/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-480.webp",
           "width": 480,
           "height": 338
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-768.webp",
           "width": 768,
           "height": 541
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-1080.webp",
           "width": 1080,
           "height": 761
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/card-2480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/card-2480.webp",
           "width": 2480,
           "height": 1748
         }
@@ -2613,44 +2301,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-768.avif",
           "width": 768,
           "height": 541
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1280.avif",
           "width": 1280,
           "height": 902
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1680.avif",
           "width": 1680,
           "height": 1184
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-2480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-2480.avif",
           "width": 2480,
           "height": 1748
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-768.webp",
           "width": 768,
           "height": 541
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1280.webp",
           "width": 1280,
           "height": 902
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-1680.webp",
           "width": 1680,
           "height": 1184
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/detail-2480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/detail-2480.webp",
           "width": 2480,
           "height": 1748
         }
@@ -2659,62 +2347,374 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/joraniebeach1-1/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-1200.avif",
           "width": 1200,
           "height": 846
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/social-2480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-2480.avif",
           "width": 2480,
           "height": 1748
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/joraniebeach1-1/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-1200.webp",
           "width": 1200,
           "height": 846
         },
         {
-          "src": "/derived/runs/joraniebeach1-1/social-2480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/joraniebeach1-1-790f7cb47a/social-2480.webp",
           "width": 2480,
           "height": 1748
         }
       ]
     }
   },
-  "/pictures/nature.jpg": {
+  "/media/runs/runs-backfill/mco09842-5d613f7186": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/nature/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-320.avif",
+          "width": 320,
+          "height": 256
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-640.avif",
+          "width": 640,
+          "height": 512
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-320.webp",
+          "width": 320,
+          "height": 256
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-640.webp",
+          "width": 640,
+          "height": 512
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/thumb-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    },
+    "card": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-480.avif",
+          "width": 480,
+          "height": 384
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-768.avif",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-1080.avif",
+          "width": 1080,
+          "height": 864
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-480.webp",
+          "width": 480,
+          "height": 384
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-768.webp",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-1080.webp",
+          "width": 1080,
+          "height": 864
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/card-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    },
+    "detail": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-768.avif",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1280.avif",
+          "width": 1280,
+          "height": 1024
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1680.avif",
+          "width": 1680,
+          "height": 1344
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-768.webp",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1280.webp",
+          "width": 1280,
+          "height": 1024
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-1680.webp",
+          "width": 1680,
+          "height": 1344
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/detail-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    },
+    "social": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-1200.avif",
+          "width": 1200,
+          "height": 960
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-1200.webp",
+          "width": 1200,
+          "height": 960
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09842-5d613f7186/social-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    }
+  },
+  "/media/runs/runs-backfill/mco09875-91a2397ff5": {
+    "thumb": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-320.avif",
+          "width": 320,
+          "height": 256
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-640.avif",
+          "width": 640,
+          "height": 512
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-320.webp",
+          "width": 320,
+          "height": 256
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-640.webp",
+          "width": 640,
+          "height": 512
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/thumb-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    },
+    "card": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-480.avif",
+          "width": 480,
+          "height": 384
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-768.avif",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-1080.avif",
+          "width": 1080,
+          "height": 864
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-480.webp",
+          "width": 480,
+          "height": 384
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-768.webp",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-1080.webp",
+          "width": 1080,
+          "height": 864
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/card-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    },
+    "detail": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-768.avif",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1280.avif",
+          "width": 1280,
+          "height": 1024
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1680.avif",
+          "width": 1680,
+          "height": 1344
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-768.webp",
+          "width": 768,
+          "height": 614
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1280.webp",
+          "width": 1280,
+          "height": 1024
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-1680.webp",
+          "width": 1680,
+          "height": 1344
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/detail-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    },
+    "social": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-1200.avif",
+          "width": 1200,
+          "height": 960
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-2048.avif",
+          "width": 2048,
+          "height": 1638
+        }
+      ],
+      "webp": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-1200.webp",
+          "width": 1200,
+          "height": 960
+        },
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/mco09875-91a2397ff5/social-2048.webp",
+          "width": 2048,
+          "height": 1638
+        }
+      ]
+    }
+  },
+  "/media/runs/runs-backfill/nature-7daf2b2f91": {
+    "thumb": {
+      "avif": [
+        {
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/nature/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/nature/thumb-800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-800.avif",
           "width": 800,
           "height": 800
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/nature/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/nature/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/nature/thumb-800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/thumb-800.webp",
           "width": 800,
           "height": 800
         }
@@ -2723,34 +2723,34 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/nature/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/nature/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/nature/card-800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-800.avif",
           "width": 800,
           "height": 800
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/nature/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/nature/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/nature/card-800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/card-800.webp",
           "width": 800,
           "height": 800
         }
@@ -2759,24 +2759,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/nature/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/nature/detail-800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-800.avif",
           "width": 800,
           "height": 800
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/nature/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/nature/detail-800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/detail-800.webp",
           "width": 800,
           "height": 800
         }
@@ -2785,52 +2785,52 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/nature/social-800.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/social-800.avif",
           "width": 800,
           "height": 800
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/nature/social-800.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/nature-7daf2b2f91/social-800.webp",
           "width": 800,
           "height": 800
         }
       ]
     }
   },
-  "/pictures/pcs-dee.jpg": {
+  "/media/runs/runs-backfill/pcs-dee-4f959f8f0a": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dee/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-dee/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-dee/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dee/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-dee/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-dee/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -2839,44 +2839,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dee/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-dee/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dee/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-dee/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dee/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-dee/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dee/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-dee/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -2885,24 +2885,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dee/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dee/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dee/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dee/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -2911,62 +2911,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dee/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-dee/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dee/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-dee/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dee-4f959f8f0a/social-1280.webp",
           "width": 1280,
           "height": 1280
         }
       ]
     }
   },
-  "/pictures/pcs-dorure1.jpg": {
+  "/media/runs/runs-backfill/pcs-dorure1-00bd75d356": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dorure1/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-dorure1/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-dorure1/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dorure1/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-dorure1/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-dorure1/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -2975,44 +2975,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dorure1/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-dorure1/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dorure1/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-dorure1/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dorure1/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-dorure1/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dorure1/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-dorure1/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3021,24 +3021,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dorure1/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dorure1/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dorure1/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-dorure1/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3047,62 +3047,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-dorure1/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-dorure1/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-dorure1/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-dorure1/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-dorure1-00bd75d356/social-1280.webp",
           "width": 1280,
           "height": 1280
         }
       ]
     }
   },
-  "/pictures/pcs-elephant-ears.jpg": {
+  "/media/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3111,44 +3111,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3157,24 +3157,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3183,62 +3183,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-elephant-ears/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-elephant-ears/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-elephant-ears-5525e0ebd3/social-1280.webp",
           "width": 1280,
           "height": 1280
         }
       ]
     }
   },
-  "/pictures/pcs-fanmK.jpg": {
+  "/media/runs/runs-backfill/pcs-fanmk-f087d508f5": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-fanmK/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-fanmK/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-fanmK/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-fanmK/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-fanmK/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-fanmK/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3247,44 +3247,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-fanmK/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-fanmK/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-fanmK/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-fanmK/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-fanmK/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-fanmK/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-fanmK/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-fanmK/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3293,24 +3293,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-fanmK/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-fanmK/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-fanmK/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-fanmK/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3319,62 +3319,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-fanmK/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-fanmK/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-fanmK/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-fanmK/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-fanmk-f087d508f5/social-1280.webp",
           "width": 1280,
           "height": 1280
         }
       ]
     }
   },
-  "/pictures/pcs-lamp.jpg": {
+  "/media/runs/runs-backfill/pcs-lamp-9c9adfe7ad": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-lamp/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-lamp/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-lamp/thumb-2759.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-2759.avif",
           "width": 2759,
           "height": 2758
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-lamp/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-lamp/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-lamp/thumb-2759.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/thumb-2759.webp",
           "width": 2759,
           "height": 2758
         }
@@ -3383,44 +3383,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-lamp/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-lamp/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-lamp/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-lamp/card-2759.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-2759.avif",
           "width": 2759,
           "height": 2758
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-lamp/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-lamp/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-lamp/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-lamp/card-2759.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/card-2759.webp",
           "width": 2759,
           "height": 2758
         }
@@ -3429,44 +3429,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-lamp/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-lamp/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1280.avif",
           "width": 1280,
           "height": 1280
         },
         {
-          "src": "/derived/runs/pcs-lamp/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1680.avif",
           "width": 1680,
           "height": 1679
         },
         {
-          "src": "/derived/runs/pcs-lamp/detail-2759.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-2759.avif",
           "width": 2759,
           "height": 2758
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-lamp/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-lamp/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1280.webp",
           "width": 1280,
           "height": 1280
         },
         {
-          "src": "/derived/runs/pcs-lamp/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-1680.webp",
           "width": 1680,
           "height": 1679
         },
         {
-          "src": "/derived/runs/pcs-lamp/detail-2759.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/detail-2759.webp",
           "width": 2759,
           "height": 2758
         }
@@ -3475,62 +3475,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-lamp/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-lamp/social-2759.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-2759.avif",
           "width": 2759,
           "height": 2758
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-lamp/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-lamp/social-2759.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-lamp-9c9adfe7ad/social-2759.webp",
           "width": 2759,
           "height": 2758
         }
       ]
     }
   },
-  "/pictures/pcs-mak.jpg": {
+  "/media/runs/runs-backfill/pcs-mak-330c9ddb76": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-mak/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-mak/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-mak/thumb-2766.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-2766.avif",
           "width": 2766,
           "height": 2765
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-mak/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-mak/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-mak/thumb-2766.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/thumb-2766.webp",
           "width": 2766,
           "height": 2765
         }
@@ -3539,44 +3539,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-mak/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-mak/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-768.avif",
           "width": 768,
           "height": 767
         },
         {
-          "src": "/derived/runs/pcs-mak/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-mak/card-2766.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-2766.avif",
           "width": 2766,
           "height": 2765
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-mak/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-mak/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-768.webp",
           "width": 768,
           "height": 767
         },
         {
-          "src": "/derived/runs/pcs-mak/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-mak/card-2766.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/card-2766.webp",
           "width": 2766,
           "height": 2765
         }
@@ -3585,44 +3585,44 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-mak/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-768.avif",
           "width": 768,
           "height": 767
         },
         {
-          "src": "/derived/runs/pcs-mak/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1280.avif",
           "width": 1280,
           "height": 1280
         },
         {
-          "src": "/derived/runs/pcs-mak/detail-1680.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1680.avif",
           "width": 1680,
           "height": 1679
         },
         {
-          "src": "/derived/runs/pcs-mak/detail-2766.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-2766.avif",
           "width": 2766,
           "height": 2765
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-mak/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-768.webp",
           "width": 768,
           "height": 767
         },
         {
-          "src": "/derived/runs/pcs-mak/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1280.webp",
           "width": 1280,
           "height": 1280
         },
         {
-          "src": "/derived/runs/pcs-mak/detail-1680.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-1680.webp",
           "width": 1680,
           "height": 1679
         },
         {
-          "src": "/derived/runs/pcs-mak/detail-2766.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/detail-2766.webp",
           "width": 2766,
           "height": 2765
         }
@@ -3631,62 +3631,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-mak/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-mak/social-2766.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-2766.avif",
           "width": 2766,
           "height": 2765
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-mak/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-mak/social-2766.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-mak-330c9ddb76/social-2766.webp",
           "width": 2766,
           "height": 2765
         }
       ]
     }
   },
-  "/pictures/pcs-paint1.jpg": {
+  "/media/runs/runs-backfill/pcs-paint1-96d072bac5": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint1/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-paint1/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-paint1/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint1/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-paint1/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-paint1/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3695,44 +3695,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint1/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-paint1/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint1/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-paint1/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint1/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-paint1/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint1/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-paint1/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3741,24 +3741,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint1/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint1/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint1/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint1/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3767,62 +3767,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint1/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-paint1/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint1/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-paint1/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint1-96d072bac5/social-1280.webp",
           "width": 1280,
           "height": 1280
         }
       ]
     }
   },
-  "/pictures/pcs-paint2.jpg": {
+  "/media/runs/runs-backfill/pcs-paint2-53e55db11d": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint2/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-paint2/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-paint2/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint2/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-paint2/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-paint2/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3831,44 +3831,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint2/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-paint2/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint2/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-paint2/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint2/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-paint2/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint2/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-paint2/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3877,24 +3877,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint2/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint2/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint2/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-paint2/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3903,62 +3903,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-paint2/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-paint2/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-paint2/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-paint2/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-paint2-53e55db11d/social-1280.webp",
           "width": 1280,
           "height": 1280
         }
       ]
     }
   },
-  "/pictures/pcs-smoke.jpg": {
+  "/media/runs/runs-backfill/pcs-smoke-ee86f2a31a": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-smoke/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-smoke/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-smoke/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-smoke/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/pcs-smoke/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/pcs-smoke/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -3967,44 +3967,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-smoke/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-smoke/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-smoke/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-smoke/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-smoke/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/pcs-smoke/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-smoke/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/pcs-smoke/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -4013,24 +4013,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-smoke/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-smoke/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-smoke/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/pcs-smoke/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -4039,62 +4039,62 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/pcs-smoke/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-smoke/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/pcs-smoke/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/pcs-smoke/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pcs-smoke-ee86f2a31a/social-1280.webp",
           "width": 1280,
           "height": 1280
         }
       ]
     }
   },
-  "/pictures/ptiCadreSexy.jpg": {
+  "/media/runs/runs-backfill/pticadresexy-2b2f1bf92a": {
     "thumb": {
       "avif": [
         {
-          "src": "/derived/runs/ptiCadreSexy/thumb-320.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-320.avif",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/thumb-640.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-640.avif",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/thumb-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/ptiCadreSexy/thumb-320.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-320.webp",
           "width": 320,
           "height": 320
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/thumb-640.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-640.webp",
           "width": 640,
           "height": 640
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/thumb-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/thumb-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -4103,44 +4103,44 @@ export const runImageManifest = {
     "card": {
       "avif": [
         {
-          "src": "/derived/runs/ptiCadreSexy/card-480.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-480.avif",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/card-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/card-1080.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1080.avif",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/card-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/ptiCadreSexy/card-480.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-480.webp",
           "width": 480,
           "height": 480
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/card-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/card-1080.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1080.webp",
           "width": 1080,
           "height": 1080
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/card-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/card-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -4149,24 +4149,24 @@ export const runImageManifest = {
     "detail": {
       "avif": [
         {
-          "src": "/derived/runs/ptiCadreSexy/detail-768.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-768.avif",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/detail-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/ptiCadreSexy/detail-768.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-768.webp",
           "width": 768,
           "height": 768
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/detail-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/detail-1280.webp",
           "width": 1280,
           "height": 1280
         }
@@ -4175,24 +4175,24 @@ export const runImageManifest = {
     "social": {
       "avif": [
         {
-          "src": "/derived/runs/ptiCadreSexy/social-1200.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1200.avif",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/social-1280.avif",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1280.avif",
           "width": 1280,
           "height": 1280
         }
       ],
       "webp": [
         {
-          "src": "/derived/runs/ptiCadreSexy/social-1200.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1200.webp",
           "width": 1200,
           "height": 1200
         },
         {
-          "src": "/derived/runs/ptiCadreSexy/social-1280.webp",
+          "src": "https://cdn.macojaune.com/pictures/runs/runs-backfill/pticadresexy-2b2f1bf92a/social-1280.webp",
           "width": 1280,
           "height": 1280
         }

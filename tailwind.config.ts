@@ -14,11 +14,12 @@ export default <Partial<Config>>{
   ],
   theme: {
     fontFamily: {
-      sans: ['Hind', 'sans-serif']
+      sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
     },
     extend: {
       fontFamily: {
-        display: ['Righteous', 'sans-serif']
+        display: ['"Cabinet Grotesk"', 'sans-serif']
       },
       aspectRatio: {
         portrait: '9 / 16'

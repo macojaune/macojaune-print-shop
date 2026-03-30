@@ -1,18 +1,27 @@
 #!/usr/bin/env node
 
+import { createHash } from "node:crypto"
+import { createRequire } from "node:module"
 import { promises as fs } from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, "..")
 const runsDir = path.join(repoRoot, "content", "runs")
+const require = createRequire(import.meta.url)
+const jiti = require("jiti")(__filename)
+
+globalThis.useRuntimeConfig = () => ({ r2: {}, public: {} })
+globalThis.createError = (input) => Object.assign(new Error(input?.statusMessage || "R2 image pipeline error."), input)
+
+const { createR2ImageAsset } = jiti(path.join(repoRoot, "server", "utils", "r2-images.ts"))
 const originalDirs = [
   path.join(repoRoot, "assets", "photo-originals", "pictures"),
   path.join(repoRoot, "public", "pictures"),
 ]
 
-const uploadUrl = process.env.RUN_MEDIA_UPLOAD_URL || "http://127.0.0.1:3211/api/media/upload"
 const directory = process.env.RUN_MEDIA_DIRECTORY || "runs-backfill"
 const dryRun = process.argv.includes("--dry-run")
 
@@ -23,6 +32,17 @@ const contentTypes = new Map([
   [".webp", "image/webp"],
   [".avif", "image/avif"],
 ])
+
+function sanitizeSegment(value) {
+  return value
+    .normalize("NFKD")
+    .replace(/[^\w\s/-]+/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^[-/]+|[-/]+$/g, "")
+    .toLowerCase()
+}
 
 function collectRunImageRefs(markdown) {
   return [...markdown.matchAll(/\/pictures\/[^\s"')]+/g)].map((match) => match[0])
@@ -44,26 +64,35 @@ async function findSourceFile(src) {
   return null
 }
 
-async function uploadSource(sourcePath) {
+async function uploadSource(sourcePath, legacyRef) {
   const extension = path.extname(sourcePath).toLowerCase()
   const contentType = contentTypes.get(extension) || "application/octet-stream"
   const filename = path.basename(sourcePath)
   const buffer = await fs.readFile(sourcePath)
-  const formData = new FormData()
+  const manifest = await createR2ImageAsset(
+    {
+      filename,
+      type: contentType,
+      data: buffer,
+    },
+    undefined,
+    makeStableAssetId(filename, legacyRef, buffer),
+  )
 
-  formData.append("file", new File([buffer], filename, { type: contentType }))
-  formData.append("directory", directory)
-
-  const response = await fetch(uploadUrl, {
-    method: "POST",
-    body: formData,
-  })
-
-  if (!response.ok) {
-    throw new Error(`Upload failed for ${filename}: ${response.status} ${await response.text()}`)
+  return {
+    src: manifest.src,
   }
+}
 
-  return response.json()
+function makeStableAssetId(filename, legacyRef, buffer) {
+  const basename = sanitizeSegment(path.parse(filename).name) || "image"
+  const logicalDirectory = sanitizeSegment(
+    path.posix.dirname(String(legacyRef || "").replace(/^\/+/, "").replace(/^pictures\//, "")),
+  )
+  const hash = createHash("sha1").update(buffer).digest("hex").slice(0, 10)
+  const leaf = `${basename}-${hash}`
+
+  return [directory, logicalDirectory, leaf].filter(Boolean).join("/")
 }
 
 async function main() {
@@ -98,7 +127,7 @@ async function main() {
       continue
     }
 
-    const uploaded = await uploadSource(sourcePath)
+    const uploaded = await uploadSource(sourcePath, ref)
     refMap.set(ref, uploaded.src)
     console.log(`${ref} -> ${uploaded.src}`)
   }
