@@ -12,8 +12,6 @@
 </template>
 
 <script setup>
-import { getLinksEntries } from '~/composables/useContentCollections'
-
 definePageMeta({ layout: 'links' })
 useHead({
     meta: [
@@ -21,10 +19,14 @@ useHead({
         { description: "Retrouve toute l'actualité de @Macojaune" }
     ]
 })
-const linksEntries = await getLinksEntries()
-const data = computed(() => linksEntries?.[0]?.link || [])
+const { data: res } = await useAsyncData('get-links', () =>
+    queryContent('links').find())
+const data = computed(() => res.value?.[0].link)
 if (data.value.length === 1) {
     window.location = data.value[0].url
+}
+const goTo = (link) => {
+    window.location = link.url
 }
 const pickRandomProperty = (obj) => {
     let result
@@ -349,6 +351,5 @@ const colors = {
 }
 // pick random property
 // var property = pickRandomProperty(colors);
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const colorList = () => colors[pickRandomProperty(colors)]?.[700]
 </script>

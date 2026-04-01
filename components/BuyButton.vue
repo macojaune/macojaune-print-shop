@@ -10,4 +10,9 @@
 </template>
 <script setup lang="ts">
 const { product } = defineProps<{ product: { sku: string, title: string, price: string, stock: string, images: string[] } }>()
+const doBuy = async () => {
+    try { await $fetch("/api/checkout-product", { method: "POST", body: JSON.stringify({ product }) }) } catch (e) {
+        console.error(e)
+    }
+}
 </script>

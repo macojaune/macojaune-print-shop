@@ -3,9 +3,20 @@ const assetBaseUrl =
   process.env.NUXT_PUBLIC_ASSET_BASE_URL ||
   process.env.R2_PUBLIC_BASE_URL ||
   "https://cdn.macojaune.com"
+const generatedWatchIgnores = [
+  "**/assets/photo-originals/**",
+  "**/generated/**",
+  "**/public/admin/**",
+  "**/public/derived/**",
+]
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  watchers: {
+    chokidar: {
+      ignored: generatedWatchIgnores,
+    },
+  },
   runtimeConfig: {
     stripe: {
       key: '',
@@ -60,6 +71,13 @@ export default defineNuxtConfig({
   },
   image: {
     provider: 'none'
+  },
+  vite: {
+    server: {
+      watch: {
+        ignored: generatedWatchIgnores,
+      },
+    },
   },
   css: ['~/assets/css/tailwind.css'],
   app: {

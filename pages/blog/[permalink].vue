@@ -1,11 +1,11 @@
 <template>
   <div class="w-full px-4">
     <div>
-      <h1 class="my-4 font-display text-5xl uppercase text-amber-600 lg:my-3 lg:text-7xl">
+      <h1 :style="{ viewTransitionName: data?.permalink ? `blog-${data.permalink}` : '' }" class="my-4 font-display text-5xl uppercase text-amber-600 lg:my-3 lg:text-7xl">
         {{ data?.title ?? "" }}
       </h1>
       <div class="w-full lg:w-7/12">
-        <ContentRenderer v-if="data" class="text-white" :value="data"/>
+        <ContentRenderer v-if="data" :value="data" class="text-white" />
       </div>
     </div>
     <div v-if="nextPost" class="mt-8 flex w-full flex-row justify-end px-0 lg:mt-12 lg:px-8 ">
@@ -21,23 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import { findBlogEntryByPermalink, findNextBlogEntry } from '~/composables/useContentCollections'
+const { toAssetUrl, toSiteUrl } = useAssetUrls()
 
-const { path, params } = useRoute()
-const permalink = computed(() => String(params?.permalink || ''))
+const {path, params} = useRoute()
+const {data} = await useAsyncData('get-document', () =>
+  queryContent('/blog').where({permalink: `${params?.permalink}`}).findOne())
+const nextPost = await queryContent('/blog').where({date: {$lt: data.value?.date}}).sort({_id: -1}).findOne()
 
-const data = await findBlogEntryByPermalink(permalink.value)
-
-if (!data) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Article introuvable',
-  })
-}
-
-const nextPost = await findNextBlogEntry(data.date as string | null | undefined)
-
-const title = data.title ? `${data.title} | Le blog du Macojaune` : 'Le blog du Macojaune'
+const title = data.value?.title ? `${data.value?.title} | Le blog du Macojaune` : 'Le blog du Macojaune'
 useHead({
   title,
   meta: [
@@ -47,27 +38,27 @@ useHead({
     },
     {
       name: 'description',
-      content: data.description
+      content: data.value?.description
 
     },
     {property: 'og:type', content: 'website'},
-    {property: 'og:url', content: `https://macojaune.com${path}`},
+    {property: 'og:url', content: toSiteUrl(path)},
     {property: 'og:title', content: title},
     {
       property: 'og:description',
-      content: data.description
+      content: data.value?.description
     },
-    {property: 'og:image', content: String(data.image || '')},
+    {property: 'og:image', content: toAssetUrl(data.value?.image)},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
-    {property: 'twitter:url', content: `https://macojaune.com${path}`},
+    {property: 'twitter:url', content: toSiteUrl(path)},
     {property: 'twitter:title', content: title + ' | Le blog du Macojaune'},
     {
       property: 'twitter:description',
-      content: data.description
+      content: data.value?.description
     },
-    {property: 'twitter:image', content: String(data.image || '')}
+    {property: 'twitter:image', content: toAssetUrl(data.value?.image)}
   ],
   script: [
     {

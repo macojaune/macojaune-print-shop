@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto"
-import { promises as fs } from "node:fs"
+import { existsSync, promises as fs, readFileSync } from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -17,18 +17,69 @@ const publicManifestPath = path.join(derivedDir, "manifest.json")
 const inventoryReportPath = path.join(repoRoot, "docs", "run-image-inventory.md")
 
 const shouldMigrate = process.argv.includes("--migrate")
-const publicMediaBaseUrl = (process.env.NUXT_PUBLIC_MEDIA_BASE_URL || process.env.MEDIA_BASE_URL || "").replace(
-  /\/+$/,
-  "",
-)
 const watermarkLabel = "macojaune.com"
 const runMediaPrefix = "/media/runs/"
+
+loadEnvFile(path.join(repoRoot, ".env"))
+
+const publicMediaBaseUrl = resolvePublicMediaBaseUrl()
 
 const variantPresets = {
   thumb: { widths: [320, 640], watermark: true, quality: { avif: 46, webp: 62 } },
   card: { widths: [480, 768, 1080], watermark: true, quality: { avif: 48, webp: 64 } },
   detail: { widths: [768, 1280, 1680], watermark: true, quality: { avif: 50, webp: 68 } },
   social: { widths: [1200], watermark: true, quality: { avif: 52, webp: 72 } },
+}
+
+function loadEnvFile(target) {
+  if (!existsSync(target)) {
+    return
+  }
+
+  const lines = readFileSync(target, "utf8").split(/\r?\n/)
+
+  for (const line of lines) {
+    const trimmed = line.trim()
+
+    if (!trimmed || trimmed.startsWith("#")) {
+      continue
+    }
+
+    const separatorIndex = trimmed.indexOf("=")
+
+    if (separatorIndex === -1) {
+      continue
+    }
+
+    const key = trimmed.slice(0, separatorIndex).trim()
+
+    if (!key || process.env[key] !== undefined) {
+      continue
+    }
+
+    let value = trimmed.slice(separatorIndex + 1).trim()
+
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1)
+    } else {
+      value = value.replace(/\s+#.*$/, "")
+    }
+
+    process.env[key] = value
+  }
+}
+
+function resolvePublicMediaBaseUrl() {
+  return (
+    process.env.NUXT_PUBLIC_MEDIA_BASE_URL ||
+    process.env.R2_PUBLIC_BASE_URL ||
+    process.env.NUXT_PUBLIC_ASSET_BASE_URL ||
+    process.env.MEDIA_BASE_URL ||
+    ""
+  ).replace(/\/+$/, "")
 }
 
 async function pathExists(target) {
@@ -139,7 +190,7 @@ function getRunMediaAssetId(src) {
 async function fetchRemoteManifest(src) {
   if (!publicMediaBaseUrl) {
     throw new Error(
-      `Missing NUXT_PUBLIC_MEDIA_BASE_URL while resolving remote run image ${src}. This is required for /media/runs/* assets.`,
+      `Missing media base URL while resolving remote run image ${src}. Set NUXT_PUBLIC_MEDIA_BASE_URL, R2_PUBLIC_BASE_URL, or NUXT_PUBLIC_ASSET_BASE_URL for /media/runs/* assets.`,
     )
   }
 

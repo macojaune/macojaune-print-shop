@@ -1,31 +1,33 @@
-<template>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1 class="my-3 text-4xl uppercase text-orange-400">
-          {{ doc?.title }}
-        </h1>
-        <ContentRenderer v-if="doc" class="text-white" :value="doc" />
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+.container
+  .row
+    .col
+      h1.my-3.text-4xl.uppercase.text-orange-400 {{ doc.title }}
+      ContentRenderer.text-white(:value="doc")
 </template>
 
 <script setup lang="ts">
-import { findMentionEntryBySlug } from '~/composables/useContentCollections'
+import { findContentDocumentByPath } from '~/composables/useContentCollections'
 
 const route = useRoute()
-const mentionSlug = computed(() => {
-  const { slug } = route.params
-  return Array.isArray(slug) ? slug.join('/') : String(slug || '')
-})
 
-const doc = await findMentionEntryBySlug(mentionSlug.value)
+const slugSegments = Array.isArray(route.params.slug)
+  ? route.params.slug.map(String).filter(Boolean)
+  : route.params.slug
+    ? [String(route.params.slug)]
+    : []
 
-if (!doc) {
+const contentPath = `/${(slugSegments[0] === 'mentions' ? slugSegments : ['mentions', ...slugSegments]).join('/')}`
+
+const { data: doc } = await useAsyncData(
+  `legacy-mentions-page:${contentPath}`,
+  () => findContentDocumentByPath(contentPath),
+)
+
+if (!doc.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Mention introuvable',
+    statusMessage: 'Document introuvable',
   })
 }
 </script>

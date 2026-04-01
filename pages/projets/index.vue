@@ -8,38 +8,41 @@
         Tu retrouveras le brief, les moodboards, inspirations et un formulaire pour y participer si ça te chante !
       </p>
     </div>
-    <div class="mb-2 flex flex-col gap-5">
-      <nuxt-link
-        v-for="project in projects"
-        :key="project.permalink"
-        :to="`/projets/${project.permalink}?project=${project.permalink}`"
-        class="group flex flex-row justify-between"
-      >
-        <div>
-          <h3 class="font-display text-4xl text-amber-300 group-hover:text-amber-600">
-            {{
-              project.title
-            }}
-            <span class="font-sans text-sm">{{ moment(project.date).format('ll') }}</span>
-          </h3>
-          <prose-p class="text-white text-base ml-6 w-4/5 lg:w-8/12 line-clamp-4">{{ project?.description }}</prose-p>
-        </div>
-        <!--        <div v-if="project.image">-->
-        <!--          <nuxt-img-->
-        <!--            :src="project.image" class="aspect-portrait" format="webp" placeholder-->
-        <!--            sizes="xs:25vw lg:360px"/>-->
-        <!--        </div>-->
-      </nuxt-link>
-    </div>
+    <ContentList v-slot="{list}" :query="query">
+      <div class="mb-2 flex flex-col gap-5">
+        <nuxt-link
+          v-for="project in list"
+          :key="project.permalink"
+          :to="`/projets/${project.permalink}?project=${project.permalink}`"
+          class="group flex flex-row justify-between"
+        >
+          <div>
+            <h3 class="font-display text-4xl text-amber-300 group-hover:text-amber-600">
+              {{
+                project.title
+              }}
+              <span class="font-sans text-sm">{{ moment(project.date).format('ll') }}</span>
+            </h3>
+            <prose-p class="text-white text-base ml-6 w-4/5 lg:w-8/12 line-clamp-4">{{ project?.description }}</prose-p>
+          </div>
+          <!--        <div v-if="project.image">-->
+          <!--          <nuxt-img-->
+          <!--            :src="project.image" class="aspect-portrait" format="webp" placeholder-->
+          <!--            sizes="xs:25vw lg:360px"/>-->
+          <!--        </div>-->
+        </nuxt-link>
+      </div>
+    </ContentList>
   </div>
 </template>
 
 <script lang="ts" setup>
 import moment from "moment/moment";
-import { getProjectEntries } from '~/composables/useContentCollections'
+import type {QueryBuilderParams} from "@nuxt/content/types";
 
-const projects = await getProjectEntries()
-const heroImage = String(projects[0]?.image || '')
+const { toAssetUrl } = useAssetUrls()
+
+const query: QueryBuilderParams = {path: "/projects", where: [{draft: false}], sort: [{date: -1}]}
 
 const title = 'Les Projets photo du Macojaune'
 const description =
@@ -62,7 +65,7 @@ useHead({
       property: 'og:description',
       content: description
     },
-    {property: 'og:image', content: heroImage},
+    {property: 'og:image', content: toAssetUrl('/pictures/MCO09198 (Large).jpg')},
     {
       property: 'twitter:card', content: 'summary_large_image'
     },
@@ -72,7 +75,7 @@ useHead({
       property: 'twitter:description',
       content: description
     },
-    {property: 'twitter:image', content: heroImage}
+    {property: 'twitter:image', content: toAssetUrl('/pictures/MCO09198 (Large).jpg')}
   ],
   script: [
     {

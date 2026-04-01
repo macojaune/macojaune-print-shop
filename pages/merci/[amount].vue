@@ -11,8 +11,6 @@
 
 <script setup>
 const route = useRoute()
-// Used by the Pug template render.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const amount = parseInt(route.params?.amount || '1000', 10)
 </script>
 

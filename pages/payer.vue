@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts" setup>
-import {useHead} from "unhead";
 import {useRoute} from "vue-router";
 import {useRuntimeConfig} from "nuxt/app";
 import axios from "axios";
@@ -53,8 +52,6 @@ const state = reactive({
   card: null
 })
 
-// Used by the Pug template handlers.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const initPayment = async () => {
   try {
     state.loading = true
@@ -98,18 +95,15 @@ const initPayment = async () => {
   }
 }
 
-// Used by the Pug template handlers.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const doPay = async () => {
-  state.loading = true
   const stripeClient = stripe.value
-
   if (!stripeClient) {
+    state.error = "Le module de paiement n'a pas pu s'initialiser."
     state.loading = false
-    state.error = "Le module de paiement n'est pas disponible pour le moment."
     return
   }
 
+  state.loading = true
   const {paymentIntent, error} = await stripeClient.confirmPayment({
     elements: state.elements,
     confirmParams: {
@@ -127,6 +121,9 @@ const doPay = async () => {
   }
   console.log('success payment')
 }
+
+void initPayment
+void doPay
 </script>
 
 <style lang="stylus" scoped>
