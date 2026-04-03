@@ -1,148 +1,326 @@
 <template>
-    <div class="serie-page px-4">
-        <div class="content">
-            <h1 class="mt-6 mb-3 text-5xl uppercase text-amber-500 font-display">
-                {{ serie.title }}
-                <small class="font-sans text-sm text-white">{{ formatDate(serie.date) }}</small>
+  <div class="px-4 pb-16">
+    <div class="mx-auto max-w-[1600px]">
+      <header class="mb-10 pb-8 pt-4 lg:mb-14 lg:pb-10">
+        <NuxtLink
+          to="/galerie"
+          class="inline-flex items-center text-xs uppercase tracking-[0.32em] text-amber-300/60 transition hover:text-amber-200"
+        >
+          Galerie
+        </NuxtLink>
+
+        <div class="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p v-if="serie.date" class="text-xs uppercase tracking-[0.38em] text-amber-300/60">
+              {{ formatPhotoDate(serie.date) }}
+            </p>
+            <h1 class="mt-3 font-display text-5xl uppercase leading-none text-white lg:text-[6rem]">
+              {{ serie.title }}
             </h1>
+          </div>
 
-            <ContentRenderer :value="serie" class="text-white text-base md:text-lg" />
-
-            <div
-                :class="`my-6 grid grid-flow-row-dense gap-4 justify-evenly items-end grid-cols-1 ${serie.products.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`">
-                <div v-for="(product, index) in serie.products" :key="index" class="flex flex-col items-center">
-                    <NuxtLink :to="`/series/${serie.slug}/${product.slug}`">
-                        <RunImage
-                            v-if="getProductHeroImage(product)"
-                            class="primary border-radius mb-2"
-                            :src="getProductHeroImage(product)"
-                            sizes="(max-width: 767px) 100vw, 500px"
-                            variant="card"
-                            itemprop="image"
-                            :alt="product.title"
-                        />
-
-                        <p v-if="product.price" class="text-2xl text-center text-amber-400 font-semibold">
-                            {{ product.price }}€
-                            <Meta itemprop="price" :content="product.price" />
-                            <Meta itemprop="priceCurrency" content="EUR" />
-                        </p>
-
-                        <p class="mt-2 text-2xl text-center text-white font-display" itemprop="name">
-                            {{ product.title }}
-                            <br>
-                            <span v-if="product.stock > 0"
-                                class="font-sans text-base text-caption text-decoration-line-through"
-                                itemprop="availability" href="http://schema.org/InStock">
-                                Édition limitée à {{ product.stock }} exemplaires
-                            </span>
-                            <span v-else class="font-bold text-red-500" itemprop="availability"
-                                href="http://schema.org/OutOfStock">
-                                Épuisé
-                            </span>
-                        </p>
-                    </NuxtLink>
-
-                    <div v-if="product.stock > 0 && product.price" class="flex justify-center pt-4">
-                        <BuyButton :product="product" />
-                    </div>
-                </div>
-            </div>
+          <ContentRenderer :value="serie" class="max-w-2xl text-sm leading-6 text-stone-300 lg:text-base" />
         </div>
+      </header>
+
+      <div class="columns-1 gap-4 sm:columns-2 xl:columns-3">
+        <button
+          v-for="tile in galleryTiles"
+          :key="tile.src"
+          type="button"
+          class="group relative mb-4 block w-full break-inside-avoid overflow-hidden text-left"
+          @click="openPhoto(tile.src)"
+        >
+          <RunImage
+            :src="tile.src"
+            :alt="tile.alt || serie.title"
+            sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw"
+            variant="detail"
+            itemprop="image"
+            class="w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
+          />
+        </button>
+      </div>
     </div>
+
+    <Teleport to="body">
+      <transition
+        enter-active-class="transition duration-300 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition duration-200 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div
+          v-if="selectedTile"
+          class="fixed inset-0 z-50"
+          @click.self="closePhoto"
+        >
+          <div class="absolute inset-0 bg-black/97 backdrop-blur-md" />
+
+          <div class="relative flex min-h-screen items-center justify-center px-4 py-6 sm:px-6">
+            <div class="flex w-full max-w-[96vw] flex-col items-center">
+              <button
+                type="button"
+                class="mb-4 self-end px-3 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200"
+                @click="closePhoto"
+              >
+                Fermer
+              </button>
+
+              <div class="mb-4 flex w-full max-w-[92vw] flex-col items-center text-center">
+                <p class="font-display text-2xl text-white sm:text-3xl">
+                  {{ serie.title }}
+                </p>
+                <p v-if="serie.date" class="mt-2 text-[11px] uppercase tracking-[0.3em] text-amber-300/75">
+                  {{ formatPhotoDate(serie.date) }}
+                </p>
+              </div>
+
+              <div class="flex w-full justify-center">
+                <RunImage
+                  :src="selectedTile.src"
+                  :alt="selectedTile.alt || serie.title"
+                  variant="detail"
+                  sizes="92vw"
+                  loading="eager"
+                  class="max-h-[calc(100vh-14rem)] w-auto max-w-[92vw] object-contain"
+                />
+              </div>
+
+              <div
+                v-if="galleryTiles.length > 1"
+                class="mt-4 flex w-full max-w-[92vw] items-center justify-between gap-6"
+              >
+                <button
+                  type="button"
+                  class="px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200"
+                  @click.stop="showPreviousPhoto"
+                >
+                  Précédente
+                </button>
+
+                <button
+                  type="button"
+                  class="px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200"
+                  @click.stop="showNextPhoto"
+                >
+                  Suivante
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </Teleport>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import moment from 'moment'
+import { formatPhotoDate } from "../../../utils/photo-dates"
 import {
-    getProductHeroImage,
-    getRunImageUrl,
-    getSeriesCoverImage,
-    getSeriesHeroImage,
-} from '../../../utils/runs'
-import { toAbsoluteUrl } from '../../../utils/run-media'
-moment.locale('fr')
+  getRunImageUrl,
+  getSeriesCoverImage,
+  getSeriesGalleryTiles,
+  getSeriesHeroImage,
+} from "../../../utils/runs"
+import { toAbsoluteUrl } from "../../../utils/run-media"
 
 const { toSiteUrl } = useAssetUrls()
-const router = useRoute()
+const route = useRoute()
+const router = useRouter()
 
 definePageMeta({
-    layout: 'default'
+  layout: "default",
 })
-const serie = await queryContent('runs').where({ slug: router.params.slug }).findOne()
+
+const serie = await queryContent("runs").where({ slug: route.params.slug }).findOne()
 
 if (!serie) {
-    throw createError({
-        statusCode: 404,
-        statusMessage: 'Série introuvable'
-    })
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Série introuvable",
+  })
 }
 
 const coverImage = getSeriesCoverImage(serie)
 const heroImage = getSeriesHeroImage(serie)
-const socialImage = getRunImageUrl(heroImage || coverImage, 'social')
-const socialImageUrl = toAbsoluteUrl(socialImage, 'https://macojaune.com')
-const title = 'Série photo ' + serie.title + ' - Macojaune.com'
+const galleryTiles = getSeriesGalleryTiles(serie)
+const socialImage = getRunImageUrl(heroImage || coverImage, "social")
+const socialImageUrl = toAbsoluteUrl(socialImage, "https://macojaune.com")
+const title = "Série photo " + serie.title + " - Macojaune.com"
+
+const getRoutePhotoSrc = () => {
+  const value = route.query.photo
+
+  if (typeof value === "string") {
+    return value
+  }
+
+  if (Array.isArray(value)) {
+    return value[0] || ""
+  }
+
+  return ""
+}
+
+const selectedPhotoSrc = ref(getRoutePhotoSrc())
+
+const selectedIndex = computed(() =>
+  galleryTiles.findIndex((tile) => tile.src === selectedPhotoSrc.value),
+)
+
+const selectedTile = computed(() =>
+  selectedIndex.value >= 0 ? galleryTiles[selectedIndex.value] : null,
+)
+
+const updatePhotoQuery = async (src?: string) => {
+  const nextQuery = { ...route.query }
+
+  if (src) {
+    nextQuery.photo = src
+  } else {
+    delete nextQuery.photo
+  }
+
+  await router.push({
+    path: route.path,
+    query: nextQuery,
+  })
+}
+
+watch(
+  () => route.query.photo,
+  () => {
+    selectedPhotoSrc.value = getRoutePhotoSrc()
+  },
+  { immediate: true },
+)
+
+const openPhoto = (src: string) => {
+  selectedPhotoSrc.value = src
+  void updatePhotoQuery(src)
+}
+
+const closePhoto = () => {
+  selectedPhotoSrc.value = ""
+  void updatePhotoQuery()
+}
+
+const showPreviousPhoto = () => {
+  if (!galleryTiles.length || selectedIndex.value < 0) {
+    return
+  }
+
+  const nextIndex = (selectedIndex.value - 1 + galleryTiles.length) % galleryTiles.length
+  const nextSrc = galleryTiles[nextIndex]?.src || ""
+  selectedPhotoSrc.value = nextSrc
+  void updatePhotoQuery(nextSrc)
+}
+
+const showNextPhoto = () => {
+  if (!galleryTiles.length || selectedIndex.value < 0) {
+    return
+  }
+
+  const nextIndex = (selectedIndex.value + 1) % galleryTiles.length
+  const nextSrc = galleryTiles[nextIndex]?.src || ""
+  selectedPhotoSrc.value = nextSrc
+  void updatePhotoQuery(nextSrc)
+}
+
+const onKeydown = (event: KeyboardEvent) => {
+  if (!selectedTile.value) {
+    return
+  }
+
+  if (event.key === "Escape") {
+    void closePhoto()
+  }
+
+  if (event.key === "ArrowLeft") {
+    event.preventDefault()
+    showPreviousPhoto()
+  }
+
+  if (event.key === "ArrowRight") {
+    event.preventDefault()
+    showNextPhoto()
+  }
+}
+
+if (import.meta.client) {
+  watch(selectedTile, (tile) => {
+    document.body.style.overflow = tile ? "hidden" : ""
+  }, { immediate: true })
+
+  onMounted(() => {
+    window.addEventListener("keydown", onKeydown)
+  })
+
+  onBeforeUnmount(() => {
+    document.body.style.overflow = ""
+    window.removeEventListener("keydown", onKeydown)
+  })
+}
+
 useHead({
-    title,
-    meta: [
-        {
-            name: 'title',
-            content: title
-        },
-        {
-            name: 'description',
-            content: serie.description
-        },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: toSiteUrl(router.path) },
-        { property: 'og:title', content: `Découvre la série ${serie.title} sur le site de @macojaune` },
-        {
-            property: 'og:description',
-            content: serie.description
-        },
-        { property: 'og:image', content: socialImageUrl },
-        {
-            property: 'twitter:card', content: 'summary_large_image'
-        },
-        { property: 'twitter:url', content: toSiteUrl(router.path) },
-        { property: 'twitter:title', content: `Découvre la série ${serie.title} sur le site de @macojaune` },
-        {
-            property: 'twitter:description',
-            content: serie.description
-        },
-        { property: 'twitter:image', content: socialImageUrl }
-    ],
-    script: [
-        {
-            type: 'application/ld+json',
-            innerHTML: JSON.stringify({
-                '@context': 'http://schema.org/',
-                '@type': 'BreadcrumbList',
-
-                itemListElement: [
-                    {
-                        '@type': 'ListItem',
-                        position: 1,
-                        item: {
-                            '@id': 'https://macojaune.com',
-                            name: 'Homepage'
-                        }
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 2,
-                        item: {
-                            '@id': 'https://macojaune.com' + router.fullPath,
-                            name: serie.title
-                        }
-                    }
-                ]
-            })
-        }
-    ]
+  title,
+  meta: [
+    {
+      name: "title",
+      content: title,
+    },
+    {
+      name: "description",
+      content: serie.description,
+    },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: toSiteUrl(route.path) },
+    { property: "og:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
+    {
+      property: "og:description",
+      content: serie.description,
+    },
+    { property: "og:image", content: socialImageUrl },
+    {
+      property: "twitter:card", content: "summary_large_image",
+    },
+    { property: "twitter:url", content: toSiteUrl(route.path) },
+    { property: "twitter:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
+    {
+      property: "twitter:description",
+      content: serie.description,
+    },
+    { property: "twitter:image", content: socialImageUrl },
+  ],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "http://schema.org/",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            item: {
+              "@id": "https://macojaune.com",
+              name: "Homepage",
+            },
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            item: {
+              "@id": "https://macojaune.com" + route.path,
+              name: serie.title,
+            },
+          },
+        ],
+      }),
+    },
+  ],
 })
-
-const formatDate = (date: string) => moment(date).format('ll')
-
 </script>

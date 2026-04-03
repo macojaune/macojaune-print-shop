@@ -8,6 +8,15 @@ type GalleryImage = {
   orientation?: string
 }
 
+export type SeriesGalleryTile = {
+  src: string
+  alt: string
+  caption?: string
+  orientation?: string
+  productSlug?: string
+  productTitle?: string
+}
+
 type RunImageFormat = "avif" | "webp"
 export type RunImageVariantName = "thumb" | "card" | "detail" | "social"
 
@@ -16,15 +25,17 @@ type ManifestVariant = {
   webp?: { src: string; width: number; height: number }[]
 }
 
-type ProductLike = {
+export type ProductLike = {
   title?: string
+  slug?: string
   heroImage?: string
   images?: string[]
   gallery?: GalleryImage[]
 }
 
-type RunLike = {
+export type RunLike = {
   title?: string
+  slug?: string
   coverImage?: string
   heroImage?: string
   products?: ProductLike[]
@@ -57,6 +68,64 @@ export function getProductImages(product?: ProductLike) {
 
 export function getProductHeroImage(product?: ProductLike) {
   return product?.heroImage || getProductImages(product)[0] || ""
+}
+
+function dedupeSeriesGalleryTiles(tiles: SeriesGalleryTile[]) {
+  const seen = new Set<string>()
+
+  return tiles.filter((tile) => {
+    if (!tile.src || seen.has(tile.src)) {
+      return false
+    }
+
+    seen.add(tile.src)
+    return true
+  })
+}
+
+export function getSeriesGalleryTiles(run?: RunLike) {
+  if (!run) {
+    return []
+  }
+
+  const productTiles = (run.products || []).flatMap((product) => {
+    const galleryTiles = (product.gallery || [])
+      .map((image) => ({
+        src: image?.src || "",
+        alt: image?.alt || product.title || run.title || "",
+        caption: image?.caption || "",
+        orientation: image?.orientation,
+        productSlug: product.slug,
+        productTitle: product.title,
+      }))
+      .filter((tile): tile is SeriesGalleryTile => Boolean(tile.src))
+
+    if (galleryTiles.length > 0) {
+      return galleryTiles
+    }
+
+    return getProductImages(product).map((src) => ({
+      src,
+      alt: product.title || run.title || "",
+      productSlug: product.slug,
+      productTitle: product.title,
+    }))
+  })
+
+  if (productTiles.length > 0) {
+    return dedupeSeriesGalleryTiles(productTiles)
+  }
+
+  const runGalleryTiles = (run.gallery || [])
+    .map((image) => ({
+      src: image?.src || "",
+      alt: image?.alt || run.title || "",
+      caption: image?.caption || "",
+      orientation: image?.orientation,
+    }))
+    .filter((tile): tile is SeriesGalleryTile => Boolean(tile.src))
+
+  return dedupeSeriesGalleryTiles(runGalleryTiles)
 }
 
 export function getSeriesCoverImage(run?: RunLike) {

@@ -1,159 +1,35 @@
-<template>
-    <div class="serie-page px-4">
-        <NuxtLink to="./">
-            <p class="mt-6 mb-3 text-2xl uppercase text-amber-400 font-display">
-                &lt; {{ serie.title }}
-            </p>
-        </NuxtLink>
-
-        <h1 class="mt-6 mb-3 text-5xl uppercase text-amber-500 font-display" itemprop="name">
-            {{ product.title }}
-            <br>
-            <small class="font-sans text-sm text-white normal-case">
-                <span v-if="product.stock > 0" class="text-caption text-decoration-line-through" itemprop="availability"
-                    href="http://schema.org/InStock">
-                    Édition limitée à {{ product.stock }} exemplaires
-                </span>
-                <span v-else class="font-bold text-red-500" itemprop="availability" href="http://schema.org/OutOfStock">
-                    Épuisé
-                </span>
-            </small>
-        </h1>
-
-        <div class="text-white text-lg text-base md:text-lg" v-html="product.description" />
-
-        <div v-if="product.stock > 0 && product.price" class="flex flex-col justify-end pt-4 gap-4 items-center">
-            <p v-if="product.price" class="text-2xl text-center text-amber-400 font-semibold">
-                {{ product.price }}€
-                <Meta itemprop="price" :content="product.price" />
-                <Meta itemprop="priceCurrency" content="EUR" />
-            </p>
-
-            <BuyButton :product="product" />
-        </div>
-
-        <div class="picture-list my-6 grid grid-flow-row-dense gap-4 justify-around items-end"
-            :class="`grid-cols-1 ${productImages.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`">
-            <div v-for="(imageURL, index) in productImages" :key="index" class="picture hover:cursor-pointer">
-                <RunImage
-                    class="border-radius"
-                    :src="imageURL"
-                    sizes="(max-width: 767px) 100vw, 800px"
-                    variant="detail"
-                    itemprop="image"
-                    :alt="product.title"
-                />
-            </div>
-        </div>
-    </div>
-</template>
-
 <script lang="ts" setup>
-import { getProductHeroImage, getProductImages, getRunImageUrl } from '../../../utils/runs'
-import { toAbsoluteUrl } from '../../../utils/run-media'
+import { getProductHeroImage, getProductImages } from "../../../utils/runs"
 
-const { toSiteUrl } = useAssetUrls()
+const route = useRoute()
 
-const router = useRoute()
-definePageMeta({
-    layout: 'default'
-})
-const serie = await queryContent('runs').where({ slug: router.params.slug }).findOne()
+const serie = await queryContent("runs").where({ slug: route.params.slug }).findOne()
 
 if (!serie) {
-    throw createError({
-        statusCode: 404,
-        statusMessage: 'Série introuvable'
-    })
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Série introuvable",
+  })
 }
 
 const product = serie.products.find(
-    (p: { slug: string | string[]; }) => p.slug === router.params.productSlug
+  (entry: { slug: string | string[] }) => entry.slug === route.params.productSlug,
 )
 
 if (!product) {
-    throw createError({
-        statusCode: 404,
-        statusMessage: 'Tirage introuvable'
-    })
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Photo introuvable",
+  })
 }
 
-const productImages = getProductImages(product)
-const heroImage = getProductHeroImage(product)
-const socialImage = getRunImageUrl(heroImage, 'social')
-const socialImageUrl = toAbsoluteUrl(socialImage, 'https://macojaune.com')
+const firstImage = getProductHeroImage(product) || getProductImages(product)[0]
 
-const title = product.title + ' - Série ' + serie.title + ' - Macojaune.com'
-useHead({
-    title,
-    meta: [
-        {
-            name: 'title',
-            content: title
-        },
-        {
-            name: 'description',
-            content: serie.description
-        },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: toSiteUrl(router.path) },
-        { property: 'og:title', content: `Découvre la photo ${product.title} de la série ${serie.title} sur le site de @macojaune` },
-        {
-            property: 'og:description',
-            content: serie.description
-        },
-        { property: 'og:image', content: socialImageUrl },
-        {
-            property: 'twitter:card', content: 'summary_large_image'
-        },
-        { property: 'twitter:url', content: toSiteUrl(router.path) },
-        { property: 'twitter:title', content: `Découvre la série ${serie.title} sur le site de @macojaune` },
-        {
-            property: 'twitter:description',
-            content: serie.description
-        },
-        { property: 'twitter:image', content: socialImageUrl }
-    ],
-    script: [
-        {
-            type: 'application/ld+json',
-            innerHTML: JSON.stringify({
-                '@context': 'http://schema.org/',
-                '@type': 'BreadcrumbList',
-
-                itemListElement: [
-                    {
-                        '@type': 'ListItem',
-                        position: 1,
-                        item: {
-                            '@id': 'https://macojaune.com',
-                            name: 'Homepage'
-                        }
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 2,
-                        item: {
-                            '@id': 'https://macojaune.com/series/' + router.params.slug,
-                            name: router.params.slug
-                        }
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 3,
-                        item: {
-                            '@id': 'https://macojaune.com' + router.fullPath,
-                            name: router.params.productSlug
-                        }
-                    }
-                ]
-            })
-        }
-    ]
-})
+await navigateTo(
+  {
+    path: `/series/${serie.slug}`,
+    query: firstImage ? { photo: firstImage } : {},
+  },
+  { redirectCode: 301 },
+)
 </script>
-
-<style lang="stylus" scoped>
-p a
- color var(--tw-yellow-500)
-</style>
