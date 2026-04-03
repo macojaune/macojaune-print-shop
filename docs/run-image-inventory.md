@@ -1,11 +1,11 @@
 # Run Image Inventory
 
-Generated on 2026-03-31T02:05:56.001Z by `node scripts/generate-run-image-derivatives.mjs`.
+Generated on 2026-04-03T20:50:26.711Z by `node scripts/generate-run-image-derivatives.mjs`.
 
 ## Summary
 
-- Total referenced run images: 30
-- Remote R2-backed references: 30
+- Total referenced run images: 95
+- Remote R2-backed references: 95
 - Legacy local references: 0
 - Originals migrated to `assets/photo-originals`: 0
 - Oversized legacy originals (> 1.5 MB): 0
