@@ -10,6 +10,7 @@
       :height="dimensions.height"
       :loading="loading"
       :decoding="decoding"
+      :fetchpriority="fetchpriority"
     >
   </picture>
 </template>
@@ -32,6 +33,7 @@ const props = withDefaults(
     sizes?: string
     loading?: "lazy" | "eager"
     decoding?: "async" | "auto" | "sync"
+    fetchpriority?: "high" | "low" | "auto"
   }>(),
   {
     src: "",
@@ -39,6 +41,7 @@ const props = withDefaults(
     sizes: "100vw",
     loading: "lazy",
     decoding: "async",
+    fetchpriority: "auto",
   },
 )
 

@@ -3,7 +3,8 @@
         <div class="mx-auto max-w-[1600px]">
             <header class="mb-10 pt-4 lg:mb-14">
                 <div class="mt-4 flex flex-col gap-6 lg:items-start lg:justify-between">
-                    <NuxtLink to="/"
+                    <NuxtLink
+                        to="/"
                         class="inline-flex w-fit items-center px-0 py-2 text-xs uppercase tracking-[0.28em] text-stone-300 transition hover:text-amber-200">
                         Retour à l&apos;accueil
                     </NuxtLink>
@@ -18,11 +19,18 @@
 
             <ContentList v-slot="{ list }" :query="runQuery">
                 <div class="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-                    <NuxtLink v-for="tile in getGalleryBoardTiles(list)" :key="`${tile.seriesSlug}-${tile.src}`"
+                    <NuxtLink
+                        v-for="tile in getGalleryBoardTiles(list)"
+                        :key="`${tile.seriesSlug}-${tile.src}`"
                         :to="`/series/${tile.seriesSlug}`"
                         class="group relative mb-4 block break-inside-avoid overflow-hidden">
-                        <RunImage :src="tile.src" :alt="tile.alt" variant="card"
+                        <RunImage
+                            :src="tile.src"
+                            :alt="tile.alt"
+                            variant="card"
                             sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, (max-width: 1535px) 33vw, 25vw"
+                            loading="lazy"
+                            fetchpriority="low"
                             class="w-full object-cover transition duration-500 ease-out group-hover:scale-[1.015]" />
 
                         <div
@@ -32,7 +40,8 @@
                                     <p class="font-display text-2xl uppercase leading-none text-white">
                                         {{ tile.seriesTitle }}
                                     </p>
-                                    <p v-if="tile.seriesDate"
+                                    <p
+                                        v-if="tile.seriesDate"
                                         class="mt-2 text-[11px] uppercase tracking-[0.3em] text-amber-300/80">
                                         {{ formatPhotoDate(tile.seriesDate) }}
                                     </p>

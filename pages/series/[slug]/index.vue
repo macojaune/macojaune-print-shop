@@ -37,6 +37,8 @@
             sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw"
             variant="detail"
             itemprop="image"
+            loading="lazy"
+            fetchpriority="low"
             class="w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
           />
         </button>
@@ -85,6 +87,7 @@
                   variant="detail"
                   sizes="92vw"
                   loading="eager"
+                  fetchpriority="high"
                   class="max-h-[calc(100vh-14rem)] w-auto max-w-[92vw] object-contain"
                 />
               </div>
@@ -130,6 +133,7 @@ import { toAbsoluteUrl } from "../../../utils/run-media"
 const { toSiteUrl } = useAssetUrls()
 const route = useRoute()
 const router = useRouter()
+const seriesPhotoNavigation = useState("series-photo-navigation", () => "")
 
 definePageMeta({
   layout: "default",
@@ -151,24 +155,71 @@ const socialImage = getRunImageUrl(heroImage || coverImage, "social")
 const socialImageUrl = toAbsoluteUrl(socialImage, "https://macojaune.com")
 const title = "Série photo " + serie.title + " - Macojaune.com"
 
+const normalizePhotoSrc = (value?: string) => {
+  if (!value) {
+    return ""
+  }
+
+  let normalized = value.trim()
+
+  for (let index = 0; index < 2; index += 1) {
+    try {
+      const decoded = decodeURIComponent(normalized)
+
+      if (decoded === normalized) {
+        break
+      }
+
+      normalized = decoded
+    } catch {
+      break
+    }
+  }
+
+  return normalized
+}
+
 const getRoutePhotoSrc = () => {
   const value = route.query.photo
 
   if (typeof value === "string") {
-    return value
+    return normalizePhotoSrc(value)
   }
 
   if (Array.isArray(value)) {
-    return value[0] || ""
+    return normalizePhotoSrc(value[0] || "")
   }
 
   return ""
 }
 
-const selectedPhotoSrc = ref(getRoutePhotoSrc())
+const pendingPhotoSrc = ref("")
+const resolvedRoutePhotoSrc = ref("")
+
+const syncResolvedRoutePhotoSrc = () => {
+  const fromRoute = getRoutePhotoSrc()
+
+  if (fromRoute) {
+    resolvedRoutePhotoSrc.value = fromRoute
+    return
+  }
+
+  if (import.meta.client) {
+    resolvedRoutePhotoSrc.value = normalizePhotoSrc(
+      new URL(window.location.href).searchParams.get("photo") || "",
+    )
+    return
+  }
+
+  resolvedRoutePhotoSrc.value = ""
+}
+
+const selectedPhotoSrc = computed(
+  () => pendingPhotoSrc.value || resolvedRoutePhotoSrc.value || normalizePhotoSrc(seriesPhotoNavigation.value),
+)
 
 const selectedIndex = computed(() =>
-  galleryTiles.findIndex((tile) => tile.src === selectedPhotoSrc.value),
+  galleryTiles.findIndex((tile) => normalizePhotoSrc(tile.src) === selectedPhotoSrc.value),
 )
 
 const selectedTile = computed(() =>
@@ -190,21 +241,36 @@ const updatePhotoQuery = async (src?: string) => {
   })
 }
 
+watch(resolvedRoutePhotoSrc, (value) => {
+  if (!value || value === pendingPhotoSrc.value) {
+    pendingPhotoSrc.value = ""
+  }
+
+  if (value) {
+    seriesPhotoNavigation.value = ""
+  }
+}, { immediate: true })
+
 watch(
-  () => route.query.photo,
+  () => route.fullPath,
   () => {
-    selectedPhotoSrc.value = getRoutePhotoSrc()
+    syncResolvedRoutePhotoSrc()
   },
   { immediate: true },
 )
 
+onMounted(() => {
+  syncResolvedRoutePhotoSrc()
+})
+
 const openPhoto = (src: string) => {
-  selectedPhotoSrc.value = src
+  pendingPhotoSrc.value = normalizePhotoSrc(src)
   void updatePhotoQuery(src)
 }
 
 const closePhoto = () => {
-  selectedPhotoSrc.value = ""
+  pendingPhotoSrc.value = ""
+  seriesPhotoNavigation.value = ""
   void updatePhotoQuery()
 }
 
@@ -215,7 +281,7 @@ const showPreviousPhoto = () => {
 
   const nextIndex = (selectedIndex.value - 1 + galleryTiles.length) % galleryTiles.length
   const nextSrc = galleryTiles[nextIndex]?.src || ""
-  selectedPhotoSrc.value = nextSrc
+  pendingPhotoSrc.value = normalizePhotoSrc(nextSrc)
   void updatePhotoQuery(nextSrc)
 }
 
@@ -226,7 +292,7 @@ const showNextPhoto = () => {
 
   const nextIndex = (selectedIndex.value + 1) % galleryTiles.length
   const nextSrc = galleryTiles[nextIndex]?.src || ""
-  selectedPhotoSrc.value = nextSrc
+  pendingPhotoSrc.value = normalizePhotoSrc(nextSrc)
   void updatePhotoQuery(nextSrc)
 }
 
