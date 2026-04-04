@@ -1,5 +1,5 @@
 ---
-title: KingMaax x Grosse Montagne
+title: "KingMaax: Grosse Montagne"
 slug: kingmaax-grosse-montagne
 date: 2018-10-06T12:00:00.000Z
 status: published

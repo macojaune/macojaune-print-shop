@@ -1,5 +1,5 @@
 ---
-title: Octavia x Vol au vent
+title: "Octavia: Vol au vent"
 slug: octavia-vol-au-vent
 description: Ah ce tissu rouge, il en aura vu des formes, des âmes, des femmes…
 date: 2020-12-22T04:00:00.000Z
