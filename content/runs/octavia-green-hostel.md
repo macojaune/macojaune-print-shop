@@ -1,7 +1,7 @@
 ---
-title: Green Hostel
-slug: green-hostel
-date: 2026-04-03T20:32:28.996Z
+title: Octavia x Green Hostel
+slug: octavia-green-hostel
+date: 2021-08-11T20:32:28.996Z
 status: published
 coverImage: /media/runs/green-hostel/insta_dsc07578-47d403c8d1
 heroImage: /media/runs/green-hostel/insta_dsc07578-47d403c8d1
