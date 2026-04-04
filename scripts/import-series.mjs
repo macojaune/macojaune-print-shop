@@ -99,6 +99,7 @@ Options:
 Supported input shapes:
   1. series-folder/series.yaml + photos/*
   2. series-folder/*.{jpg,jpeg,png,webp,avif}
+  3. single-series mode only: series-folder/**/*.{jpg,jpeg,png,webp,avif}
 
 Single-series write mode can prompt for missing metadata when running in an interactive terminal.
 `)
@@ -356,7 +357,30 @@ async function listImageFiles(directory) {
   )
 }
 
-async function detectSeriesInputShape(seriesDir) {
+async function listImageFilesRecursive(directory, baseDirectory = directory) {
+  const entries = await fs.readdir(directory, { withFileTypes: true })
+  const files = []
+
+  for (const entry of entries) {
+    const entryPath = path.join(directory, entry.name)
+
+    if (entry.isDirectory()) {
+      files.push(...await listImageFilesRecursive(entryPath, baseDirectory))
+      continue
+    }
+
+    if (!entry.isFile() || !isSupportedImageFile(entry.name)) {
+      continue
+    }
+
+    files.push(path.relative(baseDirectory, entryPath))
+  }
+
+  return sortNaturally(files)
+}
+
+async function detectSeriesInputShape(seriesDir, options = {}) {
+  const { recursiveFlat = false } = options
   const manifestPath = path.join(seriesDir, "series.yaml")
   const photosDir = path.join(seriesDir, "photos")
 
@@ -366,6 +390,18 @@ async function detectSeriesInputShape(seriesDir) {
       manifestPath,
       photosDir,
       imageFiles: [],
+    }
+  }
+
+  if (recursiveFlat) {
+    const recursiveImages = await listImageFilesRecursive(seriesDir)
+    if (recursiveImages.length > 0) {
+      return {
+        kind: "recursive-flat",
+        manifestPath,
+        photosDir: seriesDir,
+        imageFiles: recursiveImages,
+      }
     }
   }
 
@@ -591,7 +627,12 @@ async function readPhotoEntry(seriesSlug, photosDir, photo, index, sourceLabel) 
   }
 
   const inferredTitle = humanizeFilename(file) || path.parse(file).name
-  const id = slugify(String(normalizedPhoto.id || path.parse(file).name))
+  const inferredIdSource = normalizedPhoto.id
+    ? String(normalizedPhoto.id)
+    : file.includes("/")
+      ? path.join(path.dirname(file), path.parse(file).name)
+      : path.parse(file).name
+  const id = slugify(inferredIdSource)
   if (!id) {
     throw new Error(`Photo entry "${file}" is missing a usable id`)
   }
@@ -783,18 +824,18 @@ async function parseFlatSeries(seriesDir, detected, args, allowPrompt) {
 }
 
 async function parseSeriesDirectory(seriesDir, args) {
-  const detected = await detectSeriesInputShape(seriesDir)
+  const detected = await detectSeriesInputShape(seriesDir, { recursiveFlat: !args.all })
   const shouldPrompt = !args.all && args.write && process.stdin.isTTY && process.stdout.isTTY
 
   if (detected.kind === "manifest") {
     return parseManifestSeries(seriesDir, detected, args)
   }
 
-  if (detected.kind === "flat" || detected.kind === "flat-photos") {
+  if (detected.kind === "flat" || detected.kind === "flat-photos" || detected.kind === "recursive-flat") {
     return parseFlatSeries(seriesDir, detected, args, shouldPrompt)
   }
 
-  throw new Error(`Unsupported import layout in ${seriesDir}. Expected series.yaml + photos/ or a flat image folder.`)
+  throw new Error(`Unsupported import layout in ${seriesDir}. Expected series.yaml + photos/, a flat image folder, or nested image folders in single-series mode.`)
 }
 
 async function uploadPhoto(photo) {

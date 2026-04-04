@@ -122,13 +122,11 @@ function shuffleSeries<T>(series: T[], seedLabel: string) {
 
 const getSeriesPreviewImage = (serie: HomeRun) => {
   const galleryTiles = getSeriesGalleryTiles(serie)
-  const coverImage = getSeriesCoverImage(serie)
-  const coverTile = galleryTiles.find((tile) => tile.src === coverImage)
+  const randomizedTile = shuffleSeries(galleryTiles, `series-preview-${serie.slug}`)[0]
 
   return (
-    coverTile ||
-    shuffleSeries(galleryTiles, `series-preview-${serie.slug}`)[0] || {
-      src: coverImage,
+    randomizedTile || {
+      src: getSeriesCoverImage(serie),
       alt: serie.title || "",
     }
   )
