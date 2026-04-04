@@ -5,7 +5,7 @@
     </h2>
     <ContentList v-slot="{ list }" :query="runQuery">
       <div class="mb-2 flex flex-col gap-8">
-        <div v-for="serie in list" :key="serie.slug">
+        <div v-for="serie in getHomepageSeries(list)" :key="serie.slug">
           <NuxtLink :to="`/series/${serie.slug}`" class="group">
             <h4 class="font-display text-4xl text-white group-hover:text-amber-600">
               <span class="font-sans text-xl text-amber-500">Série:</span> {{ serie.title }}
@@ -53,8 +53,6 @@ import type { RunLike, SeriesGalleryTile } from "../utils/runs"
 
 const runQuery: QueryBuilderParams = {
   path: "/runs",
-  limit: 3,
-  sort: { date: -1 },
 }
 
 type HomeRun = RunLike & {
@@ -85,6 +83,24 @@ const shuffleTiles = (tiles: SeriesGalleryTile[], seedBase: string) => {
 
   return shuffled
 }
+
+const shuffleSeries = (series: HomeRun[]) => {
+  const shuffled = [...series]
+  let seed = Array.from(`series-${previewSeed.value}`).reduce(
+    (total, character, index) => total + character.charCodeAt(0) * (index + 1),
+    0,
+  )
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    seed += 1
+    const swapIndex = Math.floor(seededRandom(seed) * (index + 1))
+    ;[shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]]
+  }
+
+  return shuffled
+}
+
+const getHomepageSeries = (series: HomeRun[]) => shuffleSeries(series).slice(0, 4)
 
 const getRandomSeriesImages = (serie: HomeRun) =>
   shuffleTiles(getSeriesGalleryTiles(serie), serie.slug).slice(0, 6)
