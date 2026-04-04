@@ -1,12 +1,19 @@
 import { createHash } from "node:crypto"
 import { existsSync, promises as fs, readFileSync } from "node:fs"
 import path from "node:path"
+import { createRequire } from "node:module"
 import { fileURLToPath } from "node:url"
 
 import sharp from "sharp"
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, "..")
+const require = createRequire(import.meta.url)
+const jiti = require("jiti")(__filename)
+const { createGridSliceWatermarkComposite } = jiti(
+  path.join(repoRoot, "utils", "grid-slice-watermark.ts"),
+)
 const runsDir = path.join(repoRoot, "content", "runs")
 const publicDir = path.join(repoRoot, "public")
 const publicPicturesDir = path.join(publicDir, "pictures")
@@ -17,7 +24,6 @@ const publicManifestPath = path.join(derivedDir, "manifest.json")
 const inventoryReportPath = path.join(repoRoot, "docs", "run-image-inventory.md")
 
 const shouldMigrate = process.argv.includes("--migrate")
-const watermarkLabel = "Macojaune"
 const runMediaPrefix = "/media/runs/"
 
 loadEnvFile(path.join(repoRoot, ".env"))
@@ -138,73 +144,6 @@ function getTargetWidths(sourceWidth, widths) {
   }
 
   return [...new Set(candidates)]
-}
-
-function escapeXml(value) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;")
-}
-
-function createVerticalLabelTspans(fontSize) {
-  const lineHeight = Math.max(20, Math.round(fontSize * 0.86))
-
-  return {
-    lineHeight,
-    labelMarkup: watermarkLabel
-      .split("")
-      .map((character, index) => {
-        const glyph = character === " " ? "&#160;" : escapeXml(character)
-        return `<tspan x="0" dy="${index === 0 ? 0 : lineHeight}">${glyph}</tspan>`
-      })
-      .join(""),
-  }
-}
-
-function createWatermarkOverlay(width, height) {
-  const fontSize = Math.max(20, Math.min(Math.round(width * 0.034), Math.round(height * 0.1)))
-  const accentHeight = Math.max(8, Math.round(fontSize * 0.32))
-  const accentWidth = Math.max(46, Math.round(fontSize * 2.2))
-  const baseX = Math.round(width - fontSize * 2.15)
-  const baseY = Math.max(Math.round(height * 0.12), fontSize)
-  const { lineHeight, labelMarkup } = createVerticalLabelTspans(fontSize)
-
-  const glitchBars = [
-    { x: baseX - fontSize * 0.65, y: baseY + lineHeight * 1.4, fill: "rgba(245, 158, 11, 0.24)", width: accentWidth },
-    { x: baseX - fontSize * 1.1, y: baseY + lineHeight * 3.85, fill: "rgba(12, 10, 9, 0.3)", width: accentWidth * 1.15 },
-    { x: baseX - fontSize * 0.45, y: baseY + lineHeight * 6.1, fill: "rgba(255, 243, 214, 0.18)", width: accentWidth * 0.92 },
-  ]
-
-  return Buffer.from(
-    `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-      <g>
-        ${glitchBars
-          .map(
-            (bar) =>
-              `<rect x="${Math.round(bar.x)}" y="${Math.round(bar.y)}" width="${Math.round(bar.width)}" height="${accentHeight}" fill="${bar.fill}" rx="${Math.round(accentHeight / 3)}" />`,
-          )
-          .join("")}
-        <g transform="translate(${baseX}, ${baseY})">
-          <text fill="rgba(255, 246, 222, 0.28)" font-family="Georgia, 'Times New Roman', serif" font-size="${fontSize}" font-weight="700" letter-spacing="${Math.max(1, Math.round(fontSize * 0.05))}">
-            ${labelMarkup}
-          </text>
-        </g>
-        <g transform="translate(${baseX + Math.max(2, Math.round(fontSize * 0.08))}, ${baseY - Math.max(2, Math.round(fontSize * 0.06))})">
-          <text fill="rgba(245, 158, 11, 0.18)" font-family="Georgia, 'Times New Roman', serif" font-size="${fontSize}" font-weight="700" letter-spacing="${Math.max(1, Math.round(fontSize * 0.05))}">
-            ${labelMarkup}
-          </text>
-        </g>
-        <g transform="translate(${baseX - Math.max(2, Math.round(fontSize * 0.06))}, ${baseY + Math.max(3, Math.round(fontSize * 0.08))})">
-          <text fill="rgba(255, 255, 255, 0.1)" font-family="Georgia, 'Times New Roman', serif" font-size="${fontSize}" font-weight="700" letter-spacing="${Math.max(1, Math.round(fontSize * 0.05))}">
-            ${labelMarkup}
-          </text>
-        </g>
-      </g>
-    </svg>`,
-  )
 }
 
 async function resolveSourcePath(src) {
@@ -360,34 +299,37 @@ async function processLegacyRef(src, manifest, inventory, hashGroups) {
       webp: [],
     }
 
-    for (const format of ["avif", "webp"]) {
-      for (const width of widths) {
+    for (const width of widths) {
+      const resizedImage = await sharp(sourcePath)
+        .rotate()
+        .resize({
+          width,
+          withoutEnlargement: true,
+          fit: "inside",
+        })
+        .toBuffer({ resolveWithObject: true })
+
+      let transformedSource = resizedImage.data
+
+      if (preset.watermark) {
+        transformedSource = await sharp(resizedImage.data)
+          .composite([
+            await createGridSliceWatermarkComposite({
+              imageWidth: resizedImage.info.width,
+              imageHeight: resizedImage.info.height,
+            }),
+          ])
+          .png()
+          .toBuffer()
+      }
+
+      for (const format of ["avif", "webp"]) {
         const outputRelativePath = path.join(key, `${variantName}-${width}.${format}`)
         const outputPath = path.join(derivedDir, outputRelativePath)
 
         await fs.mkdir(path.dirname(outputPath), { recursive: true })
 
-        const resizedImage = await sharp(sourcePath)
-          .rotate()
-          .resize({
-            width,
-            withoutEnlargement: true,
-            fit: "inside",
-          })
-          .toBuffer({ resolveWithObject: true })
-
-        let pipeline = sharp(resizedImage.data)
-
-        if (preset.watermark) {
-          pipeline = pipeline.composite([
-            {
-              input: createWatermarkOverlay(resizedImage.info.width, resizedImage.info.height),
-              gravity: "center",
-            },
-          ])
-        }
-
-        await pipeline[format]({ quality: preset.quality[format] }).toFile(outputPath)
+        await sharp(transformedSource)[format]({ quality: preset.quality[format] }).toFile(outputPath)
 
         variantEntry[format].push({
           src: publicUrlFromSegments("derived", "runs", outputRelativePath),
