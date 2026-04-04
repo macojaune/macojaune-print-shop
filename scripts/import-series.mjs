@@ -207,6 +207,59 @@ function parseArgs(argv) {
   return args
 }
 
+function formatDuration(milliseconds) {
+  if (milliseconds < 1000) {
+    return `${milliseconds}ms`
+  }
+
+  if (milliseconds < 60_000) {
+    return `${(milliseconds / 1000).toFixed(1)}s`
+  }
+
+  const minutes = Math.floor(milliseconds / 60_000)
+  const seconds = ((milliseconds % 60_000) / 1000).toFixed(1)
+  return `${minutes}m${seconds}s`
+}
+
+function createWriteProgressTracker(seriesList) {
+  const startedAt = Date.now()
+  const totalSeries = seriesList.length
+  const totalPhotos = seriesList.reduce((count, series) => count + series.photos.length, 0)
+  let uploadedPhotos = 0
+
+  const prefix = (seriesIndex, photoIndex, photoCount) =>
+    `[series ${seriesIndex + 1}/${totalSeries}${photoCount ? ` | photo ${photoIndex + 1}/${photoCount}` : ""}${totalPhotos ? ` | total ${uploadedPhotos}/${totalPhotos}` : ""}]`
+
+  return {
+    start() {
+      console.log(`Write mode: ${totalSeries} series, ${totalPhotos} photos to upload.`)
+    },
+    seriesStart(series, seriesIndex) {
+      console.log(`\n${prefix(seriesIndex)} ${series.slug} (${series.photos.length} photos)`)
+    },
+    photoStart(seriesIndex, photoIndex, photoCount, photo) {
+      console.log(`${prefix(seriesIndex, photoIndex, photoCount)} Uploading ${photo.filename}`)
+    },
+    photoDone(seriesIndex, photoIndex, photoCount, photo, outputSrc, uploadStartedAt) {
+      uploadedPhotos += 1
+      console.log(
+        `${prefix(seriesIndex, photoIndex, photoCount)} Uploaded ${photo.filename} -> ${outputSrc} in ${formatDuration(Date.now() - uploadStartedAt)}`,
+      )
+    },
+    runFileWritten(seriesIndex, targetPath, writeStartedAt) {
+      console.log(
+        `[series ${seriesIndex + 1}/${totalSeries}] Wrote ${path.relative(repoRoot, targetPath)} in ${formatDuration(Date.now() - writeStartedAt)}`,
+      )
+    },
+    syncStart() {
+      console.log(`\n[finalize] Running sync-runs-content-model --write`)
+    },
+    complete() {
+      console.log(`\nWrite completed in ${formatDuration(Date.now() - startedAt)}.`)
+    },
+  }
+}
+
 function slugify(value = "") {
   return value
     .toLowerCase()
@@ -946,14 +999,30 @@ async function main() {
   }
 
   const results = []
+  const writeProgress = args.write ? createWriteProgressTracker(parsedSeries) : null
 
-  for (const series of parsedSeries) {
+  writeProgress?.start()
+
+  for (const [seriesIndex, series] of parsedSeries.entries()) {
     const existing = existingRuns.get(series.slug)
     const uploadedSources = new Map()
 
+    writeProgress?.seriesStart(series, seriesIndex)
+
     if (args.write) {
-      for (const photo of series.photos) {
-        uploadedSources.set(photo.file, await uploadPhoto(photo))
+      for (const [photoIndex, photo] of series.photos.entries()) {
+        const uploadStartedAt = Date.now()
+        writeProgress?.photoStart(seriesIndex, photoIndex, series.photos.length, photo)
+        const uploadedSrc = await uploadPhoto(photo)
+        uploadedSources.set(photo.file, uploadedSrc)
+        writeProgress?.photoDone(
+          seriesIndex,
+          photoIndex,
+          series.photos.length,
+          photo,
+          uploadedSrc,
+          uploadStartedAt,
+        )
       }
     }
 
@@ -962,7 +1031,9 @@ async function main() {
     const targetPath = existing?.absolutePath || path.join(runsDir, `${series.slug}.md`)
 
     if (args.write) {
+      const writeStartedAt = Date.now()
       await writeRunFile(targetPath, mergedRun, existing?.content || "")
+      writeProgress?.runFileWritten(seriesIndex, targetPath, writeStartedAt)
     }
 
     existingRuns.set(series.slug, {
@@ -993,7 +1064,9 @@ async function main() {
   printPlan(results, args.write ? "Imported" : "Dry run for")
 
   if (args.write) {
+    writeProgress?.syncStart()
     await runSyncValidation()
+    writeProgress?.complete()
   }
 }
 
