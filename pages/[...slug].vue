@@ -19,12 +19,9 @@ const slugSegments = Array.isArray(route.params.slug)
 
 const contentPath = `/${(slugSegments[0] === 'mentions' ? slugSegments : ['mentions', ...slugSegments]).join('/')}`
 
-const { data: doc } = await useAsyncData(
-  `legacy-mentions-page:${contentPath}`,
-  () => findContentDocumentByPath(contentPath),
-)
+const doc = await findContentDocumentByPath(contentPath)
 
-if (!doc.value) {
+if (!doc) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Document introuvable',

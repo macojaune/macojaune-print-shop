@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 pb-16">
     <div class="mx-auto max-w-[1600px]">
-      <header class="mb-10 pb-8 pt-4 lg:mb-14 lg:pb-10">
+      <section class="mb-10 pb-8 pt-4 lg:mb-14 lg:pb-10">
         <NuxtLink
           to="/galerie"
           class="inline-flex items-center text-xs uppercase tracking-[0.32em] text-amber-300/60 transition hover:text-amber-200"
@@ -21,7 +21,7 @@
 
           <ContentRenderer :value="serie" class="max-w-2xl text-sm leading-6 text-stone-300 lg:text-base" />
         </div>
-      </header>
+      </section>
 
       <div class="columns-1 gap-4 sm:columns-2 xl:columns-3">
         <button
@@ -54,11 +54,7 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-        <div
-          v-if="selectedTile"
-          class="fixed inset-0 z-50"
-          @click.self="closePhoto"
-        >
+        <div v-if="selectedTile" class="fixed inset-0 z-50" @click.self="closePhoto">
           <div class="absolute inset-0 bg-black/97 backdrop-blur-md" />
 
           <div class="relative flex min-h-screen items-center justify-center px-4 py-6 sm:px-6">
@@ -136,16 +132,16 @@ const router = useRouter()
 const seriesPhotoNavigation = useState("series-photo-navigation", () => "")
 
 definePageMeta({
-  layout: "default",
+    layout: "default",
 })
 
 const serie = await queryContent("runs").where({ slug: route.params.slug }).findOne()
 
 if (!serie) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Série introuvable",
-  })
+    throw createError({
+        statusCode: 404,
+        statusMessage: "Série introuvable",
+    })
 }
 
 const coverImage = getSeriesCoverImage(serie)
@@ -156,237 +152,237 @@ const socialImageUrl = toAbsoluteUrl(socialImage, "https://macojaune.com")
 const title = "Série photo " + serie.title + " - Macojaune.com"
 
 const normalizePhotoSrc = (value?: string) => {
-  if (!value) {
-    return ""
-  }
-
-  let normalized = value.trim()
-
-  for (let index = 0; index < 2; index += 1) {
-    try {
-      const decoded = decodeURIComponent(normalized)
-
-      if (decoded === normalized) {
-        break
-      }
-
-      normalized = decoded
-    } catch {
-      break
+    if (!value) {
+        return ""
     }
-  }
 
-  return normalized
+    let normalized = value.trim()
+
+    for (let index = 0; index < 2; index += 1) {
+        try {
+            const decoded = decodeURIComponent(normalized)
+
+            if (decoded === normalized) {
+                break
+            }
+
+            normalized = decoded
+        } catch {
+            break
+        }
+    }
+
+    return normalized
 }
 
 const getRoutePhotoSrc = () => {
-  const value = route.query.photo
+    const value = route.query.photo
 
-  if (typeof value === "string") {
-    return normalizePhotoSrc(value)
-  }
+    if (typeof value === "string") {
+        return normalizePhotoSrc(value)
+    }
 
-  if (Array.isArray(value)) {
-    return normalizePhotoSrc(value[0] || "")
-  }
+    if (Array.isArray(value)) {
+        return normalizePhotoSrc(value[0] || "")
+    }
 
-  return ""
+    return ""
 }
 
 const pendingPhotoSrc = ref("")
 const resolvedRoutePhotoSrc = ref("")
 
 const syncResolvedRoutePhotoSrc = () => {
-  const fromRoute = getRoutePhotoSrc()
+    const fromRoute = getRoutePhotoSrc()
 
-  if (fromRoute) {
-    resolvedRoutePhotoSrc.value = fromRoute
-    return
-  }
+    if (fromRoute) {
+        resolvedRoutePhotoSrc.value = fromRoute
+        return
+    }
 
-  if (import.meta.client) {
-    resolvedRoutePhotoSrc.value = normalizePhotoSrc(
-      new URL(window.location.href).searchParams.get("photo") || "",
-    )
-    return
-  }
+    if (import.meta.client) {
+        resolvedRoutePhotoSrc.value = normalizePhotoSrc(
+            new URL(window.location.href).searchParams.get("photo") || "",
+        )
+        return
+    }
 
-  resolvedRoutePhotoSrc.value = ""
+    resolvedRoutePhotoSrc.value = ""
 }
 
 const selectedPhotoSrc = computed(
-  () => pendingPhotoSrc.value || resolvedRoutePhotoSrc.value || normalizePhotoSrc(seriesPhotoNavigation.value),
+    () => pendingPhotoSrc.value || resolvedRoutePhotoSrc.value || normalizePhotoSrc(seriesPhotoNavigation.value),
 )
 
 const selectedIndex = computed(() =>
-  galleryTiles.findIndex((tile) => normalizePhotoSrc(tile.src) === selectedPhotoSrc.value),
+    galleryTiles.findIndex((tile) => normalizePhotoSrc(tile.src) === selectedPhotoSrc.value),
 )
 
 const selectedTile = computed(() =>
-  selectedIndex.value >= 0 ? galleryTiles[selectedIndex.value] : null,
+    selectedIndex.value >= 0 ? galleryTiles[selectedIndex.value] : null,
 )
 
 const updatePhotoQuery = async (src?: string) => {
-  const nextQuery = { ...route.query }
+    const nextQuery = { ...route.query }
 
-  if (src) {
-    nextQuery.photo = src
-  } else {
-    delete nextQuery.photo
-  }
+    if (src) {
+        nextQuery.photo = src
+    } else {
+        delete nextQuery.photo
+    }
 
-  await router.push({
-    path: route.path,
-    query: nextQuery,
-  })
+    await router.push({
+        path: route.path,
+        query: nextQuery,
+    })
 }
 
 watch(resolvedRoutePhotoSrc, (value) => {
-  if (!value || value === pendingPhotoSrc.value) {
-    pendingPhotoSrc.value = ""
-  }
+    if (!value || value === pendingPhotoSrc.value) {
+        pendingPhotoSrc.value = ""
+    }
 
-  if (value) {
-    seriesPhotoNavigation.value = ""
-  }
+    if (value) {
+        seriesPhotoNavigation.value = ""
+    }
 }, { immediate: true })
 
 watch(
-  () => route.fullPath,
-  () => {
-    syncResolvedRoutePhotoSrc()
-  },
-  { immediate: true },
+    () => route.fullPath,
+    () => {
+        syncResolvedRoutePhotoSrc()
+    },
+    { immediate: true },
 )
 
 onMounted(() => {
-  syncResolvedRoutePhotoSrc()
+    syncResolvedRoutePhotoSrc()
 })
 
 const openPhoto = (src: string) => {
-  pendingPhotoSrc.value = normalizePhotoSrc(src)
-  void updatePhotoQuery(src)
+    pendingPhotoSrc.value = normalizePhotoSrc(src)
+    void updatePhotoQuery(src)
 }
 
 const closePhoto = () => {
-  pendingPhotoSrc.value = ""
-  seriesPhotoNavigation.value = ""
-  void updatePhotoQuery()
+    pendingPhotoSrc.value = ""
+    seriesPhotoNavigation.value = ""
+    void updatePhotoQuery()
 }
 
 const showPreviousPhoto = () => {
-  if (!galleryTiles.length || selectedIndex.value < 0) {
-    return
-  }
+    if (!galleryTiles.length || selectedIndex.value < 0) {
+        return
+    }
 
-  const nextIndex = (selectedIndex.value - 1 + galleryTiles.length) % galleryTiles.length
-  const nextSrc = galleryTiles[nextIndex]?.src || ""
-  pendingPhotoSrc.value = normalizePhotoSrc(nextSrc)
-  void updatePhotoQuery(nextSrc)
+    const nextIndex = (selectedIndex.value - 1 + galleryTiles.length) % galleryTiles.length
+    const nextSrc = galleryTiles[nextIndex]?.src || ""
+    pendingPhotoSrc.value = normalizePhotoSrc(nextSrc)
+    void updatePhotoQuery(nextSrc)
 }
 
 const showNextPhoto = () => {
-  if (!galleryTiles.length || selectedIndex.value < 0) {
-    return
-  }
+    if (!galleryTiles.length || selectedIndex.value < 0) {
+        return
+    }
 
-  const nextIndex = (selectedIndex.value + 1) % galleryTiles.length
-  const nextSrc = galleryTiles[nextIndex]?.src || ""
-  pendingPhotoSrc.value = normalizePhotoSrc(nextSrc)
-  void updatePhotoQuery(nextSrc)
+    const nextIndex = (selectedIndex.value + 1) % galleryTiles.length
+    const nextSrc = galleryTiles[nextIndex]?.src || ""
+    pendingPhotoSrc.value = normalizePhotoSrc(nextSrc)
+    void updatePhotoQuery(nextSrc)
 }
 
 const onKeydown = (event: KeyboardEvent) => {
-  if (!selectedTile.value) {
-    return
-  }
+    if (!selectedTile.value) {
+        return
+    }
 
-  if (event.key === "Escape") {
-    void closePhoto()
-  }
+    if (event.key === "Escape") {
+        void closePhoto()
+    }
 
-  if (event.key === "ArrowLeft") {
-    event.preventDefault()
-    showPreviousPhoto()
-  }
+    if (event.key === "ArrowLeft") {
+        event.preventDefault()
+        showPreviousPhoto()
+    }
 
-  if (event.key === "ArrowRight") {
-    event.preventDefault()
-    showNextPhoto()
-  }
+    if (event.key === "ArrowRight") {
+        event.preventDefault()
+        showNextPhoto()
+    }
 }
 
 if (import.meta.client) {
-  watch(selectedTile, (tile) => {
-    document.body.style.overflow = tile ? "hidden" : ""
-  }, { immediate: true })
+    watch(selectedTile, (tile) => {
+        document.body.style.overflow = tile ? "hidden" : ""
+    }, { immediate: true })
 
-  onMounted(() => {
-    window.addEventListener("keydown", onKeydown)
-  })
+    onMounted(() => {
+        window.addEventListener("keydown", onKeydown)
+    })
 
-  onBeforeUnmount(() => {
-    document.body.style.overflow = ""
-    window.removeEventListener("keydown", onKeydown)
-  })
+    onBeforeUnmount(() => {
+        document.body.style.overflow = ""
+        window.removeEventListener("keydown", onKeydown)
+    })
 }
 
 useHead({
-  title,
-  meta: [
-    {
-      name: "title",
-      content: title,
-    },
-    {
-      name: "description",
-      content: serie.description,
-    },
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: toSiteUrl(route.path) },
-    { property: "og:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
-    {
-      property: "og:description",
-      content: serie.description,
-    },
-    { property: "og:image", content: socialImageUrl },
-    {
-      property: "twitter:card", content: "summary_large_image",
-    },
-    { property: "twitter:url", content: toSiteUrl(route.path) },
-    { property: "twitter:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
-    {
-      property: "twitter:description",
-      content: serie.description,
-    },
-    { property: "twitter:image", content: socialImageUrl },
-  ],
-  script: [
-    {
-      type: "application/ld+json",
-      innerHTML: JSON.stringify({
-        "@context": "http://schema.org/",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            item: {
-              "@id": "https://macojaune.com",
-              name: "Homepage",
-            },
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            item: {
-              "@id": "https://macojaune.com" + route.path,
-              name: serie.title,
-            },
-          },
-        ],
-      }),
-    },
-  ],
+    title,
+    meta: [
+        {
+            name: "title",
+            content: title,
+        },
+        {
+            name: "description",
+            content: serie.description,
+        },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: toSiteUrl(route.path) },
+        { property: "og:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
+        {
+            property: "og:description",
+            content: serie.description,
+        },
+        { property: "og:image", content: socialImageUrl },
+        {
+            property: "twitter:card", content: "summary_large_image",
+        },
+        { property: "twitter:url", content: toSiteUrl(route.path) },
+        { property: "twitter:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
+        {
+            property: "twitter:description",
+            content: serie.description,
+        },
+        { property: "twitter:image", content: socialImageUrl },
+    ],
+    script: [
+        {
+            type: "application/ld+json",
+            innerHTML: JSON.stringify({
+                "@context": "http://schema.org/",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        item: {
+                            "@id": "https://macojaune.com",
+                            name: "Homepage",
+                        },
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        item: {
+                            "@id": "https://macojaune.com" + route.path,
+                            name: serie.title,
+                        },
+                    },
+                ],
+            }),
+        },
+    ],
 })
 </script>
