@@ -255,6 +255,9 @@ function createWriteProgressTracker(seriesList) {
     syncStart() {
       console.log(`\n[finalize] Running sync-runs-content-model --write`)
     },
+    imageSyncStart() {
+      console.log(`[finalize] Running images:sync`)
+    },
     complete() {
       console.log(`\nWrite completed in ${formatDuration(Date.now() - startedAt)}.`)
     },
@@ -633,8 +636,12 @@ async function readPhotoEntry(seriesSlug, photosDir, photo, index, sourceLabel) 
       ? path.join(path.dirname(file), path.parse(file).name)
       : path.parse(file).name
   const id = slugify(inferredIdSource)
+  const assetPath = sanitizeSegment(inferredIdSource)
   if (!id) {
     throw new Error(`Photo entry "${file}" is missing a usable id`)
+  }
+  if (!assetPath) {
+    throw new Error(`Photo entry "${file}" is missing a usable asset path`)
   }
 
   const filePath = path.join(photosDir, file)
@@ -647,7 +654,7 @@ async function readPhotoEntry(seriesSlug, photosDir, photo, index, sourceLabel) 
   const metadata = await sharp(buffer).rotate().metadata()
   const extension = path.extname(file).toLowerCase()
   const hash = createHash("sha1").update(buffer).digest("hex").slice(0, 10)
-  const assetId = [sanitizeSegment(seriesSlug), `${sanitizeSegment(id)}-${hash}`]
+  const assetId = [sanitizeSegment(seriesSlug), `${assetPath}-${hash}`]
     .filter(Boolean)
     .join("/")
 
@@ -1010,6 +1017,27 @@ async function runSyncValidation() {
   })
 }
 
+async function runImageSync() {
+  await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [path.join(repoRoot, "scripts", "generate-run-image-derivatives.mjs")], {
+      cwd: repoRoot,
+      stdio: "inherit",
+      env: process.env,
+    })
+
+    child.on("exit", (code) => {
+      if (code === 0) {
+        resolve()
+        return
+      }
+
+      reject(new Error(`generate-run-image-derivatives exited with code ${code}`))
+    })
+
+    child.on("error", reject)
+  })
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2))
   const sourcePath = path.resolve(process.cwd(), args.source)
@@ -1107,6 +1135,8 @@ async function main() {
   if (args.write) {
     writeProgress?.syncStart()
     await runSyncValidation()
+    writeProgress?.imageSyncStart()
+    await runImageSync()
     writeProgress?.complete()
   }
 }
