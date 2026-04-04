@@ -4,36 +4,61 @@
       Mes photos
     </h2>
     <ContentList v-slot="{ list }" :query="runQuery">
-      <div class="mb-2 flex flex-col gap-8">
-        <div v-for="serie in getHomepageSeries(list)" :key="serie.slug">
-          <NuxtLink :to="`/series/${serie.slug}`" class="group">
-            <h4 class="font-display text-4xl text-white group-hover:text-amber-600">
-              <span class="font-sans text-xl text-amber-500">Série:</span> {{ serie.title }}
-              <small v-if="serie.date" class="text-sm font-sans">{{ formatPhotoDate(serie.date) }}</small>
-            </h4>
-          </NuxtLink>
-          <div class="mt-4 flex flex-col gap-4">
-            <div class="flex w-full flex-col">
-              <p class="font-sans">{{ serie.description }}</p>
+      <div class="mb-2">
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6 lg:gap-1">
+          <NuxtLink
+            v-for="serie in getHomepageSeries(list)"
+            :key="serie.slug"
+            :to="{ path: `/series/${serie.slug}`, query: { photo: serie.previewImage.src } }"
+            class="group relative block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            @click="prepareSeriesPhotoNavigation(serie.previewImage.src)"
+          >
+            <div class="aspect-[4/5] overflow-hidden bg-stone-900">
+              <RunImage
+                :src="serie.previewImage.src"
+                :alt="serie.previewImage.alt || serie.title"
+                variant="thumb"
+                sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 16vw"
+                loading="lazy"
+                fetchpriority="low"
+                class="h-full w-full object-cover transition duration-700 ease-out motion-reduce:transition-none group-hover:scale-[1.04] group-hover:brightness-[0.84] group-focus-visible:scale-[1.04] group-focus-visible:brightness-[0.84]"
+              />
             </div>
-            <div class="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6 lg:gap-1">
-              <NuxtLink
-                v-for="image in getRandomSeriesImages(serie)"
-                :key="`${serie.slug}-${image.src}`"
-                :to="{ path: `/series/${serie.slug}`, query: { photo: image.src } }"
-              >
-                <div class="aspect-[4/5] overflow-hidden">
-                  <RunImage
-                    :src="image.src"
-                    :alt="image.alt || serie.title"
-                    variant="thumb"
-                    sizes="(max-width: 1023px) 33vw, 16vw"
-                    class="h-full w-full object-cover"
+
+            <div
+              class="pointer-events-none absolute inset-0 opacity-100 transition duration-300 motion-reduce:transition-none lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100"
+            >
+              <div
+                class="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.06)_0%,rgba(12,10,9,0.14)_26%,rgba(12,10,9,0.62)_64%,rgba(12,10,9,0.94)_100%)]"
+              />
+              <div
+                class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.22),transparent_68%)] opacity-80"
+              />
+              <div
+                class="absolute inset-[1px] border border-amber-200/0 transition duration-300 group-hover:border-amber-200/25 group-focus-visible:border-amber-200/25"
+              />
+              <div class="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+                <div
+                  class="translate-y-0 transition duration-500 ease-out motion-reduce:translate-y-0 motion-reduce:transition-none lg:translate-y-3 lg:group-hover:translate-y-0 lg:group-focus-visible:translate-y-0"
+                >
+                  <p
+                    v-if="serie.date"
+                    class="text-[10px] uppercase tracking-[0.34em] text-amber-300/78 sm:text-[11px]"
+                  >
+                    {{ formatPhotoDate(serie.date) }}
+                  </p>
+                  <div
+                    class="mt-2 h-px w-9 bg-amber-300/70 transition-all duration-500 group-hover:w-14"
                   />
+                  <p
+                    class="mt-3 max-w-[11ch] text-balance font-display text-xl uppercase leading-[0.92] text-white drop-shadow-[0_1px_10px_rgba(0,0,0,0.38)] sm:text-[1.7rem]"
+                  >
+                    {{ serie.title }}
+                  </p>
                 </div>
-              </NuxtLink>
+              </div>
             </div>
-          </div>
+          </NuxtLink>
         </div>
         <div class="mt-8 flex w-full justify-center">
           <NuxtLink class="bg-amber-400 p-3 font-bold text-black hover:text-amber-600" to="/galerie">
@@ -48,7 +73,7 @@
 <script setup lang="ts">
 import type { QueryBuilderParams } from "@nuxt/content/types"
 import { formatPhotoDate } from "../utils/photo-dates"
-import { getSeriesGalleryTiles } from "../utils/runs"
+import { getSeriesCoverImage, getSeriesGalleryTiles } from "../utils/runs"
 import type { RunLike, SeriesGalleryTile } from "../utils/runs"
 
 const runQuery: QueryBuilderParams = {
@@ -57,36 +82,25 @@ const runQuery: QueryBuilderParams = {
 
 type HomeRun = RunLike & {
   slug: string
-  description?: string
+  title?: string
   date?: string
 }
 
+type HomeSeriesPreview = HomeRun & {
+  previewImage: SeriesGalleryTile
+}
+
 const previewSeed = useState("runs-preview-seed", () => Math.random())
+const seriesPhotoNavigation = useState("series-photo-navigation", () => "")
 
 const seededRandom = (seed: number) => {
   const value = Math.sin(seed) * 10000
   return value - Math.floor(value)
 }
 
-const shuffleTiles = (tiles: SeriesGalleryTile[], seedBase: string) => {
-  const shuffled = [...tiles]
-  let seed = Array.from(`${seedBase}-${previewSeed.value}`).reduce(
-    (total, character, index) => total + character.charCodeAt(0) * (index + 1),
-    0,
-  )
-
-  for (let index = shuffled.length - 1; index > 0; index -= 1) {
-    seed += 1
-    const swapIndex = Math.floor(seededRandom(seed) * (index + 1))
-    ;[shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]]
-  }
-
-  return shuffled
-}
-
-const shuffleSeries = (series: HomeRun[]) => {
+function shuffleSeries<T>(series: T[], seedLabel: string) {
   const shuffled = [...series]
-  let seed = Array.from(`series-${previewSeed.value}`).reduce(
+  let seed = Array.from(`${seedLabel}-${previewSeed.value}`).reduce(
     (total, character, index) => total + character.charCodeAt(0) * (index + 1),
     0,
   )
@@ -100,8 +114,29 @@ const shuffleSeries = (series: HomeRun[]) => {
   return shuffled
 }
 
-const getHomepageSeries = (series: HomeRun[]) => shuffleSeries(series).slice(0, 4)
+const getSeriesPreviewImage = (serie: HomeRun) => {
+  const galleryTiles = getSeriesGalleryTiles(serie)
+  const coverImage = getSeriesCoverImage(serie)
+  const coverTile = galleryTiles.find((tile) => tile.src === coverImage)
 
-const getRandomSeriesImages = (serie: HomeRun) =>
-  shuffleTiles(getSeriesGalleryTiles(serie), serie.slug).slice(0, 6)
+  return (
+    coverTile ||
+    shuffleSeries(galleryTiles, `series-preview-${serie.slug}`)[0] || {
+      src: coverImage,
+      alt: serie.title || "",
+    }
+  )
+}
+
+const getHomepageSeries = (series: HomeRun[]) =>
+  shuffleSeries(series, "homepage-series")
+    .map((serie) => ({
+      ...serie,
+      previewImage: getSeriesPreviewImage(serie),
+    }))
+    .filter((serie): serie is HomeSeriesPreview => Boolean(serie.previewImage?.src))
+
+const prepareSeriesPhotoNavigation = (src: string) => {
+  seriesPhotoNavigation.value = src
+}
 </script>
