@@ -1,87 +1,39 @@
 <template>
-    <div class="flex flex-col gap-20 relative w-full px-4 py-8">
-        <div class="flex flex-col  gap-8 lg:flex-row lg:justify-around">
-            <section class="lg:w-1/4">
-                <h2 class="mb-2  font-display text-2xl text-amber-600 lg:text-3xl">
-                    Selon notre ami CHATGPT:
-                </h2>
-                <p class="text-white lg:text-right">
-                    Macojaune est un personnage public jeune et dynamique, passionné par la vie, la
-                    photographie et l'entrepreneuriat. Il est connu pour ses talents de photographe et ses compétences en
-                    développement web, ainsi que pour son parcours et sa personnalité atypique. Macojaune partage
-                    régulièrement son travail et ses projets sur les réseaux sociaux et son site internet, où il vend
-                    également
-                    des
-                    tirages de ses clichés.
-                </p>
-            </section>
-            <section class="lg:w-2/4">
-                <h2 class="mb-2 font-display text-2xl text-amber-400 lg:text-3xl">
-                    Selon moi…
-                </h2>
-                <p class="text-white lg:text-lg">
-                    C'est plutôt juste, oui ? Assez bluffé je suis. <br class="inline lg:hidden"> Bon, d'accord… <br
-                        class="hidden lg:inline">
-                    Poster
-                    régulièrement sur son site internet c'est pas spécialement vrai.
-                    <br class="inline lg:hidden">
-                    Si tu lis ceci, c'est que j'ai
-                    publié cette mise à jour tant repoussée et que je tente d'organiser un fonctionnement cool et dynamique
-                    par
-                    ici.
-                </p>
-                <div class="group mt-12 rounded-sm bg-amber-400/40 p-5 transition-all ease-in hover:bg-amber-400/40">
-                    <h3 class="mb-4 font-display text-4xl text-white lg:mb-2">
-                        Pré-commande ton Photozine !
-                    </h3>
-                    <p class="font-sans text-base text-white">
-                        Les dés sons jetés pour ce nouveau projet: un petit livret photo à collectioner où à offrir !
-                        <br />
-                        <br />
-                        Réserve vite ton exemplaire, le prix augmente à chaque vente.
-                    </p>
-                    <div class="mt-2 flex w-full justify-end">
-                        <nuxt-link
-                            class="bg-black p-3 text-white transition-colors hover:text-yellow-400 group-hover:animate-pulse"
-                            to="/photozine">
-                            <span class="text-white hover:text-yellow-400">C'est par ici !</span>
-                        </nuxt-link>
-                    </div>
-                </div>
-            </section>
+  <div class="relative w-full px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto flex max-w-[1680px] flex-col gap-16 lg:gap-24">
+      <section class="grid gap-10 border-b border-amber-200/10 pb-12 lg:grid-cols-12 lg:items-end lg:gap-8 lg:pb-16">
+        <div class="lg:col-span-5">
+          <p class="mb-4 text-[11px] uppercase tracking-[0.34em] text-amber-300/70">
+            Maco (n.m.) : Curieux, touche-à-tout.
+          </p>
+          <h1 class="max-w-[10ch] font-display text-5xl leading-[0.86] text-white sm:text-6xl lg:text-7xl">
+            Je suis
+            <span class="text-amber-400">Macojaune.</span>
+          </h1>
         </div>
+
+        <div class="lg:col-span-7">
+          <p class="max-w-[18ch] font-display text-3xl leading-[0.94] text-amber-400 sm:text-4xl lg:text-[3.4rem]">
+            Photographe,
+            curieux
+            et passionné.
+          </p>
+          <p class="mt-5 max-w-[40ch] text-base leading-7 text-stone-200 lg:text-[1.12rem] lg:leading-8">
+            Ici, tu peux voir mes réalisations, participer aux prochains projets et bien plus encore.
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-16 lg:space-y-24">
         <ProjectsSection />
         <RunsSection />
         <BlogSection />
-        <div class="mt-8 flex flex-col gap-5 lg:mt-0 lg:flex-row lg:gap-5">
-            <h2 class="block font-display text-4xl text-white lg:hidden lg:text-4xl">
-                Ma dernière vidéo Youtube
-                <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
-            </h2>
-            <div class="h-dvh aspect-portrait">
-                <iframe class="w-full h-full" src="https://www.youtube.com/embed?list=UULF4b9BIgf07NzGhrdL2zpQ8w" />
-            </div>
-            <div class="flex flex-col lg:justify-between lg:grow">
-                <h2 class="hidden font-display text-6xl text-white lg:block">
-                    Ma dernière vidéo Youtube <br>
-                    <small class="font-sans text-base italic text-red-500">On reste dans la verticalité.</small>
-                </h2>
-                <div class="flex w-fulllg:aspect-square lg:w-2/3 lg:self-end flex-col gap-4 bg-amber-400/20 p-4">
-                    <h2 class="font-display text-4xl text-white lg:text-right">
-                        Le podcast est toujours dispo
-                    </h2>
-                    <iframe class="min-h-96 grow" src="https://pod.link/1369562721" />
-                </div>
-            </div>
-        </div>
+      </section>
     </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import moment from 'moment'
-
-moment.locale('fr-FR')
-
 const { toAssetUrl } = useAssetUrls()
 
 const description =

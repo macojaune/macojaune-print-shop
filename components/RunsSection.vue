@@ -1,24 +1,36 @@
 <template>
   <section>
-    <h2 class="mb-8 leading-10 font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
-      Mes photos
-    </h2>
+    <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-2xl">
+        <h2 class="leading-10 font-display text-4xl/6 text-amber-400 lg:text-left lg:text-4xl">
+          Mes photos
+        </h2>
+        <p class="mt-2 text-sm text-stone-300">
+          Des séries réalisées au fil des années.
+        </p>
+      </div>
+      <NuxtLink
+        class="inline-flex w-fit items-center text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
+        to="/galerie"
+      >
+        Voir toutes les séries
+      </NuxtLink>
+    </div>
     <ContentList v-slot="{ list }" :query="runQuery">
       <div class="mb-2">
-        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6 lg:gap-1">
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 lg:gap-2">
           <NuxtLink
             v-for="serie in getHomepageSeries(list)"
             :key="serie.slug"
-            :to="{ path: `/series/${serie.slug}`, query: { photo: serie.previewImage.src } }"
+            :to="`/series/${serie.slug}`"
             class="group relative block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            @click="prepareSeriesPhotoNavigation(serie.previewImage.src)"
           >
             <div class="aspect-[4/5] overflow-hidden bg-stone-900">
               <RunImage
                 :src="serie.previewImage.src"
                 :alt="serie.previewImage.alt || serie.title"
                 variant="thumb"
-                sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 16vw"
+                sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"
                 loading="lazy"
                 fetchpriority="low"
                 class="h-full w-full object-cover transition duration-700 ease-out motion-reduce:transition-none group-hover:scale-[1.04] group-hover:brightness-[0.84] group-focus-visible:scale-[1.04] group-focus-visible:brightness-[0.84]"
@@ -60,11 +72,6 @@
             </div>
           </NuxtLink>
         </div>
-        <div class="mt-8 flex w-full justify-center">
-          <NuxtLink class="bg-amber-400 p-3 font-bold text-black hover:text-amber-600" to="/galerie">
-            Voir toutes les séries
-          </NuxtLink>
-        </div>
       </div>
     </ContentList>
   </section>
@@ -91,7 +98,6 @@ type HomeSeriesPreview = HomeRun & {
 }
 
 const previewSeed = useState("runs-preview-seed", () => Math.random())
-const seriesPhotoNavigation = useState("series-photo-navigation", () => "")
 
 const seededRandom = (seed: number) => {
   const value = Math.sin(seed) * 10000
@@ -136,7 +142,4 @@ const getHomepageSeries = (series: HomeRun[]) =>
     }))
     .filter((serie): serie is HomeSeriesPreview => Boolean(serie.previewImage?.src))
 
-const prepareSeriesPhotoNavigation = (src: string) => {
-  seriesPhotoNavigation.value = src
-}
 </script>
