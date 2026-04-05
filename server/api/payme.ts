@@ -1,13 +1,6 @@
-import { z } from 'zod'
 import {useServerStripe} from "#stripe/server";
-const paymeSchema = z.object({
-  name: z.string().optional(),
-  amount: z.number()
-})
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig(event)
-
   const { amount } = getQuery(event)//, p => paymeSchema.parse(p))
   const s = await useServerStripe(event)
 
@@ -24,6 +17,9 @@ export default defineEventHandler(async (event) => {
 
     return { clientSecret: paymentIntent.client_secret }
   } catch (e) {
-    throw createError({ statusCode: 400, statusMessage: e.message })
+    throw createError({
+      statusCode: 400,
+      statusMessage: e instanceof Error ? e.message : 'Unknown error'
+    })
   }
 })

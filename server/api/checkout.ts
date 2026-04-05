@@ -1,8 +1,8 @@
-import stripe from 'stripe'
+import { useServerStripe } from '#stripe/server'
 import { fetchDataFromTurso } from '../../lib/db'
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig(event)
+  const stripe = await useServerStripe(event)
   // Get the full request headers
   const headers = getRequestHeaders(event)
 
@@ -16,11 +16,10 @@ export default defineEventHandler(async (event) => {
   const fullUrl = `${protocol}://${host}`
   const body = await readBody(event)
   const { title, description, productPrice, url } = body
-  const s = stripe(config.stripeSecretKey)
   try {
-    const result = await fetchDataFromTurso("SELECT option FROM config WHERE value='photozine_price'")
+    const result = await fetchDataFromTurso(event, "SELECT option FROM config WHERE value='photozine_price'")
     const price: number = result?.[0]?.option ?? productPrice ?? 18
-    const session = await s.checkout.sessions.create({
+    const session = await stripe.checkout.sessions.create({
       line_items: [{
         price_data: {
           product_data: {
@@ -66,7 +65,7 @@ export default defineEventHandler(async (event) => {
     console.error(e)
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: e.message })
+      body: JSON.stringify({ error: e instanceof Error ? e.message : 'Unknown error' })
     }
   }
 })

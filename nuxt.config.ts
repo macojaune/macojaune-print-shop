@@ -1,16 +1,48 @@
-const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://macojaune.com'
-const assetBaseUrl = process.env.NUXT_PUBLIC_ASSET_BASE_URL || 'https://cdn.macojaune.com'
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || "https://macojaune.com"
+const assetBaseUrl =
+  process.env.NUXT_PUBLIC_ASSET_BASE_URL ||
+  process.env.R2_PUBLIC_BASE_URL ||
+  "https://cdn.macojaune.com"
+const generatedWatchIgnores = [
+  "**/assets/photo-originals/**",
+  "**/generated/**",
+  "**/public/admin/**",
+  "**/public/derived/**",
+]
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  watchers: {
+    chokidar: {
+      ignored: generatedWatchIgnores,
+    },
+  },
   runtimeConfig: {
-    stripeSecretKey: '',
-    stripeWebhookSecret: '',
-    tursoDB:'',
-    tursoToken:'',
+    stripe: {
+      key: '',
+      webhookSecret: '',
+      options: {},
+    },
+    turso: {
+      url: '',
+      authToken: '',
+    },
+    r2: {
+      accountId: process.env.R2_ACCOUNT_ID || '',
+      accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+      secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+      bucket: process.env.R2_BUCKET || process.env.R2_BUCKET_NAME || '',
+      mastersPrefix: 'masters/runs',
+      publicPrefix: 'pictures/runs',
+      manifestPrefix: 'manifests/runs',
+    },
     public: {
-      stripeApiKey: '',
+      stripe: {
+        key: '',
+        options: {},
+      },
       serverURL: '',
+      mediaBaseUrl: process.env.NUXT_PUBLIC_MEDIA_BASE_URL || process.env.R2_PUBLIC_BASE_URL || assetBaseUrl,
       siteUrl,
       assetBaseUrl,
     }
@@ -24,31 +56,30 @@ export default defineNuxtConfig({
   ],
   tailwindcss: {},
   content: {
-    markdown: {
-      remarkPlugins: ['remark-emoji'],
-      rehypePlugins: { 'rehype-external-links': { target: '_blank' } }
+    build: {
+      markdown: {
+        remarkPlugins: {
+          'remark-emoji': {},
+        },
+        rehypePlugins: {
+          'rehype-external-links': {
+            target: '_blank',
+          },
+        },
+      }
     }
   },
   image: {
     provider: 'none'
   },
-  css: ['~/assets/css/tailwind.css'],
-  stripe: {
-    // Server
+  vite: {
     server: {
-      key: process.env.NUXT_STRIPE_TOKEN,
-      options: {
-        // your api options override for stripe server side
-        // https://github.com/stripe/stripe-node?tab=readme-ov-file#configuration
-      }
+      watch: {
+        ignored: generatedWatchIgnores,
+      },
     },
-    // CLIENT
-    client: {
-      key:  process.env.NUXT_PUBLIC_STRIPE_PUBLIC_KEY,
-      // your api options override for stripe client side https://stripe.com/docs/js/initializing#init_stripe_js-options
-      options: {}
-    }
   },
+  css: ['~/assets/css/tailwind.css'],
   app: {
     head: {
       charset: 'utf-8',

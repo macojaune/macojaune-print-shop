@@ -71,7 +71,6 @@ target="_blank" class="text-orange-400 hover:text-amber-300"
 </template>
 
 <script lang="ts" setup>
-import { useHead } from 'unhead'
 const { toAssetUrl } = useAssetUrls()
 const description = 'À propos de Macojaune, expositions collectives et publications artistiques'
 useHead({

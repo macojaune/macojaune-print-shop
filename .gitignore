@@ -100,4 +100,9 @@ sw.*
 node_modules
 .env
 .output
-public/pictures/
+.worktrees
+.agents
+.data
+.impeccable.md
+assets/photo-originals
+public/derived

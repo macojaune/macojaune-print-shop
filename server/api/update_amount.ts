@@ -1,5 +1,5 @@
 import {fetchDataFromTurso} from '../../lib/db'
-import stripe from 'stripe'
+import { useServerStripe } from '#stripe/server'
 
 function getNextPrice(startPrice: number, lastPrice: number): number {
   // If it's the first sale after start price
@@ -31,18 +31,18 @@ export default defineEventHandler(async (event) => {
 		const headers = getRequestHeaders(event)
 		const body = await readRawBody(event)
 
-		const s = stripe(config.stripeSecretKey)
-		sEvent = stripe.webhooks.constructEvent(body, headers['stripe-signature'], config.stripeWebhookSecret)
+		const stripe = await useServerStripe(event)
+		sEvent = stripe.webhooks.constructEvent(body, headers['stripe-signature'], config.stripe.webhookSecret)
 
 		if (sEvent.type === 'checkout.session.completed') {
 			const intent = sEvent.data.object
 			if (intent.payment_status === 'paid') {
-				const result = await fetchDataFromTurso("SELECT option FROM config WHERE value='photozine_price'")
+				const result = await fetchDataFromTurso(event, "SELECT option FROM config WHERE value='photozine_price'")
 				const price:number = result?.[0]?.option
 
 				if (price) {
 					const newPrice= getNextPrice(32,price)
-					await fetchDataFromTurso(`UPDATE config SET option=${newPrice} WHERE value='photozine_price'`)
+					await fetchDataFromTurso(event, `UPDATE config SET option=${newPrice} WHERE value='photozine_price'`)
 
 					return {
 						price: newPrice
@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
 		console.error(e)
 		return {
 			statusCode: 400,
-			body: JSON.stringify({error: e.message})
+			body: JSON.stringify({error: e instanceof Error ? e.message : 'Unknown error'})
 		}
 	}
 })

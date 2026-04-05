@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts" setup>
-import {useHead} from "unhead";
 import {useRoute} from "vue-router";
 import {useRuntimeConfig} from "nuxt/app";
 import axios from "axios";
@@ -97,8 +96,15 @@ const initPayment = async () => {
 }
 
 const doPay = async () => {
+  const stripeClient = stripe.value
+  if (!stripeClient) {
+    state.error = "Le module de paiement n'a pas pu s'initialiser."
+    state.loading = false
+    return
+  }
+
   state.loading = true
-  const {paymentIntent, error} = await stripe.value?.confirmPayment({
+  const {paymentIntent, error} = await stripeClient.confirmPayment({
     elements: state.elements,
     confirmParams: {
       return_url: 'https://macojaune.com/merci/' + state.amount
@@ -115,6 +121,9 @@ const doPay = async () => {
   }
   console.log('success payment')
 }
+
+void initPayment
+void doPay
 </script>
 
 <style lang="stylus" scoped>

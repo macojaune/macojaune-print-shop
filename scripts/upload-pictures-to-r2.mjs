@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-import { readdir, readFile } from 'node:fs/promises'
-import path from 'node:path'
+import { readdir, readFile } from "node:fs/promises"
+import path from "node:path"
 
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
 
 const cwd = process.cwd()
-const localDir = path.resolve(cwd, process.env.R2_LOCAL_DIR || 'public/pictures')
-const bucket = process.env.R2_BUCKET
-const prefix = (process.env.R2_PREFIX || 'pictures').replace(/^\/+|\/+$/g, '')
+const localDir = path.resolve(cwd, process.env.R2_LOCAL_DIR || "public/pictures")
+const bucket = process.env.R2_BUCKET || process.env.R2_BUCKET_NAME
+const prefix = (process.env.R2_PREFIX || "pictures").replace(/^\/+|\/+$/g, "")
 const accountId = process.env.R2_ACCOUNT_ID
-const endpoint = process.env.R2_ENDPOINT || (accountId ? `https://${accountId}.r2.cloudflarestorage.com` : '')
+const endpoint = process.env.R2_ENDPOINT || (accountId ? `https://${accountId}.r2.cloudflarestorage.com` : "")
 const accessKeyId = process.env.R2_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID
 const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY
 
@@ -24,18 +24,19 @@ const missingValues = Object.entries(requiredValues)
   .map(([key]) => key)
 
 if (missingValues.length > 0) {
-  console.error(`Missing required environment variables: ${missingValues.join(', ')}`)
+  console.error(`Missing required environment variables: ${missingValues.join(", ")}`)
   process.exit(1)
 }
 
 const contentTypes = new Map([
-  ['.avif', 'image/avif'],
-  ['.gif', 'image/gif'],
-  ['.jpeg', 'image/jpeg'],
-  ['.jpg', 'image/jpeg'],
-  ['.png', 'image/png'],
-  ['.svg', 'image/svg+xml'],
-  ['.webp', 'image/webp'],
+  [".avif", "image/avif"],
+  [".gif", "image/gif"],
+  [".jpeg", "image/jpeg"],
+  [".jpg", "image/jpeg"],
+  [".json", "application/json"],
+  [".png", "image/png"],
+  [".svg", "image/svg+xml"],
+  [".webp", "image/webp"],
 ])
 
 const client = new S3Client({
@@ -46,14 +47,14 @@ const client = new S3Client({
       }
     : undefined,
   endpoint,
-  region: 'auto',
+  region: "auto",
 })
 
 const collectFiles = async (directory) => {
   const entries = await readdir(directory, { withFileTypes: true })
   const files = await Promise.all(
     entries
-      .filter((entry) => !entry.name.startsWith('.'))
+      .filter((entry) => !entry.name.startsWith("."))
       .map(async (entry) => {
         const resolvedPath = path.join(directory, entry.name)
         return entry.isDirectory() ? collectFiles(resolvedPath) : resolvedPath
@@ -64,16 +65,16 @@ const collectFiles = async (directory) => {
 }
 
 const uploadFile = async (filePath) => {
-  const relativePath = path.relative(localDir, filePath).split(path.sep).join('/')
+  const relativePath = path.relative(localDir, filePath).split(path.sep).join("/")
   const key = prefix ? `${prefix}/${relativePath}` : relativePath
   const body = await readFile(filePath)
   const extension = path.extname(filePath).toLowerCase()
-  const contentType = contentTypes.get(extension) || 'application/octet-stream'
+  const contentType = contentTypes.get(extension) || "application/octet-stream"
 
   await client.send(new PutObjectCommand({
     Body: body,
     Bucket: bucket,
-    CacheControl: 'public, max-age=31536000, immutable',
+    CacheControl: "public, max-age=31536000, immutable",
     ContentType: contentType,
     Key: key,
   }))
