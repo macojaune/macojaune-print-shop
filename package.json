@@ -7,7 +7,7 @@
   "scripts": {
     "images:sync": "node scripts/generate-run-image-derivatives.mjs",
     "import:series": "node scripts/import-series.mjs",
-    "build": "npm run images:sync && tinacms build && nuxi build",
+    "build": "npm run images:sync && tinacms build --skip-cloud-checks && nuxi build",
     "dev": "npm run images:sync && CHOKIDAR_USEPOLLING=1 tinacms dev -c \"CHOKIDAR_USEPOLLING=1 nuxi dev --dotenv .env\"",
     "generate": "npm run images:sync && nuxi generate",
     "preview": "nuxi preview",
@@ -20,7 +20,7 @@
     "@nuxt/eslint-config": "^0.3.13",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/tailwindcss": "^6.12.0",
-    "@tinacms/cli": "^1.5.46",
+    "@tinacms/cli": "1.5.46",
     "@types/node": "^20.14.1",
     "@unlok-co/nuxt-stripe": "^6.0.2",
     "autoprefixer": "^10.4.19",
@@ -47,6 +47,6 @@
     "rehype-external-links": "^3.0.0",
     "remark-emoji": "^5.0.0",
     "stripe": "^17.4.0",
-    "tinacms": "^1.6.4"
+    "tinacms": "1.6.4"
   }
 }
