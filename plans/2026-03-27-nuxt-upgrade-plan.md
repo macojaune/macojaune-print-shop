@@ -1,58 +1,61 @@
 # Nuxt Upgrade Plan
 
 Date: 2026-03-27
+Last reviewed: 2026-04-04
 Source issue: [YEL-18](/YEL/issues/YEL-18)
 
 ## Current State
 
-- Runtime floor is behind target: `.nvmrc` is `19.8.1`, while current Nuxt 4 declares Node `^20.19.0 || >=22.12.0`.
-- Core framework is behind: `nuxt` is `^3.11.2`; current stable Nuxt 3 is `3.20.2` and current stable Nuxt 4 is `4.4.2`.
-- Content is the main migration surface: the codebase uses `@nuxt/content ^2.13.1`, `queryContent`, `ContentList`, and `ContentDoc` across pages/components.
-- Module drift exists: `@unlok-co/nuxt-stripe` is `^3.0.0` while current published version is `6.0.2`; `@nuxt/image` is declared as `latest`, which makes upgrades less deterministic.
-- The repo has custom server-side content rewriting in `server/plugins/content-assets.ts`, so content parsing behavior must be revalidated during the module migration.
+- Runtime floor is still behind target: `.nvmrc` is `19.8.1`, while Nuxt `4.4.2` declares Node `^20.19.0 || >=22.12.0`.
+- The framework was still on Nuxt `^3.19.3` at the start of this stream, but the repo is no longer in the pre-migration state assumed by the original plan.
+- `@nuxt/content` is already on v3 and the repo already has `content.config.ts`, so the v2 to v3 migration is no longer a prerequisite.
+- `@unlok-co/nuxt-stripe` is already on `^6.0.2`, which removes one of the previously assumed Nuxt 4 blockers.
+- The remaining content debt is local compatibility code: `composables/queryContent.ts`, `components/ContentList.vue`, and `components/ContentDoc.vue` emulate older patterns on top of Content v3.
+- The repo still has one dependency hygiene issue: `@nuxt/image` was declared as `latest`, which makes upgrades and worktree installs less deterministic.
+- The repo has custom server-side content rewriting in `server/plugins/content-assets.ts`, so content parsing and asset rewriting still need explicit regression coverage.
 
 ## Recommendation
 
-Do this in two controlled upgrade steps, not one jump:
+The original phased plan is no longer the right plan for this repo state.
 
-1. Move the project to the latest stable Nuxt 3 line on a supported Node version.
-2. Migrate the blocking modules and content API usage.
-3. Only then cut over to Nuxt 4 on a dedicated branch with explicit regression testing.
+Do a direct Nuxt 4 upgrade in a dedicated worktree, with runtime alignment first and validation split by concern:
 
-This reduces blast radius, makes breakage attribution clearer, and avoids mixing framework, runtime, and content-system failures in one pass.
+1. Align the repo to Node `20.19.3` locally and in CI/runtime.
+2. Upgrade Nuxt directly to the latest stable Nuxt 4 line.
+3. Replace floating dependency declarations such as `@nuxt/image: latest`.
+4. Validate `nuxi build` first to isolate Nuxt issues from TinaCMS issues.
+5. Treat any TinaCMS breakage discovered during `npm run build` as a separate follow-up unless it is proven to be caused by the Nuxt upgrade itself.
+
+Why this is the right plan now:
+
+- Official Nuxt guidance recommends upgrading directly with `npx nuxt upgrade --dedupe`.
+- Official Nuxt 4 guidance explicitly says the old top-level folder structure can remain and will be auto-detected.
+- The large content migration stream assumed by the original plan has already partially happened, so keeping it as a gating phase would create artificial delay and duplicate work.
 
 ## Execution Plan
 
-### Phase 1: Stabilize on current supported foundations
+### Phase 1: Runtime and dependency baseline
 
-- Upgrade Node to `20.19.x` minimum and align local/CI/runtime environments.
-- Upgrade Nuxt to `3.20.x` using the Nuxt 3 channel.
-- Replace floating dependency declarations such as `@nuxt/image: latest` with explicit versions.
-- Regenerate and commit a clean lockfile after dedupe.
-- Run build and lint to establish a clean pre-migration baseline.
+- Set `.nvmrc` to `20.19.3`.
+- Upgrade Nuxt with the official CLI flow: `npx nuxi@latest upgrade --dedupe --channel=v4 --force`.
+- Replace `@nuxt/image: latest` with an explicit semver range.
+- Regenerate and commit the Bun lockfile in the format produced by the installed Bun version.
+- If Bun blocks native lifecycle scripts during install, rebuild or trust the affected dependency before validating the app.
 
-### Phase 2: Remove known Nuxt 4 blockers
+### Phase 2: Nuxt 4 application validation
 
-- Upgrade `@nuxt/content` from v2 to v3.
-- Replace `queryContent` usage with the v3 collection APIs.
-- Replace deprecated `ContentList` / `ContentDoc` patterns with the supported data-fetching/rendering approach.
-- Add any required content collection configuration and validate frontmatter/body parsing.
-- Upgrade `@unlok-co/nuxt-stripe` to the Nuxt 4 compatible line and re-test checkout/payment flows.
-- Revalidate the `content:file:afterParse` hook behavior or rewrite it if the hook contract changed.
-
-### Phase 3: Cut over to Nuxt 4
-
-- Upgrade Nuxt core to `4.x`.
-- Run the official Nuxt 4 migration codemod where it helps.
-- Keep the existing directory layout initially; do not combine the framework upgrade with an `app/` directory restructure.
+- Run `nuxi prepare`, then `npm run lint`.
+- Run `nuxi build` separately from TinaCMS to confirm the Nuxt application itself still builds.
+- Keep the existing directory layout; do not combine this stream with an `app/` directory restructure.
 - Re-test `useAsyncData` paths and page-level SEO/head output.
-- Fix any type-checking or module compatibility regressions surfaced by the new toolchain.
+- Re-test content-heavy routes, media routes, and Stripe server entrypoints.
+- Fix type or module compatibility regressions surfaced by the new toolchain.
 
-### Phase 4: Validation and rollout prep
+### Phase 3: Follow-up streams
 
-- Smoke test key routes: homepage, blog index/detail, project index/detail, runs/series pages, links page, checkout, and media APIs.
-- Verify TinaCMS build/dev behavior still works with the upgraded stack.
-- Produce a release checklist and preview signoff before scheduling the eventual production rollout.
+- If `tinacms build` fails, split that work into a Tina-specific validation stream instead of folding it into the Nuxt core bump without evidence.
+- After Nuxt 4 is stable, remove the remaining local content compatibility shims and move pages/components to first-class Content v3 collection APIs where it reduces complexity.
+- Produce a release checklist and preview signoff before scheduling the production rollout.
 
 ## Execution Controls
 
@@ -64,13 +67,26 @@ This reduces blast radius, makes breakage attribution clearer, and avoids mixing
 
 ## Proposed Backlog Split
 
-- CTO Platform: environment baseline, dependency strategy, server/module compatibility, Stripe/media/API validation.
-- Frontend Experience: Nuxt Content v3 migration across pages/components and UX regression checks on content-heavy routes.
-- CTO Delivery: execution sequencing, worktree/PR discipline, acceptance checklist, and release-readiness coordination once implementation starts.
+- CTO Platform: runtime baseline, lockfile strategy, native dependency install reliability, Stripe/media/API validation.
+- Frontend Experience: Nuxt 4 route validation, content-heavy route regression checks, and later cleanup of the local content compatibility layer.
+- CTO Delivery: execution sequencing, worktree/PR discipline, acceptance checklist, and release-readiness coordination.
 
 ## Key Risks
 
-- Nuxt Content is not a small patch here; it is a code-level migration across multiple pages and sections.
+- TinaCMS build validity is still an open risk because `npm run build` can fail before `nuxi build` if Tina config loading breaks.
 - The current Node version is below target, so local dev, CI, and hosting need to move together.
 - Floating dependency declarations make reproducibility weaker during a major upgrade.
+- Bun v1 migrates the repo from `bun.lockb` to `bun.lock`, which should be treated as an intentional lockfile format change in the same PR.
 - Payment and media flows need explicit regression coverage because they mix runtime config, server routes, and external services.
+
+## Validation Notes
+
+- Under Node `20.19.3`, `nuxi build` succeeds on Nuxt `4.4.2`.
+- `npm run build` is still blocked by `tinacms build` failing with `TypeError: fn is not a function` while loading Tina config. That requires separate investigation unless it is traced back to the Nuxt upgrade.
+- `npm run lint` passes without errors and still surfaces only style warnings.
+
+## Reviewed References
+
+- Nuxt upgrade guide: https://nuxt.com/docs/3.x/getting-started/upgrade
+- Nuxt 4 release post: https://nuxt.com/blog/v4
+- npm package metadata for `nuxt`: https://www.npmjs.com/package/nuxt

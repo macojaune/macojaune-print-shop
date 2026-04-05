@@ -11,6 +11,7 @@
 
 <script setup>
 const route = useRoute()
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const amount = parseInt(route.params?.amount || '1000', 10)
 </script>
 

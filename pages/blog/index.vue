@@ -30,7 +30,6 @@
 
 <script lang="ts" setup>
 import moment from "moment/moment";
-import type {QueryBuilderParams} from "@nuxt/content/types";
 
 const { toAssetUrl } = useAssetUrls()
 

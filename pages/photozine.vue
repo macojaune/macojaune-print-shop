@@ -88,10 +88,9 @@ definePageMeta({
   pageDescription:
     "Si tu vois ceci, c'est que tu es un·e super curieu·se, tu as découvert mon prochain produit avant que je l'annonce, tu peux donc le précommander en avant-avant-première !"
 });
-            const product
+const product
                 =ref({title:"PhotoZine #1 - Jòn",
               description:"Le Zine c’est un format un peu plus libre que le livre photo. Les miens seront imprimés par mes soins, sur du papier mat de haute qualité, coupés, pliés, reliés à la main. Signés, numérotés. Format A5. J’ai compté 80pages environ…"})
-const config = useRuntimeConfig()
 const {data} = await useFetch('/api/photozinePrice',{pick: ['price']})
 
 </script>

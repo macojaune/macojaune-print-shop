@@ -25,9 +25,6 @@ const data = computed(() => res.value?.[0].link)
 if (data.value.length === 1) {
     window.location = data.value[0].url
 }
-const goTo = (link) => {
-    window.location = link.url
-}
 const pickRandomProperty = (obj) => {
     let result
     let count = 0
@@ -351,5 +348,6 @@ const colors = {
 }
 // pick random property
 // var property = pickRandomProperty(colors);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const colorList = () => colors[pickRandomProperty(colors)]?.[700]
 </script>

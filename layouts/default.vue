@@ -8,7 +8,6 @@
 
 <script setup>
 import { onMounted } from "vue";
-const { public: cPublic } = useRuntimeConfig();
 useHead({
     script: [
         {
