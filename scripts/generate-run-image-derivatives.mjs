@@ -97,6 +97,20 @@ async function pathExists(target) {
   }
 }
 
+async function loadExistingManifest() {
+  if (!(await pathExists(publicManifestPath))) {
+    return {}
+  }
+
+  try {
+    const raw = await fs.readFile(publicManifestPath, "utf8")
+    const parsed = JSON.parse(raw)
+    return parsed?.images && typeof parsed.images === "object" ? parsed.images : {}
+  } catch {
+    return {}
+  }
+}
+
 function collectRunImageRefs(markdown) {
   return [
     ...markdown.matchAll(/\/pictures\/[^\s"')]+/g),
@@ -347,17 +361,24 @@ async function processLegacyRef(src, manifest, inventory, hashGroups) {
 
 async function main() {
   const refs = await listRunImageRefs()
+  const existingManifest = await loadExistingManifest()
   const manifest = {}
   const inventory = []
   const hashGroups = new Map()
   let movedCount = 0
   let remoteCount = 0
+  let reusedRemoteCount = 0
 
   await fs.mkdir(derivedDir, { recursive: true })
 
   for (const src of refs) {
     if (src.startsWith(runMediaPrefix)) {
-      manifest[src] = await fetchRemoteManifest(src)
+      if (existingManifest[src]) {
+        manifest[src] = existingManifest[src]
+        reusedRemoteCount += 1
+      } else {
+        manifest[src] = await fetchRemoteManifest(src)
+      }
       remoteCount += 1
       continue
     }
@@ -394,6 +415,7 @@ async function main() {
 
   console.log(`Resolved ${refs.length} run image references.`)
   console.log(`Remote R2-backed references: ${remoteCount}.`)
+  console.log(`Remote R2-backed entries reused from cache: ${reusedRemoteCount}.`)
   console.log(`Legacy local references: ${inventory.length}.`)
   console.log(`Manifest written to ${path.relative(repoRoot, generatedManifestPath)}.`)
   console.log(`Inventory report written to ${path.relative(repoRoot, inventoryReportPath)}.`)
