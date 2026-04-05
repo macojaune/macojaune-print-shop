@@ -87,7 +87,8 @@
 const { toAssetUrl, toSiteUrl } = useAssetUrls()
 
 const { path, params } = useRoute()
-const { data } = await useAsyncData("get-document", () =>
+const requestKey = computed(() => `project-document:${String(params?.permalink ?? "")}`)
+const { data } = await useAsyncData(requestKey, () =>
   queryContent("/projects").where({ permalink: `${params?.permalink}` }).findOne(),
 )
 

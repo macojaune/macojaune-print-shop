@@ -3,7 +3,7 @@ import {
   DEFAULT_SITE_URL,
   toAssetUrl,
   toSiteUrl,
-} from '~/lib/asset-url'
+} from '~~/lib/asset-url'
 
 export const useAssetUrls = () => {
   const config = useRuntimeConfig()

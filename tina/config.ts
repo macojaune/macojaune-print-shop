@@ -1,6 +1,6 @@
 import type { Form, TinaField } from "tinacms"
 import { defineConfig } from "tinacms"
-import { slugifyRunValue } from "../utils/runs"
+import { slugifyRunValue } from "../app/utils/runs"
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =

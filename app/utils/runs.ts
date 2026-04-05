@@ -1,4 +1,4 @@
-import { runImageManifest } from "../generated/run-image-manifest"
+import { runImageManifest } from "../../generated/run-image-manifest"
 import { isAbsoluteUrl } from "./run-media"
 
 type GalleryImage = {

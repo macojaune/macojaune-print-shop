@@ -86,7 +86,8 @@ import moment from "moment/moment"
 const { toAssetUrl, toSiteUrl } = useAssetUrls()
 
 const { path, params } = useRoute()
-const { data } = await useAsyncData("get-document", () =>
+const requestKey = computed(() => `blog-document:${String(params?.permalink ?? "")}`)
+const { data } = await useAsyncData(requestKey, () =>
   queryContent("/blog").where({ permalink: `${params?.permalink}` }).findOne(),
 )
 const nextPost = await queryContent("/blog").where({ date: { $lt: data.value?.date } }).sort({ _id: -1 }).findOne()

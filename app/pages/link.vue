@@ -21,7 +21,7 @@ useHead({
 })
 const { data: res } = await useAsyncData('get-links', () =>
     queryContent('links').find())
-const data = computed(() => res.value?.[0].link)
+const data = computed(() => res.value?.[0]?.link ?? [])
 if (data.value.length === 1) {
     window.location = data.value[0].url
 }

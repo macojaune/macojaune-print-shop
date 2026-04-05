@@ -11,8 +11,8 @@ import {
 } from "@aws-sdk/client-s3"
 import sharp from "sharp"
 
-import { createGridSliceWatermarkComposite } from "../../utils/grid-slice-watermark"
-import { RUN_MEDIA_PREFIX } from "../../utils/run-media"
+import { createGridSliceWatermarkComposite } from "../../app/utils/grid-slice-watermark"
+import { RUN_MEDIA_PREFIX } from "../../app/utils/run-media"
 
 type R2Config = {
   accountId: string

@@ -12,7 +12,7 @@ const repoRoot = path.resolve(__dirname, "..")
 const require = createRequire(import.meta.url)
 const jiti = require("jiti")(__filename)
 const { createGridSliceWatermarkComposite } = jiti(
-  path.join(repoRoot, "utils", "grid-slice-watermark.ts"),
+  path.join(repoRoot, "app", "utils", "grid-slice-watermark.ts"),
 )
 const runsDir = path.join(repoRoot, "content", "runs")
 const publicDir = path.join(repoRoot, "public")

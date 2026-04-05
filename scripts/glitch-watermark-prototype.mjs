@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url)
 const require = createRequire(import.meta.url)
 const jiti = require("jiti")(__filename)
 const { applyGridSliceWatermarkToImage, createGridSliceWatermark } = jiti(
-  path.join(path.dirname(__filename), "..", "utils", "grid-slice-watermark.ts"),
+  path.join(path.dirname(__filename), "..", "app", "utils", "grid-slice-watermark.ts"),
 )
 
 export { applyGridSliceWatermarkToImage, createGridSliceWatermark }

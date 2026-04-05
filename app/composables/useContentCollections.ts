@@ -1,5 +1,5 @@
 import type { QueryBuilderParams } from '@nuxt/content/types'
-import { toAssetUrl } from '~/lib/asset-url'
+import { toAssetUrl } from '~~/lib/asset-url'
 
 type ContentValue = string | number | boolean | null | undefined | ContentRecord | ContentValue[]
 type ContentRecord = Record<string, ContentValue>
