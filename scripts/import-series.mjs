@@ -299,6 +299,18 @@ function normalizeDate(value) {
   return date.toISOString()
 }
 
+function normalizeFileTimestamp(stats) {
+  const candidates = [stats?.birthtime, stats?.mtime].filter((value) => value instanceof Date)
+
+  for (const candidate of candidates) {
+    if (!Number.isNaN(candidate.getTime()) && candidate.getTime() > 0) {
+      return candidate.toISOString()
+    }
+  }
+
+  return new Date().toISOString()
+}
+
 function stringifyFrontmatter(data) {
   const doc = new YAML.Document()
   doc.contents = data
@@ -650,8 +662,21 @@ async function readPhotoEntry(seriesSlug, photosDir, photo, index, sourceLabel) 
     throw new Error(`Referenced photo file is missing: ${filePath}`)
   }
 
+  const fileStats = await fs.stat(filePath)
   const buffer = await fs.readFile(filePath)
-  const metadata = await sharp(buffer).rotate().metadata()
+  let metadata
+
+  try {
+    metadata = await sharp(buffer).rotate().metadata()
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error)
+    throw new Error(
+      `Unsupported image file "${file}" in ${photosDir}. ` +
+      `The file has a supported extension but sharp could not decode it (${reason}). ` +
+      `Check for a corrupted export or a non-JPEG file mislabeled as .jpg/.jpeg.`,
+    )
+  }
+
   const extension = path.extname(file).toLowerCase()
   const hash = createHash("sha1").update(buffer).digest("hex").slice(0, 10)
   const assetId = [sanitizeSegment(seriesSlug), `${assetPath}-${hash}`]
@@ -677,6 +702,7 @@ async function readPhotoEntry(seriesSlug, photosDir, photo, index, sourceLabel) 
     extension,
     contentType: contentTypes.get(extension) || "application/octet-stream",
     orientation: inferOrientation(metadata),
+    createdAt: normalizeFileTimestamp(fileStats),
     assetId,
     canonicalSrc: `/media/runs/${assetId}`,
   }
@@ -740,7 +766,13 @@ async function parseManifestSeries(seriesDir, detected, args) {
     detected.manifestPath,
   )
 
-  const dateMeta = resolveMetadataValue(args.metadata.date, manifest.date || "", manifest.date ? "manifest" : "inferred", normalizeDate)
+  const inferredDate = manifest.date || photos[0]?.createdAt || ""
+  const dateMeta = resolveMetadataValue(
+    args.metadata.date,
+    inferredDate,
+    manifest.date ? "manifest" : "inferred",
+    normalizeDate,
+  )
   const descriptionMeta = resolveMetadataValue(args.metadata.description, String(manifest.description || "").trim(), manifest.description ? "manifest" : "inferred")
   const coverMeta = resolveMetadataValue(args.metadata.cover, String(manifest.cover || photos[0]?.file || "").trim(), manifest.cover ? "manifest" : "inferred", (value) => resolvePhotoReference(value, photos, "Cover"))
   const heroMeta = resolveMetadataValue(args.metadata.hero, String(manifest.hero || coverMeta.value || "").trim(), manifest.hero ? "manifest" : coverMeta.source, (value) => resolvePhotoReference(value, photos, "Hero"))
@@ -770,7 +802,6 @@ async function parseManifestSeries(seriesDir, detected, args) {
 async function parseFlatSeries(seriesDir, detected, args, allowPrompt) {
   const inferredTitle = inferSeriesNameFromDirectory(seriesDir)
   const inferredSlug = slugify(args.metadata.slug || inferredTitle || path.basename(seriesDir))
-  const inferredDate = normalizeDate("")
 
   const titleMeta = resolveMetadataValue(args.metadata.title, inferredTitle, "inferred")
   const slugMeta = resolveMetadataValue(args.metadata.slug, inferredSlug, "inferred", slugify)
@@ -786,6 +817,7 @@ async function parseFlatSeries(seriesDir, detected, args, allowPrompt) {
     throw new Error(`No supported image files found in ${seriesDir}`)
   }
 
+  const inferredDate = photos[0]?.createdAt || ""
   const dateMeta = resolveMetadataValue(args.metadata.date, inferredDate, "inferred", normalizeDate)
   const descriptionMeta = resolveMetadataValue(args.metadata.description, "", "inferred")
   const coverMeta = resolveMetadataValue(args.metadata.cover, photos[0].file, "inferred", (value) => resolvePhotoReference(value, photos, "Cover"))
