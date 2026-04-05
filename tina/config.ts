@@ -125,6 +125,12 @@ export default defineConfig({
             required: true,
           },
           { type: "string", label: "Description", name: "description", ui: { component: "textarea" } },
+          {
+            type: "string",
+            label: "Wallpaper pack URL",
+            name: "wallpaperPackUrl",
+            description: "Optional ZIP URL shown as a download tile on the series page.",
+          },
           { type: "string", label: "Slug", name: "slug" },
           { type: "datetime", label: "Date", name: "date" },
           {

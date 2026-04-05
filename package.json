@@ -7,12 +7,14 @@
   "scripts": {
     "images:sync": "node scripts/generate-run-image-derivatives.mjs",
     "import:series": "node scripts/import-series.mjs",
+    "import:series:finalize": "node scripts/finalize-series-imports.mjs",
     "build": "npm run images:sync && tinacms build --skip-cloud-checks && nuxi build",
     "dev": "npm run images:sync && CHOKIDAR_USEPOLLING=1 tinacms dev -c \"CHOKIDAR_USEPOLLING=1 nuxi dev --dotenv .env\"",
     "generate": "npm run images:sync && nuxi generate",
     "preview": "nuxi preview",
     "lint": "eslint .",
-    "upload:pictures": "node scripts/upload-pictures-to-r2.mjs"
+    "upload:pictures": "node scripts/upload-pictures-to-r2.mjs",
+    "upload:wallpaper-pack": "node scripts/upload-wallpaper-pack.mjs"
   },
   "devDependencies": {
     "@nuxt/content": "^3.6.3",

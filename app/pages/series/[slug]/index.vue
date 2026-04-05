@@ -24,6 +24,31 @@
       </section>
 
       <div class="columns-1 gap-4 sm:columns-2 xl:columns-3">
+        <a
+          v-if="wallpaperPackUrl"
+          :href="wallpaperPackUrl"
+          download
+          class="group relative mb-4 flex min-h-[19rem] break-inside-avoid flex-col justify-end overflow-hidden border border-amber-200/12 bg-stone-950 p-5 text-left transition duration-500 hover:border-amber-200/24"
+        >
+          <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.18)_0%,rgba(12,10,9,0.62)_58%,rgba(12,10,9,0.96)_100%)]" />
+          <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.18),transparent_68%)] opacity-70 transition duration-500 group-hover:opacity-100" />
+          <div class="relative z-10">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
+              À emporter
+            </p>
+            <h2 class="mt-3 font-display text-[2rem] uppercase leading-[0.92] text-white sm:text-[2.4rem]">
+              Pack de fond d'écran
+            </h2>
+            <p class="mt-4 text-sm leading-6 text-stone-300">
+              Télécharge gratuitement une sélection de photos de cette série pour décorer ton smartphone.
+            </p>
+            <div class="mt-6 ml-auto inline-flex items-center gap-3 border border-amber-300/18 bg-amber-300/10 px-4 py-3 text-[11px] uppercase tracking-[0.3em] text-amber-100 transition duration-300 group-hover:border-amber-200/34 group-hover:bg-amber-300/16 group-hover:text-amber-200">
+              <span>Télécharger</span>
+              <span aria-hidden="true" class="text-base leading-none">→</span>
+            </div>
+          </div>
+        </a>
+
         <button
           v-for="tile in galleryTiles"
           :key="tile.src"
@@ -147,6 +172,7 @@ if (!serie) {
 const coverImage = getSeriesCoverImage(serie)
 const heroImage = getSeriesHeroImage(serie)
 const galleryTiles = getSeriesGalleryTiles(serie)
+const wallpaperPackUrl = typeof serie.wallpaperPackUrl === "string" ? serie.wallpaperPackUrl : ""
 const socialImage = getRunImageUrl(heroImage || coverImage, "social")
 const socialImageUrl = toAbsoluteUrl(socialImage, "https://macojaune.com")
 const title = "Série photo " + serie.title + " - Macojaune.com"
