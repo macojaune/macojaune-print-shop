@@ -40,7 +40,7 @@
           <p v-if="blog.date" class="mb-3 text-[11px] uppercase tracking-[0.3em] text-amber-300/70">
             {{ formatCardDate(blog.date) }}
           </p>
-          <h3 class="max-w-[14ch] font-display text-3xl leading-none text-white transition duration-300 group-hover:text-amber-200 lg:text-4xl">
+          <h3 class="max-w-[14ch] font-display text-3xl leading-[0.95] text-white transition duration-300 group-hover:text-amber-200 lg:text-4xl">
             {{ blog.title }}
           </h3>
         </div>

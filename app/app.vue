@@ -32,7 +32,8 @@ useHead({
 })
 </script>
 <style lang="stylus">
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Righteous&display=swap')
+@import url('https://api.fontshare.com/v2/css?f[]=tanker@400&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap')
 html
   background-color: #000000;
 

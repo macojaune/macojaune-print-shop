@@ -4,7 +4,7 @@
       <ContentList v-slot="{ list }" :query="runQuery">
         <section class="mb-8 border-y border-amber-200/10 py-4 lg:mb-10 lg:py-5">
           <div class="mb-4 max-w-3xl">
-            <h1 class="font-display text-4xl uppercase leading-[0.86] text-amber-300 sm:text-5xl lg:text-6xl">
+            <h1 class="font-display text-4xl uppercase leading-[0.92] text-amber-300 sm:text-5xl lg:text-6xl">
               Yellow Art Gallery
             </h1>
             <p class="mt-3 max-w-[42ch] text-sm leading-6 text-stone-300 sm:text-base">
@@ -116,7 +116,7 @@
                     {{ formatPhotoDate(item.seriesDate) }}
                   </p>
                   <div class="mt-2 h-px w-10 bg-amber-300/70 transition duration-500 group-hover:w-16 lg:group-focus-visible:w-16" />
-                  <h3 class="mt-3 max-w-[10ch] text-balance font-display text-[1.95rem] uppercase leading-[0.9] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.9rem]">
+                  <h3 class="mt-3 max-w-[10ch] text-balance font-display text-[1.95rem] uppercase leading-[0.95] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.9rem]">
                     {{ item.seriesTitle }}
                   </h3>
                   <div class="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-stone-300/72">
@@ -148,7 +148,7 @@
                     {{ formatPhotoDate(item.seriesDate) }}
                   </p>
                   <div class="mt-2 h-px w-10 bg-amber-300/70 transition duration-500 group-hover:w-16 lg:group-focus-visible:w-16" />
-                  <h3 class="mt-3 max-w-[10ch] text-balance font-display text-[1.85rem] uppercase leading-[0.9] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.7rem]">
+                  <h3 class="mt-3 max-w-[10ch] text-balance font-display text-[1.85rem] uppercase leading-[0.95] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.7rem]">
                     {{ item.seriesTitle }}
                   </h3>
                 </div>

@@ -81,7 +81,7 @@
             </p>
 
             <div>
-              <h3 class="max-w-[12ch] font-display text-[1.55rem] uppercase leading-[0.9] text-white sm:text-[1.8rem]">
+              <h3 class="max-w-[12ch] font-display text-[1.55rem] uppercase leading-[0.95] text-white sm:text-[1.8rem]">
                 Voir plus de séries
               </h3>
               <div class="mt-5 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-amber-200">

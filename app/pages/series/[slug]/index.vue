@@ -14,7 +14,7 @@
             <p v-if="serie.date" class="text-xs uppercase tracking-[0.38em] text-amber-300/60">
               {{ formatPhotoDate(serie.date) }}
             </p>
-            <h1 class="mt-3 max-w-[13ch] text-balance font-display text-5xl uppercase leading-none text-white lg:text-[6rem]">
+            <h1 class="mt-3 max-w-[13ch] text-balance font-display text-5xl uppercase leading-[0.92] text-white lg:text-[6rem]">
               {{ serie.title }}
             </h1>
             <p class="mt-4 text-[11px] uppercase tracking-[0.3em] text-stone-400">
@@ -39,7 +39,7 @@
             <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
               À emporter
             </p>
-            <h2 class="mt-3 font-display text-[2rem] uppercase leading-[0.92] text-white sm:text-[2.4rem]">
+            <h2 class="mt-3 font-display text-[2rem] uppercase leading-[0.96] text-white sm:text-[2.4rem]">
               Pack de fond d'écran
             </h2>
             <p class="mt-4 text-sm leading-6 text-stone-300">
@@ -72,6 +72,65 @@
           />
         </button>
       </div>
+
+      <section
+        v-if="suggestedSeries.length"
+        class="mt-14 border-t border-white/10 pt-8 lg:mt-16 lg:pt-10"
+      >
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
+              Continuer l’exploration
+            </p>
+            <h2 class="mt-2 font-display text-3xl uppercase leading-[0.95] text-white sm:text-4xl">
+              Découvrir d’autres séries
+            </h2>
+          </div>
+
+          <NuxtLink
+            to="/galerie"
+            class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            Voir toute la galerie
+          </NuxtLink>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NuxtLink
+            v-for="suggestion in suggestedSeries"
+            :key="`suggested-${suggestion.slug}`"
+            :to="`/series/${suggestion.slug}`"
+            class="group relative block min-h-[18rem] overflow-hidden border border-white/10 bg-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            <RunImage
+              :src="suggestion.coverImage"
+              :alt="suggestion.title"
+              variant="card"
+              sizes="(max-width: 639px) 100vw, 50vw"
+              loading="lazy"
+              fetchpriority="low"
+              class="absolute inset-0 h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.03]"
+            />
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/92 via-black/35 to-black/10" />
+
+            <div class="relative z-10 flex h-full flex-col justify-end p-5">
+              <p
+                v-if="suggestion.date"
+                class="text-[10px] uppercase tracking-[0.34em] text-amber-300/78"
+              >
+                {{ formatPhotoDate(suggestion.date) }}
+              </p>
+              <h3 class="mt-3 max-w-[12ch] text-balance font-display text-[2rem] uppercase leading-[0.95] text-white sm:text-[2.3rem]">
+                {{ suggestion.title }}
+              </h3>
+              <p class="mt-4 text-[11px] uppercase tracking-[0.28em] text-stone-300/78">
+                {{ suggestion.photoCount }} {{ suggestion.photoCount > 1 ? "photos" : "photo" }}
+              </p>
+            </div>
+          </NuxtLink>
+        </div>
+      </section>
     </div>
 
     <Teleport to="body">
@@ -158,6 +217,7 @@
 
 <script lang="ts" setup>
 import { formatPhotoDate } from "../../../utils/photo-dates"
+import { getRunEntries } from "../../../composables/useContentCollections"
 import {
   getRunImageUrl,
   getSeriesCoverImage,
@@ -187,6 +247,7 @@ if (!serie) {
 const coverImage = getSeriesCoverImage(serie)
 const heroImage = getSeriesHeroImage(serie)
 const galleryTiles = getSeriesGalleryTiles(serie)
+const allSeries = await getRunEntries()
 const description = typeof serie.description === "string" && serie.description.trim()
     ? serie.description
     : `Découvre la série photo ${serie.title} sur Macojaune.`
@@ -272,6 +333,48 @@ const selectedPositionLabel = computed(() => {
     }
 
     return `${selectedIndex.value + 1} / ${galleryTiles.length}`
+})
+
+type SuggestedSeries = {
+    slug: string
+    title: string
+    date?: string | null
+    coverImage: string
+    photoCount: number
+}
+
+const hashString = (value: string) => {
+    let hash = 0
+
+    for (let index = 0; index < value.length; index += 1) {
+        hash = (hash * 31 + value.charCodeAt(index)) >>> 0
+    }
+
+    return hash
+}
+
+const suggestedSeries = computed<SuggestedSeries[]>(() => {
+    const currentSlug = typeof route.params.slug === "string" ? route.params.slug : String(route.params.slug?.[0] || "")
+
+    return allSeries
+        .filter((entry) => entry.slug && entry.slug !== currentSlug)
+        .map((entry) => {
+            const tiles = getSeriesGalleryTiles(entry as RunLike)
+            const cover = getSeriesCoverImage(entry as RunLike)
+
+            return {
+                slug: entry.slug,
+                title: String(entry.title || "Série photo"),
+                date: typeof entry.date === "string" ? entry.date : null,
+                coverImage: cover,
+                photoCount: tiles.length,
+                score: hashString(`${currentSlug}:${entry.slug}`),
+            }
+        })
+        .filter((entry) => Boolean(entry.coverImage))
+        .sort((left, right) => left.score - right.score)
+        .slice(0, 2)
+        .map(({ score, ...entry }) => entry)
 })
 
 const updatePhotoQuery = async (src?: string) => {

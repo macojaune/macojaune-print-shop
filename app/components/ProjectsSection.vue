@@ -41,7 +41,7 @@
             <p v-if="project.date" class="mb-3 text-[11px] uppercase tracking-[0.3em] text-amber-300/70">
               {{ formatCardDate(project.date) }}
             </p>
-            <h3 class="max-w-[12ch] font-display text-3xl leading-none text-white transition duration-300 group-hover:text-amber-200 lg:text-4xl">
+            <h3 class="max-w-[12ch] font-display text-3xl leading-[0.95] text-white transition duration-300 group-hover:text-amber-200 lg:text-4xl">
               {{ project.title }}
             </h3>
           </div>

@@ -14,11 +14,11 @@ export default <Partial<Config>>{
   ],
   theme: {
     fontFamily: {
-      sans: ['Hind', 'sans-serif']
+      sans: ['Space Grotesk', 'sans-serif']
     },
     extend: {
       fontFamily: {
-        display: ['Righteous', 'sans-serif']
+        display: ['Tanker', 'sans-serif']
       },
       aspectRatio: {
         portrait: '9 / 16'

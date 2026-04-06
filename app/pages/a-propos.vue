@@ -3,27 +3,27 @@
     <div class="flex flex-col gap-5 lg:flex-row lg:justify-around">
       <section>
         <h1 class="font-display text-4xl text-amber-300 mb-3">À propos</h1>
-        <prose-p>Macojaune est un grand curieux et touche à tout, sa passion pour la Beauté l'attire vers la 
-          photographie, médium qui lui permet de retranscrire et partager sa vision du monde de la plus simple des manières, un instant à la fois.
-                      <br><br>
-        Ses clichés se battent contre ceux de nos sociétés et vont souligner, sans retouches, ce que le commun des mortels appelle: défauts.
-        Les mettre en lumière, les rendre acceptables, digestes, beaux. 
+        <prose-p>Je suis un grand curieux, un touche-à-tout. Ma passion pour la Beauté m’a naturellement conduit vers la photographie, un médium qui me permet de retranscrire et de partager ma vision du monde, simplement, un instant à la fois.
           <br><br>
-        
-        Il commence d’abord par partager ses travaux sur les réseaux sociaux, utilisant ses talents d’écriture à chaque publication pour partager une histoire. 
-        Il invite son audience à s’y plonger, interroger leur ressenti et parfois même y participer sous forme de cadavres exquis.
+        Mes clichés questionnent nos standards et mettent en lumière, sans retouche, ce que l’on appelle souvent des “défauts”. Mon intention est de les rendre visibles, acceptables, digestes, beaux.
           <br><br>
-        Cette présence sur les réseaux, lui permettent de collaborer avec d’autres artistes. En 2018, il participe au projet “Fanm Kréyòl” de Tessa Naime, écrivaine guadeloupéenne, un de ses clichés fera la couverture de
-        l’ouvrage “Lettre ouverte à la femme créole”.
-        C’est ensuite en collaboration avec l’auteur Timalo et la photographe Anaïs C. qu’il travaillera sur la couverture du roman créole “Channda”, suite de la collection “Dyablès”, sorti en 2019.
+
+        J’ai d’abord partagé mon travail sur les réseaux sociaux, en y ajoutant à chaque fois de l’écriture pour raconter une histoire. J’invite mon audience à s’y plonger, à interroger son ressenti, et parfois même à participer sous forme de cadavres exquis.
           <br><br>
-        En 2022, il participe à sa première exposition en Guadeloupe intitulée, “Salon Français” à l’hôtel ARAWAK, dans le cadre de la Route du Rhum.
+        Cette présence m’a permis de collaborer avec d’autres artistes. En 2018, j’ai participé au projet “Fanm Kréyòl” de Tessa Naime, écrivaine guadeloupéenne. L’un de mes clichés a ensuite fait la couverture de l’ouvrage “Lettre ouverte à la femme créole”.
+        Puis, en collaboration avec l’auteur Timalo et la photographe Anaïs C., j’ai travaillé sur la couverture du roman créole “Channda”, suite de la collection “Dyablès”, sorti en 2019.
           <br><br>
-        Il contribue à l’édition n°5 de la revue haïtienne Do-Kre-I-S et quelques mois plus tard, une de ses photos fait la couverture du recueil de poésie intitulé “Au berceau des lendemains”, écrit par Ernest Pépin.
+        En 2022, j’ai participé à ma première exposition en Guadeloupe, “Salon Français”, à l’hôtel ARAWAK, dans le cadre de la Route du Rhum.
           <br><br>
-        En 2023, un de ces écrits sera publié dans la revue NEG pour sa 3ème parution.
+        J’ai contribué à l’édition n°5 de la revue haïtienne Do-Kre-I-S, et quelques mois plus tard, l’une de mes photos a fait la couverture du recueil de poésie “Au berceau des lendemains”, écrit par Ernest Pépin.
           <br><br>
-        L’année 2024 débutera avec une publication dans la revue Do-Kre-I-S n°6 en collaboration photo/texte avec Tessa Naime, projet qui sera exposé en Avril à la Galerie Emergenc’Art en Guadeloupe.
+        En 2023, l’un de mes textes a été publié dans la revue NEG pour sa 3ème parution.
+          <br><br>
+        En 2024, j’ai publié dans la revue Do-Kre-I-S n°6 en collaboration photo/texte avec Tessa Naime, un projet également exposé en avril à la Galerie Emergenc’Art en Guadeloupe.
+          <br><br>
+        En 2025, j’ai traversé un hiatus nécessaire : pause sur les réseaux sociaux, vie pro et sociale au ralenti, et très peu de sorties de l’appareil photo.
+          <br><br>
+        En 2026… peut-être le retour ?
         </prose-p>
       </section>
       <section class="">

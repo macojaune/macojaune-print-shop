@@ -19,7 +19,7 @@ a
     color var(--v-accent-base)
 
 h1, h2, h3, h4, h5, h6
-  font-family "Righteous"
+  font-family "Tanker"
 
 #app
   background-color: #000000;

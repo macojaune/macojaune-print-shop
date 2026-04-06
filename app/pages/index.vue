@@ -6,14 +6,14 @@
           <p class="mb-4 text-[11px] uppercase tracking-[0.34em] text-amber-300/70">
             Maco (n.m.) : Curieux, touche-à-tout.
           </p>
-          <h1 class="max-w-[10ch] font-display text-5xl leading-[0.86] text-white sm:text-6xl lg:text-7xl">
+          <h1 class="max-w-[10ch] font-display text-5xl leading-[0.92] text-white sm:text-6xl lg:text-7xl">
             Je suis
             <span class="text-amber-400">Macojaune.</span>
           </h1>
         </div>
 
         <div class="lg:col-span-7">
-          <p class="max-w-[18ch] font-display text-3xl leading-[0.94] text-amber-400 sm:text-4xl lg:text-[3.4rem]">
+          <p class="max-w-[18ch] font-display text-3xl leading-[1.08] text-amber-400 sm:text-4xl lg:text-[3.4rem] lg:leading-[1.02]">
             Photographe,
             curieux
             et passionné.
@@ -21,6 +21,14 @@
           <p class="mt-5 max-w-[40ch] text-base leading-7 text-stone-200 lg:text-[1.12rem] lg:leading-8">
             Ici, tu peux voir mes réalisations, participer aux prochains projets et bien plus encore.
           </p>
+
+          <NuxtLink
+            to="/a-propos"
+            class="mt-6 inline-flex min-h-11 w-fit items-center gap-2 border border-white/12 bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-stone-300 transition hover:border-amber-200/28 hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            <span>En savoir plus</span>
+            <span aria-hidden="true">→</span>
+          </NuxtLink>
         </div>
       </section>
 
