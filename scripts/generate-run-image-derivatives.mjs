@@ -98,17 +98,35 @@ async function pathExists(target) {
 }
 
 async function loadExistingManifest() {
-  if (!(await pathExists(publicManifestPath))) {
-    return {}
+  const manifestSources = [publicManifestPath, generatedManifestPath]
+
+  for (const sourcePath of manifestSources) {
+    if (!(await pathExists(sourcePath))) {
+      continue
+    }
+
+    try {
+      const raw = await fs.readFile(sourcePath, "utf8")
+
+      if (sourcePath === generatedManifestPath) {
+        const match = raw.match(/export const runImageManifest = (\{[\s\S]*\}) as const/)
+
+        if (!match) {
+          continue
+        }
+
+        const parsed = JSON.parse(match[1])
+        return parsed && typeof parsed === "object" ? parsed : {}
+      }
+
+      const parsed = JSON.parse(raw)
+      return parsed?.images && typeof parsed.images === "object" ? parsed.images : {}
+    } catch {
+      continue
+    }
   }
 
-  try {
-    const raw = await fs.readFile(publicManifestPath, "utf8")
-    const parsed = JSON.parse(raw)
-    return parsed?.images && typeof parsed.images === "object" ? parsed.images : {}
-  } catch {
-    return {}
-  }
+  return {}
 }
 
 function collectRunImageRefs(markdown) {
