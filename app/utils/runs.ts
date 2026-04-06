@@ -6,6 +6,7 @@ type GalleryImage = {
   alt?: string
   caption?: string
   orientation?: string
+  sensitive?: boolean
 }
 
 export type SeriesGalleryTile = {
@@ -15,6 +16,7 @@ export type SeriesGalleryTile = {
   orientation?: string
   productSlug?: string
   productTitle?: string
+  sensitive?: boolean
 }
 
 export type RunImageVariantName = "thumb" | "card" | "detail" | "social"
@@ -38,6 +40,7 @@ export type RunLike = {
   heroImage?: string
   products?: ProductLike[]
   gallery?: GalleryImage[]
+  sensitiveImages?: string[]
 }
 
 export function slugifyRunValue(value: string | undefined) {
@@ -46,6 +49,27 @@ export function slugifyRunValue(value: string | undefined) {
     .trim()
     .replace(/\s+/g, "-")
     .replace(/[^\w-]+/g, "")
+}
+
+function normalizeImageSourceForMatch(value: string | undefined) {
+  if (!value) {
+    return ""
+  }
+
+  let normalized = value.trim()
+  if (!normalized) {
+    return ""
+  }
+
+  if (isAbsoluteUrl(normalized)) {
+    try {
+      normalized = new URL(normalized).pathname
+    } catch {
+      // Keep the original value if URL parsing fails.
+    }
+  }
+
+  return normalized
 }
 
 export function getGallerySources(gallery?: GalleryImage[]) {
@@ -86,6 +110,12 @@ export function getSeriesGalleryTiles(run?: RunLike) {
     return []
   }
 
+  const sensitiveSources = new Set(
+    (run.sensitiveImages || [])
+      .map((entry) => normalizeImageSourceForMatch(entry))
+      .filter(Boolean),
+  )
+
   const productTiles = (run.products || []).flatMap((product) => {
     const galleryTiles = (product.gallery || [])
       .map((image) => ({
@@ -95,6 +125,9 @@ export function getSeriesGalleryTiles(run?: RunLike) {
         orientation: image?.orientation,
         productSlug: product.slug,
         productTitle: product.title,
+        sensitive:
+          Boolean(image?.sensitive) ||
+          sensitiveSources.has(normalizeImageSourceForMatch(image?.src || "")),
       }))
       .filter((tile): tile is SeriesGalleryTile => Boolean(tile.src))
 
@@ -107,6 +140,7 @@ export function getSeriesGalleryTiles(run?: RunLike) {
       alt: product.title || run.title || "",
       productSlug: product.slug,
       productTitle: product.title,
+      sensitive: sensitiveSources.has(normalizeImageSourceForMatch(src)),
     }))
   })
 
@@ -120,6 +154,9 @@ export function getSeriesGalleryTiles(run?: RunLike) {
       alt: image?.alt || run.title || "",
       caption: image?.caption || "",
       orientation: image?.orientation,
+      sensitive:
+        Boolean(image?.sensitive) ||
+        sensitiveSources.has(normalizeImageSourceForMatch(image?.src || "")),
     }))
     .filter((tile): tile is SeriesGalleryTile => Boolean(tile.src))
 

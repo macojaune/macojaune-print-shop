@@ -140,6 +140,7 @@ const rewriteEntryAssets = (entry: ContentRecord) => {
     heroImage: rewriteMaybeAsset(entry.heroImage),
     images: rewriteMaybeAssetList(entry.images),
     gallery: rewriteMaybeGallery(entry.gallery),
+    sensitiveImages: rewriteMaybeAssetList(entry.sensitiveImages),
   }
 
   if (Array.isArray(entry.storyBlocks)) {

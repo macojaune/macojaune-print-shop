@@ -20,6 +20,14 @@
               Retour à l&apos;accueil
             </NuxtLink>
 
+            <NuxtLink
+              v-if="isLocalModerationEnabled"
+              to="/local/sensitive-series"
+              class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.3em] text-amber-300/70 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Modération locale des images
+            </NuxtLink>
+
             <button
               type="button"
               class="inline-flex min-h-11 w-fit items-center gap-3 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:hidden"
@@ -168,6 +176,7 @@ import { getSeriesCoverImage, getSeriesGalleryTiles } from "../utils/runs"
 import type { RunLike } from "../utils/runs"
 
 const { toAssetUrl } = useAssetUrls()
+const isLocalModerationEnabled = import.meta.dev
 
 const runQuery: QueryBuilderParams = {
   path: "/runs",
