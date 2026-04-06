@@ -161,4 +161,8 @@ products:
         orientation: landscape
     images:
       - /media/runs/joranie-night-home2/dsc09532-d7d05a914d
+sensitiveImages:
+  - /media/runs/joranie-night-home/dsc05275-dfad4b6288
+  - /media/runs/joranie-night-home/dsc05279-1-86bd0a093d
+  - /media/runs/joranie-night-home/dsc05279-0d0d94f01d
 ---

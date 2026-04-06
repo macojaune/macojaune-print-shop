@@ -672,4 +672,13 @@ products:
         orientation: portrait
     images:
       - /media/runs/st-felix/dsc06646-55f596aa67
+sensitiveImages:
+  - /media/runs/st-felix/dsc06548-c9670361a4
+  - /media/runs/st-felix/dsc06445-f588ad4b8c
+  - /media/runs/st-felix/dsc06418-8cff3c1918
+  - /media/runs/st-felix/dsc06439-405e532754
+  - /media/runs/st-felix/dsc06441-152150ec36
+  - /media/runs/st-felix/dsc06489-0c7ceac24e
+  - /media/runs/st-felix/dsc06485-566e278d0a
+  - /media/runs/st-felix/dsc06465-e79159e2f7
 ---

@@ -518,4 +518,9 @@ products:
         orientation: portrait
     images:
       - /media/runs/ingrid/mco01650-4996bb2553
+sensitiveImages:
+  - /media/runs/ingrid/mco01496-2-6e25ccaf0f
+  - /media/runs/ingrid/mco01635-b2ef51a3f4
+  - /media/runs/ingrid/mco01496-0f29c6b6f9
+  - /media/runs/ingrid/mco01524-233985334f
 ---
