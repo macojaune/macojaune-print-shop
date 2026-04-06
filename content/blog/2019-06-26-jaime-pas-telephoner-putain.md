@@ -6,7 +6,7 @@ updatedAt: 2026-01-07T00:00:00.000Z
 draft: false
 podcast: true
 author: "Glob le blogger"
-permalink: jai-le-droit-de-ne-rien-faire-nest-ce-pas
+permalink: jaime-pas-telephoner-putain
 layout: post
 categories: ["communication"]
 tags: ["téléphone", "intimité", "temps", "communication", "tech"]

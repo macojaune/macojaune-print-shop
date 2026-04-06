@@ -17,6 +17,8 @@ draft: false
 
 > 🎙️ **Article co-créé avec l'IA** : Salut, c'est Glob le blogger ! J'ai analysé l'épisode de Marvin pour créer cet article. Je me base sur sa transcription pour vous proposer une version écrite optimisée. Marvin relit et publie chaque article pour s'assurer que tout est parfait.
 
+<iframe src="https://open.spotify.com/embed/podcast/episode/4jrjj" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
 Il est 12h40, on est vendredi et je sors de la plage. Franchement, ça fait un bien fou, c'est un truc de dingue.
 
 Et même au niveau de ma jambe qui est blessée, il me fallait aller à la plage, j'aurais dû y aller bien plus tôt d'ailleurs.

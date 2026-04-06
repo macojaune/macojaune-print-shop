@@ -1,8 +1,8 @@
 <template>
   <div class="w-full px-4 py-6 lg:px-6 lg:py-8">
     <div class="mx-auto max-w-[1450px]">
-      <header class="grid gap-8 border-b border-amber-200/10 pb-10 lg:grid-cols-12 lg:gap-10 lg:pb-14">
-        <div :class="data?.image ? 'lg:col-span-6 lg:self-end' : 'lg:col-span-8'">
+      <header class="border-b border-amber-200/10 pb-10 lg:pb-14">
+        <div class="max-w-[72rem]">
           <NuxtLink
             to="/blog"
             class="inline-flex w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-stone-300 transition hover:text-amber-200"
@@ -25,15 +25,17 @@
           </p>
         </div>
 
-        <figure v-if="data?.image" class="overflow-hidden bg-stone-950 lg:col-span-5 lg:col-start-8">
+        <figure v-if="articleImage" class="relative mt-8 overflow-hidden border border-white/10 bg-stone-950">
           <nuxt-img
-            :src="toAssetUrl(data.image)"
+            :src="toAssetUrl(articleImage)"
             :alt="data?.title ?? ''"
             format="webp"
             placeholder
-            sizes="(max-width: 1023px) 100vw, 42vw"
-            class="aspect-[4/5] w-full object-cover"
+            sizes="(max-width: 1023px) 100vw, 92vw"
+            :style="{ viewTransitionName: data?.permalink ? `img-${data.permalink}` : '' }"
+            class="aspect-[16/11] w-full object-cover lg:aspect-[16/8]"
           />
+          <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2),rgba(0,0,0,0.38))]" />
         </figure>
       </header>
 
@@ -92,6 +94,44 @@ const { data } = await useAsyncData(requestKey, () =>
 )
 const nextPost = await queryContent("/blog").where({ date: { $lt: data.value?.date } }).sort({ _id: -1 }).findOne()
 
+type ContentNode = {
+  children?: ContentNode[]
+  props?: Record<string, unknown>
+  tag?: string
+}
+
+const findFirstImageInNode = (node?: ContentNode): string | null => {
+  if (!node) {
+    return null
+  }
+
+  if (node.tag === "img" && typeof node.props?.src === "string" && node.props.src.trim()) {
+    return node.props.src.trim()
+  }
+
+  if (!Array.isArray(node.children)) {
+    return null
+  }
+
+  for (const child of node.children) {
+    const foundImage = findFirstImageInNode(child)
+    if (foundImage) {
+      return foundImage
+    }
+  }
+
+  return null
+}
+
+const articleImage = computed(() => {
+  if (typeof data.value?.image === "string" && data.value.image.trim()) {
+    return data.value.image.trim()
+  }
+
+  const bodyNode = data.value?.body as ContentNode | undefined
+  return findFirstImageInNode(bodyNode) ?? undefined
+})
+
 const title = data.value?.title ? `${data.value?.title} | Le blog du Macojaune` : "Le blog du Macojaune"
 useHead({
   title,
@@ -112,7 +152,7 @@ useHead({
       property: "og:description",
       content: data.value?.description,
     },
-    { property: "og:image", content: toAssetUrl(data.value?.image) },
+    { property: "og:image", content: toAssetUrl(articleImage.value) },
     {
       property: "twitter:card", content: "summary_large_image",
     },
@@ -122,7 +162,7 @@ useHead({
       property: "twitter:description",
       content: data.value?.description,
     },
-    { property: "twitter:image", content: toAssetUrl(data.value?.image) },
+    { property: "twitter:image", content: toAssetUrl(articleImage.value) },
   ],
   script: [
     {
