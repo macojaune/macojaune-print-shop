@@ -1963,4 +1963,15 @@ products:
         orientation: portrait
     images:
       - /media/runs/erotikart-khad/story_mco04561-7fc5223613
+sensitiveImages:
+  - /media/runs/erotikart-khad/mco04575-2-3e06b1b6d1
+  - /media/runs/erotikart-khad/mco04575-16e42cd858
+  - /media/runs/erotikart-khad/mco04674-7495461692
+  - /media/runs/erotikart-khad/mco04676-32918bc3c4
+  - /media/runs/erotikart-khad/mco04832-55480c8970
+  - /media/runs/erotikart-khad/mco04836-6c352828e8
+  - /media/runs/erotikart-khad/mco04834-57f175be66
+  - /media/runs/erotikart-khad/mco05103-4f5214c30d
+  - /media/runs/erotikart-khad/mco05168-7f224b7e43
+  - /media/runs/erotikart-khad/mco05172-ed214ecf81
 ---
