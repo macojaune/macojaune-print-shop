@@ -1,7 +1,11 @@
 <template lang="pug">
 .main.flex.flex-col.justify-between.h-full.w-full.overflow-auto
+  a(
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-black focus:px-4 focus:py-3 focus:text-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-300/90"
+  ) Aller au contenu
   Header
-  .container.mx-auto.px-4.w-full
+  main#main-content.container.mx-auto.px-4.w-full(tabindex="-1")
     slot
   Footer
 </template>
@@ -26,7 +30,7 @@ onMounted(() => {
         const t = d.getElementsByTagName(s)[0];
         const e = d.createElement(s);
         e.async = true;
-        e.src = "//static.axept.io/sdk.js";
+        e.src = "https://static.axept.io/sdk.js";
         t.parentNode.insertBefore(e, t);
     })(document, "script");
 });

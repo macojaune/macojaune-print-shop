@@ -3,19 +3,29 @@
     <div class="mx-auto max-w-[1700px]">
       <ContentList v-slot="{ list }" :query="runQuery">
         <section class="mb-8 border-y border-amber-200/10 py-4 lg:mb-10 lg:py-5">
+          <div class="mb-4 max-w-3xl">
+            <h1 class="font-display text-4xl uppercase leading-[0.86] text-amber-300 sm:text-5xl lg:text-6xl">
+              Yellow Art Gallery
+            </h1>
+            <p class="mt-3 max-w-[42ch] text-sm leading-6 text-stone-300 sm:text-base">
+              Explore les séries photo et ouvre chaque univers en plein écran.
+            </p>
+          </div>
+
           <div class="flex flex-col gap-4">
             <NuxtLink
               to="/"
-              class="inline-flex w-fit items-center text-[10px] uppercase tracking-[0.3em] text-stone-400 transition hover:text-amber-200"
+              class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.3em] text-stone-400 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Retour à l&apos;accueil
             </NuxtLink>
 
             <button
               type="button"
-              class="inline-flex w-fit items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 lg:hidden"
+              class="inline-flex min-h-11 w-fit items-center gap-3 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:hidden"
               :aria-expanded="isSeriesMenuOpen ? 'true' : 'false'"
               aria-controls="gallery-series-menu"
+              :aria-label="isSeriesMenuOpen ? `Masquer l'index des séries` : `Ouvrir l'index des séries`"
               @click="isSeriesMenuOpen = !isSeriesMenuOpen"
             >
               <span>{{ isSeriesMenuOpen ? "Masquer l'index des séries" : "Ouvrir l'index des séries" }}</span>
@@ -27,21 +37,45 @@
 
           <nav
             id="gallery-series-menu"
-            :class="[isSeriesMenuOpen ? 'grid' : 'hidden', 'mt-4 gap-x-4 gap-y-3 sm:grid-cols-2 lg:grid lg:grid-cols-3 xl:grid-cols-4']"
+            :class="[
+              isSeriesMenuOpen ? 'block' : 'hidden',
+              'mt-4 lg:block lg:columns-2 lg:[column-gap:1.25rem] lg:[column-rule:1px_solid_rgba(251,191,36,0.18)]',
+            ]"
           >
-            <NuxtLink
-              v-for="series in getGallerySeries(list)"
-              :key="series.slug"
-              :to="`/series/${series.slug}`"
-              class="group inline-flex min-w-0 items-baseline gap-3 border-b border-white/8 pb-2 text-left transition hover:border-amber-200/18"
+            <details
+              v-for="group in getGallerySeriesGroups(list)"
+              :key="`year-group-${group.year}`"
+              :open="openYear === group.year"
+              class="mb-3 w-full rounded-sm border border-white/10 bg-stone-950/40 px-3 py-2 transition open:border-amber-300/35 open:bg-stone-900/60 lg:[break-inside:avoid] lg:mx-1.5"
             >
-              <span class="text-[10px] uppercase tracking-[0.28em] text-amber-300/58">
-                {{ String(series.order).padStart(2, "0") }}
-              </span>
-              <span class="truncate font-display text-xl leading-none text-stone-200 transition group-hover:text-amber-100">
-                {{ series.title }}
-              </span>
-            </NuxtLink>
+              <summary
+                class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black [&::-webkit-details-marker]:hidden"
+                @click.prevent="toggleYearGroup(group.year)"
+              >
+                <span class="font-display text-xl uppercase leading-none text-amber-200 sm:text-2xl">
+                  {{ group.year }}
+                </span>
+                <span class="text-[10px] uppercase tracking-[0.3em] text-stone-400">
+                  {{ group.items.length }} séries
+                </span>
+              </summary>
+
+              <div class="grid grid-cols-1 gap-x-4 gap-y-0.5 pb-1 pt-2 sm:grid-cols-2">
+                <NuxtLink
+                  v-for="(series, seriesIndex) in group.items"
+                  :key="series.slug"
+                  :to="`/series/${series.slug}`"
+                  class="group flex w-full min-h-10 min-w-0 items-start gap-3 border-b border-white/8 py-2 text-left transition hover:border-amber-200/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  <span class="min-w-[1.65rem] pt-0.5 text-xs font-medium tabular-nums tracking-normal text-amber-300/78">
+                    {{ String(seriesIndex + 1).padStart(2, "0") }}.
+                  </span>
+                  <span class="min-w-0 truncate text-sm font-medium leading-5 text-stone-200 transition group-hover:text-amber-100 sm:text-[0.95rem]">
+                    {{ series.title }}
+                  </span>
+                </NuxtLink>
+              </div>
+            </details>
           </nav>
         </section>
 
@@ -51,7 +85,7 @@
             :key="item.key"
             :to="`/series/${item.seriesSlug}`"
             :class="galleryFeedClass(item, index)"
-            class="group relative isolate overflow-hidden bg-stone-950"
+            class="group relative isolate overflow-hidden bg-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <div class="absolute inset-0">
               <RunImage
@@ -82,9 +116,9 @@
                     {{ formatPhotoDate(item.seriesDate) }}
                   </p>
                   <div class="mt-2 h-px w-10 bg-amber-300/70 transition duration-500 group-hover:w-16 lg:group-focus-visible:w-16" />
-                  <h2 class="mt-3 max-w-[10ch] font-display text-[1.95rem] uppercase leading-[0.9] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.9rem]">
+                  <h3 class="mt-3 max-w-[10ch] text-balance font-display text-[1.95rem] uppercase leading-[0.9] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.9rem]">
                     {{ item.seriesTitle }}
-                  </h2>
+                  </h3>
                   <div class="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-stone-300/72">
                     <span>{{ item.tileCount }} images</span>
                     <span class="h-1 w-1 rounded-full bg-amber-300/45" />
@@ -114,9 +148,9 @@
                     {{ formatPhotoDate(item.seriesDate) }}
                   </p>
                   <div class="mt-2 h-px w-10 bg-amber-300/70 transition duration-500 group-hover:w-16 lg:group-focus-visible:w-16" />
-                  <h2 class="mt-3 max-w-[10ch] font-display text-[1.85rem] uppercase leading-[0.9] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.7rem]">
+                  <h3 class="mt-3 max-w-[10ch] text-balance font-display text-[1.85rem] uppercase leading-[0.9] text-white transition duration-500 group-hover:text-amber-100 lg:text-[2.7rem]">
                     {{ item.seriesTitle }}
-                  </h2>
+                  </h3>
                 </div>
               </div>
             </template>
@@ -160,13 +194,19 @@ type GallerySeriesEntry = {
   slug: string
   title: string
   date?: string
-  order: number
+  year: string
   coverImage: string
   tileCount: number
 }
 
+type GallerySeriesGroup = {
+  year: string
+  items: GallerySeriesEntry[]
+}
+
 const gallerySeed = useState("gallery-preview-seed", () => Math.random())
 const isSeriesMenuOpen = ref(false)
+const openYear = ref<string | null>(null)
 
 const seededRandom = (seed: number) => {
   const value = Math.sin(seed) * 10000
@@ -176,6 +216,15 @@ const seededRandom = (seed: number) => {
 const toTimestamp = (value?: string) => {
   const timestamp = new Date(value || "").getTime()
   return Number.isNaN(timestamp) ? Number.POSITIVE_INFINITY : timestamp
+}
+
+const getSeriesYear = (value?: string) => {
+  const parsedDate = new Date(value || "")
+  if (Number.isNaN(parsedDate.getTime())) {
+    return "Sans date"
+  }
+
+  return String(parsedDate.getFullYear())
 }
 
 function shuffleSeries<T>(series: T[], seedLabel: string) {
@@ -213,8 +262,8 @@ const getGalleryBoardTiles = (runs: GalleryBoardRun[]) =>
 
 const getGallerySeries = (runs: GalleryBoardRun[]): GallerySeriesEntry[] =>
   [...runs]
-    .sort((left, right) => toTimestamp(left.date) - toTimestamp(right.date))
-    .map((run, index) => {
+    .sort((left, right) => toTimestamp(right.date) - toTimestamp(left.date))
+    .map((run) => {
       const shuffledTiles = shuffleSeries(getSeriesGalleryTiles(run), `series-${run.slug}`)
       const coverImage = getSeriesCoverImage(run) || shuffledTiles[0]?.src || ""
 
@@ -222,12 +271,47 @@ const getGallerySeries = (runs: GalleryBoardRun[]): GallerySeriesEntry[] =>
         slug: run.slug,
         title: run.title || "Serie",
         date: run.date,
-        order: index + 1,
+        year: getSeriesYear(run.date),
         coverImage,
         tileCount: shuffledTiles.length,
       }
     })
     .filter((series) => Boolean(series.slug) && Boolean(series.coverImage || series.tileCount))
+
+const getGallerySeriesGroups = (runs: GalleryBoardRun[]): GallerySeriesGroup[] => {
+  const groupedSeries = new Map<string, GallerySeriesEntry[]>()
+
+  getGallerySeries(runs).forEach((series) => {
+    const entries = groupedSeries.get(series.year)
+
+    if (entries) {
+      entries.push(series)
+      return
+    }
+
+    groupedSeries.set(series.year, [series])
+  })
+
+  const toYearScore = (year: string) => {
+    if (year === "Sans date") {
+      return Number.NEGATIVE_INFINITY
+    }
+
+    const parsedYear = Number(year)
+    return Number.isNaN(parsedYear) ? Number.NEGATIVE_INFINITY : parsedYear
+  }
+
+  return Array.from(groupedSeries.entries())
+    .sort((left, right) => toYearScore(right[0]) - toYearScore(left[0]))
+    .map(([year, items]) => ({
+      year,
+      items: [...items].sort((left, right) => toTimestamp(right.date) - toTimestamp(left.date)),
+    }))
+}
+
+const toggleYearGroup = (year: string) => {
+  openYear.value = openYear.value === year ? null : year
+}
 
 const galleryFeedClass = (item: GalleryBoardTile, index: number) => {
   const photoPattern = [
@@ -296,7 +380,7 @@ useHead({
     {
       type: "application/ld+json",
       innerHTML: JSON.stringify({
-        "@context": "http://schema.org/",
+        "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
           {

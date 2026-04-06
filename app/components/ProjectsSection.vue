@@ -10,7 +10,7 @@
         </p>
       </div>
       <NuxtLink
-        class="inline-flex w-fit items-center text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
+        class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
         to="/projets"
       >
         Voir tous les projets
@@ -39,7 +39,7 @@
 
           <div class="relative z-10 flex h-full flex-col justify-end p-5 lg:p-6">
             <p v-if="project.date" class="mb-3 text-[11px] uppercase tracking-[0.3em] text-amber-300/70">
-              {{ moment(project.date).format('ll') }}
+              {{ formatCardDate(project.date) }}
             </p>
             <h3 class="max-w-[12ch] font-display text-3xl leading-none text-white transition duration-300 group-hover:text-amber-200 lg:text-4xl">
               {{ project.title }}
@@ -52,9 +52,9 @@
 </template>
 <script setup lang="ts">
 import type {QueryBuilderParams} from "@nuxt/content/types";
-import moment from "moment/moment";
 
 const { toAssetUrl } = useAssetUrls()
+const dateFormatter = new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium" })
 
 const projectQuery: QueryBuilderParams = {
   path: "/projects",
@@ -78,4 +78,13 @@ const projectImageSizes = (index: number) =>
   index === 0
     ? "(max-width: 1023px) 100vw, 58vw"
     : "(max-width: 1023px) 100vw, 42vw"
+
+const formatCardDate = (value?: string | null) => {
+  if (!value) {
+    return ""
+  }
+
+  const parsedDate = new Date(value)
+  return Number.isNaN(parsedDate.getTime()) ? "" : dateFormatter.format(parsedDate)
+}
 </script>

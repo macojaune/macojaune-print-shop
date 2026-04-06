@@ -72,22 +72,20 @@ useHead({
     script: [
         {
             type: 'application/ld+json',
-            innerHTML: [
-                { '@context': 'http://schema.org/' },
-                { '@type': 'BreadcrumbList' },
-                {
-                    itemListElement: [
-                        {
-                            '@type': 'ListItem',
-                            position: 1,
-                            item: {
-                                '@id': 'https://macojaune.com',
-                                name: 'Homepage'
-                            }
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        item: {
+                            '@id': 'https://macojaune.com',
+                            name: 'Homepage'
                         }
-                    ]
-                }
-            ]
+                    }
+                ]
+            })
         }
     ]
 })

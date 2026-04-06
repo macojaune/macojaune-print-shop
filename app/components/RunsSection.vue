@@ -10,7 +10,7 @@
         </p>
       </div>
       <NuxtLink
-        class="inline-flex w-fit items-center text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
+        class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
         to="/galerie"
       >
         Voir toutes les séries
@@ -20,7 +20,7 @@
       <div class="mb-2">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 lg:gap-2">
           <NuxtLink
-            v-for="serie in getHomepageSeries(list)"
+            v-for="serie in getHomepageSeries(list).slice(0, 15)"
             :key="serie.slug"
             :to="`/series/${serie.slug}`"
             class="group relative block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
@@ -71,6 +71,25 @@
               </div>
             </div>
           </NuxtLink>
+
+          <NuxtLink
+            to="/galerie"
+            class="group relative flex aspect-[4/5] flex-col justify-between border border-amber-200/20 bg-stone-950 p-4 text-amber-100 transition duration-300 hover:border-amber-200/50 hover:bg-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:p-5"
+          >
+            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/80">
+              Galerie complète
+            </p>
+
+            <div>
+              <h3 class="max-w-[12ch] font-display text-[1.55rem] uppercase leading-[0.9] text-white sm:text-[1.8rem]">
+                Voir plus de séries
+              </h3>
+              <div class="mt-5 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-amber-200">
+                <span>Explorer</span>
+                <span aria-hidden="true" class="transition duration-300 group-hover:translate-x-1">→</span>
+              </div>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </ContentList>
@@ -85,6 +104,7 @@ import type { RunLike, SeriesGalleryTile } from "../utils/runs"
 
 const runQuery: QueryBuilderParams = {
   path: "/runs",
+  limit: 15,
 }
 
 type HomeRun = RunLike & {

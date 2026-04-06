@@ -11,7 +11,7 @@
         </p>
       </div>
       <NuxtLink
-        class="inline-flex w-fit items-center text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
+        class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
         to="/blog"
       >
         Voir les articles
@@ -38,7 +38,7 @@
 
         <div class="relative z-10 flex h-full flex-col justify-end p-5 lg:p-6">
           <p v-if="blog.date" class="mb-3 text-[11px] uppercase tracking-[0.3em] text-amber-300/70">
-            {{ moment(blog.date).format('ll') }}
+            {{ formatCardDate(blog.date) }}
           </p>
           <h3 class="max-w-[14ch] font-display text-3xl leading-none text-white transition duration-300 group-hover:text-amber-200 lg:text-4xl">
             {{ blog.title }}
@@ -50,10 +50,10 @@
 </template>
 
 <script lang="ts" setup>
-import moment from "moment/moment";
 import { getBlogEntries } from "../composables/useContentCollections";
 
 const { toAssetUrl } = useAssetUrls()
+const dateFormatter = new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium" })
 const toTimestamp = (value?: string | null) => {
   if (!value) {
     return Number.POSITIVE_INFINITY
@@ -89,4 +89,13 @@ const blogImageSizes = (index: number) =>
   index === 0
     ? "(max-width: 1023px) 100vw, 66vw"
     : "(max-width: 1023px) 100vw, 34vw"
+
+const formatCardDate = (value?: string | null) => {
+  if (!value) {
+    return ""
+  }
+
+  const parsedDate = new Date(value)
+  return Number.isNaN(parsedDate.getTime()) ? "" : dateFormatter.format(parsedDate)
+}
 </script>
