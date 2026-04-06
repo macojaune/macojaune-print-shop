@@ -4,7 +4,7 @@
       <section class="mb-10 pb-8 pt-4 lg:mb-14 lg:pb-10">
         <NuxtLink
           to="/galerie"
-          class="inline-flex items-center text-xs uppercase tracking-[0.32em] text-amber-300/60 transition hover:text-amber-200"
+          class="inline-flex min-h-11 items-center py-2 text-xs uppercase tracking-[0.32em] text-amber-300/60 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
         >
           Galerie
         </NuxtLink>
@@ -14,12 +14,15 @@
             <p v-if="serie.date" class="text-xs uppercase tracking-[0.38em] text-amber-300/60">
               {{ formatPhotoDate(serie.date) }}
             </p>
-            <h1 class="mt-3 font-display text-5xl uppercase leading-none text-white lg:text-[6rem]">
+            <h1 class="mt-3 max-w-[13ch] text-balance font-display text-5xl uppercase leading-none text-white lg:text-[6rem]">
               {{ serie.title }}
             </h1>
+            <p class="mt-4 text-[11px] uppercase tracking-[0.3em] text-stone-400">
+              {{ galleryTiles.length }} photos
+            </p>
           </div>
 
-          <ContentRenderer :value="serie" class="max-w-2xl text-sm leading-6 text-stone-300 lg:text-base" />
+          <ContentRenderer :value="serie" class="max-w-2xl text-sm leading-6 text-stone-300 [&_p:last-child]:mb-0 lg:text-base" />
         </div>
       </section>
 
@@ -28,7 +31,7 @@
           v-if="wallpaperPackUrl"
           :href="wallpaperPackUrl"
           download
-          class="group relative mb-4 flex min-h-[19rem] break-inside-avoid flex-col justify-end overflow-hidden border border-amber-200/12 bg-stone-950 p-5 text-left transition duration-500 hover:border-amber-200/24"
+          class="group relative mb-4 flex min-h-[19rem] break-inside-avoid flex-col justify-end overflow-hidden border border-amber-200/12 bg-stone-950 p-5 text-left transition duration-500 hover:border-amber-200/24 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
         >
           <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.18)_0%,rgba(12,10,9,0.62)_58%,rgba(12,10,9,0.96)_100%)]" />
           <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.18),transparent_68%)] opacity-70 transition duration-500 group-hover:opacity-100" />
@@ -50,10 +53,11 @@
         </a>
 
         <button
-          v-for="tile in galleryTiles"
+          v-for="(tile, index) in galleryTiles"
           :key="tile.src"
           type="button"
-          class="group relative mb-4 block w-full break-inside-avoid overflow-hidden text-left"
+          :aria-label="`Ouvrir la photo ${index + 1} de la série ${serie.title}`"
+          class="group relative mb-4 block w-full break-inside-avoid overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           @click="openPhoto(tile.src)"
         >
           <RunImage
@@ -79,14 +83,21 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-        <div v-if="selectedTile" class="fixed inset-0 z-50" @click.self="closePhoto">
+        <div
+          v-if="selectedTile"
+          class="fixed inset-0 z-50"
+          role="dialog"
+          aria-modal="true"
+          :aria-label="`Visionneuse de la série ${serie.title}`"
+          @click.self="closePhoto"
+        >
           <div class="absolute inset-0 bg-black/97 backdrop-blur-md" />
 
           <div class="relative flex min-h-screen items-center justify-center px-4 py-6 sm:px-6">
             <div class="flex w-full max-w-[96vw] flex-col items-center">
               <button
                 type="button"
-                class="mb-4 self-end px-3 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200"
+                class="mb-4 inline-flex min-h-11 items-center self-end px-3 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 @click="closePhoto"
               >
                 Fermer
@@ -119,15 +130,19 @@
               >
                 <button
                   type="button"
-                  class="px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200"
+                  class="inline-flex min-h-11 items-center px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   @click.stop="showPreviousPhoto"
                 >
                   Précédente
                 </button>
 
+                <p class="text-[10px] uppercase tracking-[0.3em] text-stone-400">
+                  {{ selectedPositionLabel }}
+                </p>
+
                 <button
                   type="button"
-                  class="px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200"
+                  class="inline-flex min-h-11 items-center px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   @click.stop="showNextPhoto"
                 >
                   Suivante
@@ -172,6 +187,9 @@ if (!serie) {
 const coverImage = getSeriesCoverImage(serie)
 const heroImage = getSeriesHeroImage(serie)
 const galleryTiles = getSeriesGalleryTiles(serie)
+const description = typeof serie.description === "string" && serie.description.trim()
+    ? serie.description
+    : `Découvre la série photo ${serie.title} sur Macojaune.`
 const wallpaperPackUrl = typeof serie.wallpaperPackUrl === "string" ? serie.wallpaperPackUrl : ""
 const socialImage = getRunImageUrl(heroImage || coverImage, "social")
 const socialImageUrl = toAbsoluteUrl(socialImage, "https://macojaune.com")
@@ -247,6 +265,14 @@ const selectedIndex = computed(() =>
 const selectedTile = computed(() =>
     selectedIndex.value >= 0 ? galleryTiles[selectedIndex.value] : null,
 )
+
+const selectedPositionLabel = computed(() => {
+    if (selectedIndex.value < 0 || !galleryTiles.length) {
+        return ""
+    }
+
+    return `${selectedIndex.value + 1} / ${galleryTiles.length}`
+})
 
 const updatePhotoQuery = async (src?: string) => {
     const nextQuery = { ...route.query }
@@ -362,14 +388,14 @@ useHead({
         },
         {
             name: "description",
-            content: serie.description,
+            content: description,
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: toSiteUrl(route.path) },
         { property: "og:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
         {
             property: "og:description",
-            content: serie.description,
+            content: description,
         },
         { property: "og:image", content: socialImageUrl },
         {
@@ -379,15 +405,21 @@ useHead({
         { property: "twitter:title", content: `Découvre la série ${serie.title} sur le site de @macojaune` },
         {
             property: "twitter:description",
-            content: serie.description,
+            content: description,
         },
         { property: "twitter:image", content: socialImageUrl },
+    ],
+    link: [
+        {
+            rel: "canonical",
+            href: toSiteUrl(route.path),
+        },
     ],
     script: [
         {
             type: "application/ld+json",
             innerHTML: JSON.stringify({
-                "@context": "http://schema.org/",
+                "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
                 itemListElement: [
                     {
