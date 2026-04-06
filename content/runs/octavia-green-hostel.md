@@ -1,5 +1,5 @@
 ---
-title: Octavia x Green Hostel
+title: "Octavia: Green Hostel"
 slug: octavia-green-hostel
 date: 2021-08-11T20:32:28.996Z
 status: published

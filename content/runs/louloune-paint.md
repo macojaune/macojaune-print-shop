@@ -1,6 +1,6 @@
 ---
-title: "Louloune: Travaux Pratiques"
-slug: louloune-paint
+title: Travaux Pratiques
+slug: travaux-pratiques
 date: 2026-04-04T07:45:11.721Z
 status: published
 coverImage: /media/runs/paint/insta_mco00617-77b63c855e

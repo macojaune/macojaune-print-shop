@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto"
-import { spawn } from "node:child_process"
 import { createRequire } from "node:module"
 import { existsSync, promises as fs, readFileSync } from "node:fs"
 import path from "node:path"
@@ -12,6 +11,11 @@ import { fileURLToPath } from "node:url"
 import matter from "gray-matter"
 import sharp from "sharp"
 import YAML from "yaml"
+import {
+  finalizeSeriesImports,
+  markSeriesImportsDirty,
+  registerImportSession,
+} from "./lib/import-series-finalize.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -89,6 +93,9 @@ Options:
   --all               Treat source as a batch root containing multiple series folders.
   --dry-run           Validate and print the planned import without uploading or writing.
   --write             Upload to R2 and write content/runs/*.md entries.
+  --append-to <slug>  Add only missing files to an existing series slug.
+  --fail-on-bad-files Fail immediately on unreadable or unprocessable image files.
+  --skip-finalize     Skip the final sync/images phase after writes. Useful for parallel imports.
   --title <value>     Override inferred or manifest title for a single-series import.
   --slug <value>      Override inferred or manifest slug for a single-series import.
   --date <value>      Override inferred or manifest date for a single-series import.
@@ -113,6 +120,9 @@ function parseArgs(argv) {
     all: false,
     dryRun: false,
     write: false,
+    appendToSlug: "",
+    skipBadFiles: true,
+    skipFinalize: false,
     metadata: {
       title: "",
       slug: "",
@@ -156,6 +166,12 @@ function parseArgs(argv) {
       continue
     }
 
+    if (arg === "--append-to") {
+      args.appendToSlug = argv[index + 1] || ""
+      index += 1
+      continue
+    }
+
     if (arg === "--cover") {
       args.metadata.cover = argv[index + 1] || ""
       index += 1
@@ -183,6 +199,21 @@ function parseArgs(argv) {
       continue
     }
 
+    if (arg === "--skip-bad-files") {
+      args.skipBadFiles = true
+      continue
+    }
+
+    if (arg === "--fail-on-bad-files") {
+      args.skipBadFiles = false
+      continue
+    }
+
+    if (arg === "--skip-finalize") {
+      args.skipFinalize = true
+      continue
+    }
+
     if (arg === "--help" || arg === "-h") {
       usage()
     }
@@ -205,6 +236,29 @@ function parseArgs(argv) {
     usage("Series-level metadata flags are only supported for single-series imports")
   }
 
+  if (args.appendToSlug) {
+    const appendSlug = slugify(args.appendToSlug)
+
+    if (!appendSlug) {
+      usage("--append-to must contain a usable slug")
+    }
+
+    if (args.all) {
+      usage("--append-to is only supported for single-series imports")
+    }
+
+    if (args.metadata.slug && slugify(args.metadata.slug) !== appendSlug) {
+      usage("--append-to must match --slug when both are provided")
+    }
+
+    args.appendToSlug = appendSlug
+    args.metadata.slug = appendSlug
+  }
+
+  if (args.skipFinalize && !args.write) {
+    usage("--skip-finalize can only be used with --write")
+  }
+
   return args
 }
 
@@ -220,6 +274,22 @@ function formatDuration(milliseconds) {
   const minutes = Math.floor(milliseconds / 60_000)
   const seconds = ((milliseconds % 60_000) / 1000).toFixed(1)
   return `${minutes}m${seconds}s`
+}
+
+function normalizeErrorMessage(error) {
+  return error instanceof Error ? error.message : String(error)
+}
+
+function isSkippableImageError(error) {
+  const message = normalizeErrorMessage(error).toLowerCase()
+
+  return (
+    message.includes("unsupported image file") ||
+    message.includes("sharp could not process the source image") ||
+    message.includes("premature end of jpeg image") ||
+    message.includes("corrupt jpeg data") ||
+    message.includes("vipsjpeg")
+  )
 }
 
 function createWriteProgressTracker(seriesList) {
@@ -247,6 +317,17 @@ function createWriteProgressTracker(seriesList) {
         `${prefix(seriesIndex, photoIndex, photoCount)} Uploaded ${photo.filename} -> ${outputSrc} in ${formatDuration(Date.now() - uploadStartedAt)}`,
       )
     },
+    photoSkipped(seriesIndex, photoIndex, photoCount, photo, reason) {
+      console.warn(
+        `${prefix(seriesIndex, photoIndex, photoCount)} Skipped ${photo.filename}: ${reason}`,
+      )
+    },
+    photoAlreadyPresent(seriesIndex, series, photo) {
+      console.log(`[series ${seriesIndex + 1}/${totalSeries}] Already present in ${series.slug}: ${photo.filename}`)
+    },
+    seriesSkipped(seriesIndex, series, reason) {
+      console.warn(`[series ${seriesIndex + 1}/${totalSeries}] Skipped ${series.slug}: ${reason}`)
+    },
     runFileWritten(seriesIndex, targetPath, writeStartedAt) {
       console.log(
         `[series ${seriesIndex + 1}/${totalSeries}] Wrote ${path.relative(repoRoot, targetPath)} in ${formatDuration(Date.now() - writeStartedAt)}`,
@@ -257,6 +338,9 @@ function createWriteProgressTracker(seriesList) {
     },
     imageSyncStart() {
       console.log(`[finalize] Running images:sync`)
+    },
+    finalizeSkipped() {
+      console.log(`[finalize] Skipped. Run node scripts/finalize-series-imports.mjs when your import batch is complete.`)
     },
     complete() {
       console.log(`\nWrite completed in ${formatDuration(Date.now() - startedAt)}.`)
@@ -613,16 +697,22 @@ async function promptForSeriesMetadata(series) {
       series.metadata.description.source = "prompt"
     }
 
+    const previousCoverFile = series.coverFile
+    const shouldMirrorHeroToCover =
+      !series.heroFile ||
+      series.heroFile === previousCoverFile ||
+      series.metadata.hero.source === "inferred"
+
     const coverValue = await promptWithDefault(rl, "Cover photo filename or id", series.coverFile, (value) => resolvePhotoReference(value, series.photos, "Cover"))
     if (coverValue !== series.coverFile) {
       series.coverFile = coverValue
       series.metadata.cover.source = "prompt"
     }
 
-    const heroValue = await promptWithDefault(rl, "Hero photo filename or id", series.heroFile, (value) => resolvePhotoReference(value, series.photos, "Hero"))
-    if (heroValue !== series.heroFile) {
-      series.heroFile = heroValue
-      series.metadata.hero.source = "prompt"
+    if (shouldMirrorHeroToCover) {
+      series.heroFile = coverValue
+      series.metadata.hero.source =
+        series.metadata.hero.source === "explicit" ? "explicit" : series.metadata.cover.source
     }
   } finally {
     rl.close()
@@ -708,12 +798,29 @@ async function readPhotoEntry(seriesSlug, photosDir, photo, index, sourceLabel) 
   }
 }
 
-async function buildPhotosFromEntries(seriesSlug, photosDir, entries, sourceLabel, duplicateContext) {
+async function buildPhotosFromEntries(seriesSlug, photosDir, entries, sourceLabel, duplicateContext, options = {}) {
+  const { skipBadFiles = false, onSkip } = options
   const photos = []
   const seenPhotoIds = new Set()
 
   for (const [index, entry] of entries.entries()) {
-    const photo = await readPhotoEntry(seriesSlug, photosDir, entry, index, sourceLabel)
+    let photo
+
+    try {
+      photo = await readPhotoEntry(seriesSlug, photosDir, entry, index, sourceLabel)
+    } catch (error) {
+      if (skipBadFiles && isSkippableImageError(error)) {
+        onSkip?.({
+          index,
+          entry,
+          reason: normalizeErrorMessage(error),
+        })
+        continue
+      }
+
+      throw error
+    }
+
     if (seenPhotoIds.has(photo.id)) {
       throw new Error(`Duplicate photo id "${photo.id}" in ${duplicateContext}`)
     }
@@ -764,6 +871,7 @@ async function parseManifestSeries(seriesDir, detected, args) {
     manifest.photos,
     "manifest",
     detected.manifestPath,
+    { skipBadFiles: args.skipBadFiles },
   )
 
   const inferredDate = manifest.date || photos[0]?.createdAt || ""
@@ -811,6 +919,7 @@ async function parseFlatSeries(seriesDir, detected, args, allowPrompt) {
     detected.imageFiles.map((file) => ({ file })),
     "flat",
     seriesDir,
+    { skipBadFiles: args.skipBadFiles },
   )
 
   if (photos.length === 0) {
@@ -854,6 +963,7 @@ async function parseFlatSeries(seriesDir, detected, args, allowPrompt) {
       detected.imageFiles.map((file) => ({ file })),
       "flat",
       seriesDir,
+      { skipBadFiles: args.skipBadFiles },
     )
     series.coverFile = resolvePhotoReference(series.coverFile, series.photos, "Cover")
     series.heroFile = resolvePhotoReference(series.heroFile, series.photos, "Hero")
@@ -864,7 +974,12 @@ async function parseFlatSeries(seriesDir, detected, args, allowPrompt) {
 
 async function parseSeriesDirectory(seriesDir, args) {
   const detected = await detectSeriesInputShape(seriesDir, { recursiveFlat: !args.all })
-  const shouldPrompt = !args.all && args.write && process.stdin.isTTY && process.stdout.isTTY
+  const shouldPrompt =
+    !args.all &&
+    !args.appendToSlug &&
+    args.write &&
+    process.stdin.isTTY &&
+    process.stdout.isTTY
 
   if (detected.kind === "manifest") {
     return parseManifestSeries(seriesDir, detected, args)
@@ -878,17 +993,26 @@ async function parseSeriesDirectory(seriesDir, args) {
 }
 
 async function uploadPhoto(photo) {
-  const uploaded = await createR2ImageAsset(
-    {
-      filename: photo.filename,
-      type: photo.contentType,
-      data: photo.buffer,
-    },
-    undefined,
-    photo.assetId,
-  )
+  try {
+    const uploaded = await createR2ImageAsset(
+      {
+        filename: photo.filename,
+        type: photo.contentType,
+        data: photo.buffer,
+      },
+      undefined,
+      photo.assetId,
+    )
 
-  return uploaded.src
+    return uploaded.src
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error)
+    throw new Error(
+      `Failed to upload "${photo.file}" from ${photo.filePath}. ` +
+      `Sharp could not process the source image (${reason}). ` +
+      `Try re-exporting that file if the image looks damaged or incomplete.`,
+    )
+  }
 }
 
 function makeGalleryImage(photo, src) {
@@ -934,6 +1058,46 @@ function buildImportedRun(series, uploadedSources) {
       }
     }),
   }
+}
+
+function createSeriesWithPhotos(series, photos) {
+  const nextPhotos = photos.filter(Boolean)
+  const availableFiles = new Set(nextPhotos.map((photo) => photo.file))
+  const fallbackFile = nextPhotos[0]?.file || ""
+
+  return {
+    ...series,
+    photos: nextPhotos,
+    coverFile: availableFiles.has(series.coverFile) ? series.coverFile : fallbackFile,
+    heroFile: availableFiles.has(series.heroFile) ? series.heroFile : fallbackFile,
+  }
+}
+
+function getExistingProductSlugSet(existingRun) {
+  return new Set(
+    (Array.isArray(existingRun?.data?.products) ? existingRun.data.products : [])
+      .map((product) => product?.slug)
+      .filter(Boolean),
+  )
+}
+
+function filterMissingSeriesPhotos(series, existingRun, onSkip) {
+  const existingProductSlugs = getExistingProductSlugSet(existingRun)
+
+  if (existingProductSlugs.size === 0) {
+    return series
+  }
+
+  const nextPhotos = series.photos.filter((photo) => {
+    if (existingProductSlugs.has(photo.id)) {
+      onSkip?.(photo)
+      return false
+    }
+
+    return true
+  })
+
+  return createSeriesWithPhotos(series, nextPhotos)
 }
 
 function mergeGalleryEntries(existingGallery, importedGallery, photos) {
@@ -1004,6 +1168,33 @@ function mergeRun(existingRun, importedRun, series) {
   }
 }
 
+function appendToRun(existingRun, importedRun, series) {
+  const existingData = existingRun.data || {}
+  const existingGallery = Array.isArray(existingData.gallery) ? existingData.gallery : []
+  const existingProducts = Array.isArray(existingData.products) ? existingData.products : []
+  const appendedGallery = mergeGalleryEntries([], importedRun.gallery, series.photos)
+  const appendedProducts = mergeProducts([], importedRun.products, series.photos)
+
+  return {
+    ...existingData,
+    title: series.metadata.title.source === "explicit" ? importedRun.title : existingData.title || importedRun.title,
+    date: series.metadata.date.source === "explicit" ? importedRun.date : existingData.date || importedRun.date,
+    description: series.metadata.description.source === "explicit"
+      ? importedRun.description || ""
+      : existingData.description || importedRun.description || "",
+    coverImage: series.metadata.cover.source === "explicit"
+      ? importedRun.coverImage || existingData.coverImage || ""
+      : existingData.coverImage || importedRun.coverImage || "",
+    heroImage: series.metadata.hero.source === "explicit"
+      ? importedRun.heroImage || existingData.heroImage || existingData.coverImage || ""
+      : existingData.heroImage || existingData.coverImage || importedRun.heroImage || importedRun.coverImage || "",
+    status: existingData.status || importedRun.status,
+    gallery: [...existingGallery, ...appendedGallery],
+    storyBlocks: Array.isArray(existingData.storyBlocks) ? existingData.storyBlocks : [],
+    products: [...existingProducts, ...appendedProducts],
+  }
+}
+
 async function writeRunFile(targetPath, data, existingContent) {
   const body = existingContent ? existingContent.replace(/^\n*/, "\n") : "\n"
   const source = `---\n${stringifyFrontmatter(data)}\n---${body}`
@@ -1028,148 +1219,181 @@ function printPlan(results, modeLabel) {
   }
 }
 
-async function runSyncValidation() {
-  await new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [path.join(repoRoot, "scripts", "sync-runs-content-model.mjs"), "--write"], {
-      cwd: repoRoot,
-      stdio: "inherit",
-      env: process.env,
-    })
-
-    child.on("exit", (code) => {
-      if (code === 0) {
-        resolve()
-        return
-      }
-
-      reject(new Error(`sync-runs-content-model exited with code ${code}`))
-    })
-
-    child.on("error", reject)
-  })
-}
-
-async function runImageSync() {
-  await new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [path.join(repoRoot, "scripts", "generate-run-image-derivatives.mjs")], {
-      cwd: repoRoot,
-      stdio: "inherit",
-      env: process.env,
-    })
-
-    child.on("exit", (code) => {
-      if (code === 0) {
-        resolve()
-        return
-      }
-
-      reject(new Error(`generate-run-image-derivatives exited with code ${code}`))
-    })
-
-    child.on("error", reject)
-  })
-}
-
 async function main() {
   const args = parseArgs(process.argv.slice(2))
   const sourcePath = path.resolve(process.cwd(), args.source)
   await assertDirectory(sourcePath)
+  const importSession = args.write
+    ? await registerImportSession(repoRoot, path.relative(repoRoot, sourcePath))
+    : null
 
-  const existingRuns = await loadExistingRuns()
-  const seriesDirs = await collectSeriesDirectories(sourcePath, args.all)
-  const seenImportedSlugs = new Set()
-  const parsedSeries = []
+  let shouldFinalize = false
 
-  for (const seriesDir of seriesDirs) {
-    const series = await parseSeriesDirectory(seriesDir, args)
+  try {
+    const existingRuns = await loadExistingRuns()
+    const seriesDirs = await collectSeriesDirectories(sourcePath, args.all)
+    const seenImportedSlugs = new Set()
+    const parsedSeries = []
 
-    if (seenImportedSlugs.has(series.slug)) {
-      throw new Error(`Duplicate imported series slug "${series.slug}"`)
-    }
-    seenImportedSlugs.add(series.slug)
+    for (const seriesDir of seriesDirs) {
+      const series = await parseSeriesDirectory(seriesDir, args)
 
-    const existing = existingRuns.get(series.slug)
-    if (!existing) {
-      const slugOwner = [...existingRuns.entries()].find(([, run]) => run.data.slug === series.slug)
-      if (slugOwner && slugOwner[1].absolutePath !== path.join(runsDir, `${series.slug}.md`)) {
-        throw new Error(`Series slug "${series.slug}" already exists in ${slugOwner[1].file}`)
+      if (seenImportedSlugs.has(series.slug)) {
+        throw new Error(`Duplicate imported series slug "${series.slug}"`)
       }
-    }
+      seenImportedSlugs.add(series.slug)
 
-    parsedSeries.push(series)
-  }
-
-  const results = []
-  const writeProgress = args.write ? createWriteProgressTracker(parsedSeries) : null
-
-  writeProgress?.start()
-
-  for (const [seriesIndex, series] of parsedSeries.entries()) {
-    const existing = existingRuns.get(series.slug)
-    const uploadedSources = new Map()
-
-    writeProgress?.seriesStart(series, seriesIndex)
-
-    if (args.write) {
-      for (const [photoIndex, photo] of series.photos.entries()) {
-        const uploadStartedAt = Date.now()
-        writeProgress?.photoStart(seriesIndex, photoIndex, series.photos.length, photo)
-        const uploadedSrc = await uploadPhoto(photo)
-        uploadedSources.set(photo.file, uploadedSrc)
-        writeProgress?.photoDone(
-          seriesIndex,
-          photoIndex,
-          series.photos.length,
-          photo,
-          uploadedSrc,
-          uploadStartedAt,
-        )
+      const existing = existingRuns.get(series.slug)
+      if (!existing) {
+        const slugOwner = [...existingRuns.entries()].find(([, run]) => run.data.slug === series.slug)
+        if (slugOwner && slugOwner[1].absolutePath !== path.join(runsDir, `${series.slug}.md`)) {
+          throw new Error(`Series slug "${series.slug}" already exists in ${slugOwner[1].file}`)
+        }
       }
+
+      parsedSeries.push(series)
     }
 
-    const importedRun = buildImportedRun(series, uploadedSources)
-    const mergedRun = mergeRun(existing, importedRun, series)
-    const targetPath = existing?.absolutePath || path.join(runsDir, `${series.slug}.md`)
+    const results = []
+    const writeProgress = args.write ? createWriteProgressTracker(parsedSeries) : null
 
-    if (args.write) {
-      const writeStartedAt = Date.now()
-      await writeRunFile(targetPath, mergedRun, existing?.content || "")
-      writeProgress?.runFileWritten(seriesIndex, targetPath, writeStartedAt)
+    writeProgress?.start()
+
+    for (const [seriesIndex, series] of parsedSeries.entries()) {
+      const existing = existingRuns.get(series.slug)
+      if (args.appendToSlug && !existing) {
+        throw new Error(`Target series "${series.slug}" does not exist, cannot append missing files`)
+      }
+
+      const targetSeries = args.appendToSlug
+        ? filterMissingSeriesPhotos(series, existing, (photo) => {
+            writeProgress?.photoAlreadyPresent(seriesIndex, series, photo)
+          })
+        : series
+      const uploadedSources = new Map()
+
+      writeProgress?.seriesStart(targetSeries, seriesIndex)
+      const failedPhotoFiles = new Set()
+
+      if (targetSeries.photos.length === 0) {
+        writeProgress?.seriesSkipped(seriesIndex, series, "all files are already present in the target series")
+        continue
+      }
+
+      if (args.write) {
+        for (const [photoIndex, photo] of targetSeries.photos.entries()) {
+          const uploadStartedAt = Date.now()
+          writeProgress?.photoStart(seriesIndex, photoIndex, targetSeries.photos.length, photo)
+          let uploadedSrc
+
+          try {
+            uploadedSrc = await uploadPhoto(photo)
+          } catch (error) {
+            if (args.skipBadFiles && isSkippableImageError(error)) {
+              failedPhotoFiles.add(photo.file)
+              writeProgress?.photoSkipped(
+                seriesIndex,
+                photoIndex,
+                targetSeries.photos.length,
+                photo,
+                normalizeErrorMessage(error),
+              )
+              continue
+            }
+
+            throw error
+          }
+
+          uploadedSources.set(photo.file, uploadedSrc)
+          writeProgress?.photoDone(
+            seriesIndex,
+            photoIndex,
+            targetSeries.photos.length,
+            photo,
+            uploadedSrc,
+            uploadStartedAt,
+          )
+        }
+      }
+
+      const importableSeries = createSeriesWithPhotos(
+        targetSeries,
+        args.write
+          ? targetSeries.photos.filter((photo) => !failedPhotoFiles.has(photo.file))
+          : targetSeries.photos,
+      )
+
+      if (importableSeries.photos.length === 0) {
+        writeProgress?.seriesSkipped(seriesIndex, series, "no valid images remain after skipping corrupted files")
+        continue
+      }
+
+      const importedRun = buildImportedRun(importableSeries, uploadedSources)
+      const mergedRun = args.appendToSlug
+        ? appendToRun(existing, importedRun, importableSeries)
+        : mergeRun(existing, importedRun, importableSeries)
+      const targetPath = existing?.absolutePath || path.join(runsDir, `${series.slug}.md`)
+
+      if (args.write) {
+        const writeStartedAt = Date.now()
+        await writeRunFile(targetPath, mergedRun, existing?.content || "")
+        shouldFinalize = true
+        await markSeriesImportsDirty(repoRoot, path.relative(repoRoot, targetPath))
+        writeProgress?.runFileWritten(seriesIndex, targetPath, writeStartedAt)
+      }
+
+      existingRuns.set(series.slug, {
+        file: path.basename(targetPath),
+        absolutePath: targetPath,
+        data: mergedRun,
+        content: existing?.content || "",
+      })
+
+      results.push({
+        title: mergedRun.title,
+        slug: series.slug,
+        action: args.appendToSlug ? "append" : existing ? "update" : "create",
+        targetPath,
+        seriesDir: importableSeries.seriesDir,
+        inputShape: importableSeries.inputShape,
+        photoCount: importableSeries.photos.length,
+        coverImage: mergedRun.coverImage,
+        heroImage: mergedRun.heroImage,
+        photos: importableSeries.photos.map((photo) => ({
+          id: photo.id,
+          file: photo.file,
+          src: uploadedSources.get(photo.file) || photo.canonicalSrc,
+        })),
+      })
     }
 
-    existingRuns.set(series.slug, {
-      file: path.basename(targetPath),
-      absolutePath: targetPath,
-      data: mergedRun,
-      content: existing?.content || "",
-    })
+    printPlan(results, args.write ? "Imported" : "Dry run for")
 
-    results.push({
-      title: mergedRun.title,
-      slug: series.slug,
-      action: existing ? "update" : "create",
-      targetPath,
-      seriesDir: series.seriesDir,
-      inputShape: series.inputShape,
-      photoCount: series.photos.length,
-      coverImage: mergedRun.coverImage,
-      heroImage: mergedRun.heroImage,
-      photos: series.photos.map((photo) => ({
-        id: photo.id,
-        file: photo.file,
-        src: uploadedSources.get(photo.file) || photo.canonicalSrc,
-      })),
-    })
-  }
+    await importSession?.release()
 
-  printPlan(results, args.write ? "Imported" : "Dry run for")
+    if (args.write && shouldFinalize && !args.skipFinalize) {
+      await finalizeSeriesImports(repoRoot, {
+        onProgress(event, message) {
+          if (event === "sync") {
+            writeProgress?.syncStart()
+          } else if (event === "images") {
+            writeProgress?.imageSyncStart()
+          } else {
+            console.log(`[finalize] ${message}`)
+          }
+        },
+      })
+      writeProgress?.complete()
+      return
+    }
 
-  if (args.write) {
-    writeProgress?.syncStart()
-    await runSyncValidation()
-    writeProgress?.imageSyncStart()
-    await runImageSync()
-    writeProgress?.complete()
+    if (args.write && shouldFinalize && args.skipFinalize) {
+      writeProgress?.finalizeSkipped()
+      writeProgress?.complete()
+    }
+  } catch (error) {
+    await importSession?.release()
+    throw error
   }
 }
 

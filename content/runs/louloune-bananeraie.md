@@ -1,5 +1,5 @@
 ---
-title: Louloune x Bananeraie
+title: "Louloune: Bananeraie"
 slug: louloune-bananeraie
 date: 2026-04-04T07:44:38.206Z
 status: published

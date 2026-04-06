@@ -25,7 +25,7 @@ type R2Config = {
   manifestPrefix: string
 }
 
-type VariantFormat = "avif" | "webp"
+type VariantFormat = "webp"
 type VariantName = "thumb" | "card" | "detail" | "social"
 
 type VariantEntry = Record<
@@ -60,10 +60,10 @@ const variantPresets: Record<
   VariantName,
   { widths: number[]; watermark: boolean; quality: Record<VariantFormat, number> }
 > = {
-  thumb: { widths: [320, 640], watermark: true, quality: { avif: 46, webp: 62 } },
-  card: { widths: [480, 768, 1080], watermark: true, quality: { avif: 48, webp: 64 } },
-  detail: { widths: [768, 1280, 1680], watermark: true, quality: { avif: 50, webp: 68 } },
-  social: { widths: [1200], watermark: true, quality: { avif: 52, webp: 72 } },
+  thumb: { widths: [320, 640], watermark: true, quality: { webp: 62 } },
+  card: { widths: [480, 768, 1080], watermark: true, quality: { webp: 64 } },
+  detail: { widths: [768, 1280, 1680], watermark: true, quality: { webp: 68 } },
+  social: { widths: [1200], watermark: true, quality: { webp: 72 } },
 }
 
 function trimSlashes(value: string) {
@@ -259,6 +259,10 @@ function pickPreviewSrc(manifest: AssetManifest) {
   )
 }
 
+function createSharpInput(input: Buffer) {
+  return sharp(input, { failOn: "none" }).rotate()
+}
+
 export async function createR2ImageAsset(file: UploadedFile, directory?: string, explicitAssetId?: string) {
   const config = getR2Config()
   const client = getS3Client(config)
@@ -266,7 +270,7 @@ export async function createR2ImageAsset(file: UploadedFile, directory?: string,
   const extension = (path.extname(file.filename) || ".jpg").toLowerCase()
   const masterKey = `${config.mastersPrefix}/${assetId}/master${extension}`
 
-  const metadata = await sharp(file.data).rotate().metadata()
+  const metadata = await createSharpInput(file.data).metadata()
 
   if (!metadata.width || !metadata.height) {
     throw createError({
@@ -290,10 +294,10 @@ export async function createR2ImageAsset(file: UploadedFile, directory?: string,
     filename: file.filename,
     previewSrc: "",
     masterKey,
-    thumb: { avif: [], webp: [] },
-    card: { avif: [], webp: [] },
-    detail: { avif: [], webp: [] },
-    social: { avif: [], webp: [] },
+    thumb: { webp: [] },
+    card: { webp: [] },
+    detail: { webp: [] },
+    social: { webp: [] },
   }
 
   for (const [variantName, preset] of Object.entries(variantPresets) as [
@@ -304,8 +308,7 @@ export async function createR2ImageAsset(file: UploadedFile, directory?: string,
     const publicPrefix = getPublicAssetPrefix(config, assetId)
 
     for (const width of widths) {
-      const resizedImage = await sharp(file.data)
-        .rotate()
+      const resizedImage = await createSharpInput(file.data)
         .resize({
           width,
           withoutEnlargement: true,
@@ -316,7 +319,7 @@ export async function createR2ImageAsset(file: UploadedFile, directory?: string,
       let transformedSource = resizedImage.data
 
       if (preset.watermark) {
-        transformedSource = await sharp(resizedImage.data)
+        transformedSource = await sharp(resizedImage.data, { failOn: "none" })
           .composite([
             await createGridSliceWatermarkComposite({
               imageWidth: resizedImage.info.width,
@@ -327,8 +330,8 @@ export async function createR2ImageAsset(file: UploadedFile, directory?: string,
           .toBuffer()
       }
 
-      for (const format of ["avif", "webp"] as VariantFormat[]) {
-        const transformed = await sharp(transformedSource)[format]({
+      for (const format of ["webp"] as VariantFormat[]) {
+        const transformed = await sharp(transformedSource, { failOn: "none" })[format]({
           quality: preset.quality[format],
         }).toBuffer()
         const derivativeKey = `${publicPrefix}/${variantName}-${width}.${format}`
@@ -338,7 +341,7 @@ export async function createR2ImageAsset(file: UploadedFile, directory?: string,
           config,
           derivativeKey,
           transformed,
-          format === "avif" ? "image/avif" : "image/webp",
+          "image/webp",
         )
 
         manifest[variantName][format].push({

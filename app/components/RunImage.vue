@@ -1,6 +1,5 @@
 <template>
   <picture v-if="fallbackSrc">
-    <source v-if="avifSrcSet" type="image/avif" :srcset="avifSrcSet" :sizes="sizes">
     <source v-if="webpSrcSet" type="image/webp" :srcset="webpSrcSet" :sizes="sizes">
     <img
       v-bind="$attrs"
@@ -46,7 +45,6 @@ const props = withDefaults(
 )
 
 const dimensions = computed(() => getRunImageDimensions(props.src, props.variant))
-const avifSrcSet = computed(() => getRunImageSrcSet(props.src, props.variant, "avif"))
-const webpSrcSet = computed(() => getRunImageSrcSet(props.src, props.variant, "webp"))
-const fallbackSrc = computed(() => getRunImageUrl(props.src, props.variant, "webp"))
+const webpSrcSet = computed(() => getRunImageSrcSet(props.src, props.variant))
+const fallbackSrc = computed(() => getRunImageUrl(props.src, props.variant))
 </script>

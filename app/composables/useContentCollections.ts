@@ -200,6 +200,7 @@ const normalizeRunEntry = <T extends ContentRecord>(entry: T) => {
     ...hydratedEntry,
     slug: normalizeContentSlug(hydratedEntry.slug),
     date: hydratedEntry.date || null,
+    status: typeof hydratedEntry.status === 'string' ? hydratedEntry.status : 'published',
   }
 }
 
@@ -227,7 +228,13 @@ export async function getProjectEntries() {
 
 export async function getRunEntries() {
   const entries = (await queryCollection('runs').all()) as ContentRecord[]
-  return sortByNewest(entries.map(normalizeRunEntry))
+  const normalizedEntries = entries.map(normalizeRunEntry)
+
+  if (import.meta.dev) {
+    return sortByNewest(normalizedEntries)
+  }
+
+  return sortByNewest(normalizedEntries.filter((entry) => entry.status === 'published'))
 }
 
 export async function getMentionEntries() {

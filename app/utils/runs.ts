@@ -17,11 +17,9 @@ export type SeriesGalleryTile = {
   productTitle?: string
 }
 
-type RunImageFormat = "avif" | "webp"
 export type RunImageVariantName = "thumb" | "card" | "detail" | "social"
 
 type ManifestVariant = {
-  avif?: { src: string; width: number; height: number }[]
   webp?: { src: string; width: number; height: number }[]
 }
 
@@ -173,10 +171,9 @@ function getVariantEntry(
 export function getRunImageUrl(
   src: string | undefined,
   variant: RunImageVariantName = "detail",
-  format: RunImageFormat = "webp",
 ) {
   const variantEntry = getVariantEntry(src, variant)
-  const derivedSource = variantEntry?.[format]?.[variantEntry[format].length - 1]?.src
+  const derivedSource = variantEntry?.webp?.[variantEntry.webp.length - 1]?.src
 
   return derivedSource || src || ""
 }
@@ -188,15 +185,14 @@ export function isAbsoluteImageUrl(src: string | undefined) {
 export function getRunImageSrcSet(
   src: string | undefined,
   variant: RunImageVariantName = "detail",
-  format: RunImageFormat = "webp",
 ) {
   const variantEntry = getVariantEntry(src, variant)
 
-  if (!variantEntry?.[format]?.length) {
+  if (!variantEntry?.webp?.length) {
     return ""
   }
 
-  return variantEntry[format].map((entry) => `${entry.src} ${entry.width}w`).join(", ")
+  return variantEntry.webp.map((entry) => `${entry.src} ${entry.width}w`).join(", ")
 }
 
 export function getRunImageDimensions(
@@ -204,7 +200,7 @@ export function getRunImageDimensions(
   variant: RunImageVariantName = "detail",
 ) {
   const variantEntry = getVariantEntry(src, variant)
-  const fallbackEntry = variantEntry?.webp?.[variantEntry.webp.length - 1] || variantEntry?.avif?.[variantEntry.avif.length - 1]
+  const fallbackEntry = variantEntry?.webp?.[variantEntry.webp.length - 1]
 
   return {
     width: fallbackEntry?.width,

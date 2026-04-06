@@ -31,10 +31,10 @@ loadEnvFile(path.join(repoRoot, ".env"))
 const publicMediaBaseUrl = resolvePublicMediaBaseUrl()
 
 const variantPresets = {
-  thumb: { widths: [320, 640], watermark: true, quality: { avif: 46, webp: 62 } },
-  card: { widths: [480, 768, 1080], watermark: true, quality: { avif: 48, webp: 64 } },
-  detail: { widths: [768, 1280, 1680], watermark: true, quality: { avif: 50, webp: 68 } },
-  social: { widths: [1200], watermark: true, quality: { avif: 52, webp: 72 } },
+  thumb: { widths: [320, 640], watermark: true, quality: { webp: 62 } },
+  card: { widths: [480, 768, 1080], watermark: true, quality: { webp: 64 } },
+  detail: { widths: [768, 1280, 1680], watermark: true, quality: { webp: 68 } },
+  social: { widths: [1200], watermark: true, quality: { webp: 72 } },
 }
 
 function loadEnvFile(target) {
@@ -309,7 +309,6 @@ async function processLegacyRef(src, manifest, inventory, hashGroups) {
   for (const [variantName, preset] of Object.entries(variantPresets)) {
     const widths = getTargetWidths(metadata.width, preset.widths)
     const variantEntry = {
-      avif: [],
       webp: [],
     }
 
@@ -337,7 +336,7 @@ async function processLegacyRef(src, manifest, inventory, hashGroups) {
           .toBuffer()
       }
 
-      for (const format of ["avif", "webp"]) {
+      for (const format of ["webp"]) {
         const outputRelativePath = path.join(key, `${variantName}-${width}.${format}`)
         const outputPath = path.join(derivedDir, outputRelativePath)
 
