@@ -133,85 +133,16 @@
       </section>
     </div>
 
-    <Teleport to="body">
-      <transition
-        enter-active-class="transition duration-300 ease-out"
-        enter-from-class="opacity-0"
-        enter-to-class="opacity-100"
-        leave-active-class="transition duration-200 ease-in"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
-        <div
-          v-if="selectedTile"
-          class="fixed inset-0 z-50"
-          role="dialog"
-          aria-modal="true"
-          :aria-label="`Visionneuse de la série ${serie.title}`"
-          @click.self="closePhoto"
-        >
-          <div class="absolute inset-0 bg-black/97 backdrop-blur-md" />
-
-          <div class="relative flex min-h-screen items-center justify-center px-4 py-6 sm:px-6">
-            <div class="flex w-full max-w-[96vw] flex-col items-center">
-              <button
-                type="button"
-                class="mb-4 inline-flex min-h-11 items-center self-end px-3 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                @click="closePhoto"
-              >
-                Fermer
-              </button>
-
-              <div class="mb-4 flex w-full max-w-[92vw] flex-col items-center text-center">
-                <p class="font-display text-2xl text-white sm:text-3xl">
-                  {{ serie.title }}
-                </p>
-                <p v-if="serie.date" class="mt-2 text-[11px] uppercase tracking-[0.3em] text-amber-300/75">
-                  {{ formatPhotoDate(serie.date) }}
-                </p>
-              </div>
-
-              <div class="flex w-full justify-center">
-                <RunImage
-                  :src="selectedTile.src"
-                  :alt="selectedTile.alt || serie.title"
-                  variant="detail"
-                  sizes="92vw"
-                  loading="eager"
-                  fetchpriority="high"
-                  class="max-h-[calc(100vh-14rem)] w-auto max-w-[92vw] object-contain"
-                />
-              </div>
-
-              <div
-                v-if="galleryTiles.length > 1"
-                class="mt-4 flex w-full max-w-[92vw] items-center justify-between gap-6"
-              >
-                <button
-                  type="button"
-                  class="inline-flex min-h-11 items-center px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  @click.stop="showPreviousPhoto"
-                >
-                  Précédente
-                </button>
-
-                <p class="text-[10px] uppercase tracking-[0.3em] text-stone-400">
-                  {{ selectedPositionLabel }}
-                </p>
-
-                <button
-                  type="button"
-                  class="inline-flex min-h-11 items-center px-0 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  @click.stop="showNextPhoto"
-                >
-                  Suivante
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </transition>
-    </Teleport>
+    <SeriesLightbox
+      :tile="selectedTile"
+      :series-title="serie.title || 'Série photo'"
+      :series-date-label="seriesDateLabel"
+      :position-label="selectedPositionLabel"
+      :can-navigate="galleryTiles.length > 1"
+      @close="closePhoto"
+      @previous="showPreviousPhoto"
+      @next="showNextPhoto"
+    />
   </div>
 </template>
 
@@ -255,6 +186,7 @@ const wallpaperPackUrl = typeof serie.wallpaperPackUrl === "string" ? serie.wall
 const socialImage = getRunImageUrl(heroImage || coverImage, "social")
 const socialImageUrl = toAbsoluteUrl(socialImage, "https://macojaune.com")
 const title = "Série photo " + serie.title + " - Macojaune.com"
+const seriesDateLabel = computed(() => (serie.date ? formatPhotoDate(serie.date) : ""))
 
 const normalizePhotoSrc = (value?: string) => {
     if (!value) {
@@ -298,21 +230,7 @@ const pendingPhotoSrc = ref("")
 const resolvedRoutePhotoSrc = ref("")
 
 const syncResolvedRoutePhotoSrc = () => {
-    const fromRoute = getRoutePhotoSrc()
-
-    if (fromRoute) {
-        resolvedRoutePhotoSrc.value = fromRoute
-        return
-    }
-
-    if (import.meta.client) {
-        resolvedRoutePhotoSrc.value = normalizePhotoSrc(
-            new URL(window.location.href).searchParams.get("photo") || "",
-        )
-        return
-    }
-
-    resolvedRoutePhotoSrc.value = ""
+    resolvedRoutePhotoSrc.value = getRoutePhotoSrc()
 }
 
 const selectedPhotoSrc = computed(
@@ -386,7 +304,7 @@ const updatePhotoQuery = async (src?: string) => {
         delete nextQuery.photo
     }
 
-    await router.push({
+    await router.replace({
         path: route.path,
         query: nextQuery,
     })
@@ -445,41 +363,6 @@ const showNextPhoto = () => {
     const nextSrc = galleryTiles[nextIndex]?.src || ""
     pendingPhotoSrc.value = normalizePhotoSrc(nextSrc)
     void updatePhotoQuery(nextSrc)
-}
-
-const onKeydown = (event: KeyboardEvent) => {
-    if (!selectedTile.value) {
-        return
-    }
-
-    if (event.key === "Escape") {
-        void closePhoto()
-    }
-
-    if (event.key === "ArrowLeft") {
-        event.preventDefault()
-        showPreviousPhoto()
-    }
-
-    if (event.key === "ArrowRight") {
-        event.preventDefault()
-        showNextPhoto()
-    }
-}
-
-if (import.meta.client) {
-    watch(selectedTile, (tile) => {
-        document.body.style.overflow = tile ? "hidden" : ""
-    }, { immediate: true })
-
-    onMounted(() => {
-        window.addEventListener("keydown", onKeydown)
-    })
-
-    onBeforeUnmount(() => {
-        document.body.style.overflow = ""
-        window.removeEventListener("keydown", onKeydown)
-    })
 }
 
 useHead({

@@ -245,7 +245,8 @@ function shuffleSeries<T>(series: T[], seedLabel: string) {
 
 const getGalleryBoardTiles = (runs: GalleryBoardRun[]) =>
   runs.flatMap((run) => {
-    const shuffledTiles = shuffleSeries(getSeriesGalleryTiles(run), `gallery-${run.slug}`).slice(0, 10)
+    const allTiles = getSeriesGalleryTiles(run)
+    const shuffledTiles = shuffleSeries(allTiles, `gallery-${run.slug}`).slice(0, 10)
     const spotlightSrc = shuffledTiles[0]?.src
 
     return shuffledTiles.map((tile) => ({
@@ -256,7 +257,7 @@ const getGalleryBoardTiles = (runs: GalleryBoardRun[]) =>
         seriesTitle: run.title || "Serie",
         seriesDate: run.date,
         alt: tile.alt || run.title || "Serie photo",
-        tileCount: shuffledTiles.length,
+        tileCount: allTiles.length,
       }))
   })
 
