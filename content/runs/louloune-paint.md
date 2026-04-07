@@ -1,7 +1,7 @@
 ---
 title: Travaux Pratiques
 slug: travaux-pratiques
-date: 2026-04-04T07:45:11.721Z
+date: 2021-11-10T07:45:11.721Z
 status: published
 coverImage: /media/runs/paint/insta_mco00617-77b63c855e
 heroImage: /media/runs/paint/insta_mco00617-77b63c855e

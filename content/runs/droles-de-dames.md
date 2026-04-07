@@ -773,6 +773,4 @@ products:
         orientation: landscape
     images:
       - /media/runs/droles-de-dames/insta_dsc07039-32e28be294
-sensitiveImages:
-  - /media/runs/droles-de-dames/insta_dsc06738-36bc05189c
 ---

@@ -1079,8 +1079,4 @@ products:
         orientation: portrait
     images:
       - /media/runs/grande-anse-trois-rivieres/instastory_dsc00131-aa90dce180
-sensitiveImages:
-  - /media/runs/grande-anse-trois-rivieres/2021/insta_dsc09996-023d746ff5
-  - /media/runs/grande-anse-trois-rivieres/insta_dsc09988-80964e2682
-  - /media/runs/grande-anse-trois-rivieres/insta_dsc09977-e0a773d95c
 ---

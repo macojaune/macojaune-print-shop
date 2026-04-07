@@ -1,7 +1,7 @@
 ---
 title: "Louloune: Home Alone"
 slug: louloune-home-alone
-date: 2026-04-04T07:45:01.141Z
+date: 2019-08-10T07:45:01.141Z
 status: published
 coverImage: /media/runs/home/dsc03799-2089bc91e9
 heroImage: /media/runs/home/dsc03799-2089bc91e9

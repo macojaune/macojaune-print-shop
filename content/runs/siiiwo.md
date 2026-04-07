@@ -1113,13 +1113,4 @@ products:
         orientation: portrait
     images:
       - /media/runs/siiiwo/softer/insta_mco06662-8a85011599
-sensitiveImages:
-  - /media/runs/siiiwo/insta_mco06415-edit-1ed315091f
-  - /media/runs/siiiwo/insta_mco06425-edit-5b17d81350
-  - /media/runs/siiiwo/insta_mco06464-7b76b77658
-  - /media/runs/siiiwo/insta_mco06453-a57abd195c
-  - /media/runs/siiiwo/softer/insta_mco06415-3fc6d4671d
-  - /media/runs/siiiwo/softer/insta_mco06425-a777a31306
-  - /media/runs/siiiwo/softer/insta_mco06464-1c63341ce1
-  - /media/runs/siiiwo/softer/insta_mco06453-4ec3b204f6
 ---

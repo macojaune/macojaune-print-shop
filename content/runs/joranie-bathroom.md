@@ -76,6 +76,4 @@ products:
         orientation: portrait
     images:
       - /media/runs/joranie-bathroom/insta_dsc01633-58e3a19418
-sensitiveImages:
-  - /media/runs/joranie-bathroom/insta_dsc01570-fc20384f6b
 ---
