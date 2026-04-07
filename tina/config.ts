@@ -258,6 +258,7 @@ export default defineConfig({
             required: true,
             searchable: true,
           },
+          { type: "string", label: "Description", name: "description", ui: { component: "textarea" } },
           { type: "string", label: "Permalink", name: "permalink" },
           { type: "string", label: "Author", name: "author" },
           { type: "datetime", label: "Date", name: "date" },
@@ -347,7 +348,22 @@ export default defineConfig({
           { type: "string", label: "Permalink", name: "permalink" },
           { type: "datetime", label: "Date", name: "date" },
           { type: "datetime", label: "Last update", name: "updatedAt" },
-          { type: "image", label: "Cover", name: "image" },
+          {
+            type: "string",
+            label: "Project status",
+            name: "projectStatus",
+            options: [
+              { value: "started", label: "Started" },
+              { value: "not_started", label: "Not started yet" },
+            ],
+          },
+          {
+            type: "image",
+            label: "Images",
+            name: "images",
+            list: true,
+          },
+          { type: "image", label: "Legacy cover", name: "image" },
           {
             type: "string",
             label: "Categories",
@@ -398,6 +414,7 @@ export default defineConfig({
                   ? new Date().toISOString()
                   : values.date,
               updatedAt: new Date().toISOString(),
+              projectStatus: stringValue(values.projectStatus) || "not_started",
             }
           },
         },

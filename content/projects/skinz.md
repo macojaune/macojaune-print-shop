@@ -1,8 +1,15 @@
 ---
+layout: post
 title: Skinz
 permalink: skinz
 date: 2024-07-05T04:55:18.650Z
 updatedAt: 2024-07-05T04:55:18.650Z
+description: Une série sur les peaux, leurs textures, cicatrices et traces de vie, entre intimité et matière.
+projectStatus: not_started
+categories:
+  - corps
+  - peaux
+  - intimite
 draft: true
 ---
 

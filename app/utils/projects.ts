@@ -4,6 +4,7 @@ import { getProjectMediaAssetId, isAbsoluteUrl } from "./project-media"
 export type ProjectLike = {
   image?: string | null
   images?: unknown
+  projectStatus?: string | null
 }
 
 type ProjectImageEntry = {
@@ -109,4 +110,13 @@ export function getProjectCanonicalImageUrl(src: string | undefined, siteUrl: st
   }
 
   return new URL(`/media/projects/${assetId}`, siteUrl).toString()
+}
+
+export function getProjectStatusLabel(status?: string | null) {
+  switch (status) {
+    case "started":
+      return "En cours"
+    default:
+      return ""
+  }
 }

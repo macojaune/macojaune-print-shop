@@ -4,11 +4,14 @@ title: LANG
 permalink: lang
 date: 2024-01-06T05:21:34.634Z
 updatedAt: 2026-04-07T05:03:24.128Z
+projectStatus: started
 images:
   - /media/projects/lang/mco09234-c9cccfeafe
   - /media/projects/lang/mco09201-ff6f1793d9
 categories:
   - anatomie
+  - corps
+  - gros plan
 pinterestUrl: https://www.pinterest.com/macojaune/projet-lang/
 draft: false
 ---

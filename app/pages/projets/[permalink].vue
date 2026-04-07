@@ -143,7 +143,7 @@
 </template>
 
 <script setup lang="ts">
-import { getProjectCanonicalImageUrl, getProjectImages } from '../../utils/projects'
+import { getProjectCanonicalImageUrl, getProjectImages, getProjectStatusLabel } from '../../utils/projects'
 
 const { toSiteUrl } = useAssetUrls()
 
@@ -171,15 +171,13 @@ const desktopFormPanelStyle = ref<Record<string, string>>({})
 const projectMeta = computed(() => {
   const items: string[] = []
 
-  if (typeof data.value?.date === 'string') {
-    const parsedDate = new Date(data.value.date)
-    if (!Number.isNaN(parsedDate.getTime())) {
-      items.push(new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium' }).format(parsedDate))
-    }
-  }
-
   if (Array.isArray(data.value?.categories) && data.value.categories[0]) {
     items.push(String(data.value.categories[0]))
+  }
+
+  const statusLabel = getProjectStatusLabel(data.value?.projectStatus)
+  if (statusLabel) {
+    items.push(statusLabel)
   }
 
   return items

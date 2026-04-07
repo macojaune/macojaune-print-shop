@@ -43,10 +43,10 @@
                 <div :class="getProjectCardImage(project) ? 'lg:col-span-5' : 'lg:col-span-7'">
                   <div class="flex flex-col gap-3">
                     <p
-                      v-if="project.date"
-                      class="text-[11px] uppercase tracking-[0.32em] text-amber-300/72"
+                      v-if="getProjectStatusLabel(project.projectStatus)"
+                      class="inline-flex w-fit items-center rounded-full border border-amber-200/22 bg-amber-300/8 px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-amber-100/92"
                     >
-                      {{ moment(project.date).format('ll') }}
+                      {{ getProjectStatusLabel(project.projectStatus) }}
                     </p>
                     <h2 class="max-w-[11ch] font-display text-4xl leading-[0.9] text-white transition group-hover:text-amber-200 lg:text-[3.5rem]">
                       {{ project.title }}
@@ -73,16 +73,16 @@
 </template>
 
 <script lang="ts" setup>
-import moment from 'moment/moment'
 import type { QueryBuilderParams } from '@nuxt/content/types'
-import { getProjectCanonicalImageUrl, getProjectImages, getProjectPreviewImage } from '../../utils/projects'
+import { listContentEntries } from '../../composables/useContentCollections'
+import { getProjectCanonicalImageUrl, getProjectImages, getProjectPreviewImage, getProjectStatusLabel } from '../../utils/projects'
 
 const { toSiteUrl } = useAssetUrls()
 
-const query: QueryBuilderParams = { path: '/projects', where: [{ draft: false }], sort: [{ date: -1 }] }
+const query: QueryBuilderParams = { path: '/projects' }
 const projectCardImages = useState<Record<string, string>>('project-card-images', () => ({}))
 const { data: projectsForMeta } = await useAsyncData('projects-meta-list', () =>
-  queryContent('/projects').where({ draft: false }).sort({ date: -1 }).find(),
+  listContentEntries({ path: '/projects' }),
 )
 const socialProjectImage = computed(() =>
   getProjectCanonicalImageUrl(getProjectPreviewImage(projectsForMeta.value?.[0]), toSiteUrl('')),

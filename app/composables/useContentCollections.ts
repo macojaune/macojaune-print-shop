@@ -216,6 +216,18 @@ const normalizeMentionEntry = <T extends ContentRecord>(entry: T) => {
 const sortByNewest = <T extends ContentRecord>(entries: T[]) =>
   [...entries].sort((left, right) => toTimestamp(right.date || right.createdAt) - toTimestamp(left.date || left.createdAt))
 
+const sortProjectsByStatus = <T extends ContentRecord>(entries: T[]) =>
+  [...entries].sort((left, right) => {
+    const leftPriority = left.projectStatus === 'started' ? 0 : 1
+    const rightPriority = right.projectStatus === 'started' ? 0 : 1
+
+    if (leftPriority !== rightPriority) {
+      return leftPriority - rightPriority
+    }
+
+    return toTimestamp(right.date || right.createdAt) - toTimestamp(left.date || left.createdAt)
+  })
+
 export async function getBlogEntries() {
   const entries = (await queryCollection('blog').all()) as ContentRecord[]
   return sortByNewest(entries.map(normalizeBlogEntry).filter((entry) => !entry.draft))
@@ -223,7 +235,13 @@ export async function getBlogEntries() {
 
 export async function getProjectEntries() {
   const entries = (await queryCollection('projects').all()) as ContentRecord[]
-  return sortByNewest(entries.map(normalizeProjectEntry).filter((entry) => !entry.draft))
+  const normalizedEntries = entries.map(normalizeProjectEntry)
+
+  if (import.meta.dev) {
+    return sortProjectsByStatus(normalizedEntries)
+  }
+
+  return sortProjectsByStatus(normalizedEntries.filter((entry) => !entry.draft))
 }
 
 export async function getRunEntries() {
