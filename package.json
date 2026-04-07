@@ -5,7 +5,10 @@
     "node": "20.x"
   },
   "scripts": {
-    "images:sync": "node scripts/generate-run-image-derivatives.mjs",
+    "run-images:sync": "node scripts/generate-run-image-derivatives.mjs",
+    "project-images:sync": "node scripts/generate-project-image-manifest.mjs",
+    "project-media:sync": "node scripts/sync-project-media.mjs --write && npm run project-images:sync",
+    "images:sync": "npm run run-images:sync && npm run project-images:sync",
     "import:series": "node scripts/import-series.mjs",
     "import:series:finalize": "node scripts/finalize-series-imports.mjs",
     "build": "tinacms build --skip-cloud-checks && nuxi build",

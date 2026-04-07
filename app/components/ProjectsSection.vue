@@ -26,11 +26,11 @@
           :class="projectCardClass(index)"
           class="group relative overflow-hidden bg-stone-950"
         >
-          <nuxt-img
-            :src="toAssetUrl(project.image)"
-            format="webp"
-            :sizes="projectImageSizes(index)"
-            placeholder
+          <ProjectImage
+            v-if="getProjectCardImage(project)"
+            :src="getProjectCardImage(project)"
+            :alt="project.title"
+            loading="lazy"
             class="absolute inset-0 h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.03]"
           />
 
@@ -51,40 +51,56 @@
   </section>
 </template>
 <script setup lang="ts">
-import type {QueryBuilderParams} from "@nuxt/content/types";
+import type { QueryBuilderParams } from '@nuxt/content/types'
+import { getProjectImages } from '../utils/projects'
 
-const { toAssetUrl } = useAssetUrls()
-const dateFormatter = new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium" })
+const dateFormatter = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium' })
+const previewSeed = useState('projects-preview-seed', () => Math.random())
 
 const projectQuery: QueryBuilderParams = {
-  path: "/projects",
-  where: {draft: {$eq: false}}, limit: 4, sort: 
-    {date: -1}
+  path: '/projects',
+  where: { draft: { $eq: false } },
+  limit: 4,
+  sort: { date: -1 },
+}
+
+const seededRandom = (seed: number) => {
+  const value = Math.sin(seed) * 10000
+  return value - Math.floor(value)
+}
+
+const getProjectCardImage = (project: Record<string, unknown>) => {
+  const images = getProjectImages(project)
+  if (!images.length) {
+    return ''
+  }
+
+  const seed = Array.from(`${project.permalink || project.title || ''}-${previewSeed.value}`).reduce(
+    (total, character, index) => total + character.charCodeAt(0) * (index + 1),
+    0,
+  )
+
+  return images[Math.floor(seededRandom(seed || 1) * images.length)] || images[0]
 }
 
 const projectCardClass = (index: number) => {
   if (index === 0) {
-    return "min-h-[22rem] lg:col-span-7 lg:row-span-2"
+    return 'min-h-[22rem] lg:col-span-7 lg:row-span-2'
   }
 
   if (index === 1) {
-    return "min-h-[16rem] lg:col-span-5 lg:row-span-1"
+    return 'min-h-[16rem] lg:col-span-5 lg:row-span-1'
   }
 
-  return "min-h-[16rem] lg:col-span-5 lg:row-span-1"
+  return 'min-h-[16rem] lg:col-span-5 lg:row-span-1'
 }
-
-const projectImageSizes = (index: number) =>
-  index === 0
-    ? "(max-width: 1023px) 100vw, 58vw"
-    : "(max-width: 1023px) 100vw, 42vw"
 
 const formatCardDate = (value?: string | null) => {
   if (!value) {
-    return ""
+    return ''
   }
 
   const parsedDate = new Date(value)
-  return Number.isNaN(parsedDate.getTime()) ? "" : dateFormatter.format(parsedDate)
+  return Number.isNaN(parsedDate.getTime()) ? '' : dateFormatter.format(parsedDate)
 }
 </script>

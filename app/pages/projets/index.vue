@@ -31,24 +31,22 @@
               class="group border-b border-amber-200/10 py-6 transition lg:py-8"
             >
               <div class="grid gap-5 lg:grid-cols-12 lg:items-end lg:gap-8">
-                <div v-if="project.image" class="overflow-hidden bg-stone-950 lg:col-span-3">
-                  <nuxt-img
-                    :src="toAssetUrl(project.image)"
+                <div v-if="getProjectCardImage(project)" class="overflow-hidden bg-stone-950 lg:col-span-3">
+                  <ProjectImage
+                    :src="getProjectCardImage(project)"
                     :alt="project.title"
-                    format="webp"
-                    placeholder
-                    sizes="(max-width: 1023px) 100vw, 25vw"
+                    loading="lazy"
                     class="aspect-[4/5] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
                   />
                 </div>
 
-                <div :class="project.image ? 'lg:col-span-5' : 'lg:col-span-7'">
+                <div :class="getProjectCardImage(project) ? 'lg:col-span-5' : 'lg:col-span-7'">
                   <div class="flex flex-col gap-3">
                     <p
                       v-if="project.date"
                       class="text-[11px] uppercase tracking-[0.32em] text-amber-300/72"
                     >
-                      {{ moment(project.date).format("ll") }}
+                      {{ moment(project.date).format('ll') }}
                     </p>
                     <h2 class="max-w-[11ch] font-display text-4xl leading-[0.9] text-white transition group-hover:text-amber-200 lg:text-[3.5rem]">
                       {{ project.title }}
@@ -56,7 +54,7 @@
                   </div>
                 </div>
 
-                <div :class="project.image ? 'lg:col-span-4' : 'lg:col-span-4 lg:col-start-9'" class="lg:self-end">
+                <div :class="getProjectCardImage(project) ? 'lg:col-span-4' : 'lg:col-span-4 lg:col-start-9'" class="lg:self-end">
                   <p class="text-base leading-7 text-stone-300 line-clamp-4 lg:text-[1.02rem]">
                     {{ project?.description }}
                   </p>
@@ -75,67 +73,96 @@
 </template>
 
 <script lang="ts" setup>
-import moment from "moment/moment"
-import type { QueryBuilderParams } from "@nuxt/content/types"
+import moment from 'moment/moment'
+import type { QueryBuilderParams } from '@nuxt/content/types'
+import { getProjectCanonicalImageUrl, getProjectImages, getProjectPreviewImage } from '../../utils/projects'
 
-const { toAssetUrl } = useAssetUrls()
+const { toSiteUrl } = useAssetUrls()
 
-const query: QueryBuilderParams = { path: "/projects", where: [{ draft: false }], sort: [{ date: -1 }] }
+const query: QueryBuilderParams = { path: '/projects', where: [{ draft: false }], sort: [{ date: -1 }] }
+const projectCardImages = useState<Record<string, string>>('project-card-images', () => ({}))
+const { data: projectsForMeta } = await useAsyncData('projects-meta-list', () =>
+  queryContent('/projects').where({ draft: false }).sort({ date: -1 }).find(),
+)
+const socialProjectImage = computed(() =>
+  getProjectCanonicalImageUrl(getProjectPreviewImage(projectsForMeta.value?.[0]), toSiteUrl('')),
+)
 
-const title = "Les Projets photo du Macojaune"
+const title = 'Les Projets photo du Macojaune'
 const description =
   "Moodboards, idées de projets photo, inspirations, et tout ce qu'il faut pour y participer. Créons ensemble des œuvres qui nous ressemblent."
+
+const getProjectCardImage = (project: { permalink?: string | null, image?: string | null, images?: unknown }) => {
+  const projectKey = typeof project?.permalink === 'string' ? project.permalink : ''
+  const cachedImage = projectKey ? projectCardImages.value[projectKey] : ''
+  if (cachedImage) {
+    return cachedImage
+  }
+
+  const images = getProjectImages(project)
+  const nextImage = images.length > 1
+    ? images[Math.floor(Math.random() * images.length)]
+    : images[0] || ''
+
+  if (projectKey && nextImage) {
+    projectCardImages.value[projectKey] = nextImage
+  }
+
+  return nextImage
+}
+
 useHead({
   title,
   meta: [
     {
-      name: "title",
+      name: 'title',
       content: title,
     },
     {
-      name: "description",
+      name: 'description',
       content: description,
     },
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://macojaune.com/projets" },
-    { property: "og:title", content: title },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://macojaune.com/projets' },
+    { property: 'og:title', content: title },
     {
-      property: "og:description",
+      property: 'og:description',
       content: description,
     },
-    { property: "og:image", content: toAssetUrl("/pictures/MCO09198 (Large).jpg") },
+    { property: 'og:image', content: socialProjectImage.value },
     {
-      property: "twitter:card", content: "summary_large_image",
+      property: 'twitter:card', content: 'summary_large_image',
     },
-    { property: "twitter:url", content: "https://macojaune.com/projets" },
-    { property: "twitter:title", content: title },
+    { property: 'twitter:url', content: 'https://macojaune.com/projets' },
+    { property: 'twitter:title', content: title },
     {
-      property: "twitter:description",
+      property: 'twitter:description',
       content: description,
     },
-    { property: "twitter:image", content: toAssetUrl("/pictures/MCO09198 (Large).jpg") },
+    { property: 'twitter:image', content: socialProjectImage.value },
   ],
   script: [
     {
-      type: "application/ld+json",
+      type: 'application/ld+json',
       innerHTML: [
-        { "@context": "http://schema.org/" },
-        { "@type": "BreadcrumbList" },
+        { '@context': 'http://schema.org/' },
+        { '@type': 'BreadcrumbList' },
         {
           itemListElement: [
             {
-              "@type": "ListItem",
+              '@type': 'ListItem',
               position: 1,
               item: {
-                "@id": "https://macojaune.com",
-                name: "Homepage",
+                '@id': 'https://macojaune.com',
+                name: 'Homepage',
               },
-            }, {
-              "@type": "ListItem",
+            },
+            {
+              '@type': 'ListItem',
               position: 2,
               item: {
-                "@id": "https://macojaune.com/projets",
-                name: "Projets photographiques",
+                '@id': 'https://macojaune.com/projets',
+                name: 'Projets photographiques',
               },
             },
           ],

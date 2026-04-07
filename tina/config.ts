@@ -268,7 +268,12 @@ export default defineConfig({
             name: "layout",
             options: [{ value: "post", label: "post" }],
           },
-          { type: "image", label: "Cover", name: "image" },
+          {
+            type: "image",
+            label: "Images",
+            name: "images",
+            list: true,
+          },
           {
             type: "string",
             label: "Categories",
