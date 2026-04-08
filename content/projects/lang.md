@@ -8,6 +8,7 @@ projectStatus: started
 images:
   - /media/projects/lang/mco09234-c9cccfeafe
   - /media/projects/lang/mco09201-ff6f1793d9
+  - /media/runs/erotikart-khad/mco04964-3b125ddd5c
 categories:
   - anatomie
   - corps
