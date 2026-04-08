@@ -1,7 +1,7 @@
 <template lang="pug">
-header(class="py-6 md:py-32")
-  NuxtLink.text-center.text-amber-400(class="hover:text-orange-600 transition-colors ease-in-out duration-150" to="/")
-    h1(class="text-5xl md:text-7xl font-display") MACOJAUNE
-      small.text-2xl.text-grey-500 .COM
-    p.text-center T'as cliqué sur le lien dans ma bio ? Tu fais partie de l'élite.
+header(class="px-4 pb-4 pt-6 md:pt-12")
+  .mx-auto(class="max-w-[32rem] lg:max-w-[72rem]")
+    NuxtLink.block.text-center.text-amber-400(class="transition-colors duration-150 ease-in-out hover:text-orange-600" to="/")
+      h1.font-display.text-5xl.uppercase.text-amber-400(class="mt-2 leading-[0.88] md:text-7xl") MACOJAUNE
+        small.ml-2.text-xl.text-stone-200(class="md:text-2xl") .COM
 </template>
