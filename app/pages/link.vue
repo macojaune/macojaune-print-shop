@@ -65,22 +65,21 @@
           <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.06),rgba(12,10,9,0.3)_46%,rgba(12,10,9,0.82))]" />
 
           <div class="relative z-10 flex h-full flex-col">
-            <div class="flex items-start justify-end gap-3">
-              <span
-                aria-hidden="true"
-                class="inline-flex h-8 w-8 items-center justify-center border border-black/25 bg-black/30 text-base text-amber-100 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              >
-                ↗
-              </span>
-            </div>
-
-            <div class="mt-auto pt-2">
-              <h3
-                class="font-display uppercase text-white"
-                :class="index === 0 ? 'text-[1.78rem] leading-[0.92] sm:text-[2.1rem]' : 'text-[1.42rem] leading-[0.94] sm:text-[1.7rem]'"
-              >
-                {{ link.text }}
-              </h3>
+            <div class="mt-auto pt-1.5">
+              <div class="flex items-end justify-between gap-3">
+                <h3
+                  class="font-display uppercase text-white"
+                  :class="index === 0 ? 'text-[1.78rem] leading-[0.92] sm:text-[2.1rem]' : 'text-[1.42rem] leading-[0.94] sm:text-[1.7rem]'"
+                >
+                  {{ link.text }}
+                </h3>
+                <span
+                  aria-hidden="true"
+                  class="inline-flex h-7 w-7 shrink-0 items-center justify-center border border-black/25 bg-black/30 text-sm text-amber-100 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:h-8 sm:w-8 sm:text-base"
+                >
+                  ↗
+                </span>
+              </div>
 
               <p
                 v-if="link.description"
@@ -94,27 +93,6 @@
       </div>
 
       <div class="space-y-3 lg:hidden">
-        <section class="border border-white/10 bg-stone-950/35 px-3.5 py-4">
-          <div class="flex items-center justify-between gap-3">
-            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
-              À propos
-            </p>
-            <NuxtLink
-              to="/a-propos"
-              data-umami-event="LinkHubClick"
-              data-umami-section="about_teaser"
-              data-umami-label="En lire plus"
-              data-umami-surface="link_page_mobile"
-              class="text-[10px] uppercase tracking-[0.24em] text-stone-300 transition hover:text-amber-100"
-            >
-              En lire plus
-            </NuxtLink>
-          </div>
-          <p class="mt-2 text-sm leading-6 text-stone-200">
-            {{ aboutExcerpt }}
-          </p>
-        </section>
-
         <section class="border border-white/10 bg-stone-950/35 px-3.5 py-4">
           <div class="flex items-center justify-between gap-3">
             <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
@@ -227,6 +205,27 @@
               </div>
             </NuxtLink>
           </div>
+        </section>
+
+        <section class="border border-white/10 bg-stone-950/35 px-3.5 py-4">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
+              À propos
+            </p>
+            <NuxtLink
+              to="/a-propos"
+              data-umami-event="LinkHubClick"
+              data-umami-section="about_teaser"
+              data-umami-label="En lire plus"
+              data-umami-surface="link_page_mobile"
+              class="text-[10px] uppercase tracking-[0.24em] text-stone-300 transition hover:text-amber-100"
+            >
+              En lire plus
+            </NuxtLink>
+          </div>
+          <p class="mt-2 text-sm leading-6 text-stone-200">
+            {{ aboutExcerpt }}
+          </p>
         </section>
       </div>
 
