@@ -24,6 +24,10 @@
 
           <NuxtLink
             to="/a-propos"
+            data-umami-event="HomeClick"
+            data-umami-section="hero"
+            data-umami-label="En savoir plus"
+            data-umami-surface="homepage"
             class="mt-6 inline-flex min-h-11 w-fit items-center gap-2 border border-white/12 bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-stone-300 transition hover:border-amber-200/28 hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <span>En savoir plus</span>

@@ -10,6 +10,12 @@
       >
         <div
           class="series-lightbox-backdrop absolute inset-0 bg-black/97 backdrop-blur-md"
+          data-umami-event="SeriesLightboxClick"
+          data-umami-section="backdrop"
+          data-umami-label="Fermer"
+          :data-umami-content-slug="seriesSlug"
+          data-umami-content-type="run"
+          data-umami-surface="series_lightbox"
           @click="emit('close')"
         />
 
@@ -18,6 +24,12 @@
             <button
               type="button"
               class="series-lightbox-close absolute right-0 top-0 z-10 inline-flex min-h-11 items-center px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              data-umami-event="SeriesLightboxClick"
+              data-umami-section="controls"
+              data-umami-label="Fermer"
+              :data-umami-content-slug="seriesSlug"
+              data-umami-content-type="run"
+              data-umami-surface="series_lightbox"
               @click="emit('close')"
             >
               Fermer
@@ -58,6 +70,12 @@
                   <button
                     type="button"
                     class="inline-flex min-h-11 items-center px-0 py-2 text-[10px] uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    data-umami-event="SeriesLightboxClick"
+                    data-umami-section="controls"
+                    data-umami-label="Précédente"
+                    :data-umami-content-slug="seriesSlug"
+                    data-umami-content-type="run"
+                    data-umami-surface="series_lightbox"
                     @click.stop="emit('previous')"
                   >
                     Précédente
@@ -70,6 +88,12 @@
                   <button
                     type="button"
                     class="inline-flex min-h-11 items-center px-0 py-2 text-[10px] uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    data-umami-event="SeriesLightboxClick"
+                    data-umami-section="controls"
+                    data-umami-label="Suivante"
+                    :data-umami-content-slug="seriesSlug"
+                    data-umami-content-type="run"
+                    data-umami-surface="series_lightbox"
                     @click.stop="emit('next')"
                   >
                     Suivante
@@ -90,10 +114,12 @@ import type { SeriesGalleryTile } from "../utils/runs"
 const props = withDefaults(defineProps<{
   tile: SeriesGalleryTile | null
   seriesTitle: string
+  seriesSlug?: string
   seriesDateLabel?: string
   positionLabel?: string
   canNavigate?: boolean
 }>(), {
+  seriesSlug: "",
   seriesDateLabel: "",
   positionLabel: "",
   canNavigate: false,

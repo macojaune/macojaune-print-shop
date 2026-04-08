@@ -5,6 +5,10 @@
         <div class="lg:col-span-8">
           <NuxtLink
             to="/"
+            data-umami-event="ProjectsClick"
+            data-umami-section="header"
+            data-umami-label="Retour à l'accueil"
+            data-umami-surface="projects_index"
             class="inline-flex w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-stone-300 transition hover:text-amber-200"
           >
             Retour à l&apos;accueil
@@ -25,9 +29,16 @@
         <div class="pt-10 lg:pt-14">
           <div class="flex flex-col">
             <nuxt-link
-              v-for="project in list"
+              v-for="(project, index) in list"
               :key="project.permalink"
               :to="`/projets/${project.permalink}?project=${project.permalink}`"
+              data-umami-event="ProjectsClick"
+              data-umami-section="projects_grid"
+              :data-umami-label="project.title"
+              :data-umami-position="index + 1"
+              data-umami-content-type="project"
+              :data-umami-content-slug="project.permalink"
+              data-umami-surface="projects_index"
               class="group border-b border-amber-200/10 py-6 transition lg:py-8"
             >
               <div class="grid gap-5 lg:grid-cols-12 lg:items-end lg:gap-8">

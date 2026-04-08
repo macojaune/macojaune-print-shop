@@ -10,7 +10,11 @@
         <nav class="md:flex-2 md:mr-auto md:grow">
             <NuxtLink
                 class="text-center text-amber-400 hover:text-orange-600 transition-colors ease-in-out duration-150"
-                to="/" itemprop="brand" itemtype="http://schema.org/Organization">
+                to="/" itemprop="brand" itemtype="http://schema.org/Organization"
+                data-umami-event="SiteNavigationClick"
+                data-umami-section="header_brand"
+                data-umami-label="Macojaune"
+                data-umami-surface="global_header">
                 <h2 v-if="route.path === '/'" class="text-5xl/7 md:text-7xl font-display">
                     @MACOJAUNE<br class="block md:hidden"><span v-if="route.path.includes('blog')" class="text-xl text-white">
                         LE BLOG</span><span v-else class="text-xl text-white"> LE SITE</span>

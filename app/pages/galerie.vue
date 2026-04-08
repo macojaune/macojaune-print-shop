@@ -15,6 +15,10 @@
           <div class="flex flex-col gap-4">
             <NuxtLink
               to="/"
+              data-umami-event="GalleryClick"
+              data-umami-section="header"
+              data-umami-label="Retour à l'accueil"
+              data-umami-surface="gallery_page"
               class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.3em] text-stone-400 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Retour à l&apos;accueil
@@ -22,6 +26,10 @@
 
             <button
               type="button"
+              data-umami-event="GalleryClick"
+              data-umami-section="series_index"
+              :data-umami-label="isSeriesMenuOpen ? `Masquer l'index des séries` : `Ouvrir l'index des séries`"
+              data-umami-surface="gallery_page_mobile"
               class="inline-flex min-h-11 w-fit items-center gap-3 py-2 text-xs uppercase tracking-[0.3em] text-stone-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:hidden"
               :aria-expanded="isSeriesMenuOpen ? 'true' : 'false'"
               aria-controls="gallery-series-menu"
@@ -65,6 +73,13 @@
                   v-for="(series, seriesIndex) in group.items"
                   :key="series.slug"
                   :to="`/series/${series.slug}`"
+                  data-umami-event="GalleryClick"
+                  data-umami-section="series_index"
+                  :data-umami-label="series.title"
+                  :data-umami-position="seriesIndex + 1"
+                  data-umami-content-type="run"
+                  :data-umami-content-slug="series.slug"
+                  data-umami-surface="gallery_page"
                   class="group flex w-full min-h-10 min-w-0 items-start gap-3 border-b border-white/8 py-2 text-left transition hover:border-amber-200/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   <span class="min-w-[1.65rem] pt-0.5 text-xs font-medium tabular-nums tracking-normal text-amber-300/78">
@@ -86,6 +101,14 @@
             :to="`/series/${item.seriesSlug}`"
             :class="galleryFeedClass(item, index)"
             class="group relative isolate overflow-hidden bg-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            data-umami-event="GalleryClick"
+            data-umami-section="gallery_board"
+            :data-umami-label="item.seriesTitle"
+            :data-umami-position="index + 1"
+            data-umami-content-type="run"
+            :data-umami-content-slug="item.seriesSlug"
+            :data-umami-card-kind="item.kind"
+            data-umami-surface="gallery_page"
           >
             <div class="absolute inset-0">
               <RunImage

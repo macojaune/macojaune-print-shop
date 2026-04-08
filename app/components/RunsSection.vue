@@ -12,6 +12,10 @@
       <NuxtLink
         class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
         to="/galerie"
+        data-umami-event="HomeClick"
+        data-umami-section="runs_section"
+        data-umami-label="Voir toutes les séries"
+        data-umami-surface="homepage"
       >
         Voir toutes les séries
       </NuxtLink>
@@ -20,10 +24,17 @@
       <div class="mb-2">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 lg:gap-2">
           <NuxtLink
-            v-for="serie in getHomepageSeries(list).slice(0, 15)"
+            v-for="(serie, index) in getHomepageSeries(list).slice(0, 15)"
             :key="serie.slug"
             :to="`/series/${serie.slug}`"
             class="group relative block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            data-umami-event="HomeClick"
+            data-umami-section="runs_section"
+            :data-umami-label="serie.title"
+            :data-umami-position="index + 1"
+            data-umami-content-type="run"
+            :data-umami-content-slug="serie.slug"
+            data-umami-surface="homepage"
           >
             <div class="aspect-[4/5] overflow-hidden bg-stone-900">
               <RunImage
@@ -75,6 +86,10 @@
           <NuxtLink
             to="/galerie"
             class="group relative flex aspect-[4/5] flex-col justify-between border border-amber-200/20 bg-stone-950 p-4 text-amber-100 transition duration-300 hover:border-amber-200/50 hover:bg-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:p-5"
+            data-umami-event="HomeClick"
+            data-umami-section="runs_section"
+            data-umami-label="Voir plus de séries"
+            data-umami-surface="homepage"
           >
             <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/80">
               Galerie complète

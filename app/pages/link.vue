@@ -8,6 +8,10 @@
           :href="social.href"
           target="_blank"
           rel="noopener noreferrer"
+          data-umami-event="LinkHubClick"
+          data-umami-section="social_links"
+          :data-umami-label="social.label"
+          data-umami-surface="link_page"
           class="inline-flex min-h-11 items-center justify-between border border-white/10 bg-black/30 px-3 py-2 text-[11px] uppercase tracking-[0.22em] text-stone-100 transition hover:border-amber-300/35 hover:bg-amber-300/10 hover:text-amber-100"
         >
           <span>{{ social.label }}</span>
@@ -28,6 +32,10 @@
 
           <NuxtLink
             to="/a-propos"
+            data-umami-event="LinkHubClick"
+            data-umami-section="about_teaser"
+            data-umami-label="En lire plus"
+            data-umami-surface="link_page_desktop"
             class="inline-flex min-h-11 shrink-0 items-center border border-white/10 bg-black/25 px-4 py-2 text-[11px] uppercase tracking-[0.24em] text-amber-100 transition hover:border-amber-300/35 hover:text-amber-50"
           >
             En lire plus
@@ -43,6 +51,10 @@
           target="_blank"
           rel="noopener noreferrer"
           data-umami-event="LinkClick"
+          data-umami-section="primary_links"
+          :data-umami-label="link.text || 'Lien externe'"
+          :data-umami-position="index + 1"
+          data-umami-surface="link_page"
           class="group relative overflow-hidden border border-white/10 px-3.5 py-3 text-left transition duration-300 hover:-translate-y-0.5 hover:border-amber-300/32 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-4 sm:py-3.5"
           :class="index === 0 ? 'min-h-[7.3rem] lg:min-h-[8.7rem]' : 'min-h-[6.1rem] lg:min-h-[7.1rem]'"
         >
@@ -81,6 +93,143 @@
         </a>
       </div>
 
+      <div class="space-y-3 lg:hidden">
+        <section class="border border-white/10 bg-stone-950/35 px-3.5 py-4">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
+              À propos
+            </p>
+            <NuxtLink
+              to="/a-propos"
+              data-umami-event="LinkHubClick"
+              data-umami-section="about_teaser"
+              data-umami-label="En lire plus"
+              data-umami-surface="link_page_mobile"
+              class="text-[10px] uppercase tracking-[0.24em] text-stone-300 transition hover:text-amber-100"
+            >
+              En lire plus
+            </NuxtLink>
+          </div>
+          <p class="mt-2 text-sm leading-6 text-stone-200">
+            {{ aboutExcerpt }}
+          </p>
+        </section>
+
+        <section class="border border-white/10 bg-stone-950/35 px-3.5 py-4">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
+              Mes derniers clichés
+            </p>
+            <NuxtLink
+              to="/galerie"
+              data-umami-event="LinkHubClick"
+              data-umami-section="gallery_highlights"
+              data-umami-label="Voir plus"
+              data-umami-surface="link_page_mobile"
+              class="text-[10px] uppercase tracking-[0.24em] text-stone-300 transition hover:text-amber-100"
+            >
+              Voir plus
+            </NuxtLink>
+          </div>
+
+          <div class="mt-3 grid grid-cols-2 gap-2">
+            <NuxtLink
+              v-for="(entry, index) in galleryHighlights"
+              :key="`mobile-${entry.to}`"
+              :to="entry.to"
+              data-umami-event="LinkHubClick"
+              data-umami-section="gallery_highlights"
+              :data-umami-label="entry.title"
+              :data-umami-position="index + 1"
+              data-umami-content-type="run"
+              :data-umami-content-slug="entry.slug"
+              data-umami-surface="link_page_mobile"
+              class="group relative aspect-square overflow-hidden border border-white/10 bg-stone-950"
+            >
+              <RunImage
+                v-if="entry.image"
+                :src="entry.image"
+                :alt="entry.title"
+                variant="card"
+                sizes="50vw"
+                loading="lazy"
+                class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+              />
+              <div
+                class="absolute inset-0"
+                :class="entry.image ? 'bg-[linear-gradient(180deg,rgba(12,10,9,0.12),rgba(12,10,9,0.38)_40%,rgba(12,10,9,0.88))]' : 'bg-[linear-gradient(135deg,rgba(120,53,15,0.9),rgba(28,25,23,0.98))]'"
+              />
+              <div class="relative z-10 flex h-full items-end p-3">
+                <div>
+                  <p v-if="entry.meta" class="text-[10px] uppercase tracking-[0.22em] text-amber-200/82">
+                    {{ entry.meta }}
+                  </p>
+                  <h3 class="mt-1 font-display text-base uppercase leading-[0.96] text-white">
+                    {{ entry.title }}
+                  </h3>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+        </section>
+
+        <section class="border border-white/10 bg-stone-950/35 px-3.5 py-4">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
+              Viens créer avec moi
+            </p>
+            <NuxtLink
+              to="/projets"
+              data-umami-event="LinkHubClick"
+              data-umami-section="project_highlights"
+              data-umami-label="Voir plus"
+              data-umami-surface="link_page_mobile"
+              class="text-[10px] uppercase tracking-[0.24em] text-stone-300 transition hover:text-amber-100"
+            >
+              Voir plus
+            </NuxtLink>
+          </div>
+
+          <div class="mt-3 grid gap-2">
+            <NuxtLink
+              v-for="(entry, index) in projectHighlights"
+              :key="`mobile-${entry.to}`"
+              :to="entry.to"
+              data-umami-event="LinkHubClick"
+              data-umami-section="project_highlights"
+              :data-umami-label="entry.title"
+              :data-umami-position="index + 1"
+              data-umami-content-type="project"
+              :data-umami-content-slug="entry.slug"
+              data-umami-surface="link_page_mobile"
+              class="group relative min-h-[9rem] overflow-hidden border border-white/10 bg-stone-950"
+            >
+              <ProjectImage
+                v-if="entry.image"
+                :src="entry.image"
+                :alt="entry.title"
+                loading="lazy"
+                class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+              />
+              <div
+                class="absolute inset-0"
+                :class="entry.image ? 'bg-[linear-gradient(180deg,rgba(12,10,9,0.16),rgba(12,10,9,0.48)_42%,rgba(12,10,9,0.9))]' : 'bg-[linear-gradient(135deg,rgba(68,64,60,0.92),rgba(28,25,23,0.98))]'"
+              />
+              <div class="relative z-10 flex h-full flex-col justify-end p-3.5">
+                <div class="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-amber-200/86">
+                  <span v-if="entry.meta">{{ entry.meta }}</span>
+                  <span v-if="entry.tags.length">·</span>
+                  <span v-if="entry.tags.length">{{ entry.tags[0] }}</span>
+                </div>
+                <h3 class="mt-2 font-display text-[1.2rem] uppercase leading-[0.94] text-white">
+                  {{ entry.title }}
+                </h3>
+              </div>
+            </NuxtLink>
+          </div>
+        </section>
+      </div>
+
       <section class="hidden lg:block border border-white/10 bg-stone-950/35 px-4 py-4">
         <div class="flex items-center justify-between gap-3">
           <p class="text-[10px] uppercase tracking-[0.34em] text-amber-300/72">
@@ -88,6 +237,10 @@
           </p>
           <NuxtLink
             to="/galerie"
+            data-umami-event="LinkHubClick"
+            data-umami-section="gallery_highlights"
+            data-umami-label="Voir plus"
+            data-umami-surface="link_page_desktop"
             class="text-[10px] uppercase tracking-[0.24em] text-stone-300 transition hover:text-amber-100"
           >
             Voir plus
@@ -99,6 +252,13 @@
             v-for="entry in galleryHighlights"
             :key="entry.to"
             :to="entry.to"
+            data-umami-event="LinkHubClick"
+            data-umami-section="gallery_highlights"
+            :data-umami-label="entry.title"
+            :data-umami-content-slug="entry.slug"
+            data-umami-content-type="run"
+            :data-umami-position="entry.position"
+            data-umami-surface="link_page_desktop"
             class="group relative aspect-square overflow-hidden border border-white/10 bg-stone-950 transition hover:-translate-y-0.5 hover:border-amber-300/28"
           >
             <RunImage
@@ -135,6 +295,10 @@
           </p>
           <NuxtLink
             to="/projets"
+            data-umami-event="LinkHubClick"
+            data-umami-section="project_highlights"
+            data-umami-label="Voir plus"
+            data-umami-surface="link_page_desktop"
             class="text-[10px] uppercase tracking-[0.24em] text-stone-300 transition hover:text-amber-100"
           >
             Voir plus
@@ -146,6 +310,13 @@
             v-for="entry in projectHighlights"
             :key="entry.to"
             :to="entry.to"
+            data-umami-event="LinkHubClick"
+            data-umami-section="project_highlights"
+            :data-umami-label="entry.title"
+            :data-umami-content-slug="entry.slug"
+            data-umami-content-type="project"
+            :data-umami-position="entry.position"
+            data-umami-surface="link_page_desktop"
             class="group relative min-h-[11rem] overflow-hidden border border-white/10 bg-stone-950 transition hover:border-amber-300/28"
           >
             <ProjectImage
@@ -181,6 +352,10 @@
           v-for="entry in quickLinks"
           :key="entry.to"
           :to="entry.to"
+          data-umami-event="LinkHubClick"
+          data-umami-section="quick_links"
+          :data-umami-label="entry.label"
+          data-umami-surface="link_page"
           class="inline-flex min-h-11 items-center justify-center border border-white/10 bg-black/25 px-3 py-2 text-center transition hover:border-amber-300/30 hover:text-amber-100"
         >
           {{ entry.label }}
@@ -279,9 +454,11 @@ const runEntriesBySlug = new Map(
 )
 
 const projectHighlights = computed(() =>
-  projectEntries.slice(0, 2).map((entry) => ({
+  projectEntries.slice(0, 2).map((entry, index) => ({
     to: `/projets/${entry.permalink}`,
+    slug: String(entry.permalink || ''),
     title: String(entry.title || 'Projet'),
+    position: index + 1,
     meta: getProjectStatusLabel(entry.projectStatus),
     description: typeof entry.description === 'string' ? entry.description : '',
     image: getProjectPreviewImage(entry),
@@ -297,10 +474,12 @@ const galleryHighlights = computed(() =>
     .filter(Boolean)
     .slice(0, 4)
     .map((entry) => ({
-    to: `/series/${entry.slug}`,
-    title: String(entry.title || 'Série'),
-    meta: typeof entry.date === 'string' ? String(entry.date).slice(0, 4) : '',
-    image: getSeriesCoverImage(entry),
+      to: `/series/${entry.slug}`,
+      slug: String(entry.slug || ''),
+      title: String(entry.title || 'Série'),
+      position: galleryOrder.value.findIndex((slug) => slug === String(entry.slug || '')) + 1,
+      meta: typeof entry.date === 'string' ? String(entry.date).slice(0, 4) : '',
+      image: getSeriesCoverImage(entry),
     })),
 )
 

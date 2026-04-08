@@ -4,6 +4,12 @@
       <section class="mb-10 pb-8 pt-4 lg:mb-14 lg:pb-10">
         <NuxtLink
           to="/galerie"
+          data-umami-event="SeriesClick"
+          data-umami-section="header"
+          data-umami-label="Galerie"
+          data-umami-content-type="run"
+          :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
+          data-umami-surface="series_page"
           class="inline-flex min-h-11 items-center py-2 text-xs uppercase tracking-[0.32em] text-amber-300/60 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
         >
           Galerie
@@ -53,6 +59,13 @@
               v-if="item.type === 'photo'"
               type="button"
               :aria-label="`Ouvrir la photo ${item.index + 1} de la série ${serie.title}`"
+              data-umami-event="SeriesClick"
+              data-umami-section="gallery_flow"
+              :data-umami-label="`Photo ${item.index + 1}`"
+              :data-umami-position="item.index + 1"
+              data-umami-content-type="run"
+              :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
+              data-umami-surface="series_page"
               class="group relative block overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               :class="item.layoutClass"
               @click="openPhoto(item.tile.src)"
@@ -90,6 +103,12 @@
             v-if="wallpaperPackUrl"
             :href="wallpaperPackUrl"
             download
+            data-umami-event="SeriesClick"
+            data-umami-section="wallpaper_pack"
+            data-umami-label="Pack de fond d'écran"
+            data-umami-content-type="run"
+            :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
+            data-umami-surface="series_page"
             class="group relative mb-4 flex min-h-[19rem] break-inside-avoid flex-col justify-end overflow-hidden border border-amber-200/12 bg-stone-950 p-5 text-left transition duration-500 hover:border-amber-200/24 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.18)_0%,rgba(12,10,9,0.62)_58%,rgba(12,10,9,0.96)_100%)]" />
@@ -116,6 +135,13 @@
             :key="tile.src"
             type="button"
             :aria-label="`Ouvrir la photo ${index + 1} de la série ${serie.title}`"
+            data-umami-event="SeriesClick"
+            data-umami-section="gallery"
+            :data-umami-label="`Photo ${index + 1}`"
+            :data-umami-position="index + 1"
+            data-umami-content-type="run"
+            :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
+            data-umami-surface="series_page"
             class="group relative mb-4 block w-full break-inside-avoid overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             @click="openPhoto(tile.src)"
           >
@@ -149,6 +175,12 @@
 
           <NuxtLink
             to="/galerie"
+            data-umami-event="SeriesClick"
+            data-umami-section="suggestions"
+            data-umami-label="Voir toute la galerie"
+            data-umami-content-type="run"
+            :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
+            data-umami-surface="series_page"
             class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             Voir toute la galerie
@@ -160,6 +192,12 @@
             v-for="suggestion in suggestedSeries"
             :key="`suggested-${suggestion.slug}`"
             :to="`/series/${suggestion.slug}`"
+            data-umami-event="SeriesClick"
+            data-umami-section="suggestions"
+            :data-umami-label="suggestion.title"
+            :data-umami-content-slug="suggestion.slug"
+            data-umami-content-type="run"
+            data-umami-surface="series_page"
             class="group relative block min-h-[18rem] overflow-hidden border border-white/10 bg-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <RunImage
@@ -196,6 +234,7 @@
     <SeriesLightbox
       :tile="selectedTile"
       :series-title="serie.title || 'Série photo'"
+      :series-slug="String(serie.slug || route.params.slug || '')"
       :series-date-label="seriesDateLabel"
       :position-label="selectedPositionLabel"
       :can-navigate="galleryTiles.length > 1"

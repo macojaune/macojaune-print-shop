@@ -5,6 +5,12 @@
         <div class="max-w-[72rem]">
           <NuxtLink
             to="/blog"
+            data-umami-event="BlogClick"
+            data-umami-section="header"
+            data-umami-label="Retour au blog"
+            :data-umami-content-slug="String(params?.permalink || '')"
+            data-umami-content-type="blog"
+            data-umami-surface="blog_detail"
             class="inline-flex w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-stone-300 transition hover:text-amber-200"
           >
             Retour au blog
@@ -69,7 +75,7 @@
       </div>
 
       <div v-if="nextPost" class="mt-12 border-t border-amber-200/10 pt-8 lg:mt-16 lg:pt-10">
-        <nuxt-link :href="`/blog/${nextPost.permalink}`" class="group flex w-full flex-col gap-2 lg:max-w-[38rem] lg:ml-auto lg:text-right">
+        <nuxt-link :href="`/blog/${nextPost.permalink}`" class="group flex w-full flex-col gap-2 lg:max-w-[38rem] lg:ml-auto lg:text-right" data-umami-event="BlogClick" data-umami-section="next_post" :data-umami-label="nextPost.title" :data-umami-content-slug="nextPost.permalink" data-umami-content-type="blog" data-umami-surface="blog_detail">
           <span class="text-[11px] uppercase tracking-[0.3em] text-amber-300/70">
             {{ nextPost?.title?.toLowerCase().startsWith('[projet]') ? 'Projet suivant' : "Article suivant" }}
           </span>

@@ -13,6 +13,10 @@
       <NuxtLink
         class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
         to="/blog"
+        data-umami-event="HomeClick"
+        data-umami-section="blog_section"
+        data-umami-label="Voir les articles"
+        data-umami-surface="homepage"
       >
         Voir les articles
       </NuxtLink>
@@ -25,6 +29,13 @@
         :to="`/blog/${blog.permalink}`"
         :class="blogCardClass(index)"
         class="group relative overflow-hidden bg-stone-950"
+        data-umami-event="HomeClick"
+        data-umami-section="blog_section"
+        :data-umami-label="blog.title"
+        :data-umami-position="index + 1"
+        data-umami-content-type="blog"
+        :data-umami-content-slug="blog.permalink"
+        data-umami-surface="homepage"
       >
         <nuxt-img
           :src="toAssetUrl(blog.image)"

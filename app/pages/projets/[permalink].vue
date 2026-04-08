@@ -5,6 +5,12 @@
                 <div class="max-w-[72rem]">
                     <NuxtLink
 to="/projets"
+                        data-umami-event="ProjectClick"
+                        data-umami-section="header"
+                        data-umami-label="Retour aux projets"
+                        :data-umami-content-slug="String(params?.permalink || '')"
+                        data-umami-content-type="project"
+                        data-umami-surface="project_detail"
                         class="inline-flex w-fit items-center py-1.5 text-xs uppercase tracking-[0.28em] text-stone-300 transition hover:text-amber-200">
                         Retour aux projets
                     </NuxtLink>
@@ -52,6 +58,13 @@ v-if="projectImages.length > 1"
                                     <button
 v-for="(image, index) in projectImages" :key="`dot-${image}-${index}`"
                                         type="button" :aria-label="`Afficher l'image ${index + 1}`"
+                                        data-umami-event="ProjectClick"
+                                        data-umami-section="image_stage"
+                                        :data-umami-label="`Image ${index + 1}`"
+                                        :data-umami-position="index + 1"
+                                        :data-umami-content-slug="String(params?.permalink || '')"
+                                        data-umami-content-type="project"
+                                        data-umami-surface="project_detail"
                                         class="h-1.5 rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
                                         :class="index === activeProjectImageIndex ? 'w-4 bg-amber-100/95' : 'w-1.5 bg-white/55 hover:bg-white/75'"
                                         @click="setActiveProjectImage(index)" />
@@ -132,6 +145,12 @@ ref="formPanelRef"
 
                     <NuxtLink
                         to="/projets"
+                        data-umami-event="ProjectClick"
+                        data-umami-section="suggestions"
+                        data-umami-label="Voir tous les projets"
+                        :data-umami-content-slug="String(params?.permalink || '')"
+                        data-umami-content-type="project"
+                        data-umami-surface="project_detail"
                         class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                     >
                         Voir tous les projets
@@ -140,9 +159,16 @@ ref="formPanelRef"
 
                 <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <NuxtLink
-                        v-for="project in suggestedProjects"
+                        v-for="(project, index) in suggestedProjects"
                         :key="`suggested-${project.permalink}`"
                         :to="`/projets/${project.permalink}`"
+                        data-umami-event="ProjectClick"
+                        data-umami-section="suggestions"
+                        :data-umami-label="project.title"
+                        :data-umami-position="index + 1"
+                        :data-umami-content-slug="project.permalink"
+                        data-umami-content-type="project"
+                        data-umami-surface="project_detail"
                         class="group relative block min-h-[18rem] overflow-hidden border border-white/10 bg-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                     >
                         <template v-if="project.image">

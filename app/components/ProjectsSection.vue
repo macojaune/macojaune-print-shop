@@ -12,6 +12,10 @@
       <NuxtLink
         class="inline-flex min-h-11 w-fit items-center py-2 text-xs uppercase tracking-[0.28em] text-amber-200 transition hover:text-amber-400"
         to="/projets"
+        data-umami-event="HomeClick"
+        data-umami-section="projects_section"
+        data-umami-label="Voir tous les projets"
+        data-umami-surface="homepage"
       >
         Voir tous les projets
       </NuxtLink>
@@ -25,6 +29,13 @@
           :to="`/projets/${project.permalink}?project=${project.permalink}`"
           :class="projectCardClass(index)"
           class="group relative overflow-hidden bg-stone-950"
+          data-umami-event="HomeClick"
+          data-umami-section="projects_section"
+          :data-umami-label="String(project.title || 'Projet')"
+          :data-umami-position="index + 1"
+          data-umami-content-type="project"
+          :data-umami-content-slug="String(project.permalink || '')"
+          data-umami-surface="homepage"
         >
           <ProjectImage
             v-if="hasProjectCardImage(project)"

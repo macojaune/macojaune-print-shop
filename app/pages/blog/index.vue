@@ -24,6 +24,13 @@
           :class="[blogCardClass(index), blogCardToneClass(index)]"
           :style="{ viewTransitionName: `blog-${blog.permalink}` }"
           class="group relative overflow-hidden border border-white/10 bg-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          data-umami-event="BlogClick"
+          data-umami-section="blog_grid"
+          :data-umami-label="blog.title"
+          :data-umami-position="index + 1"
+          data-umami-content-type="blog"
+          :data-umami-content-slug="blog.permalink"
+          data-umami-surface="blog_index"
         >
           <template v-if="blog.image">
             <NuxtImg
