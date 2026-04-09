@@ -1,6 +1,6 @@
 ---
 title: Carnaval 2025
-description: "Série photo Carnaval 2025 en Guadeloupe, entre costumes, énergie de rue et éclats de foule."
+description: "Série photo Carnaval 2025 en Guadeloupe"
 slug: carvanal-2025
 date: 2025-02-04T09:55:45.861Z
 status: published

@@ -1,6 +1,6 @@
 ---
 title: Ingrid
-description: "Série photo Ingrid par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série intimiste avec Ingrid."
 slug: ingrid
 date: 2024-02-26T06:40:23.817Z
 status: published
@@ -520,3 +520,4 @@ products:
     images:
       - /media/runs/ingrid/mco01650-4996bb2553
 ---
+Série réalisée sur le week-end de saint-valentin, j'avais loué un airbnb sympathique et profité pour faire différentes séances photo. Voir aussi [Loverz: Jeux d'adultes](https://macojaune.com/series/meridjam-st-valentin)

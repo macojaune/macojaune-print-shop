@@ -1,6 +1,6 @@
 ---
 title: Wreck
-description: "Série photo Wreck par Macojaune, entre portraits, matières et fragments du réel."
+description: "Est-ce la nature qui reprend ses droits ou l'homme qui s'y méprend ?"
 slug: wreck
 date: 2022-01-07T18:36:11.620Z
 status: published

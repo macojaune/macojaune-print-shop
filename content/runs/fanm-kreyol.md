@@ -1,6 +1,6 @@
 ---
 title: Fanm Kréyòl
-description: "Série photo Fanm Kréyòl par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série photo pour le projet Fanm Kréyòl de l'écrivaine Tessa Naime."
 slug: fanm-kreyol
 date: 2021-11-03T18:41:25.440Z
 status: published
@@ -1370,3 +1370,4 @@ products:
     images:
       - /media/runs/fanm-kreyol/p8081262-3c656b9b4e
 ---
+En collaboration avec deux autres photographes Gotem et Ludovic Lollia, vous pouvez retrouver une partie de ces clichés illustrant les ouvrages Fanm sé lanmou et Lettre ouverte à la femme créole (Ti lèt pou fanm).

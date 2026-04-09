@@ -1,6 +1,6 @@
 ---
 title: Carnaval 2022
-description: "Série photo Carnaval 2022 en Guadeloupe, entre costumes, énergie de rue et éclats de foule."
+description: "Série durant carnaval 2022 en Guadeloupe"
 slug: carnaval-2022
 date: 2022-02-28T21:34:41.940Z
 status: published

@@ -1302,3 +1302,4 @@ products:
     images:
       - /media/runs/meridjam/mco01342-5469651918
 ---
+Série réalisée sur le week-end de saint-valentin, j'avais loué un airbnb sympathique et profité pour faire différentes séances photo. Voir aussi [Ingrid](https://macojaune.com/series/ingrid)

@@ -1,7 +1,7 @@
 ---
-title: Rachelle Allison
-slug: rachelle-allison
-description: Backstage d'un tournage de Rachelle Allison
+title: "Rachelle Allison: Tropical (Backstage)"
+slug: rachelle-allison-backstage-tropical
+description: Backstage du tournage du clip Tropical par Rachelle Allison
 date: 2021-11-03T16:11:04.390Z
 status: published
 coverImage: /media/runs/rachelle-allison/dsc01701-789010bfb0
@@ -588,3 +588,4 @@ products:
     images:
       - /media/runs/rachelle-allison/insta-02154-9741272f4b
 ---
+Photo Behind the scenes d'un jour de tournage du (clip Tropical)[https://www.youtube.com/watch?v=cNgn72p-Qbs&list=OLAK5uy_m3xiH3x4v0pqM6UZsGowWuJai6W83mT3I&index=2] de Rachelle Allison

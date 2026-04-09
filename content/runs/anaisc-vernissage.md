@@ -1,6 +1,6 @@
 ---
 title: "Anaïs Cheleux: Matière d'être - Vernissage"
-description: "Série photo Anaïs Cheleux: Matière d'être - Vernissage, entre présence, atmosphère et détails du moment."
+description: "Photo d'exposition pendant le vernissage de \"Matière d'être\" par Anaïs Cheleux."
 slug: anaisc-vernissage
 date: 2025-03-15T23:03:40.903Z
 status: published

@@ -1,6 +1,6 @@
 ---
 title: Bottles
-description: "Série photo Bottles par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série photo autour du gaspillage, de la société de consommation et de la pollution plastique."
 slug: bottles
 date: 2022-01-07T18:35:48.180Z
 status: published

@@ -1,6 +1,6 @@
 ---
 title: "Octavia: Industriel"
-description: "Série photo Octavia: Industriel, entre présence, atmosphère et détails du moment."
+description: "Série impro, mouvements et engins mécaniques"
 slug: octavia-industriel
 date: 2021-11-03T16:10:21.040Z
 status: published

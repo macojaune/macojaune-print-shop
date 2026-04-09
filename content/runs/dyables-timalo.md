@@ -1,7 +1,7 @@
 ---
 title: Dyablès par Timalo
 slug: dyables-timalo
-description: Séance pour la couverture du roman fantastique en kréyòl de Timalo, en collaboration avec la grande Anaïs Cheleux.
+description: Séance photo pour la couverture de Dyablès, roman fantastique, en kréyòl, de Timalo, en collaboration avec la grande Anaïs Cheleux.
 date: 2021-11-03T16:11:10.530Z
 status: published
 coverImage: /media/runs/dyables-timalo/dsc04761_fullsize-63f2e7f6d4

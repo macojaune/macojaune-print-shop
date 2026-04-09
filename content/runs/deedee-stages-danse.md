@@ -1,6 +1,6 @@
 ---
 title: Fl'âmes by Syldie Hierso
-description: "Série photo Fl'âmes by Syldie Hierso par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série pour immortaliser les sessions de stage de Danse de (Syldie Hierso)[https://www.instagram.com/lessens_syldie.hierso/]."
 slug: flames-syldie-hierso
 date: 2023-01-10T17:57:58.800Z
 status: published

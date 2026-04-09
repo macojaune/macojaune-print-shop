@@ -1,6 +1,6 @@
 ---
 title: Secret Spot
-description: "Série photo Secret Spot, entre lieu, lumière et présence."
+description: "Une plage déserte, du fun et des photos"
 slug: secret-spot
 date: 2020-01-12T16:00:00.000Z
 status: published

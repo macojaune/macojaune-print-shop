@@ -1,6 +1,6 @@
 ---
 title: Carz
-description: "Série photo Carz par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série photo automobile en collaboration avec Caribbean, importateur de véhicule."
 slug: carz
 date: 2021-11-03T16:10:05.070Z
 status: published

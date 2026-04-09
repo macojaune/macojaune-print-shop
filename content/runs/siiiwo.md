@@ -1,6 +1,6 @@
 ---
 title: Siiiwo
-description: "Série photo Siiiwo par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série nature, douceur et féminité"
 slug: siiiwo
 date: 2023-09-27T14:30:34.060Z
 status: published

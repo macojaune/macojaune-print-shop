@@ -1,6 +1,6 @@
 ---
 title: Bonnie x Clyde
-description: "Série photo Bonnie x Clyde, entre collaboration, présence et détails du moment."
+description: "Série photo Bonnie x Clyde"
 slug: bonnie-clyde
 date: 2018-12-30T17:00:00.000Z
 status: published

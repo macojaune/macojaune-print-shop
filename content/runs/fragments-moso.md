@@ -648,8 +648,8 @@ Série réalisée en collaboration avec mon acolyte Tessa Naime pour la revue Do
 On est parti sur un coup de tête, comme à notre habitude, dans une aventure qui nous a rapidement dépassé. 
 D'abord, l'idée de prendre en photos les parties du corps que les personnes apprécient le moins, les complexes, les "défauts", sur lesquels Tessa se baserait pour écrire.
 
-Je lance un appel a participation par le biais des réseaux avec un petit formulaire simple et en quelques jours j'ai plus d'une centaine de volontaires. À moi la lourde d'organiser toute la logistique, contacter les personnes, savoir si iel sont/seront sur le territoires a cette période, trouver un endroit correct pour recevoir tout ce monde, les mettre a l'aise pour la séance assez particulière et qu'on ne soit pas dépendants de la météo. 
-Heureusement on a trouvé le lieu parfait, le studio photo personnel de la grande Anaïs C. ! 
+Je lance un appel a participation par le biais des réseaux avec un petit formulaire simple et en quelques jours j'ai plus d'une centaine de volontaires. À moi la lourde tâche d'organiser toute la logistique, contacter les personnes, savoir s'iels sont/seront sur le territoires a cette période, trouver un endroit correct pour recevoir tout ce monde, les mettre à l'aise pour la séance, assez particulière, et qu'on ne soit pas dépendants de la météo. 
+Heureusement on a trouvé le lieu parfait, le studio photo personnel de la grande [Anaïs C.](https://anaiscolors.com) ! 
 
 Ensuite on a pu rencontrer, échanger, comprendre et prendre en photo une vingtaine de personnes sur 2jours de shoot. Du sport. 
 

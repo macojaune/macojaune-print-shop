@@ -1,7 +1,7 @@
 ---
 title: "Syldie: Amer"
 slug: syldie-amer
-description: Poésie du temps qui s'arrête, le voile blanc obscurit la vision tout en illuminant l'espace.
+description: Poésie du temps qui s'arrête, le voile blanc obscurit la vision tout en illuminant l'espace. Série sur le mouvement avec boss (Syldie Hierso)[https://www.instagram.com/lessens_syldie.hierso/]
 date: 2023-10-26T00:26:42.130Z
 status: published
 coverImage: /media/runs/trapped/mco09722-2-d136e9278d

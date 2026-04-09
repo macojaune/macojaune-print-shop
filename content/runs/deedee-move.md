@@ -1,6 +1,6 @@
 ---
 title: "Syldie: Ombrages"
-description: "Série photo Syldie: Ombrages, entre présence, atmosphère et détails du moment."
+description: "Série photo avec Syldie sur la plage de galets à vieux-habitants. Ombre et Mouvement."
 slug: syldie-ombrages
 date: 2022-01-07T18:35:44.250Z
 status: published
