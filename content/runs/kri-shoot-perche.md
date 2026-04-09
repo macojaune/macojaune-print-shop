@@ -1,5 +1,6 @@
 ---
 title: 'Kri: Shoot "perché"'
+description: "Série photo Kri: Shoot \"perché\", entre présence, atmosphère et détails du moment."
 slug: kri-shoot-perche
 date: 2023-09-27T14:27:49.030Z
 status: published

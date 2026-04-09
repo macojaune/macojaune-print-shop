@@ -248,14 +248,9 @@
 <script lang="ts" setup>
 import { formatPhotoDate } from "../../../utils/photo-dates"
 import { getRunEntries } from "../../../composables/useContentCollections"
-import {
-  getRunImageUrl,
-  getSeriesCoverImage,
-  getSeriesGalleryTiles,
-  getSeriesHeroImage,
-} from "../../../utils/runs"
+import { buildSeriesOgImagePath } from "../../../utils/og-images"
+import { getSeriesGalleryTiles } from "../../../utils/runs"
 import type { RunLike, SeriesGalleryTile } from "../../../utils/runs"
-import { toAbsoluteUrl } from "../../../utils/run-media"
 import type { ParsedContentv2 } from "@nuxt/content"
 
 const { toSiteUrl } = useAssetUrls()
@@ -276,8 +271,6 @@ if (!serie) {
     })
 }
 
-const coverImage = getSeriesCoverImage(serie)
-const heroImage = getSeriesHeroImage(serie)
 const shuffleGalleryTiles = <Tile,>(tiles: Tile[]) => {
     const shuffled = [...tiles]
 
@@ -309,8 +302,7 @@ const description = typeof serie.description === "string" && serie.description.t
     ? serie.description
     : `Découvre la série photo ${serie.title} sur Macojaune.`
 const wallpaperPackUrl = typeof serie.wallpaperPackUrl === "string" ? serie.wallpaperPackUrl : ""
-const socialImage = getRunImageUrl(heroImage || coverImage, "social")
-const socialImageUrl = toAbsoluteUrl(socialImage, "https://macojaune.com")
+const socialImage = toSiteUrl(buildSeriesOgImagePath(String(serie.slug || route.params.slug || "")))
 const title = "Série photo " + serie.title + " - Macojaune.com"
 const seriesDateLabel = computed(() => (serie.date ? formatPhotoDate(serie.date) : ""))
 const serieDescription = computed(() =>
@@ -713,7 +705,7 @@ useHead({
             property: "og:description",
             content: description,
         },
-        { property: "og:image", content: socialImageUrl },
+        { property: "og:image", content: socialImage },
         {
             property: "twitter:card", content: "summary_large_image",
         },
@@ -723,7 +715,7 @@ useHead({
             property: "twitter:description",
             content: description,
         },
-        { property: "twitter:image", content: socialImageUrl },
+        { property: "twitter:image", content: socialImage },
     ],
     link: [
         {

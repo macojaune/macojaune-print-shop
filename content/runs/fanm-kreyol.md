@@ -1,5 +1,6 @@
 ---
 title: Fanm Kréyòl
+description: "Série photo Fanm Kréyòl par Macojaune, entre portraits, matières et fragments du réel."
 slug: fanm-kreyol
 date: 2021-11-03T18:41:25.440Z
 status: published

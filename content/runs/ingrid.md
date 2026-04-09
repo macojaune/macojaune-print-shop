@@ -1,5 +1,6 @@
 ---
 title: Ingrid
+description: "Série photo Ingrid par Macojaune, entre portraits, matières et fragments du réel."
 slug: ingrid
 date: 2024-02-26T06:40:23.817Z
 status: published

@@ -1,5 +1,6 @@
 ---
 title: Lauuw
+description: "Série photo Lauuw par Macojaune, entre portraits, matières et fragments du réel."
 slug: lauuw
 date: 2021-11-03T16:10:52.700Z
 status: published

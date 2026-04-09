@@ -104,6 +104,8 @@
 </template>
 
 <script lang="ts" setup>
+import { buildSiteOgImagePath } from "../../utils/og-images"
+
 import { getBlogEntries } from "../../composables/useContentCollections"
 
 const { toAssetUrl } = useAssetUrls()
@@ -300,6 +302,12 @@ const formatCardDate = (value?: string | null) => {
 
 const description =
   "Pensées et tribulations d'un grand curieux guadeloupéen, artiste photographe, geek, développeur et entrepreneur."
+const socialImage = `https://macojaune.com${buildSiteOgImagePath({
+  title: 'Le blog du Macojaune',
+  eyebrow: 'Blog',
+  description,
+  image: '/pictures/dsc06261.jpg',
+})}`
 
 useHead({
   title: "Le Blog du Macojaune",
@@ -319,18 +327,24 @@ useHead({
       property: "og:description",
       content: description,
     },
-    { property: "og:image", content: toAssetUrl("/pictures/dsc06261.jpg") },
+    { property: "og:image", content: socialImage },
     {
       property: "twitter:card",
       content: "summary_large_image",
     },
-    { property: "twitter:url", content: "https://macojaune.com/" },
+    { property: "twitter:url", content: "https://macojaune.com/blog" },
     { property: "twitter:title", content: "Le blog du Macojaune" },
     {
       property: "twitter:description",
       content: description,
     },
-    { property: "twitter:image", content: toAssetUrl("/pictures/dsc06261.jpg") },
+    { property: "twitter:image", content: socialImage },
+  ],
+  link: [
+    {
+      rel: "canonical",
+      href: "https://macojaune.com/blog",
+    },
   ],
   script: [
     {

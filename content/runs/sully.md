@@ -1,5 +1,6 @@
 ---
 title: Sully
+description: "Série photo Sully par Macojaune, entre portraits, matières et fragments du réel."
 slug: sully
 date: 2021-11-03T16:11:05.620Z
 status: published

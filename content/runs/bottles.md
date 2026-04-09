@@ -1,5 +1,6 @@
 ---
 title: Bottles
+description: "Série photo Bottles par Macojaune, entre portraits, matières et fragments du réel."
 slug: bottles
 date: 2022-01-07T18:35:48.180Z
 status: published

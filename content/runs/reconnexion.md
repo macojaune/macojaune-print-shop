@@ -1,5 +1,6 @@
 ---
 title: Reconnexion
+description: "Série photo Reconnexion par Macojaune, entre portraits, matières et fragments du réel."
 slug: reconnexion
 date: 2021-11-03T16:11:05.400Z
 status: published

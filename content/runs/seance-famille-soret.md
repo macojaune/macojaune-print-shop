@@ -1,5 +1,6 @@
 ---
 title: Séance Famille
+description: "Séance photo Séance Famille, entre liens, présence et instants partagés."
 slug: seance-famille-soret
 date: 2022-01-07T18:36:18.970Z
 status: published

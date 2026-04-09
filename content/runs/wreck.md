@@ -1,5 +1,6 @@
 ---
 title: Wreck
+description: "Série photo Wreck par Macojaune, entre portraits, matières et fragments du réel."
 slug: wreck
 date: 2022-01-07T18:36:11.620Z
 status: published

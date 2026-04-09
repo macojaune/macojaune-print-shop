@@ -186,11 +186,10 @@
 
 <script lang="ts" setup>
 import type { QueryBuilderParams } from "@nuxt/content/types"
+import { buildSiteOgImagePath } from "../utils/og-images"
 import { formatPhotoDate } from "../utils/photo-dates"
 import { getSeriesCoverImage, getSeriesGalleryTiles } from "../utils/runs"
 import type { RunLike } from "../utils/runs"
-
-const { toAssetUrl } = useAssetUrls()
 
 const runQuery: QueryBuilderParams = {
   path: "/runs",
@@ -363,6 +362,12 @@ const galleryFeedClass = (item: GalleryBoardTile, index: number) => {
 
 const description =
   "Découvrez les séries photo de Macojaune dans Yellow Art Gallery."
+const socialImage = `https://macojaune.com${buildSiteOgImagePath({
+  title: 'Yellow Art Gallery',
+  eyebrow: 'Galerie',
+  description,
+  image: '/pictures/dsc06261.jpg',
+})}`
 
 useHead({
   title: "Yellow Art Gallery - Macojaune",
@@ -382,7 +387,7 @@ useHead({
       property: "og:description",
       content: description,
     },
-    { property: "og:image", content: toAssetUrl("/pictures/dsc06261.jpg") },
+    { property: "og:image", content: socialImage },
     {
       property: "twitter:card", content: "summary_large_image",
     },
@@ -392,7 +397,7 @@ useHead({
       property: "twitter:description",
       content: description,
     },
-    { property: "twitter:image", content: toAssetUrl("/pictures/dsc06261.jpg") },
+    { property: "twitter:image", content: socialImage },
   ],
   link: [
     {

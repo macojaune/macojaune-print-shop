@@ -374,6 +374,7 @@ definePageMeta({ layout: 'links' })
 useSeoMeta({
   title: 'Liens utiles - Macojaune.com',
   description: "Retrouve toute l'actualité de Macojaune",
+  robots: 'noindex,follow',
 })
 
 type LinkEntry = {

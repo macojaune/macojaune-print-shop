@@ -1,5 +1,6 @@
 ---
 title: "Kimouno: Jaden"
+description: "Série photo Kimouno: Jaden, entre présence, atmosphère et détails du moment."
 slug: kimouno-jaden
 date: 2022-04-03T17:57:13.840Z
 status: published

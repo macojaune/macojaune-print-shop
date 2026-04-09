@@ -1,5 +1,6 @@
 ---
 title: Carz
+description: "Série photo Carz par Macojaune, entre portraits, matières et fragments du réel."
 slug: carz
 date: 2021-11-03T16:10:05.070Z
 status: published

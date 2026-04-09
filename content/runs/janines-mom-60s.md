@@ -1,5 +1,6 @@
 ---
 title: "Janine's Mom: 60th birthday"
+description: "Série photo Janine's Mom: 60th birthday, entre présence, atmosphère et détails du moment."
 slug: janines-mom-60s
 date: 2018-12-16T12:00:00.000Z
 status: published

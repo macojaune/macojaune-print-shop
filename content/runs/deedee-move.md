@@ -1,5 +1,6 @@
 ---
 title: "Syldie: Ombrages"
+description: "Série photo Syldie: Ombrages, entre présence, atmosphère et détails du moment."
 slug: syldie-ombrages
 date: 2022-01-07T18:35:44.250Z
 status: published

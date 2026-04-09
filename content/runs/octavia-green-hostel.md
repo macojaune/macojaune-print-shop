@@ -1,5 +1,6 @@
 ---
 title: "Octavia: Green Hostel"
+description: "Série photo Octavia: Green Hostel, entre présence, atmosphère et détails du moment."
 slug: octavia-green-hostel
 date: 2021-08-11T20:32:28.996Z
 status: published

@@ -1,5 +1,6 @@
 ---
 title: "Joranie: Maison de la mangrove"
+description: "Série photo Joranie: Maison de la mangrove, entre présence, atmosphère et détails du moment."
 slug: joranie-maison-de-la-mangrove
 date: 2018-11-25T22:00:00.000Z
 status: published

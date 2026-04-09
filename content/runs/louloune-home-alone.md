@@ -1,5 +1,6 @@
 ---
 title: "Louloune: Home Alone"
+description: "Série photo Louloune: Home Alone, entre présence, atmosphère et détails du moment."
 slug: louloune-home-alone
 date: 2019-08-10T07:45:01.141Z
 status: published

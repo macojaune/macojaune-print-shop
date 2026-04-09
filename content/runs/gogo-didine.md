@@ -1,5 +1,6 @@
 ---
 title: Gogo x Didine
+description: "Série photo Gogo x Didine, entre collaboration, présence et détails du moment."
 slug: gogo-didine
 date: 2023-09-27T14:29:02.420Z
 status: published

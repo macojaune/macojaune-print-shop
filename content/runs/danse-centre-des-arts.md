@@ -1,5 +1,6 @@
 ---
 title: Danse x CDAC
+description: "Série photo Danse x CDAC, entre collaboration, présence et détails du moment."
 slug: danse-centre-des-arts
 date: 2022-01-07T18:35:52.650Z
 status: published

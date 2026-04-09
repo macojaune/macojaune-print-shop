@@ -1,5 +1,6 @@
 ---
 title: Laury
+description: "Série photo Laury par Macojaune, entre portraits, matières et fragments du réel."
 slug: laury
 date: 2022-01-07T18:35:45.370Z
 status: published

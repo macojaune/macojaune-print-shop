@@ -1,5 +1,6 @@
 ---
 title: Macro-chonneries
+description: "Série photo Macro-chonneries par Macojaune, entre portraits, matières et fragments du réel."
 slug: macro-chonneries
 date: 2023-05-13T05:52:38.296Z
 status: published

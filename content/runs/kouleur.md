@@ -1,5 +1,6 @@
 ---
 title: Kouleur
+description: "Série photo Kouleur par Macojaune, entre portraits, matières et fragments du réel."
 slug: kouleur
 date: 2022-06-02T22:04:01.920Z
 status: published

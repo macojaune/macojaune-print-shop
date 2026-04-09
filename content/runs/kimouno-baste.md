@@ -1,5 +1,6 @@
 ---
 title: "Kimouno: Bastè"
+description: "Série photo Kimouno: Bastè, entre présence, atmosphère et détails du moment."
 slug: kimouno-basse-terre
 date: 2022-10-16T17:57:19.430Z
 status: published

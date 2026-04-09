@@ -1,5 +1,6 @@
 ---
 title: "Kimouno: 2021"
+description: "Série photo Kimouno: 2021, entre présence, atmosphère et détails du moment."
 slug: kimouno-2021
 date: 2022-01-07T18:36:08.590Z
 status: published

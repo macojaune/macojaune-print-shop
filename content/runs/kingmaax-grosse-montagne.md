@@ -1,5 +1,6 @@
 ---
 title: "KingMaax: Grosse Montagne"
+description: "Série photo KingMaax: Grosse Montagne, entre présence, atmosphère et détails du moment."
 slug: kingmaax-grosse-montagne
 date: 2018-10-06T12:00:00.000Z
 status: published

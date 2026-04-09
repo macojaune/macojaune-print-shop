@@ -1,5 +1,6 @@
 ---
 title: "Loverz: Promenons nous dans les bois"
+description: "Série photo Loverz: Promenons nous dans les bois, entre présence, atmosphère et détails du moment."
 slug: loverz-promenons-nous-dans-les-bois
 date: 2023-12-10T12:00:13.355Z
 status: published

@@ -220,8 +220,9 @@ ref="formPanelRef"
 </template>
 
 <script setup lang="ts">
+import { buildProjectOgImagePath } from '../../utils/og-images'
 import { getProjectEntries } from '../../composables/useContentCollections'
-import { getProjectCanonicalImageUrl, getProjectImages, getProjectPreviewImage, getProjectStatusLabel } from '../../utils/projects'
+import { getProjectImages, getProjectPreviewImage, getProjectStatusLabel } from '../../utils/projects'
 
 const { toSiteUrl } = useAssetUrls()
 
@@ -312,6 +313,7 @@ const suggestedProjects = computed(() => {
 })
 
 const title = data.value?.title ? `${data.value?.title} | Projets photo du Macojaune` : 'Le site du Macojaune'
+const socialImage = toSiteUrl(buildProjectOgImagePath(String(params?.permalink ?? '')))
 useHead({
     title,
     meta: [
@@ -330,7 +332,7 @@ useHead({
             property: 'og:description',
             content: data.value?.description,
         },
-        { property: 'og:image', content: getProjectCanonicalImageUrl(projectImages.value[0], toSiteUrl('')) },
+        { property: 'og:image', content: socialImage },
         {
             property: 'twitter:card',
             content: 'summary_large_image',
@@ -341,13 +343,19 @@ useHead({
             property: 'twitter:description',
             content: data.value?.description,
         },
-        { property: 'twitter:image', content: getProjectCanonicalImageUrl(projectImages.value[0], toSiteUrl('')) },
+        { property: 'twitter:image', content: socialImage },
+    ],
+    link: [
+        {
+            rel: 'canonical',
+            href: toSiteUrl(path),
+        },
     ],
     script: [
         {
             type: 'application/ld+json',
             innerHTML: JSON.stringify({
-                '@context': 'http://schema.org/',
+                '@context': 'https://schema.org',
                 '@type': 'BreadcrumbList',
                 itemListElement: [
                     {
@@ -371,7 +379,7 @@ useHead({
                         position: 3,
                         item: {
                             '@id': `https://macojaune.com/projets/${params.permalink}`,
-                            name: params.permalink,
+                            name: data.value?.title || params.permalink,
                         },
                     },
                 ],

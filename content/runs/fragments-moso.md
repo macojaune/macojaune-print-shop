@@ -644,7 +644,7 @@ products:
     images:
       - /media/runs/fragments-moso/mco07777-2-990b9cbe95
 ---
-Série réalisé en collaboration avec mon acolyte Tessa Naime pour la revue Do-Kre-I-S, édition #6 "Fragments/Mòso".
+Série réalisée en collaboration avec mon acolyte Tessa Naime pour la revue Do-Kre-I-S, édition #6 "Fragments/Mòso".
 On est parti sur un coup de tête, comme à notre habitude, dans une aventure qui nous a rapidement dépassé. 
 D'abord, l'idée de prendre en photos les parties du corps que les personnes apprécient le moins, les complexes, les "défauts", sur lesquels Tessa se baserait pour écrire.
 

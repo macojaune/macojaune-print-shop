@@ -1,5 +1,6 @@
 ---
 title: Grande-Anse, Trois Rivières
+description: "Série photo Grande-Anse, Trois Rivières, entre lieu, lumière et présence."
 slug: grande-anse-trois-rivieres
 date: 2021-11-03T16:11:48.850Z
 status: published

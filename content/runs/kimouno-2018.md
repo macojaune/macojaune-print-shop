@@ -1,5 +1,6 @@
 ---
 title: "Kimouno: 2018"
+description: "Série photo Kimouno: 2018, entre présence, atmosphère et détails du moment."
 slug: kimouno-2018
 date: 2018-07-22T12:00:00.000Z
 status: published

@@ -144,7 +144,7 @@ useHead({
   meta: [
     {
       name: "title",
-      content: `${title} | Le blog du Macojaune`,
+      content: title,
     },
     {
       name: "description",
@@ -163,18 +163,24 @@ useHead({
       property: "twitter:card", content: "summary_large_image",
     },
     { property: "twitter:url", content: toSiteUrl(path) },
-    { property: "twitter:title", content: `${title} | Le blog du Macojaune` },
+    { property: "twitter:title", content: title },
     {
       property: "twitter:description",
       content: data.value?.description,
     },
     { property: "twitter:image", content: toAssetUrl(articleImage.value) },
   ],
+  link: [
+    {
+      rel: "canonical",
+      href: toSiteUrl(path),
+    },
+  ],
   script: [
     {
       type: "application/ld+json",
       innerHTML: JSON.stringify({
-        "@context": "http://schema.org/",
+        "@context": "https://schema.org",
         "@type": "BreadcrumbList",
 
         itemListElement: [
@@ -198,7 +204,7 @@ useHead({
             position: 3,
             item: {
               "@id": `https://macojaune.com/blog/${params.permalink}`,
-              name: params.permalink,
+              name: data.value?.title || params.permalink,
             },
           },
         ],

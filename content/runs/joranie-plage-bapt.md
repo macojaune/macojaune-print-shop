@@ -1,5 +1,6 @@
 ---
 title: "Joranie: Backstage"
+description: "Série photo Joranie: Backstage, entre présence, atmosphère et détails du moment."
 slug: joranie-backstage
 date: 2021-11-03T16:10:41.820Z
 status: published

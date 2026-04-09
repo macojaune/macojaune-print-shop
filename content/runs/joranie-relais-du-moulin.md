@@ -1,5 +1,6 @@
 ---
 title: "Joranie: Relais Du Moulin"
+description: "Série photo Joranie: Relais Du Moulin, entre présence, atmosphère et détails du moment."
 slug: joranie-relais-du-moulin
 date: 2022-01-07T18:36:07.900Z
 status: published

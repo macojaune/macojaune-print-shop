@@ -1,5 +1,6 @@
 ---
 title: "Joranie: Bathroom"
+description: "Série photo Joranie: Bathroom, entre présence, atmosphère et détails du moment."
 slug: joranie-bathroom
 date: 2021-11-03T16:10:39.850Z
 status: published

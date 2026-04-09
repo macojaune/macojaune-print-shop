@@ -1,5 +1,6 @@
 ---
 title: "Kimouno: Premier shoot"
+description: "Série photo Kimouno: Premier shoot, entre présence, atmosphère et détails du moment."
 slug: kimouno
 date: 2018-07-29T12:00:00.000Z
 status: published

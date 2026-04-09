@@ -1,5 +1,6 @@
 ---
 title: "Louloune: Bananeraie"
+description: "Série photo Louloune: Bananeraie, entre présence, atmosphère et détails du moment."
 slug: louloune-bananeraie
 date: 2019-03-20T07:44:38.206Z
 status: published

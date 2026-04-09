@@ -86,22 +86,24 @@
 <script lang="ts" setup>
 import type { QueryBuilderParams } from '@nuxt/content/types'
 import { listContentEntries } from '../../composables/useContentCollections'
-import { getProjectCanonicalImageUrl, getProjectImages, getProjectPreviewImage, getProjectStatusLabel } from '../../utils/projects'
-
-const { toSiteUrl } = useAssetUrls()
+import { buildSiteOgImagePath } from '../../utils/og-images'
+import { getProjectImages, getProjectPreviewImage, getProjectStatusLabel } from '../../utils/projects'
 
 const query: QueryBuilderParams = { path: '/projects' }
 const projectCardImages = useState<Record<string, string>>('project-card-images', () => ({}))
 const { data: projectsForMeta } = await useAsyncData('projects-meta-list', () =>
   listContentEntries({ path: '/projects' }),
 )
-const socialProjectImage = computed(() =>
-  getProjectCanonicalImageUrl(getProjectPreviewImage(projectsForMeta.value?.[0]), toSiteUrl('')),
-)
 
 const title = 'Les Projets photo du Macojaune'
 const description =
   "Moodboards, idées de projets photo, inspirations, et tout ce qu'il faut pour y participer. Créons ensemble des œuvres qui nous ressemblent."
+const socialImage = `https://macojaune.com${buildSiteOgImagePath({
+  title: 'Projets photo',
+  eyebrow: 'Macojaune',
+  description,
+  image: getProjectPreviewImage(projectsForMeta.value?.[0]) || '/pictures/dsc06261.jpg',
+})}`
 
 const getProjectCardImage = (project: { permalink?: string | null, image?: string | null, images?: unknown }) => {
   const projectKey = typeof project?.permalink === 'string' ? project.permalink : ''
@@ -140,7 +142,7 @@ useHead({
       property: 'og:description',
       content: description,
     },
-    { property: 'og:image', content: socialProjectImage.value },
+    { property: 'og:image', content: socialImage },
     {
       property: 'twitter:card', content: 'summary_large_image',
     },
@@ -150,35 +152,39 @@ useHead({
       property: 'twitter:description',
       content: description,
     },
-    { property: 'twitter:image', content: socialProjectImage.value },
+    { property: 'twitter:image', content: socialImage },
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://macojaune.com/projets',
+    },
   ],
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: [
-        { '@context': 'http://schema.org/' },
-        { '@type': 'BreadcrumbList' },
-        {
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              item: {
-                '@id': 'https://macojaune.com',
-                name: 'Homepage',
-              },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            item: {
+              '@id': 'https://macojaune.com',
+              name: 'Homepage',
             },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              item: {
-                '@id': 'https://macojaune.com/projets',
-                name: 'Projets photographiques',
-              },
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            item: {
+              '@id': 'https://macojaune.com/projets',
+              name: 'Projets photographiques',
             },
-          ],
-        },
-      ],
+          },
+        ],
+      }),
     },
   ],
 })

@@ -71,8 +71,15 @@ target="_blank" class="text-orange-400 hover:text-amber-300"
 </template>
 
 <script lang="ts" setup>
-const { toAssetUrl } = useAssetUrls()
+import { buildSiteOgImagePath } from '../utils/og-images'
+
 const description = 'À propos de Macojaune, expositions collectives et publications artistiques'
+const socialImage = `https://macojaune.com${buildSiteOgImagePath({
+  title: 'À propos',
+  eyebrow: 'Macojaune',
+  description,
+  image: '/pictures/dsc06261.jpg'
+})}`
 useHead({
   title: 'Macojaune - À propos',
   meta: [
@@ -86,26 +93,24 @@ useHead({
         'À propos de Macojaune, expositions collectives et publications artistiques'
     },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://macojaune.com/' },
+    { property: 'og:url', content: 'https://macojaune.com/a-propos' },
     {
       property: 'og:title',
-      content:
-        'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux'
+      content: 'Macojaune | À propos'
     },
     {
       property: 'og:description',
       content: description
     },
-    { property: 'og:image', content: toAssetUrl('/pictures/dsc06261.jpg') },
+    { property: 'og:image', content: socialImage },
     {
       property: 'twitter:card',
       content: 'summary_large_image'
     },
-    { property: 'twitter:url', content: 'https://macojaune.com/' },
+    { property: 'twitter:url', content: 'https://macojaune.com/a-propos' },
     {
       property: 'twitter:title',
-      content:
-        'Macojaune.com - Photographe, Développeur Web, Entrepreneur et Grand Curieux'
+      content: 'Macojaune | À propos'
     },
     {
       property: 'twitter:description',
@@ -113,36 +118,40 @@ useHead({
     },
     {
       property: 'twitter:image',
-      content: toAssetUrl('/pictures/dsc06261.jpg')
+      content: socialImage
+    }
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://macojaune.com/a-propos'
     }
   ],
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: [
-        { '@context': 'http://schema.org/' },
-        { '@type': 'BreadcrumbList' },
-        {
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              item: {
-                '@id': 'https://macojaune.com',
-                name: 'Homepage'
-              }
-            },
-            {
-              '@type': 'ListItem',
-              position: 1,
-              item: {
-                '@id': 'https://macojaune.com/a-propos',
-                name: 'À propos'
-              }
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            item: {
+              '@id': 'https://macojaune.com',
+              name: 'Homepage'
             }
-          ]
-        }
-      ]
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            item: {
+              '@id': 'https://macojaune.com/a-propos',
+              name: 'À propos'
+            }
+          }
+        ]
+      })
     }
   ]
 })

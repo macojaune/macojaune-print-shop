@@ -1,5 +1,6 @@
 ---
 title: Mao x Guylo
+description: "Série photo Mao x Guylo, entre collaboration, présence et détails du moment."
 slug: mao-guylo
 date: 2021-11-03T16:11:01.590Z
 status: published

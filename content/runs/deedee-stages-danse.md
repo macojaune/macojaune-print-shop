@@ -1,5 +1,6 @@
 ---
 title: Fl'âmes by Syldie Hierso
+description: "Série photo Fl'âmes by Syldie Hierso par Macojaune, entre portraits, matières et fragments du réel."
 slug: flames-syldie-hierso
 date: 2023-01-10T17:57:58.800Z
 status: published

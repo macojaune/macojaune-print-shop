@@ -1,5 +1,6 @@
 ---
 title: Concert 142Désibèl
+description: "Reportage photo Concert 142Désibèl, entre scène, coulisses et intensité du moment."
 slug: concert-142db
 date: 2021-11-03T16:10:01.090Z
 status: published

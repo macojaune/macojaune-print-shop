@@ -1,5 +1,6 @@
 ---
 title: Aurélie
+description: "Série photo Aurélie par Macojaune, entre portraits, matières et fragments du réel."
 slug: aurelie
 date: 2022-01-07T18:35:47.800Z
 status: published

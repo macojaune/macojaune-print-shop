@@ -1,5 +1,6 @@
 ---
 title: "Louloune: Night Shopper"
+description: "Série photo Louloune: Night Shopper, entre présence, atmosphère et détails du moment."
 slug: louloune-night-shopper
 date: 2020-09-30T22:33:00.000Z
 status: published

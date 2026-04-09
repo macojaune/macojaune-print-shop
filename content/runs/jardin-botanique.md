@@ -1,5 +1,6 @@
 ---
 title: "Joranie: Jardin Botanique"
+description: "Série photo Joranie: Jardin Botanique, entre présence, atmosphère et détails du moment."
 slug: joranie-jardin-botanique
 date: 2021-11-03T16:10:39.290Z
 status: published

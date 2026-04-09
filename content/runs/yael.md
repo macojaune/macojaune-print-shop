@@ -1,5 +1,6 @@
 ---
 title: Yaël
+description: "Série photo Yaël par Macojaune, entre portraits, matières et fragments du réel."
 slug: yael
 date: 2021-11-03T16:11:51.400Z
 status: published

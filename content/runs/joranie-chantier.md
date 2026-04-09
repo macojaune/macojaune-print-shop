@@ -1,5 +1,6 @@
 ---
 title: "Joranie: Construction"
+description: "Série photo Joranie: Construction, entre présence, atmosphère et détails du moment."
 slug: joranie-construction
 date: 2021-11-03T18:41:32.470Z
 status: published

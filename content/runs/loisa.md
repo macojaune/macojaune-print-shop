@@ -1,5 +1,6 @@
 ---
 title: Loïsa
+description: "Série photo Loïsa par Macojaune, entre portraits, matières et fragments du réel."
 slug: loisa
 date: 2022-03-27T12:00:00.000Z
 status: published

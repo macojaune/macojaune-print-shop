@@ -1,5 +1,6 @@
 ---
 title: Carnaval 2023
+description: "Série photo Carnaval 2023 en Guadeloupe, entre costumes, énergie de rue et éclats de foule."
 slug: carnaval-2023
 date: 2023-09-27T14:29:02.630Z
 status: published

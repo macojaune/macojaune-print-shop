@@ -1,5 +1,6 @@
 ---
 title: "Joranie: Martinique"
+description: "Série photo Joranie: Martinique, entre présence, atmosphère et détails du moment."
 slug: joranie-martinique
 date: 2022-01-07T18:36:15.650Z
 status: published
