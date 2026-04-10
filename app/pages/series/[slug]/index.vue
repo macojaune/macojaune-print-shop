@@ -55,32 +55,45 @@
           class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-12"
         >
           <template v-for="item in galleryFlowItems" :key="item.key">
-            <button
+            <div
               v-if="item.type === 'photo'"
-              type="button"
-              :aria-label="`Ouvrir la photo ${item.index + 1} de la série ${serie.title}`"
-              data-umami-event="SeriesClick"
-              data-umami-section="gallery_flow"
-              :data-umami-label="`Photo ${item.index + 1}`"
-              :data-umami-position="item.index + 1"
-              data-umami-content-type="run"
-              :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
-              data-umami-surface="series_page"
               class="group relative block overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               :class="item.layoutClass"
-              @click="openPhoto(item.tile.src)"
             >
-              <RunImage
-                :src="item.tile.src"
-                :alt="item.tile.alt || serie.title"
-                :sizes="item.sizes"
-                variant="detail"
-                itemprop="image"
-                loading="lazy"
-                fetchpriority="low"
-                class="w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
-              />
-            </button>
+              <button
+                v-if="canModerateLocally"
+                type="button"
+                class="absolute right-3 top-3 z-20 inline-flex h-9 items-center justify-center rounded-full border border-red-300/30 bg-black/72 px-3 text-[10px] uppercase tracking-[0.24em] text-red-100 opacity-0 transition duration-200 hover:border-red-200/50 hover:bg-red-950/80 group-hover:opacity-100 focus-visible:opacity-100"
+                :disabled="removingPhotoSrc === item.tile.src"
+                @click.stop="removePhotoLocally(item.tile.src)"
+              >
+                {{ removingPhotoSrc === item.tile.src ? "Suppression…" : "Retirer" }}
+              </button>
+              <button
+                type="button"
+                :aria-label="`Ouvrir la photo ${item.index + 1} de la série ${serie.title}`"
+                data-umami-event="SeriesClick"
+                data-umami-section="gallery_flow"
+                :data-umami-label="`Photo ${item.index + 1}`"
+                :data-umami-position="item.index + 1"
+                data-umami-content-type="run"
+                :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
+                data-umami-surface="series_page"
+                class="block w-full focus-visible:outline-none"
+                @click="openPhoto(item.tile.src)"
+              >
+                <RunImage
+                  :src="item.tile.src"
+                  :alt="item.tile.alt || serie.title"
+                  :sizes="item.sizes"
+                  variant="detail"
+                  itemprop="image"
+                  loading="lazy"
+                  fetchpriority="low"
+                  class="w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
+                />
+              </button>
+            </div>
 
             <div
               v-else
@@ -130,32 +143,45 @@
             </div>
           </a>
 
-          <button
+          <div
             v-for="(tile, index) in galleryTiles"
             :key="tile.src"
-            type="button"
-            :aria-label="`Ouvrir la photo ${index + 1} de la série ${serie.title}`"
-            data-umami-event="SeriesClick"
-            data-umami-section="gallery"
-            :data-umami-label="`Photo ${index + 1}`"
-            :data-umami-position="index + 1"
-            data-umami-content-type="run"
-            :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
-            data-umami-surface="series_page"
             class="group relative mb-4 block w-full break-inside-avoid overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            @click="openPhoto(tile.src)"
           >
-            <RunImage
-              :src="tile.src"
-              :alt="tile.alt || serie.title"
-              sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw"
-              variant="detail"
-              itemprop="image"
-              loading="lazy"
-              fetchpriority="low"
-              class="w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
-            />
-          </button>
+            <button
+              v-if="canModerateLocally"
+              type="button"
+              class="absolute right-3 top-3 z-20 inline-flex h-9 items-center justify-center rounded-full border border-red-300/30 bg-black/72 px-3 text-[10px] uppercase tracking-[0.24em] text-red-100 opacity-0 transition duration-200 hover:border-red-200/50 hover:bg-red-950/80 group-hover:opacity-100 focus-visible:opacity-100"
+              :disabled="removingPhotoSrc === tile.src"
+              @click.stop="removePhotoLocally(tile.src)"
+            >
+              {{ removingPhotoSrc === tile.src ? "Suppression…" : "Retirer" }}
+            </button>
+            <button
+              type="button"
+              :aria-label="`Ouvrir la photo ${index + 1} de la série ${serie.title}`"
+              data-umami-event="SeriesClick"
+              data-umami-section="gallery"
+              :data-umami-label="`Photo ${index + 1}`"
+              :data-umami-position="index + 1"
+              data-umami-content-type="run"
+              :data-umami-content-slug="String(serie.slug || route.params.slug || '')"
+              data-umami-surface="series_page"
+              class="block w-full focus-visible:outline-none"
+              @click="openPhoto(tile.src)"
+            >
+              <RunImage
+                :src="tile.src"
+                :alt="tile.alt || serie.title"
+                sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw"
+                variant="detail"
+                itemprop="image"
+                loading="lazy"
+                fetchpriority="low"
+                class="w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
+              />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -257,6 +283,8 @@ const { toSiteUrl } = useAssetUrls()
 const route = useRoute()
 const router = useRouter()
 const seriesPhotoNavigation = useState("series-photo-navigation", () => "")
+const canModerateLocally = import.meta.dev
+const removingPhotoSrc = ref("")
 
 definePageMeta({
     layout: "default",
@@ -663,6 +691,43 @@ const closePhoto = () => {
     pendingPhotoSrc.value = ""
     seriesPhotoNavigation.value = ""
     void updatePhotoQuery()
+}
+
+const removePhotoLocally = async (src: string) => {
+    if (!canModerateLocally || !src || removingPhotoSrc.value) {
+        return
+    }
+
+    const normalizedSrc = normalizePhotoSrc(src)
+    const seriesSlug = String(serie.slug || route.params.slug || "")
+
+    removingPhotoSrc.value = normalizedSrc
+
+    try {
+        await $fetch("/api/local/run-images/remove", {
+            method: "POST",
+            body: {
+                slug: seriesSlug,
+                src: normalizedSrc,
+            },
+        })
+
+        galleryTiles.value = galleryTiles.value.filter((tile) => normalizePhotoSrc(tile.src) !== normalizedSrc)
+
+        if (selectedPhotoSrc.value === normalizedSrc) {
+            closePhoto()
+        }
+    } catch (error) {
+        console.error(error)
+        const message = error instanceof Error
+            ? error.message
+            : typeof error === "object" && error && "data" in error
+              ? String((error as { data?: { statusMessage?: string, message?: string } }).data?.statusMessage || (error as { data?: { statusMessage?: string, message?: string } }).data?.message || "Impossible de retirer cette image localement.")
+              : "Impossible de retirer cette image localement."
+        window.alert(message)
+    } finally {
+        removingPhotoSrc.value = ""
+    }
 }
 
 const showPreviousPhoto = () => {
