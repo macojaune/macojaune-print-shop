@@ -1,7 +1,7 @@
 ---
 title: Grande-Anse, Trois Rivières
-description: "Sortie photo à Grande-Anse, Trois Rivières."
 slug: grande-anse-trois-rivieres
+description: Sortie photo à Grande-Anse, Trois Rivières.
 date: 2021-11-03T16:11:48.850Z
 status: published
 coverImage: /media/runs/grande-anse-trois-rivieres/1/insta_dsc00019-411bd21fa3

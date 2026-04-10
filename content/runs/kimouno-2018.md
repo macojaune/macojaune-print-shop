@@ -1,7 +1,7 @@
 ---
 title: "Kimouno: 2018"
-description: "Les toutes premières séries pour la marque Kimoun'o"
 slug: kimouno-2018
+description: Les toutes premières séries pour la marque Kimoun'o
 date: 2018-07-22T12:00:00.000Z
 status: published
 coverImage: /media/runs/kimouno-2018/insta_p7220212-f6f7a575e5

@@ -1,7 +1,7 @@
 ---
 title: Kéyane
-description: "Série photo Kéyane par Macojaune, entre portraits, matières et fragments du réel."
 slug: keyane
+description: Série photo Kéyane par Macojaune, entre portraits, matières et fragments du réel.
 date: 2021-11-03T18:41:35.220Z
 status: published
 coverImage: /media/runs/keyane/insta_dsc00648-b34b867693

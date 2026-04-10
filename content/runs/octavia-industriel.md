@@ -1,7 +1,7 @@
 ---
 title: "Octavia: Industriel"
-description: "Série impro, mouvements et engins mécaniques"
 slug: octavia-industriel
+description: Série impro, mouvements et engins mécaniques
 date: 2021-11-03T16:10:21.040Z
 status: published
 coverImage: /media/runs/octavia-industriel/insta/insta_dsc07397-6b523bc1aa

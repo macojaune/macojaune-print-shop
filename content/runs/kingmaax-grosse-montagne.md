@@ -1,7 +1,7 @@
 ---
 title: "KingMaax: Grosse Montagne"
-description: "Ruines&Nature"
 slug: kingmaax-grosse-montagne
+description: Ruines&Nature
 date: 2018-10-06T12:00:00.000Z
 status: published
 coverImage: /media/runs/kingmaaax-grosse-montagne/dsc03133-056dff7751

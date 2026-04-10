@@ -1,7 +1,7 @@
 ---
 title: "Kingmaax & Friends: HouseParty"
-description: "Vous faites quoi demain soir ? Venez à la villa"
 slug: kingmaax-and-friends-houseparty
+description: Vous faites quoi demain soir ? Venez à la villa
 date: 2021-11-03T16:11:50.720Z
 status: published
 coverImage: /media/runs/kingmaax-and-friends-houseparty/dsc05318-f3b41b45e8

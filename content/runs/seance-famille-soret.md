@@ -1,7 +1,7 @@
 ---
 title: Séance Famille
-description: "Séance Famille qui dégouline d'amour."
 slug: seance-famille-soret
+description: Séance Famille qui dégouline d'amour.
 date: 2022-01-07T18:36:18.970Z
 status: published
 coverImage: /media/runs/seance-famille-soret/dsc00286-1-a538546806

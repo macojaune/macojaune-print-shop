@@ -1,7 +1,7 @@
 ---
 title: "Louloune: Bananeraie"
-description: "Série photo au cœur du champ de bananes"
 slug: louloune-bananeraie
+description: Série photo au cœur du champ de bananes
 date: 2019-03-20T07:44:38.206Z
 status: published
 coverImage: /media/runs/bananeraie/dsc00044-3333244ca9
@@ -133,10 +133,6 @@ gallery:
     orientation: portrait
   - src: /media/runs/bananeraie/dsc09996-2-c0ca83ac0c
     alt: DSC09996 2
-    caption: ""
-    orientation: portrait
-  - src: /media/runs/bananeraie/dsc09996-124f03fe44
-    alt: DSC09996
     caption: ""
     orientation: portrait
   - src: /media/runs/bananeraie/insta_dsc00208-3035086c10
@@ -605,19 +601,6 @@ products:
         orientation: portrait
     images:
       - /media/runs/bananeraie/dsc09996-2-c0ca83ac0c
-  - sku: bananeraie-dsc09996
-    title: DSC09996
-    slug: dsc09996
-    price: 0
-    stock: 0
-    heroImage: /media/runs/bananeraie/dsc09996-124f03fe44
-    gallery:
-      - src: /media/runs/bananeraie/dsc09996-124f03fe44
-        alt: DSC09996
-        caption: ""
-        orientation: portrait
-    images:
-      - /media/runs/bananeraie/dsc09996-124f03fe44
   - sku: bananeraie-insta_dsc00208
     title: Insta DSC00208
     slug: insta_dsc00208

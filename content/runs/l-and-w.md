@@ -1,7 +1,7 @@
 ---
 title: L&W
-description: "Série duo. Pour le mois des fiertés"
 slug: l-and-w
+description: Série duo. Pour le mois des fiertés
 date: 2023-09-27T14:29:34.910Z
 status: published
 coverImage: /media/runs/l-and-w/ig_23062022-sh05847-b19360d8fc

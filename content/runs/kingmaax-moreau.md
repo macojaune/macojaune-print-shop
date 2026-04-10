@@ -1,7 +1,7 @@
 ---
 title: "Kingmaax: Moreau"
-description: "Promenade boisée"
 slug: kingmaax-moreau
+description: Promenade boisée
 date: 2022-01-07T18:36:23.880Z
 status: published
 coverImage: /media/runs/kingmaax-moreau/insta__9082249-2-9684adf420

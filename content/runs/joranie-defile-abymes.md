@@ -1,7 +1,7 @@
 ---
 title: "Joranie: Défilé Abymes"
-description: "Série photo Joranie: Défilé Abymes, entre présence, atmosphère et détails du moment."
 slug: joranie-defile-abymes
+description: "Série photo Joranie: Défilé Abymes, entre présence, atmosphère et détails du moment."
 date: 2021-11-03T16:10:40.940Z
 status: published
 coverImage: /media/runs/joranie-defile-abymes/insta-07239-046a2a2272

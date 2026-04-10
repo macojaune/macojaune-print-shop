@@ -1,7 +1,7 @@
 ---
 title: "Kimouno: Fanm ki ni Tòl"
-description: "Série pour la marque Kimoun'o"
 slug: kimouno-fanm-ki-ni-tol
+description: Série pour la marque Kimoun'o
 date: 2022-01-07T18:36:11.090Z
 status: published
 coverImage: /media/runs/snake/insta_dsc01257-b2e0c2964a

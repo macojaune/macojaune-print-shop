@@ -1,7 +1,7 @@
 ---
 title: "Kimouno: 2021"
-description: "Séries de l'année 2021 pour la marque Kimoun'o"
 slug: kimouno-2021
+description: Séries de l'année 2021 pour la marque Kimoun'o
 date: 2022-01-07T18:36:08.590Z
 status: published
 coverImage: /media/runs/kimouno-2021/insta_dsc00012-53d57357b6

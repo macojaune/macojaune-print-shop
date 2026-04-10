@@ -1,7 +1,7 @@
 ---
 title: Reconnexion
-description: "Série nature."
 slug: reconnexion
+description: Série nature.
 date: 2021-11-03T16:11:05.400Z
 status: published
 coverImage: /media/runs/reconnexion/dsc09570-d01d28b6d7

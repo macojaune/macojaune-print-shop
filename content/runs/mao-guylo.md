@@ -1,7 +1,7 @@
 ---
 title: Mao x Guylo
-description: "Série couple et maternité."
 slug: mao-guylo
+description: Série couple et maternité.
 date: 2021-11-03T16:11:01.590Z
 status: published
 coverImage: /media/runs/mao-guylo/insta-04571-8cbdd0330c

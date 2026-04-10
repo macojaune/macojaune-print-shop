@@ -1,7 +1,7 @@
 ---
 title: Joranie x Maaryjeann
-description: "Série photo Joranie x Maaryjeann, entre collaboration, présence et détails du moment."
 slug: joranie-maaryjeann
+description: Série photo Joranie x Maaryjeann, entre collaboration, présence et détails du moment.
 date: 2021-11-03T18:41:33.590Z
 status: published
 coverImage: /media/runs/joranie-maryjean-portlouis/insta_p6030094-7e9117db95

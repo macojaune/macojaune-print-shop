@@ -1,7 +1,7 @@
 ---
 title: "Joranie: Backstage"
-description: "Série photo Joranie: Backstage, entre présence, atmosphère et détails du moment."
 slug: joranie-backstage
+description: "Série photo Joranie: Backstage, entre présence, atmosphère et détails du moment."
 date: 2021-11-03T16:10:41.820Z
 status: published
 coverImage: /media/runs/joranie-plage-bapt/insta_p7140020-2b4f055291

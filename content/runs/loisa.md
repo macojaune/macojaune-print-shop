@@ -1,7 +1,7 @@
 ---
 title: Loïsa
-description: "Stay weird guys"
 slug: loisa
+description: Stay weird guys
 date: 2022-03-27T12:00:00.000Z
 status: published
 coverImage: /media/runs/loisa/insta_mco02358-2c6f5c99a8

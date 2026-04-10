@@ -1,7 +1,7 @@
 ---
 title: "Kimouno: Jaden"
-description: "Série pour la marque Kimoun'o"
 slug: kimouno-jaden
+description: Série pour la marque Kimoun'o
 date: 2022-04-03T17:57:13.840Z
 status: published
 coverImage: /media/runs/home/insta_mco02910-cb135771e1

@@ -1,7 +1,7 @@
 ---
 title: "Kenzy: Studio time"
-description: "Série photo Kenzy: Studio time, entre présence, atmosphère et détails du moment."
 slug: kenzy-studio-time
+description: "Série photo Kenzy: Studio time, entre présence, atmosphère et détails du moment."
 date: 2021-11-03T16:10:43.700Z
 status: published
 coverImage: /media/runs/studio-yungsplif/insta_dsc01024-3eabd19180

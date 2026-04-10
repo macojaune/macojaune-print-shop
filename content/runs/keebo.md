@@ -1,7 +1,7 @@
 ---
 title: Keebo
-description: "Série photo Keebo par Macojaune, entre portraits, matières et fragments du réel."
 slug: keebo
+description: Série photo Keebo par Macojaune, entre portraits, matières et fragments du réel.
 date: 2019-03-31T12:00:00.000Z
 status: published
 coverImage: /media/runs/keebo/insta_dsc00583-725d4b2333

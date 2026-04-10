@@ -1,7 +1,7 @@
 ---
 title: "Joranie: Construction"
-description: "Série photo Joranie: Construction, entre présence, atmosphère et détails du moment."
 slug: joranie-construction
+description: "Série photo Joranie: Construction, entre présence, atmosphère et détails du moment."
 date: 2021-11-03T18:41:32.470Z
 status: published
 coverImage: /media/runs/joranie-chantier/insta_p3180006-58f97cfdb5

@@ -1,7 +1,7 @@
 ---
 title: Carz
-description: "Série photo automobile en collaboration avec Caribbean, importateur de véhicule."
 slug: carz
+description: Série photo automobile en collaboration avec Caribbean, importateur de véhicule.
 date: 2021-11-03T16:10:05.070Z
 status: published
 coverImage: /media/runs/carz/911r/dsc07667-a18efd386f

@@ -1,7 +1,7 @@
 ---
 title: Jessica x Family
-description: "Séance photo Jessica x Family, entre liens, présence et instants partagés."
 slug: jessica-family
+description: Séance photo Jessica x Family, entre liens, présence et instants partagés.
 date: 2019-12-29T11:00:00.000Z
 status: published
 coverImage: /media/runs/jessica-family/dsc07833-dbb5c6a280

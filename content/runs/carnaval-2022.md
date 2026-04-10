@@ -1,7 +1,7 @@
 ---
 title: Carnaval 2022
-description: "Série durant carnaval 2022 en Guadeloupe"
 slug: carnaval-2022
+description: Série durant carnaval 2022 en Guadeloupe
 date: 2022-02-28T21:34:41.940Z
 status: published
 coverImage: /media/runs/carnaval-2022/insta_mco02155-809b82f6e9

@@ -1,7 +1,7 @@
 ---
 title: Drôles de dames
-description: "Série photo Drôles de dames par Macojaune, entre portraits, matières et fragments du réel."
 slug: droles-de-dames
+description: Série photo Drôles de dames par Macojaune, entre portraits, matières et fragments du réel.
 date: 2021-11-03T16:11:49.740Z
 status: published
 coverImage: /media/runs/droles-de-dames/insta_dsc06668-1cf009d6bc

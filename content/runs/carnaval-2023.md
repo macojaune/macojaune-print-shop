@@ -1,7 +1,7 @@
 ---
 title: Carnaval 2023
-description: Série photo Carnaval 2023 en Guadeloupe
 slug: carnaval-2023
+description: Série photo Carnaval 2023 en Guadeloupe
 date: 2023-09-27T14:29:02.630Z
 status: published
 coverImage: /media/runs/carnaval-2023/insta_mco03683-1-61ec404de2
@@ -362,7 +362,6 @@ products:
   - sku: carnaval-2023-insta_mco01516
     title: Insta MCO01516
     slug: insta_mco01516
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01516-55b6992640
@@ -376,7 +375,6 @@ products:
   - sku: carnaval-2023-insta_mco01520
     title: Insta MCO01520
     slug: insta_mco01520
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01520-91cba63432
@@ -390,7 +388,6 @@ products:
   - sku: carnaval-2023-insta_mco01526
     title: Insta MCO01526
     slug: insta_mco01526
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01526-88adc12f1a
@@ -404,7 +401,6 @@ products:
   - sku: carnaval-2023-insta_mco01528
     title: Insta MCO01528
     slug: insta_mco01528
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01528-47638e00bb
@@ -418,7 +414,6 @@ products:
   - sku: carnaval-2023-insta_mco01555
     title: Insta MCO01555
     slug: insta_mco01555
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01555-f26671e639
@@ -432,7 +427,6 @@ products:
   - sku: carnaval-2023-insta_mco01566
     title: Insta MCO01566
     slug: insta_mco01566
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01566-e246460f0d
@@ -446,7 +440,6 @@ products:
   - sku: carnaval-2023-insta_mco01589
     title: Insta MCO01589
     slug: insta_mco01589
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01589-3e895efb87
@@ -460,7 +453,6 @@ products:
   - sku: carnaval-2023-insta_mco01606
     title: Insta MCO01606
     slug: insta_mco01606
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01606-55ad43489c
@@ -474,7 +466,6 @@ products:
   - sku: carnaval-2023-insta_mco01631
     title: Insta MCO01631
     slug: insta_mco01631
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01631-22883a20b7
@@ -488,7 +479,6 @@ products:
   - sku: carnaval-2023-insta_mco01717
     title: Insta MCO01717
     slug: insta_mco01717
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01717-3d7f80b5b8
@@ -502,7 +492,6 @@ products:
   - sku: carnaval-2023-insta_mco01736
     title: Insta MCO01736
     slug: insta_mco01736
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01736-8fc1bb0a2a
@@ -516,7 +505,6 @@ products:
   - sku: carnaval-2023-insta_mco01737
     title: Insta MCO01737
     slug: insta_mco01737
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01737-19705ddd8f
@@ -530,7 +518,6 @@ products:
   - sku: carnaval-2023-insta_mco01745
     title: Insta MCO01745
     slug: insta_mco01745
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01745-d4ef878d6f
@@ -544,7 +531,6 @@ products:
   - sku: carnaval-2023-insta_mco01758
     title: Insta MCO01758
     slug: insta_mco01758
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01758-1a54debc5e
@@ -558,7 +544,6 @@ products:
   - sku: carnaval-2023-insta_mco01759
     title: Insta MCO01759
     slug: insta_mco01759
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01759-64eaea772f
@@ -572,7 +557,6 @@ products:
   - sku: carnaval-2023-insta_mco01821
     title: Insta MCO01821
     slug: insta_mco01821
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01821-5ee8d4752f
@@ -586,7 +570,6 @@ products:
   - sku: carnaval-2023-insta_mco01836
     title: Insta MCO01836
     slug: insta_mco01836
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01836-a6f56ecd99
@@ -600,7 +583,6 @@ products:
   - sku: carnaval-2023-insta_mco01873
     title: Insta MCO01873
     slug: insta_mco01873
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01873-775f7bef6e
@@ -614,7 +596,6 @@ products:
   - sku: carnaval-2023-insta_mco01884
     title: Insta MCO01884
     slug: insta_mco01884
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01884-463f75fdcb
@@ -628,7 +609,6 @@ products:
   - sku: carnaval-2023-insta_mco01904
     title: Insta MCO01904
     slug: insta_mco01904
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01904-b18a43d6e8
@@ -642,7 +622,6 @@ products:
   - sku: carnaval-2023-insta_mco01905
     title: Insta MCO01905
     slug: insta_mco01905
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01905-a7c9090231
@@ -656,7 +635,6 @@ products:
   - sku: carnaval-2023-insta_mco01925
     title: Insta MCO01925
     slug: insta_mco01925
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01925-1ad6e05c34
@@ -670,7 +648,6 @@ products:
   - sku: carnaval-2023-insta_mco01927
     title: Insta MCO01927
     slug: insta_mco01927
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01927-d6a2292428
@@ -684,7 +661,6 @@ products:
   - sku: carnaval-2023-insta_mco01954
     title: Insta MCO01954
     slug: insta_mco01954
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01954-5ebb55c8a8
@@ -698,7 +674,6 @@ products:
   - sku: carnaval-2023-insta_mco01955
     title: Insta MCO01955
     slug: insta_mco01955
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01955-2a15a8cfdc
@@ -712,7 +687,6 @@ products:
   - sku: carnaval-2023-insta_mco01971
     title: Insta MCO01971
     slug: insta_mco01971
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01971-bf883526fc
@@ -726,7 +700,6 @@ products:
   - sku: carnaval-2023-insta_mco01981
     title: Insta MCO01981
     slug: insta_mco01981
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01981-ec7c87adcc
@@ -740,7 +713,6 @@ products:
   - sku: carnaval-2023-insta_mco01984
     title: Insta MCO01984
     slug: insta_mco01984
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/insta_mco01984-bffaae6db0
@@ -754,7 +726,6 @@ products:
   - sku: carnaval-2023-mco02113
     title: MCO02113
     slug: mco02113
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/mco02113-8231bd3132
@@ -768,7 +739,6 @@ products:
   - sku: carnaval-2023-mco02126
     title: MCO02126
     slug: mco02126
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/mco02126-aaee862b5c
@@ -782,7 +752,6 @@ products:
   - sku: carnaval-2023-mco02129
     title: MCO02129
     slug: mco02129
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/mco02129-d1d584709d
@@ -796,7 +765,6 @@ products:
   - sku: carnaval-2023-mco02158
     title: MCO02158
     slug: mco02158
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/mco02158-caba7b0077
@@ -810,7 +778,6 @@ products:
   - sku: carnaval-2023-mco02160
     title: MCO02160
     slug: mco02160
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/mco02160-512d1babe3
@@ -824,7 +791,6 @@ products:
   - sku: carnaval-2023-mco02162
     title: MCO02162
     slug: mco02162
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/mco02162-cc43a2949c
@@ -838,7 +804,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02195
     title: Insta MCO02195
     slug: viminsta_mco02195
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02195-61aaed769b
@@ -852,7 +817,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02197
     title: Insta MCO02197
     slug: viminsta_mco02197
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02197-9ceaf67a96
@@ -866,7 +830,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02202
     title: Insta MCO02202
     slug: viminsta_mco02202
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02202-3f5514eb0c
@@ -880,7 +843,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02218
     title: Insta MCO02218
     slug: viminsta_mco02218
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02218-9db1559a5e
@@ -894,7 +856,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02219
     title: Insta MCO02219
     slug: viminsta_mco02219
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02219-38aa314c5c
@@ -908,7 +869,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02222
     title: Insta MCO02222
     slug: viminsta_mco02222
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02222-e26f17ef8f
@@ -922,7 +882,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02224
     title: Insta MCO02224
     slug: viminsta_mco02224
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02224-e06f8d06d4
@@ -936,7 +895,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02231
     title: Insta MCO02231
     slug: viminsta_mco02231
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02231-a12be90fd9
@@ -950,7 +908,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02246
     title: Insta MCO02246
     slug: viminsta_mco02246
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02246-5670fb3230
@@ -964,7 +921,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02319
     title: Insta MCO02319
     slug: viminsta_mco02319
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02319-07349525f6
@@ -978,7 +934,6 @@ products:
   - sku: carnaval-2023-viminsta_mco02324
     title: Insta MCO02324
     slug: viminsta_mco02324
-    description: ""
     price: 0
     stock: 0
     heroImage: /media/runs/carnaval-2023/vim/insta_mco02324-67ec0e5066

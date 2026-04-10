@@ -1,7 +1,7 @@
 ---
 title: Concert 142Désibèl
-description: "Série pendant le concert de l'équipe du 142Désibèl"
 slug: concert-142db
+description: Série pendant le concert de l'équipe du 142Désibèl
 date: 2021-11-03T16:10:01.090Z
 status: published
 coverImage: /media/runs/concert-142db/fullres/dsc02182-78c1b40e7e

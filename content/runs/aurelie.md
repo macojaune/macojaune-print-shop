@@ -1,7 +1,7 @@
 ---
 title: Aurélie
-description: "Série photo alliant nature et souplesse avec Aurélie."
 slug: aurelie
+description: Série photo alliant nature et souplesse avec Aurélie.
 date: 2022-01-07T18:35:47.800Z
 status: published
 coverImage: /media/runs/aurelie/dsc06654-1-8541f10cf9

@@ -1,7 +1,7 @@
 ---
 title: Yaël
-description: "Séance improvisée avec Yayou"
 slug: yael
+description: Séance improvisée avec Yayou
 date: 2021-11-03T16:11:51.400Z
 status: published
 coverImage: /media/runs/yael/insta_dsc08858-7946a8dc08

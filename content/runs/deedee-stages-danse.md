@@ -1,7 +1,7 @@
 ---
 title: Fl'âmes by Syldie Hierso
-description: "Série pour immortaliser les sessions de stage de Danse de (Syldie Hierso)[https://www.instagram.com/lessens_syldie.hierso/]."
 slug: flames-syldie-hierso
+description: Série pour immortaliser les sessions de stage de Danse de (Syldie Hierso)[https://www.instagram.com/lessens_syldie.hierso/].
 date: 2023-01-10T17:57:58.800Z
 status: published
 coverImage: /media/runs/dansez-avec-syldie-hierso/amadeus/session1/insta_mco05028-b19336841e

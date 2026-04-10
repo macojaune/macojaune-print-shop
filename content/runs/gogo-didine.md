@@ -1,7 +1,7 @@
 ---
 title: Gogo x Didine
-description: "Série photo couple et maternité pour un charmant duo."
 slug: gogo-didine
+description: Série photo couple et maternité pour un charmant duo.
 date: 2023-09-27T14:29:02.420Z
 status: published
 coverImage: /media/runs/gogo-didine/mco07979-2-1775d50698

@@ -1,7 +1,7 @@
 ---
 title: "Octavia: Green Hostel"
-description: "Série photo au Green Hostel, Pointe-à-pitre avec la fabuleuse Octavia."
 slug: octavia-green-hostel
+description: Série photo au Green Hostel, Pointe-à-pitre avec la fabuleuse Octavia.
 date: 2021-08-11T20:32:28.996Z
 status: published
 coverImage: /media/runs/green-hostel/insta_dsc07578-47d403c8d1

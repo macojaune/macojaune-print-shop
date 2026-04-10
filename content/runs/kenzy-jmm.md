@@ -1,7 +1,7 @@
 ---
 title: "Kenzy: Cover"
-description: "Série photo Kenzy: Cover, entre présence, atmosphère et détails du moment."
 slug: kenzy-cover
+description: "Série photo Kenzy: Cover, entre présence, atmosphère et détails du moment."
 date: 2021-11-03T16:10:43.430Z
 status: published
 coverImage: /media/runs/jmm/insta-05956-4baa8c88aa

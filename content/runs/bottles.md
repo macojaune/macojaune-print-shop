@@ -1,7 +1,7 @@
 ---
 title: Bottles
-description: "Série photo autour du gaspillage, de la société de consommation et de la pollution plastique."
 slug: bottles
+description: Série photo autour du gaspillage, de la société de consommation et de la pollution plastique.
 date: 2022-01-07T18:35:48.180Z
 status: published
 coverImage: /media/runs/bottles/fullsize/dsc06212-7c51aac9ec

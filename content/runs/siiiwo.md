@@ -1,7 +1,7 @@
 ---
 title: Siiiwo
-description: "Série nature, douceur et féminité"
 slug: siiiwo
+description: Série nature, douceur et féminité
 date: 2023-09-27T14:30:34.060Z
 status: published
 coverImage: /media/runs/siiiwo/insta_mco06109-7e2aef7758

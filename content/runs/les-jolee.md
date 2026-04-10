@@ -1,7 +1,7 @@
 ---
 title: Les Jolee
-description: "Série fashion pour Les JoLee"
 slug: les-jolee
+description: Série fashion pour Les JoLee
 date: 2021-11-03T16:10:54.520Z
 status: published
 coverImage: /media/runs/les-jolee/insta_dsc_0059-5c867a3e63

@@ -1,7 +1,7 @@
 ---
 title: Kouleur
-description: "Série bodypaint pour Kouleur artiste-peintre."
 slug: kouleur
+description: Série bodypaint pour Kouleur artiste-peintre.
 date: 2022-06-02T22:04:01.920Z
 status: published
 coverImage: /media/runs/kouleur/insta_mco04494-9252ca3da7

@@ -1,7 +1,7 @@
 ---
 title: 'Kri: Shoot "perché"'
-description: "Séance d'anniversaire avec Kri"
 slug: kri-shoot-perche
+description: Séance d'anniversaire avec Kri
 date: 2023-09-27T14:27:49.030Z
 status: published
 coverImage: /media/runs/kri-shoot-perche/insta_mco04735-46cbd13e6b

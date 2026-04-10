@@ -1,7 +1,7 @@
 ---
 title: "Anaïs Cheleux: Matière d'être - Vernissage"
-description: "Photo d'exposition pendant le vernissage de \"Matière d'être\" par Anaïs Cheleux."
 slug: anaisc-vernissage
+description: Photo d'exposition pendant le vernissage de "Matière d'être" par Anaïs Cheleux.
 date: 2025-03-15T23:03:40.903Z
 status: published
 coverImage: /media/runs/anaisc-vernissage/ig_mco05893-dde3c710be

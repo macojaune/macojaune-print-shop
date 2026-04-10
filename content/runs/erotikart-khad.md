@@ -1,7 +1,7 @@
 ---
 title: Erotik'art by Khad
-description: "Série photo Erotik'art by Khad par Macojaune, entre portraits, matières et fragments du réel."
 slug: erotikart-khad
+description: Série photo Erotik'art by Khad par Macojaune, entre portraits, matières et fragments du réel.
 date: 2023-09-27T14:29:10.940Z
 status: published
 coverImage: /media/runs/erotikart-khad/mco04530-0b29f9ae88

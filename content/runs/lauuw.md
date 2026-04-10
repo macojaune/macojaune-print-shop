@@ -1,7 +1,7 @@
 ---
 title: Lauuw
-description: "Jeux de lumière et chaise à bascule"
 slug: lauuw
+description: Jeux de lumière et chaise à bascule
 date: 2021-11-03T16:10:52.700Z
 status: published
 coverImage: /media/runs/lauuw/dsc06127-2078499e97

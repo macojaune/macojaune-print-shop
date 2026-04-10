@@ -1,7 +1,7 @@
 ---
 title: Ingrid
-description: "Série intimiste avec Ingrid."
 slug: ingrid
+description: Série intimiste avec Ingrid.
 date: 2024-02-26T06:40:23.817Z
 status: published
 coverImage: /media/runs/ingrid/mco01436-2-d465ecf4c5

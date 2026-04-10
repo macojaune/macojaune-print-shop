@@ -1,7 +1,7 @@
 ---
 title: Laury
-description: "Séance maternité. Dans un cadre utopique."
 slug: laury
+description: Séance maternité. Dans un cadre utopique.
 date: 2022-01-07T18:35:45.370Z
 status: published
 coverImage: /media/runs/laury/insta_mco01000-611acbfd23

@@ -603,7 +603,6 @@ products:
         orientation: square
     images:
       - /media/runs/fragments-moso/mco07672-13507cf64e
- 
   - sku: fragments-moso-mco07705
     title: MCO07705
     slug: mco07705

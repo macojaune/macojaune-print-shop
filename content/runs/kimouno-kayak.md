@@ -1,7 +1,7 @@
 ---
 title: "Kimouno: Yakak"
-description: "Série sur l'eau pour la marque Kimoun'o"
 slug: kimouno-kayak
+description: Série sur l'eau pour la marque Kimoun'o
 date: 2022-01-07T18:36:10.930Z
 status: published
 coverImage: /media/runs/kayak/insta_dsc00788-fb25b25281

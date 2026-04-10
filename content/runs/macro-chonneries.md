@@ -1,7 +1,7 @@
 ---
 title: Macro-chonneries
-description: "Fragments du réel"
 slug: macro-chonneries
+description: Fragments du réel
 date: 2023-05-13T05:52:38.296Z
 status: published
 coverImage: /media/runs/macro-chonneries/mco06203-b22c5807be

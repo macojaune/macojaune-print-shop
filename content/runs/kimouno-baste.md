@@ -1,7 +1,7 @@
 ---
 title: "Kimouno: Bastè"
-description: "Série pour la marque Kimoun'o dans les rues de la vielle ville"
 slug: kimouno-basse-terre
+description: Série pour la marque Kimoun'o dans les rues de la vielle ville
 date: 2022-10-16T17:57:19.430Z
 status: published
 coverImage: /media/runs/baste/insta_mco00010-3870c0feda

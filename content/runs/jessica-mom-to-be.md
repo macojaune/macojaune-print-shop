@@ -1,7 +1,7 @@
 ---
 title: "Jessica: Mom to be"
-description: "Série photo Jessica: Mom to be, entre présence, atmosphère et détails du moment."
 slug: jessica-mom-to-be
+description: "Série photo Jessica: Mom to be, entre présence, atmosphère et détails du moment."
 date: 2019-10-30T18:00:00.000Z
 status: published
 coverImage: /media/runs/jessica-mom-to-be/dsc05540-388df69304

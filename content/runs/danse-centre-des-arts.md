@@ -1,7 +1,7 @@
 ---
 title: Danse x CDAC
-description: "Série photo Danse avec les élèves de [Syldie Hierso](https://www.instagram.com/lessens_syldie.hierso/) au centre des arts et de la culture de Pointe-à-pitre"
 slug: danse-centre-des-arts
+description: Série photo Danse avec les élèves de [Syldie Hierso](https://www.instagram.com/lessens_syldie.hierso/) au centre des arts et de la culture de Pointe-à-pitre
 date: 2022-01-07T18:35:52.650Z
 status: published
 coverImage: /media/runs/danse-centre-des-arts/insta_dsc07787-00ba8b8979

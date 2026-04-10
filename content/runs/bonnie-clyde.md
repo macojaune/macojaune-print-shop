@@ -1,7 +1,7 @@
 ---
 title: Bonnie x Clyde
-description: "Série photo Bonnie x Clyde"
 slug: bonnie-clyde
+description: Série photo Bonnie x Clyde
 date: 2018-12-30T17:00:00.000Z
 status: published
 coverImage: /media/runs/bonnie-clyde/insta_dsc07071-762c92cbd6

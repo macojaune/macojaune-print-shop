@@ -1,7 +1,7 @@
 ---
 title: Fanm Kréyòl
-description: "Série photo pour le projet Fanm Kréyòl de l'écrivaine Tessa Naime."
 slug: fanm-kreyol
+description: Série photo pour le projet Fanm Kréyòl de l'écrivaine Tessa Naime.
 date: 2021-11-03T18:41:25.440Z
 status: published
 coverImage: /media/runs/fanm-kreyol/_8081268-ff986b9ab8

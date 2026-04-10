@@ -1,7 +1,7 @@
 ---
 title: "Syldie: Ombrages"
-description: "Série photo avec Syldie sur la plage de galets à vieux-habitants. Ombre et Mouvement."
 slug: syldie-ombrages
+description: Série photo avec Syldie sur la plage de galets à vieux-habitants. Ombre et Mouvement.
 date: 2022-01-07T18:35:44.250Z
 status: published
 coverImage: /media/runs/move/insta_mco00068-d24c1bda29

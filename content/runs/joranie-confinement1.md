@@ -1,7 +1,7 @@
 ---
 title: Confinement
-description: "Série photo Confinement par Macojaune, entre portraits, matières et fragments du réel."
 slug: yellow-confinement
+description: Série photo Confinement par Macojaune, entre portraits, matières et fragments du réel.
 date: 2021-11-03T16:10:40.470Z
 status: published
 coverImage: /media/runs/joranie-confinement1/dsc09360-9a84f59d0d

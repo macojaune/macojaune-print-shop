@@ -1,7 +1,7 @@
 ---
 title: Carnaval 2024
-description: "Série photo Carnaval 2024 en Guadeloupe"
 slug: carnaval-2024
+description: Série photo Carnaval 2024 en Guadeloupe
 date: 2024-02-01T12:00:00.000Z
 status: published
 coverImage: /media/runs/carnaval-2024/mco00398-510d231404

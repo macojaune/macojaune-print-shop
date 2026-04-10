@@ -1,7 +1,7 @@
 ---
 title: Joranie x Island Karma
-description: "Série photo Joranie x Island Karma, entre collaboration, présence et détails du moment."
 slug: joranie-island-karma
+description: Série photo Joranie x Island Karma, entre collaboration, présence et détails du moment.
 date: 2021-11-03T18:41:32.970Z
 status: published
 coverImage: /media/runs/joranie-island-karma/insta__8262033-b01d242b5d

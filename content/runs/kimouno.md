@@ -1,7 +1,7 @@
 ---
 title: "Kimouno: Premier shoot"
-description: "Série photo Kimouno: Premier shoot, entre présence, atmosphère et détails du moment."
 slug: kimouno
+description: "Série photo Kimouno: Premier shoot, entre présence, atmosphère et détails du moment."
 date: 2018-07-29T12:00:00.000Z
 status: published
 coverImage: /media/runs/kimouno/insta_p7290008-3f900f0fe4

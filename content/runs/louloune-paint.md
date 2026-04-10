@@ -1,7 +1,7 @@
 ---
 title: Travaux Pratiques
-description: "Attention ça tâche"
 slug: travaux-pratiques
+description: Attention ça tâche
 date: 2021-11-10T07:45:11.721Z
 status: published
 coverImage: /media/runs/paint/insta_mco00617-77b63c855e
