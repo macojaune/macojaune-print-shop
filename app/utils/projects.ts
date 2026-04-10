@@ -1,5 +1,5 @@
 import { projectImageManifest } from "../../generated/project-image-manifest"
-import { getProjectMediaAssetId, isAbsoluteUrl } from "./project-media"
+import { getProjectMediaAssetId, isAbsoluteProjectUrl } from "./project-media"
 
 export type ProjectLike = {
   image?: string | null
@@ -25,7 +25,7 @@ function normalizeProjectImageSource(value: string | undefined) {
     return ""
   }
 
-  if (isAbsoluteUrl(normalizedValue)) {
+  if (isAbsoluteProjectUrl(normalizedValue)) {
     try {
       normalizedValue = new URL(normalizedValue).pathname || normalizedValue
     } catch {

@@ -1,6 +1,6 @@
 export const PROJECT_MEDIA_PREFIX = "/media/projects/"
 
-export function isAbsoluteUrl(value: string | undefined) {
+export function isAbsoluteProjectUrl(value: string | undefined) {
   return /^https?:\/\//i.test(value || "")
 }
 
