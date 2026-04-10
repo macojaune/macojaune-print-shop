@@ -3,6 +3,22 @@ const assetBaseUrl =
   process.env.NUXT_PUBLIC_ASSET_BASE_URL ||
   process.env.R2_PUBLIC_BASE_URL ||
   "https://cdn.macojaune.com"
+const stripeSecretKey =
+  process.env.NUXT_STRIPE_KEY ||
+  process.env.NUXT_STRIPE_SECRET_KEY ||
+  process.env.NUXT_STRIPE_TOKEN ||
+  process.env.STRIPE_SECRET_KEY ||
+  ""
+const stripePublishableKey =
+  process.env.NUXT_PUBLIC_STRIPE_KEY ||
+  process.env.NUXT_PUBLIC_STRIPE_API_KEY ||
+  process.env.NUXT_PUBLIC_STRIPE_PUBLIC_KEY ||
+  process.env.STRIPE_PUBLISHABLE_KEY ||
+  ""
+const stripeWebhookSecret =
+  process.env.NUXT_STRIPE_WEBHOOK_SECRET ||
+  process.env.STRIPE_WEBHOOK_SECRET ||
+  ""
 const generatedWatchIgnores = [
   "**/assets/photo-originals/**",
   "**/generated/**",
@@ -19,8 +35,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     stripe: {
-      key: '',
-      webhookSecret: '',
+      key: stripeSecretKey,
+      webhookSecret: stripeWebhookSecret,
       options: {},
     },
     turso: {
@@ -38,7 +54,7 @@ export default defineNuxtConfig({
     },
     public: {
       stripe: {
-        key: '',
+        key: stripePublishableKey,
         options: {},
       },
       serverURL: '',

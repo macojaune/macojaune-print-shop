@@ -40,7 +40,7 @@ useHead({
 const route = useRoute()
 const config = useRuntimeConfig()
 
-const stripe = await useClientStripe()
+const { stripe } = await useClientStripe()
 
 const state = reactive({
   show: false,

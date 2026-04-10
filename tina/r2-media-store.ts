@@ -1,7 +1,36 @@
 import type { Media, MediaList, MediaListOptions, MediaStore, MediaUploadOptions } from "tinacms"
 
+type TinaAuthProvider = {
+  fetchWithToken?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>
+  getToken?: () => Promise<{ id_token?: string | null } | null>
+}
+
+type TinaClient = {
+  authProvider?: TinaAuthProvider
+}
+
 export class R2MediaStore implements MediaStore {
   accept = "image/*"
+
+  constructor(private client?: TinaClient) {}
+
+  private async fetchWithAuth(input: RequestInfo | URL, init?: RequestInit) {
+    if (this.client?.authProvider?.fetchWithToken) {
+      return this.client.authProvider.fetchWithToken(input, init)
+    }
+
+    const token = await this.client?.authProvider?.getToken?.()
+    const headers = new Headers(init?.headers)
+
+    if (token?.id_token) {
+      headers.set("Authorization", `Bearer ${token.id_token}`)
+    }
+
+    return fetch(input, {
+      ...init,
+      headers,
+    })
+  }
 
   async persist(files: MediaUploadOptions[]) {
     return Promise.all(
@@ -10,7 +39,7 @@ export class R2MediaStore implements MediaStore {
         formData.append("file", file)
         formData.append("directory", directory || "")
 
-        const response = await fetch("/api/media/upload", {
+        const response = await this.fetchWithAuth("/api/media/upload", {
           method: "POST",
           body: formData,
         })
@@ -25,7 +54,7 @@ export class R2MediaStore implements MediaStore {
   }
 
   async delete(media: Media) {
-    const response = await fetch("/api/media/delete", {
+    const response = await this.fetchWithAuth("/api/media/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +82,7 @@ export class R2MediaStore implements MediaStore {
       query.set("offset", String(options.offset))
     }
 
-    const response = await fetch(`/api/media/list?${query.toString()}`)
+    const response = await this.fetchWithAuth(`/api/media/list?${query.toString()}`)
 
     if (!response.ok) {
       throw new Error(await response.text())

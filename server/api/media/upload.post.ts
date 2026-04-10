@@ -1,8 +1,11 @@
 import { createError, defineEventHandler, readMultipartFormData } from "h3"
 
 import { createR2ImageAsset } from "../../utils/r2-images"
+import { assertCanManageTinaMedia } from "../../utils/tina-media-auth"
 
 export default defineEventHandler(async (event) => {
+  await assertCanManageTinaMedia(event)
+
   const parts = await readMultipartFormData(event)
 
   if (!parts) {

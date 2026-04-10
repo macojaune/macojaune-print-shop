@@ -1,5 +1,17 @@
 <template>
   <footer class="mt-20 pt-12 bg-black justify-self-end">
+    <div class="container mx-auto px-4 text-left">
+      <NuxtLink
+        class="font-display text-4xl text-amber-400 transition-colors ease-in hover:text-orange-500"
+        to="/"
+        data-umami-event="SiteNavigationClick"
+        data-umami-section="footer_brand"
+        data-umami-label="Macojaune.com"
+        data-umami-surface="global_footer"
+      >
+        Macojaune.com
+      </NuxtLink>
+    </div>
     <div class="text-center">
       <p class="text-white">
         Machouillé avec
@@ -49,6 +61,10 @@
         </NuxtLink>
         <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/link" data-umami-event="SiteNavigationClick" data-umami-section="footer_links" data-umami-label="Liens utiles" data-umami-surface="global_footer">Liens utiles
         </NuxtLink>
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/projets" data-umami-event="SiteNavigationClick" data-umami-section="footer_links" data-umami-label="Projets" data-umami-surface="global_footer">Projets
+        </NuxtLink>
+        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/galerie" data-umami-event="SiteNavigationClick" data-umami-section="footer_links" data-umami-label="Galerie" data-umami-surface="global_footer">Galerie
+        </NuxtLink>
         <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/mentions-legales" data-umami-event="SiteNavigationClick" data-umami-section="footer_links" data-umami-label="Mentions légales" data-umami-surface="global_footer">Mentions
           Légales
         </NuxtLink>
@@ -62,8 +78,6 @@
         >CGV
         </NuxtLink>
         <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/blog" data-umami-event="SiteNavigationClick" data-umami-section="footer_links" data-umami-label="Blog" data-umami-surface="global_footer">Blog
-        </NuxtLink>
-        <NuxtLink class="text-center lg:text-left text-amber-400 hover:text-orange-500" to="/photozine" data-umami-event="SiteNavigationClick" data-umami-section="footer_links" data-umami-label="Photozine #1" data-umami-surface="global_footer">Photozine #1
         </NuxtLink>
       </div>
     </div>
