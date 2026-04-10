@@ -1,6 +1,6 @@
 ---
 title: "Kingmaax: Moreau"
-description: "Série photo Kingmaax: Moreau, entre présence, atmosphère et détails du moment."
+description: "Promenade boisée"
 slug: kingmaax-moreau
 date: 2022-01-07T18:36:23.880Z
 status: published

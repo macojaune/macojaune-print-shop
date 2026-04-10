@@ -1,6 +1,6 @@
 ---
 title: "Kimouno: Fanm ki ni Tòl"
-description: "Série photo Kimouno: Fanm ki ni Tòl, entre présence, atmosphère et détails du moment."
+description: "Série pour la marque Kimoun'o"
 slug: kimouno-fanm-ki-ni-tol
 date: 2022-01-07T18:36:11.090Z
 status: published

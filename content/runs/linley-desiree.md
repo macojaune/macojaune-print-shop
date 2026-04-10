@@ -1,7 +1,7 @@
 ---
 title: Linley Désirée
 slug: linley-desiree
-description: Séance photo pour une collection textile Linley Désirée en collaboration avec Gotem
+description: Séance photo pour une collection textile par  Linley Désirée en collaboration avec Gotem
 date: 2021-11-03T18:41:49.150Z
 status: published
 coverImage: /media/runs/linley-desiree/insta_dsc07826-e652ab89d4

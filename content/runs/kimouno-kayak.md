@@ -1,6 +1,6 @@
 ---
 title: "Kimouno: Yakak"
-description: "Série photo Kimouno: Yakak, entre présence, atmosphère et détails du moment."
+description: "Série sur l'eau pour la marque Kimoun'o"
 slug: kimouno-kayak
 date: 2022-01-07T18:36:10.930Z
 status: published

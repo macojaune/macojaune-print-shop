@@ -1,6 +1,6 @@
 ---
 title: L&W
-description: "Série photo L&W par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série duo. Pour le mois des fiertés"
 slug: l-and-w
 date: 2023-09-27T14:29:34.910Z
 status: published

@@ -1,6 +1,6 @@
 ---
 title: "Loverz: Jeux d'adultes"
-description: "Série photo Loverz: Jeux d'adultes, entre présence, atmosphère et détails du moment."
+description: "Revoilà nos loverz"
 slug: loverz-jeux-d-adultes
 date: 2024-02-15T06:40:38.637Z
 status: published

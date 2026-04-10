@@ -1,6 +1,6 @@
 ---
 title: Kouleur
-description: "Série photo Kouleur par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série bodypaint pour Kouleur artiste-peintre."
 slug: kouleur
 date: 2022-06-02T22:04:01.920Z
 status: published

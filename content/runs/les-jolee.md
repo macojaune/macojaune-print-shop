@@ -1,6 +1,6 @@
 ---
 title: Les Jolee
-description: "Série photo Les Jolee par Macojaune, entre portraits, matières et fragments du réel."
+description: "Série fashion pour Les JoLee"
 slug: les-jolee
 date: 2021-11-03T16:10:54.520Z
 status: published

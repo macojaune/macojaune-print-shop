@@ -1,6 +1,6 @@
 ---
 title: Travaux Pratiques
-description: "Série photo Travaux Pratiques par Macojaune, entre portraits, matières et fragments du réel."
+description: "Attention ça tâche"
 slug: travaux-pratiques
 date: 2021-11-10T07:45:11.721Z
 status: published

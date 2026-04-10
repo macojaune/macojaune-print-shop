@@ -1,6 +1,6 @@
 ---
 title: "Loverz: Promenons nous dans les bois"
-description: "Série jeu de piste, vin et plus si affinités"
+description: "Jeu de piste, vin et plus si affinités"
 slug: loverz-promenons-nous-dans-les-bois
 date: 2023-12-10T12:00:13.355Z
 status: published

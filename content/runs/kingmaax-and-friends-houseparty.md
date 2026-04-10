@@ -1,6 +1,6 @@
 ---
-title: "Kingmaax & Friends: HoUseParty"
-description: "Série photo Kingmaax & Friends: HoUseParty, entre présence, atmosphère et détails du moment."
+title: "Kingmaax & Friends: HouseParty"
+description: "Vous faites quoi demain soir ? Venez à la villa"
 slug: kingmaax-and-friends-houseparty
 date: 2021-11-03T16:11:50.720Z
 status: published
