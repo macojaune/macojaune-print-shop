@@ -35,10 +35,6 @@ gallery:
     alt: MCO04333
     caption: ""
     orientation: landscape
-  - src: /media/runs/eva/mco04348-2-4098180190
-    alt: MCO04348 2
-    caption: ""
-    orientation: portrait
   - src: /media/runs/eva/mco04348-dae61d0801
     alt: MCO04348
     caption: ""

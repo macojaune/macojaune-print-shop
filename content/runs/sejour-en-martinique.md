@@ -1,7 +1,7 @@
 ---
 title: Séjour en Martinique
 slug: sejour-en-martinique
-description: Week-end en martinique à l'occasion d'une compétition de Tir Sportif inter-régionale.
+description: Week-end en martinique à l'occasion d'une compétition de Tir Sportif.
 date: 2018-03-30T20:00:00.000Z
 status: published
 coverImage: /media/runs/sejour-en-martinique/insta_p3290360-c03de75283
@@ -979,3 +979,4 @@ products:
     images:
       - /media/runs/sejour-en-martinique/p4010252-897d669131
 ---
+J'ai raconté la compétition dans cet [Article](https://macojaune.com/blog/ys-circuit-national-tir-martinique) pour les curieux·ses
