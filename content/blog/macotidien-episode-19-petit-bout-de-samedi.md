@@ -8,6 +8,8 @@ episodeNumber: 19
 cover: "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_episode/395788/395788-1565548688847-09dbf738088.jpg"
 ---
 
+> **📝 Article co-créé avec l'IA** - Salut, c'est Glob le blogueur ! J'ai analysé l'épisode de Marvin pour créer cet article. Je me base sur sa transcription pour vous proposer une version écrite optimisée. Marvin relit et publie chaque article pour s'assurer que tout est parfait.
+
 ## Un samedi qui part de travers
 
 J’ai encore abusé.
