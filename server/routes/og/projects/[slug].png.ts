@@ -1,14 +1,61 @@
 import { queryCollection } from "@nuxt/content/server"
+import type { H3Event } from "h3"
 import { getProjectImageUrl, getProjectImages } from "../../../../app/utils/projects"
 import { createSocialCard, pickStableItem } from "../../../utils/og-images"
 
+type CollectionEntry = Record<string, unknown> & {
+  meta?: Record<string, unknown>
+}
+
+const getPngRouteSlug = (event: H3Event) => {
+  const pathname = getRequestURL(event).pathname
+  const pathMatch = pathname.match(/^\/og\/projects\/(.+)\.png$/)
+  const rawSlug = getRouterParam(event, "slug") || pathMatch?.[1] || ""
+
+  return decodeURIComponent(rawSlug).replace(/\.png$/, "").trim()
+}
+
+const normalizeProjectEntry = (entry: CollectionEntry) => {
+  const meta = entry.meta || {}
+
+  return {
+    ...entry,
+    ...meta,
+    title: entry.title || meta.title,
+    description: entry.description || meta.description,
+    permalink: String(entry.permalink || meta.permalink || ""),
+  }
+}
+
+const getProjectBySlug = async (event: H3Event, slug: string) => {
+  const directEntry = await queryCollection(event, "projects")
+    .where("stem", "=", `projects/${slug}`)
+    .first()
+
+  const normalizedDirectEntry = directEntry ? normalizeProjectEntry(directEntry) : null
+  if (normalizedDirectEntry?.permalink === slug) {
+    return normalizedDirectEntry
+  }
+
+  const pathEntry = await queryCollection(event, "projects").path(`/projects/${slug}`).first()
+  const normalizedPathEntry = pathEntry ? normalizeProjectEntry(pathEntry) : null
+  if (normalizedPathEntry?.permalink === slug) {
+    return normalizedPathEntry
+  }
+
+  const entries = await queryCollection(event, "projects")
+    .select("title", "description", "meta", "path", "stem")
+    .all()
+
+  return entries.map((entry) => normalizeProjectEntry(entry)).find((entry) => entry.permalink === slug)
+}
+
 export default defineEventHandler(async (event) => {
-  const slug = getRouterParam(event, "slug") || ""
-  const entries = await queryCollection(event, "projects").all()
-  const project = entries.find((entry) => String(entry.permalink || "") === slug)
+  const slug = getPngRouteSlug(event)
+  const project = await getProjectBySlug(event, slug)
 
   if (!project) {
-    throw createError({ statusCode: 404, statusMessage: "Projet introuvable" })
+    throw createError({ statusCode: 404, message: "Projet introuvable" })
   }
 
   const images = getProjectImages(project)

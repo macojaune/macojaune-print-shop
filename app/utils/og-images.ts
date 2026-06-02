@@ -1,3 +1,5 @@
+const OG_IMAGE_CACHE_VERSION = "2026-06-02-fonts"
+
 export const buildSiteOgImagePath = (options: {
   title: string
   eyebrow?: string
@@ -20,11 +22,13 @@ export const buildSiteOgImagePath = (options: {
     params.set("image", options.image)
   }
 
+  params.set("v", OG_IMAGE_CACHE_VERSION)
+
   return `/og/site.png?${params.toString()}`
 }
 
 export const buildSeriesOgImagePath = (slug?: string | null) =>
-  `/og/series/${encodeURIComponent((slug || "").trim())}.png`
+  `/og/series/${encodeURIComponent((slug || "").trim())}.png?v=${OG_IMAGE_CACHE_VERSION}`
 
 export const buildProjectOgImagePath = (slug?: string | null) =>
-  `/og/projects/${encodeURIComponent((slug || "").trim())}.png`
+  `/og/projects/${encodeURIComponent((slug || "").trim())}.png?v=${OG_IMAGE_CACHE_VERSION}`

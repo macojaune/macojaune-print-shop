@@ -1,8 +1,9 @@
 import sharp from "sharp"
-import { toAssetUrl } from "../../lib/asset-url"
+import { DEFAULT_SITE_URL, toAssetUrl } from "../../lib/asset-url"
 
 const WIDTH = 1200
 const HEIGHT = 630
+const TEXT_FONT_FAMILY = "DejaVu Sans, Arial, Helvetica, sans-serif"
 
 type SocialCardOptions = {
   title: string
@@ -65,7 +66,9 @@ const normalizeImageUrl = (value?: string) => {
     return ""
   }
 
-  return toAssetUrl(value)
+  const url = toAssetUrl(value)
+
+  return url.startsWith("/") ? new URL(url, DEFAULT_SITE_URL).toString() : url
 }
 
 const fetchImageBuffer = async (url?: string) => {
@@ -156,14 +159,14 @@ export async function createSocialCard(options: SocialCardOptions) {
   const titleSvg = titleLines
     .map(
       (line, index) =>
-        `<text x="84" y="${350 + index * 98}" fill="#ffffff" font-size="84" font-weight="800" font-family="Arial, Helvetica, sans-serif">${escapeXml(line)}</text>`,
+        `<text x="84" y="${350 + index * 98}" fill="#ffffff" font-size="84" font-weight="800" font-family="${TEXT_FONT_FAMILY}">${escapeXml(line)}</text>`,
     )
     .join("")
 
   const descriptionSvg = descriptionLines
     .map(
       (line, index) =>
-        `<text x="88" y="${520 + index * 34}" fill="rgba(245,245,244,0.9)" font-size="28" font-weight="500" font-family="Arial, Helvetica, sans-serif">${escapeXml(line)}</text>`,
+        `<text x="88" y="${520 + index * 34}" fill="rgba(245,245,244,0.9)" font-size="28" font-weight="500" font-family="${TEXT_FONT_FAMILY}">${escapeXml(line)}</text>`,
     )
     .join("")
 
@@ -171,10 +174,10 @@ export async function createSocialCard(options: SocialCardOptions) {
     `<svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
       <rect x="44" y="44" width="${WIDTH - 88}" height="${HEIGHT - 88}" fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="2"/>
       <rect x="84" y="86" width="196" height="50" fill="rgba(0,0,0,0.48)" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
-      <text x="112" y="120" fill="#fde68a" font-size="24" letter-spacing="5" font-weight="700" font-family="Arial, Helvetica, sans-serif">${escapeXml((options.eyebrow || "MACOJAUNE").toUpperCase())}</text>
+      <text x="112" y="120" fill="#fde68a" font-size="24" letter-spacing="5" font-weight="700" font-family="${TEXT_FONT_FAMILY}">${escapeXml((options.eyebrow || "MACOJAUNE").toUpperCase())}</text>
       ${titleSvg}
       ${descriptionSvg}
-      <text x="${WIDTH - 270}" y="${HEIGHT - 84}" fill="rgba(251,191,36,0.86)" font-size="24" letter-spacing="3" font-weight="700" font-family="Arial, Helvetica, sans-serif">MACOJAUNE.COM</text>
+      <text x="${WIDTH - 270}" y="${HEIGHT - 84}" fill="rgba(251,191,36,0.86)" font-size="24" letter-spacing="3" font-weight="700" font-family="${TEXT_FONT_FAMILY}">MACOJAUNE.COM</text>
     </svg>`,
   )
 
