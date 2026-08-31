@@ -32,25 +32,26 @@ Les indices restent publics et peuvent évoluer sans révéler la position enreg
 
 1. La personne photographie ou filme le print dans sa cachette si elle en a envie.
 2. Elle scanne le QR code du ticket et arrive directement sur « J'en ai trouvé un ».
-3. Le numéro public et le code interne sont préremplis par le QR.
-4. Si le QR ne passe pas, elle choisit le numéro public et recopie le code imprimé au dos.
-5. Elle peut ajouter un contact, un lieu, sa position GPS et jusqu'à trois photos ou vidéos. Tout cela reste facultatif.
-6. Macojaune vérifie le signalement avant de passer la photo à `found`.
+3. Le code interne est récupéré par le QR. Il suffit au serveur pour retrouver le numéro public.
+4. Si le QR ne passe pas, elle recopie le code imprimé au dos.
+5. Elle laisse son @ ou son email. Elle peut ajouter sa position GPS et autant de photos ou vidéos qu'elle veut dans la limite de 50 Mo par envoi.
+6. Elle peut aussi ouvrir le partage natif de son téléphone pour poster directement en mentionnant `@macojaune`.
+7. Macojaune vérifie le signalement avant de passer la photo à `found`.
 
 ### QR code et validation
 
 Chaque ticket possède deux identifiants :
 
-- un numéro public court, comme `Photo n°1`, affiché dans les cartes du site ;
+- un numéro public court, comme `Photo n°1`, affiché dans la liste du site ;
 - un code interne aléatoire, comme `CHO-7K4M-9Q2P`, présent uniquement dans le QR et au dos du tirage.
 
-Le QR contient les deux valeurs, par exemple :
+Le QR contient uniquement le code nécessaire au signalement, par exemple :
 
 ```text
-https://macojaune.com/cho-kache?photo=1&code=<code-interne>#signaler
+https://macojaune.com/cho-kache?code=<code-interne>#signaler
 ```
 
-La page récupère le code puis le retire de l'URL visible. Le serveur vérifie que le numéro et le code correspondent. Le code n'est jamais enregistré dans le signalement et n'apparaît jamais dans les données publiques.
+La page récupère le code puis le retire de l'URL visible. Le serveur retrouve le numéro public associé dans sa configuration privée. Le code n'est jamais enregistré dans le signalement et n'apparaît jamais dans les données publiques.
 
 La géolocalisation du téléphone n'est pas nécessaire pour envoyer une découverte. Elle n'est demandée qu'après une action explicite et peut être retirée avant l'envoi.
 
@@ -73,8 +74,8 @@ La géolocalisation du téléphone n'est pas nécessaire pour envoyer une décou
 
 - print concerné
 - date du signalement
-- contact facultatif
-- note de lieu et position GPS facultatives
+- contact obligatoire
+- position GPS facultative
 - photos ou vidéos facultatives
 - accord explicite avant toute republication d'un média
 
@@ -82,7 +83,7 @@ La géolocalisation du téléphone n'est pas nécessaire pour envoyer une décou
 
 `GET /api/cho-kache/prints` renvoie uniquement les données publiques. Le serveur construit une réponse nettoyée et omet systématiquement les coordonnées secrètes.
 
-`POST /api/cho-kache/discoveries` vérifie le numéro et le code interne, puis conserve le signalement et les médias dans `private/cho-kache/discoveries/` sur le bucket R2 existant. Rien n'est publié automatiquement. Le Worker `macojaune-cho-kache-private-guard` bloque ce préfixe sur `cdn.macojaune.com` sans gêner les accès du serveur par l'API R2.
+`POST /api/cho-kache/discoveries` retrouve le print depuis le code interne, puis conserve le signalement et les médias dans `private/cho-kache/discoveries/` sur le bucket R2 existant. Rien n'est publié automatiquement. Le Worker `macojaune-cho-kache-private-guard` bloque ce préfixe sur `cdn.macojaune.com` sans gêner les accès du serveur par l'API R2.
 
 Les codes sont fournis au serveur par `NUXT_CHO_KACHE_INTERNAL_CODES_JSON`. Le script suivant génère les codes et les URL à imprimer sans les écrire dans le dépôt :
 
@@ -94,7 +95,7 @@ node scripts/generate-cho-kache-codes.mjs 3
 
 1. Renseigner les vrais identifiants, lieux publics et indices des trois prints déjà cachés.
 2. Générer les trois codes internes et configurer `NUXT_CHO_KACHE_INTERNAL_CODES_JSON` en production.
-3. Imprimer le numéro public, le code interne et le QR correspondant sur chaque tirage.
+3. Imprimer le code interne et le QR correspondant sur chaque tirage.
 4. Ajouter une petite interface privée pour vérifier les signalements et passer un print à `found`.
 5. Brancher la liste sur Turso lorsque le nombre de photos ne sera plus pratique à gérer dans le fichier local.
 6. Ajouter la galerie des trouvailles seulement après avoir défini la modération et l'autorisation de republication.

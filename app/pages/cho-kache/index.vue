@@ -106,8 +106,6 @@
         <ChoKacheDiscoveryForm
           v-if="isDiscoveryFormOpen && activeCount > 0"
           ref="discoveryForm"
-          :prints="activePrints"
-          :initial-public-number="initialPublicNumber"
           :initial-internal-code="initialInternalCode"
           class="mt-8 lg:mt-12"
           @close="closeDiscoveryForm"
@@ -130,88 +128,31 @@
             class="mt-10 lg:mt-14"
           />
 
-          <div v-if="activeCount > 0" class="cache-wall mt-10 grid gap-6 lg:grid-cols-12 lg:gap-8">
-            <article
-              v-for="(print, index) in activePrints"
+          <ul v-if="activeCount > 0" class="mt-8 grid border-l border-t border-white/15 md:grid-cols-2" :aria-label="`${activeCount} ${activeCount > 1 ? 'photos à trouver' : 'photo à trouver'}`">
+            <li
+              v-for="print in activePrints"
               :key="print.publicNumber"
-              :class="[
-                'cache-poster relative overflow-hidden border shadow-[0_24px_60px_rgba(0,0,0,0.28)]',
-                print.location.visibility === 'public'
-                  ? 'cache-poster-public border-black/15 bg-stone-100 text-black lg:col-span-7'
-                  : 'cache-poster-secret border-amber-200/18 bg-stone-950 text-white lg:col-span-5',
-                index === 2 ? 'lg:col-span-8 lg:col-start-3' : '',
-              ]"
+              class="grid min-h-24 grid-cols-[1fr_auto] content-center gap-x-4 gap-y-2 border-b border-r border-white/15 bg-stone-950/55 px-5 py-4 sm:px-6"
             >
-              <div class="relative z-10 flex min-h-[31rem] flex-col p-6 sm:p-8 lg:min-h-[34rem]">
-                <div class="flex items-start justify-between gap-4 border-b border-current/20 pb-5">
-                  <p
-                    :class="print.location.visibility === 'public' ? 'text-black' : 'text-white'"
-                    class="mb-0 shrink-0 whitespace-nowrap font-display text-4xl uppercase leading-none"
-                  >
-                    Photo n°{{ print.publicNumber }}
-                  </p>
-                  <span
-                    class="inline-flex min-h-8 items-center border border-current/35 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em]"
-                  >
-                    Toujours à trouver
-                  </span>
-                </div>
-
-                <div class="flex flex-1 flex-col justify-between pt-8">
-                  <div>
-                    <svg
-                      v-if="print.location.visibility === 'public'"
-                      class="h-12 w-12"
-                      viewBox="0 0 48 48"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path d="M24 44S39 30.4 39 17A15 15 0 1 0 9 17c0 13.4 15 27 15 27Z" stroke="currentColor" stroke-width="3" />
-                      <circle cx="24" cy="17" r="5" stroke="currentColor" stroke-width="3" />
-                    </svg>
-                    <svg
-                      v-else
-                      class="h-12 w-12 text-amber-300"
-                      viewBox="0 0 48 48"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <rect x="9" y="20" width="30" height="22" stroke="currentColor" stroke-width="3" />
-                      <path d="M16 20v-5a8 8 0 1 1 16 0v5" stroke="currentColor" stroke-width="3" />
-                      <circle cx="24" cy="31" r="2.5" fill="currentColor" />
-                    </svg>
-
-                    <h3 class="mt-6 max-w-[10ch] font-display text-5xl uppercase leading-[0.86] sm:text-6xl">
-                      {{ getPrintHeading(print) }}
-                    </h3>
-                  </div>
-
-                  <div class="mt-12">
-                    <template v-if="print.location.visibility === 'public'">
-                      <p class="mb-1 text-xs font-semibold uppercase tracking-[0.22em] text-black/55">
-                        Le point de départ
-                      </p>
-                      <p class="mb-0 font-display text-3xl uppercase leading-none text-black sm:text-4xl">
-                        {{ print.location.label }}
-                      </p>
-                      <p class="mb-0 mt-2 text-sm leading-6 text-black/65">
-                        {{ print.location.detail }}
-                      </p>
-                    </template>
-                    <template v-else>
-                      <p class="redacted-location mb-0 max-w-[17rem] text-sm font-semibold uppercase tracking-[0.2em] text-white">
-                        Indice à venir
-                      </p>
-                    </template>
-
-                    <p :class="print.location.visibility === 'public' ? 'text-stone-700' : 'text-stone-300'" class="mb-0 mt-6 max-w-[36rem] text-base leading-7">
-                      {{ print.clue }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
+              <p class="mb-0 font-display text-3xl uppercase leading-none text-white sm:text-4xl">
+                Photo n°{{ print.publicNumber }}
+              </p>
+              <span class="self-center text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-300">
+                À trouver
+              </span>
+              <p class="col-span-2 mb-0 text-sm leading-6 text-stone-400">
+                <template v-if="hasPublicPoint(print)">
+                  {{ print.location.label }}
+                </template>
+                <template v-else-if="print.location.visibility === 'secret'">
+                  Lieu caché
+                </template>
+                <template v-else>
+                  Aucun lieu publié
+                </template>
+              </p>
+            </li>
+          </ul>
           <div v-else class="mt-10 border border-amber-200/18 bg-stone-950 px-6 py-14 text-center sm:px-10 sm:py-20">
             <p class="mb-0 font-display text-4xl uppercase leading-none text-white sm:text-5xl">
               Rien à chercher pour le moment.
@@ -252,7 +193,7 @@
 
           <div class="mt-10 flex flex-col items-start justify-between gap-5 border-t border-amber-200/15 pt-8 sm:flex-row sm:items-center">
             <p class="mb-0 max-w-[42rem] text-base leading-7 text-stone-300">
-              Le numéro et le code au dos suffisent. Tu peux ajouter le reste si tu veux.
+              Le code au dos et un moyen de te joindre suffisent. Tu peux ajouter le reste si tu veux.
             </p>
             <button
               type="button"
@@ -289,7 +230,6 @@ const heroDiscoveryTrigger = ref<HTMLElement | null>(null)
 const discoveryTrigger = ref<HTMLElement | null>(null)
 const isDiscoveryFormOpen = ref(false)
 const initialInternalCode = ref('')
-const initialPublicNumber = ref<number | undefined>()
 
 const activePrints = computed(() => choKachePrints.filter(print => print.status === 'active'))
 const activeCount = computed(() => activePrints.value.length)
@@ -301,7 +241,7 @@ const qrSessionKey = 'cho-kache:last-qr'
 const getStoredQr = () => {
   try {
     const value = sessionStorage.getItem(qrSessionKey)
-    return value ? JSON.parse(value) as { code?: unknown, publicNumber?: unknown } : null
+    return value ? JSON.parse(value) as { code?: unknown } : null
   } catch {
     sessionStorage.removeItem(qrSessionKey)
     return null
@@ -333,31 +273,21 @@ const clearStoredQr = () => {
 
 onMounted(async () => {
   const queryCode = getQueryValue(route.query.code)
-  const queryPublicNumber = Number.parseInt(getQueryValue(route.query.photo), 10)
   const storedQrData = getStoredQr()
   const storedCode = typeof storedQrData?.code === 'string' ? storedQrData.code : ''
-  const storedPublicNumber = typeof storedQrData?.publicNumber === 'number'
-    ? storedQrData.publicNumber
-    : Number.NaN
   const shouldRestoreQr = !queryCode
     && route.hash === '#signaler'
-    && activePrints.value.some(print => print.publicNumber === storedPublicNumber)
-
-  if (activePrints.value.some(print => print.publicNumber === queryPublicNumber)) {
-    initialPublicNumber.value = queryPublicNumber
-  } else if (shouldRestoreQr) {
-    initialPublicNumber.value = storedPublicNumber
-  }
+    && Boolean(storedCode)
 
   if (queryCode) {
     initialInternalCode.value = queryCode.slice(0, 64)
     sessionStorage.setItem(qrSessionKey, JSON.stringify({
       code: initialInternalCode.value,
-      publicNumber: initialPublicNumber.value,
     }))
 
     const safeQuery = { ...route.query }
     delete safeQuery.code
+    delete safeQuery.photo
     await router.replace({ query: safeQuery, hash: '#signaler' })
   } else if (shouldRestoreQr) {
     initialInternalCode.value = storedCode.slice(0, 64)
@@ -368,14 +298,9 @@ onMounted(async () => {
   }
 })
 
-const getPrintHeading = (print: ChoKachePrint) => {
-  if (print.location.visibility === 'secret') {
-    return 'Pas de point sur la carte.'
-  }
-
-  const hasCoordinates = Number.isFinite(print.location.latitude) && Number.isFinite(print.location.longitude)
-  return hasCoordinates ? 'Tu sais où chercher.' : 'Le point arrive.'
-}
+const hasPublicPoint = (print: ChoKachePrint) => print.location.visibility === 'public'
+  && Number.isFinite(print.location.latitude)
+  && Number.isFinite(print.location.longitude)
 
 const participationSteps = [
   {
@@ -438,65 +363,6 @@ useHead({
 .ticket {
   position: relative;
   clip-path: polygon(0 0, 3% 0.75%, 6% 0, 9% 0.75%, 12% 0, 15% 0.75%, 18% 0, 21% 0.75%, 24% 0, 27% 0.75%, 30% 0, 33% 0.75%, 36% 0, 39% 0.75%, 42% 0, 45% 0.75%, 48% 0, 51% 0.75%, 54% 0, 57% 0.75%, 60% 0, 63% 0.75%, 66% 0, 69% 0.75%, 72% 0, 75% 0.75%, 78% 0, 81% 0.75%, 84% 0, 87% 0.75%, 90% 0, 93% 0.75%, 96% 0, 100% 0.75%, 100% 99.25%, 97% 100%, 94% 99.25%, 91% 100%, 88% 99.25%, 85% 100%, 82% 99.25%, 79% 100%, 76% 99.25%, 73% 100%, 70% 99.25%, 67% 100%, 64% 99.25%, 61% 100%, 58% 99.25%, 55% 100%, 52% 99.25%, 49% 100%, 46% 99.25%, 43% 100%, 40% 99.25%, 37% 100%, 34% 99.25%, 31% 100%, 28% 99.25%, 25% 100%, 22% 99.25%, 19% 100%, 16% 99.25%, 13% 100%, 10% 99.25%, 7% 100%, 4% 99.25%, 0 100%);
-}
-
-.cache-poster {
-  isolation: isolate;
-}
-
-.cache-poster-public::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  opacity: 0.16;
-  background-image:
-    linear-gradient(to right, rgb(0 0 0 / 0.24) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(0 0 0 / 0.24) 1px, transparent 1px);
-  background-size: 3rem 3rem;
-  mask-image: linear-gradient(to bottom, black, transparent 80%);
-}
-
-.cache-poster-secret::before {
-  position: absolute;
-  right: -4rem;
-  top: 5rem;
-  z-index: -1;
-  font-family: Tanker, sans-serif;
-  font-size: clamp(15rem, 30vw, 26rem);
-  line-height: 0.7;
-  color: rgb(251 191 36 / 0.08);
-  content: '?';
-}
-
-.redacted-location {
-  position: relative;
-  padding-block: 0.45rem;
-}
-
-.redacted-location::after {
-  position: absolute;
-  inset: 0;
-  content: '';
-  background: rgb(251 191 36 / 0.22);
-  transform: rotate(-1deg);
-}
-
-.redacted-location::before {
-  position: absolute;
-  inset: 0.35rem -0.5rem;
-  content: '';
-  background: #000;
-  transform: rotate(0.6deg);
-}
-
-.redacted-location {
-  z-index: 0;
-}
-
-.redacted-location::before,
-.redacted-location::after {
-  z-index: -1;
 }
 
 @media (prefers-reduced-motion: no-preference) {

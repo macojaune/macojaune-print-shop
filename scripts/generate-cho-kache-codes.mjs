@@ -25,7 +25,6 @@ console.log('')
 
 for (const [publicNumber, internalCode] of Object.entries(codes)) {
   const qrUrl = new URL(baseUrl)
-  qrUrl.searchParams.set('photo', publicNumber)
   qrUrl.searchParams.set('code', internalCode)
   qrUrl.hash = 'signaler'
   console.log(`Photo n°${publicNumber}`)

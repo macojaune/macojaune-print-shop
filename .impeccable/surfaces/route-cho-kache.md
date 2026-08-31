@@ -31,13 +31,13 @@ Sharing stays explicitly optional. Use a plain form such as `si tu veux`. Never 
 
 Stay inside the Macojaune black and amber system, with Tanker for display type and Space Grotesk for copy. The focal object is a monochrome thermal ticket with a torn edge, light paper texture, and the live active count. It sits as an object above the black field, not as a polished dashboard card.
 
-Below it, active prints form an irregular wall of search posters. Public and secret locations use different material states while remaining part of one poster family. The arrangement may become asymmetric on large screens, but the mobile source order stays linear.
+Below it, active prints use a compact two-column index on larger screens and a single list on phones. Each row shows the public number, active state, and only useful location information. Do not repeat placeholder clues or turn each print into a large poster.
 
-The public-location map sits between the hunt introduction and the poster wall. Its default is Mapbox Standard with the monochrome theme and night light preset. Near-black land and water, stone roads, amber motorways, amber ticket markers, square controls, and the page's black field keep it inside the Macojaune world. Points of interest, transit labels, and 3D objects stay hidden.
+The public-location map sits between the hunt introduction and the compact print index. Its default is Mapbox Standard with the monochrome theme and night light preset. Near-black land and water, stone roads, amber motorways, amber ticket markers, square controls, and the page's black field keep it inside the Macojaune world. Points of interest, transit labels, and 3D objects stay hidden.
 
 An optional Mapbox Studio style URL may replace Mapbox Standard. The custom style must preserve the same black, stone, and amber direction. The component must not apply Mapbox Standard basemap configuration to a custom Studio style.
 
-The map is supplementary. Every public location remains readable in its poster when the map, WebGL, or Mapbox token is unavailable.
+The map is supplementary. Every public location remains readable in the print index when the map, WebGL, or Mapbox token is unavailable.
 
 ## State and secrecy
 
@@ -51,19 +51,21 @@ The internal discovery code never appears in public copy, cards, map markers, ac
 
 ## Map states and accessibility
 
-The missing-token state uses the same black field, amber line work, square border, Tanker heading, and direct French voice as the hunt. It explains that public positions will appear after connection. A Mapbox load or runtime error uses a branded dark fallback and directs visitors to the public posters below. Neither state should resemble a generic SDK warning.
+The missing-token state uses the same black field, amber line work, square border, Tanker heading, and direct French voice as the hunt. It explains that public positions will appear after connection. A Mapbox load or runtime error uses a branded dark fallback and directs visitors to the print index below. Neither state should resemble a generic SDK warning.
 
-When the interactive map exists, expose its container as a named region with `role="region"`. Its accessible name reports that it is a Guadeloupe Cho Kaché map and includes the current count of public mapped positions. The posters remain the non-map route to the same public information.
+When the interactive map exists, expose its container as a named region with `role="region"`. Its accessible name reports that it is a Guadeloupe Cho Kaché map and includes the current count of public mapped positions. The print index remains the non-map route to the same public information.
 
 ## Participation flow
 
-`J'en ai trouvé un` opens `ChoKacheDiscoveryForm` in the page instead of sending the finder to another service. The form may collect a contact, a note about the place, an explicit GPS position, and up to three photos or videos. Every one of these inputs is optional. GPS requires a clear user action and must never run by default.
+`J'en ai trouvé un` opens `ChoKacheDiscoveryForm` in the page instead of sending the finder to another service. The internal code identifies the print, so the finder never chooses its public number. The code and a contact handle or email are required. The location note is removed. GPS and media stay optional. GPS requires a clear user action and must never run by default.
+
+The media picker accepts any number of supported photos or videos within the 50 MB request limit. A native share action opens the device share sheet with the selected files when the browser supports it, plus copy that mentions `@macojaune`. Uploading files with the report remains available as the fallback and complement.
 
 Submitting the form never publishes text, coordinates, or media automatically. The server records the report for review and verifies it before changing the photo's status. A browser response alone cannot mark a photo as found.
 
 Store finder media under the dedicated `private/cho-kache/discoveries/` prefix in the existing R2 bucket. The `macojaune-cho-kache-private-guard` Worker blocks that prefix on the public CDN while server-side S3 access remains available. Publishing selected media requires a later, deliberate action.
 
-The finder may photograph or film the discovery, scan the ticket, and take the tirage. Sharing stays optional and needs no supporting argument. Account creation, social posting, contact details, a location note, GPS, and media are not conditions. Keep the steps short, numbered, and readable as one compact mobile sequence.
+The finder may photograph or film the discovery, scan the ticket, and take the tirage. Sharing stays optional. Account creation, social posting, GPS, and media are not conditions. A contact is required so Macojaune can answer the report. Keep the steps short, numbered, and readable as one compact mobile sequence.
 
 ## Memorable moment and motion
 
@@ -71,7 +73,7 @@ The opening ticket is the memorable object. Its torn silhouette, monochrome prin
 
 ## Responsive behavior
 
-On phones, show the title and explanation first, then the actions, inline discovery form when opened, ticket, public map, poster wall, and participation steps. Stack actions to full available width when needed. On large screens, the hero may split seven and five columns, posters may use uneven spans, and the participation section may split five and seven columns. Do not compress labels below their readable size to preserve the desktop arrangement.
+On phones, show the title and explanation first, then the actions, inline discovery form when opened, ticket, public map, print index, and participation steps. Stack actions to full available width when needed. On large screens, the hero may split seven and five columns, the print index may use two columns, and the participation section may split five and seven columns. Do not compress labels below their readable size to preserve the desktop arrangement.
 
 ## Finish disposition
 

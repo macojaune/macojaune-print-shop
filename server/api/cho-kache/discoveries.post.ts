@@ -21,10 +21,8 @@ const allowedMediaTypes = new Set([
   'video/quicktime',
   'video/webm',
 ])
-const maxFileSize = 25 * 1024 * 1024
 const maxTotalSize = 50 * 1024 * 1024
 const maxRequestSize = 52 * 1024 * 1024
-const maxFiles = 3
 const rateLimitWindow = 60 * 60 * 1000
 const rateLimitMax = 6
 
@@ -47,7 +45,14 @@ const parseInternalCodes = (value: unknown) => {
 
     return Object.fromEntries(
       Object.entries(parsed)
-        .filter(([key, code]) => /^\d+$/.test(key) && typeof code === 'string' && code.trim()),
+        .filter(([key, code]) => {
+          const publicNumber = Number.parseInt(key, 10)
+          return /^\d+$/.test(key)
+            && publicNumber >= 1
+            && publicNumber <= 9999
+            && typeof code === 'string'
+            && Boolean(code.trim())
+        }),
     ) as Record<string, string>
   } catch {
     return null
@@ -112,29 +117,27 @@ export default defineEventHandler(async (event) => {
     ?.data.toString('utf8')
     .trim() || ''
 
-  const publicNumber = Number.parseInt(getText('publicNumber'), 10)
   const internalCode = getText('internalCode')
   const contact = getText('contact').slice(0, 100)
-  const locationNote = getText('locationNote').slice(0, 160)
   const allowSharing = getText('allowSharing') === 'true'
   const website = getText('website')
 
   if (website) {
     setResponseStatus(event, 201)
-    return { publicNumber: Number.isInteger(publicNumber) ? publicNumber : 0, reference: 'RECU' }
-  }
-
-  if (!Number.isInteger(publicNumber) || publicNumber < 1 || publicNumber > 9999) {
-    throw createError({
-      statusCode: 400,
-      message: 'Choisis le numéro indiqué sur la photo.',
-    })
+    return { publicNumber: 0, reference: 'RECU' }
   }
 
   if (!internalCode || internalCode.length > 64) {
     throw createError({
       statusCode: 400,
       message: 'Ajoute le code imprimé au dos de la photo.',
+    })
+  }
+
+  if (!contact) {
+    throw createError({
+      statusCode: 400,
+      message: 'Laisse-moi ton @ ou ton email pour que je puisse te répondre.',
     })
   }
 
@@ -149,14 +152,17 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const expectedCode = internalCodes[String(publicNumber)]
+  const matchedCode = Object.entries(internalCodes)
+    .find(([, expectedCode]) => codesMatch(internalCode, expectedCode))
 
-  if (!expectedCode || !codesMatch(internalCode, expectedCode)) {
+  if (!matchedCode) {
     throw createError({
       statusCode: 400,
-      message: 'Le numéro et le code ne correspondent pas. Vérifie le dos de la photo.',
+      message: "Ce code n'est pas reconnu. Vérifie le dos de la photo.",
     })
   }
+
+  const publicNumber = Number.parseInt(matchedCode[0], 10)
 
   const media = parts
     .filter(part => part.name === 'media' && part.filename && part.data)
@@ -166,20 +172,13 @@ export default defineEventHandler(async (event) => {
       data: part.data,
     }))
 
-  if (media.length > maxFiles) {
-    throw createError({
-      statusCode: 400,
-      message: `Choisis ${maxFiles} fichiers maximum.`,
-    })
-  }
-
   const totalMediaSize = media.reduce((total, file) => total + file.data.length, 0)
-  const invalidMedia = media.find(file => !allowedMediaTypes.has(file.type) || file.data.length > maxFileSize)
+  const invalidMedia = media.find(file => !allowedMediaTypes.has(file.type))
 
   if (invalidMedia) {
     throw createError({
       statusCode: 400,
-      message: "Un fichier est trop lourd ou son format n'est pas accepté.",
+      message: "Le format d'un fichier n'est pas accepté.",
     })
   }
 
@@ -246,7 +245,6 @@ export default defineEventHandler(async (event) => {
       {
         publicNumber,
         contact,
-        locationNote,
         coordinates,
         allowSharing,
         media,

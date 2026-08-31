@@ -15,7 +15,6 @@ export type ChoKacheDiscoveryMedia = {
 export type ChoKacheDiscoveryPayload = {
   publicNumber: number
   contact: string
-  locationNote: string
   coordinates: {
     latitude: number
     longitude: number
@@ -100,8 +99,7 @@ export async function storeChoKacheDiscovery(
     const manifest = {
       id: discoveryId,
       publicNumber: payload.publicNumber,
-      contact: payload.contact || null,
-      locationNote: payload.locationNote || null,
+      contact: payload.contact,
       coordinates: payload.coordinates,
       allowSharing: payload.allowSharing,
       media: storedMedia,
