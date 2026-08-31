@@ -52,6 +52,10 @@ export default defineNuxtConfig({
       publicPrefix: 'pictures/runs',
       manifestPrefix: 'manifests/runs',
     },
+    choKache: {
+      internalCodesJson: process.env.NUXT_CHO_KACHE_INTERNAL_CODES_JSON || process.env.CHO_KACHE_INTERNAL_CODES_JSON || '',
+      r2Prefix: process.env.NUXT_CHO_KACHE_R2_PREFIX || process.env.CHO_KACHE_R2_PREFIX || 'private/cho-kache/discoveries',
+    },
     public: {
       stripe: {
         key: stripePublishableKey,
@@ -61,6 +65,10 @@ export default defineNuxtConfig({
       mediaBaseUrl: process.env.NUXT_PUBLIC_MEDIA_BASE_URL || process.env.R2_PUBLIC_BASE_URL || assetBaseUrl,
       siteUrl,
       assetBaseUrl,
+      mapbox: {
+        accessToken: process.env.NUXT_PUBLIC_MAPBOX_TOKEN || '',
+        styleUrl: process.env.NUXT_PUBLIC_MAPBOX_STYLE_URL || 'mapbox://styles/mapbox/standard',
+      },
     }
   },
   modules: [
@@ -95,7 +103,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  css: ['@/assets/css/tailwind.css'],
+  css: ['@/assets/css/tailwind.css', 'mapbox-gl/dist/mapbox-gl.css'],
   app: {
     head: {
       charset: 'utf-8',

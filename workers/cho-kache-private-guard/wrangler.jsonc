@@ -1,0 +1,13 @@
+{
+  "name": "macojaune-cho-kache-private-guard",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-31",
+  "account_id": "b26b894e06d50a0da8d3bb842d9e49f4",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "cdn.macojaune.com/private/cho-kache/*",
+      "zone_name": "macojaune.com"
+    }
+  ]
+}
