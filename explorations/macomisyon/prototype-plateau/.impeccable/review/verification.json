@@ -1,0 +1,32 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "errors": [],
+    "state": {
+      "project": "q",
+      "count": 7,
+      "selected": 0,
+      "nextOpen": false,
+      "bridgeVisible": false,
+      "renderCalls": 74
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "errors": [],
+    "state": {
+      "project": "q",
+      "count": 7,
+      "selected": 0,
+      "nextOpen": false,
+      "bridgeVisible": false,
+      "renderCalls": 74
+    }
+  }
+]

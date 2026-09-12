@@ -1,0 +1,6 @@
+{
+  "canvasRaycastTouch": "passed",
+  "immediateSwitchDuringToast": "passed",
+  "cameraDrag": "passed",
+  "device": "Chromium mobile emulation, not real phone"
+}
