@@ -1,18 +1,25 @@
 # Maco’misyon, des îlots qui se transforment
 
-Proposition du 12 septembre 2026. Ce document prépare la v3 ; la démo jouable reste en v2. Il distingue les demandes de Marvin des choix proposés. Mode de la surface : Experience, découverte mobile en priorité.
+Direction validée par Marvin le 12 septembre 2026, avec les corrections consignées ci-dessous. Ce document prépare la v3 ; la démo jouable reste en v2. Les détails encore proposés sont indiqués comme tels. Mode de la surface : Experience, découverte mobile en priorité.
 
 ## Direction demandée
 
 - Retirer les pions. Les points représentent des missions collectives et leur état.
 - Donner à chaque projet un îlot dense, reconnaissable et vivant.
-- QuiLivreOù : entrepôt de transitaire miniature, cartons de colis, sacs et pochettes de livraison évoquant notamment Shein et ASOS. Au centre, un monument avec le Q, par exemple une fontaine en panne.
+- QuiLivreOù : entrepôt de transitaire miniature, cartons de colis, sacs et pochettes de livraison évoquant notamment Shein et ASOS. Au centre, un véhicule en panne marqué Q : Fenwick n°Q ou camion de livraison. Marvin écarte la fontaine, qui ne correspond pas à l’entrepôt. Le véhicule immobilisé représente la difficulté à se faire livrer vers les Antilles, la Guyane et d’autres territoires.
 - Shootareas : studio photo miniature, équipement central cassé ou hors service, points de mission autour.
 - Le monument présente le projet lorsqu’on le touche, dans tous ses états.
 - Accomplir les missions principales répare le monument. Les bonus ont d’autres effets, encore à définir.
 - Conserver le jaune Macojaune, le rendu stylisé, le device à écran fixe, les panneaux internes et l’exploration par zoom et déplacement.
 
-## Principe commun proposé
+## Corrections et décisions confirmées
+
+- Le reste de la direction est approuvé par Marvin.
+- Le monument de QuiLivreOù devient un véhicule de manutention ou de livraison. Pour le prochain jet, choix de réalisation proposé : Fenwick n°Q, dont la silhouette et les fourches sont lisibles au centre du dépôt. Le camion reste une variante possible, pas une extension déjà décidée.
+- Les missions conditionnant chaque réparation seront choisies au cas par cas. Aucun sponsor ni type de contribution n’est imposé comme verrou universel.
+- Après réparation, l’îlot s’enrichit et une nouvelle zone peut s’ouvrir, selon le projet. Les deux évolutions peuvent se combiner et conservent les acquis.
+
+## Principe commun
 
 L’îlot montre le résultat du travail et des contributions. La réparation est une conséquence collective. Aucun visiteur ne doit accomplir toutes les missions personnellement pour explorer le lieu ou accéder au projet.
 
@@ -44,25 +51,25 @@ Le monument ne constitue pas un niveau hiérarchique supplémentaire nommé « a
 
 ### Composition
 
-Un entrepôt ouvert comme une maison de poupée, sans toit qui cache le jeu. Rayonnages et hautes piles sur les bords arrière, palettes et pochettes souples sur les côtés, zone centrale dégagée autour de la fontaine Q. Marquages au sol, balance, douchette, chariot, ruban adhésif et petite zone d’expédition donnent le vocabulaire du transitaire.
+Un entrepôt ouvert comme une maison de poupée, sans toit qui cache le jeu. Rayonnages et hautes piles sur les bords arrière, palettes et pochettes souples sur les côtés, zone de manutention dégagée autour du Fenwick n°Q. Marquages au sol, balance, douchette, chariot, ruban adhésif et petite zone d’expédition donnent le vocabulaire du transitaire.
 
-Le décor doit être rempli tout en gardant la fontaine et les missions lisibles depuis un téléphone. Les objets importants ont une silhouette forte ; étiquettes et bandes de colis apportent les détails au zoom. Les pochettes peuvent varier en forme, froissement et graphisme noir/blanc pour évoquer les emballages de mode demandés. Les visuels marchands ne doivent pas laisser croire à un partenariat réel.
+Le décor doit être rempli tout en gardant le véhicule central et les missions lisibles depuis un téléphone. Les objets importants ont une silhouette forte ; étiquettes et bandes de colis apportent les détails au zoom. Les pochettes peuvent varier en forme, froissement et graphisme noir/blanc pour évoquer les emballages de mode demandés. Les visuels marchands ne doivent pas laisser croire à un partenariat réel.
 
 ### Monument et réparation
 
-Proposition : une fontaine industrielle avec un grand Q jaune, posée dans la cour du dépôt. Un tuyau débranché, une vanne fermée et un bassin sec rendent la panne compréhensible. Le Q reste reconnaissable et cliquable.
+Proposition pour le prochain jet : un Fenwick jaune marqué « Q », immobilisé au centre de la zone de manutention, près d’une palette prête à partir. Capot entrouvert, connecteur de batterie débranché et fourches au repos rendent son état lisible. Le véhicule entier ouvre la présentation du projet, même en panne. La panne est une métaphore de l’acheminement bloqué ; QuiLivreOù reste un annuaire de boutiques et ne devient pas un transporteur dans sa présentation.
 
 | Étape visuelle proposée | Changement persistant | Animation au moment de la réussite |
 | --- | --- | --- |
-| Une première mission principale accomplie | Un segment d’alimentation s’allume | Une impulsion rejoint le centre |
-| Une autre mission principale accomplie | Un module est remis en place, un équipement redémarre | Pièce qui se fixe, petite réaction du décor |
-| Toutes les principales désignées sont accomplies | Fontaine en marche, Q éclairé, dépôt plus animé | Remise en eau courte et message de réussite |
+| Une première mission principale accomplie | Batterie reconnectée et témoin allumé | Une impulsion rejoint le véhicule |
+| Une autre mission principale accomplie | Mât remis en état, capot refermé | Pièce qui se fixe, petite réaction du décor |
+| Toutes les principales désignées sont accomplies | Fenwick opérationnel, Q éclairé, colis remis en mouvement | Fourches qui soulèvent une palette, départ bref et message de réussite |
 
-Les pièces peuvent se réparer dans différents ordres. L’état visuel est calculé à partir de la liste des réussites, pas uniquement d’un pourcentage global. Une mission bonus ne remplace pas une mission principale manquante.
+Le Fenwick est un élément du décor lié aux réussites, pas un pion de navigation. Après son animation, il reste facile à retrouver et à sélectionner. Les pièces peuvent se réparer dans différents ordres. L’état visuel est calculé à partir de la liste des réussites, pas uniquement d’un pourcentage global. Une mission bonus ne remplace pas une mission principale manquante.
 
 ### Missions à définir
 
-Les « 10 inscrits » constituent un exemple déjà discuté. Les premiers retours utiles et un premier partenaire sont des candidats, pas une répartition principale/bonus acquise. Un sponsor difficile à trouver ne doit pas devenir par accident le verrou de toute la fontaine.
+Les « 10 inscrits » constituent un exemple déjà discuté. Les premiers retours utiles et un premier partenaire sont des candidats, pas une répartition principale/bonus acquise. Marvin choisira au cas par cas lesquels contribuent à la réparation ; aucun rôle obligatoire n’est attribué ici au partenariat.
 
 Avant de fixer les trois effets ci-dessus, choisir les résultats qui méritent réellement de participer à cette première réparation. Pour une démo, on peut employer des missions explicitement fictives et des commandes de simulation.
 
@@ -125,8 +132,8 @@ Le client récupère un état collectif persistant et reçoit ensuite les mises 
 Construire une bibliothèque commune : tailles et origine des objets cohérentes, palette, matériaux, repères d’interaction, pièces nommées et variantes documentées. Chaque asset possède un aperçu, sa source éditable, son export, ses textures et ses états utiles.
 
 - Formes simples et nombreuses : cartons, palettes, rayonnages, câbles et marquages assemblables avec variantes contrôlées.
-- Objets caractéristiques : fontaine Q, pochettes froissées, flash et réflecteurs travaillés en 3D puis exportés en GLB.
-- Animation : mouvements de pièces, activation lumineuse, petit jet d’eau stylisé et boucles ambiantes limitées. Aucun besoin de simulation physique de l’eau ou de sacs en tissu pour ce rendu.
+- Objets caractéristiques : Fenwick n°Q, pochettes froissées, flash et réflecteurs travaillés en 3D puis exportés en GLB.
+- Animation : mouvements de pièces, activation lumineuse, levée des fourches et déplacement court de palette et boucles ambiantes limitées. Aucun besoin de simulation physique de l’eau ou de sacs en tissu pour ce rendu.
 - Déclinaisons ciblées : panne, réparation partielle, fonctionnement lorsque l’objet en a besoin. Un carton décoratif n’a pas besoin de trois modèles.
 - Les images générées peuvent servir aux recherches, textures ou décalcomanies ; une planche raster ne remplace pas un objet 3D exploitable avec ses pièces et états.
 
@@ -142,7 +149,7 @@ Première cible proposée : interaction stable à 30 images/seconde sur un tél�
 
 ## Prochaine version à réaliser
 
-1. Construire le dépôt QuiLivreOù avec la fontaine Q centrale et retirer le pion. Garder l’identité graphique et l’écran fixe validés.
+1. Construire le dépôt QuiLivreOù avec le Fenwick n°Q central et retirer le pion. Garder l’identité graphique et l’écran fixe validés.
 2. Définir des missions de démonstration principales/bonus clairement identifiées et rendre leurs trois états lisibles.
 3. Faire fonctionner une réparation complète avec transformations intermédiaires et commandes permettant de comparer les états.
 4. Recharger le même état sans nouvelle célébration et vérifier que les bonus ne débloquent pas la réparation.
@@ -155,7 +162,7 @@ Pour relire la v3, comparer panne, réparation partielle, monument réparé, et 
 
 - Liste et critères réels des missions principales de chaque projet.
 - Effet des bonus, volontairement non fixé.
-- Forme précise de la fontaine Q et équipement central de Shootareas.
-- Suite après réparation : enrichir l’îlot, ouvrir une extension, ou le conserver terminé. Ma proposition initiale est de garder les acquis et enrichir le même lieu.
+- Dessin précis du Fenwick n°Q, ou variante camion de livraison, et équipement central de Shootareas.
+- Contenu des enrichissements et des éventuelles nouvelles zones, à définir selon chaque projet. Leur possibilité et la conservation des acquis sont confirmées.
 
 Aucun de ces points n’oblige à attribuer maintenant des numéros définitifs de Komisyon ou à imposer un calendrier de publication.
