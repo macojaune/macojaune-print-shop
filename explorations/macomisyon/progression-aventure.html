@@ -1,0 +1,115 @@
+<div id="macomisyon-aventure-exemple">
+  <style>
+    #macomisyon-aventure-exemple { color: var(--foreground); }
+    #macomisyon-aventure-exemple .mi-intro { margin-bottom: 16px; }
+    #macomisyon-aventure-exemple .mi-diagram { position: relative; padding-top: 20px; }
+    #macomisyon-aventure-exemple .mi-missions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; }
+    #macomisyon-aventure-exemple .mi-mission { min-width: 0; }
+    #macomisyon-aventure-exemple .mi-name { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-weight: 500; }
+    #macomisyon-aventure-exemple .mi-dot { width: 12px; height: 12px; flex: 0 0 12px; border-radius: 50%; background: var(--muted-foreground); }
+    #macomisyon-aventure-exemple [data-complete="true"] .mi-dot { background: var(--viz-series-1); }
+    #macomisyon-aventure-exemple .mi-number { margin-bottom: 8px; }
+    #macomisyon-aventure-exemple .mi-status { margin-top: 8px; }
+    #macomisyon-aventure-exemple .mi-bonus { margin-top: 22px; }
+    #macomisyon-aventure-exemple .mi-bonus-label { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    #macomisyon-aventure-exemple .mi-join { height: 30px; margin: 20px 24% 0; border-left: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    #macomisyon-aventure-exemple .mi-stem { width: 0; height: 20px; margin: 0 auto; border-left: 1px solid var(--border); }
+    #macomisyon-aventure-exemple .mi-result { text-align: center; }
+    #macomisyon-aventure-exemple .mi-result p { margin: 8px 0; }
+    #macomisyon-aventure-exemple .mi-result h3 { margin: 12px 0 8px; }
+    #macomisyon-aventure-exemple .mi-route { margin-top: 12px; display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap; }
+    @media (max-width: 480px) {
+      #macomisyon-aventure-exemple .mi-missions { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+      #macomisyon-aventure-exemple .mi-join { display: none; }
+      #macomisyon-aventure-exemple .mi-stem { margin-top: 20px; }
+    }
+  </style>
+  <div class="mi-intro">
+    <h3>Les premiers soutiens de QuiLivreOù</h3>
+    <div class="text-small text-muted">Aventure proposée · Scénarios fictifs</div>
+  </div>
+  <div class="viz-controls">
+    <label class="form-label" for="mi-inscrits">Nombre d'inscrits
+      <input class="form-control" id="mi-inscrits" type="number" min="0" step="1" value="56" inputmode="numeric">
+    </label>
+    <label class="form-check form-switch">
+      <input class="form-check-input" id="mi-sponsor" type="checkbox">
+      <span class="form-check-label">Sponsor confirmé</span>
+    </label>
+  </div>
+  <div class="mi-diagram" role="group" aria-label="Deux Komisyon réunies dans une aventure. La réussite exige dix inscrits et un sponsor. Le palier à cent inscrits est facultatif.">
+    <div class="mi-missions">
+      <div class="mi-mission" id="mi-members-mission" data-complete="true">
+        <div class="mi-name"><span class="mi-dot" aria-hidden="true"></span>Komisyon · 10 inscrits</div>
+        <div class="mi-number tabular-nums" id="mi-members-value">56 inscrits · objectif 10</div>
+        <div class="progress" id="mi-members-progress" role="progressbar" aria-label="Objectif de dix inscrits" aria-valuemin="0" aria-valuemax="10" aria-valuenow="10">
+          <div class="progress-bar" style="width:100%"></div>
+        </div>
+        <div class="mi-status" id="mi-members-status">Réussie</div>
+        <div class="mi-bonus">
+          <div class="mi-bonus-label"><span>Palier facultatif · 100 inscrits</span><span class="tabular-nums" id="mi-bonus-value">56 / 100</span></div>
+          <div class="progress" id="mi-bonus-progress" role="progressbar" aria-label="Palier facultatif de cent inscrits" aria-valuemin="0" aria-valuemax="100" aria-valuenow="56">
+            <div class="progress-bar" style="width:56%"></div>
+          </div>
+          <div class="text-small mi-status" id="mi-bonus-status">Bonus à débloquer</div>
+        </div>
+      </div>
+      <div class="mi-mission" id="mi-sponsor-mission" data-complete="false">
+        <div class="mi-name"><span class="mi-dot" aria-hidden="true"></span>Komisyon · Trouver un sponsor</div>
+        <div class="mi-number tabular-nums" id="mi-sponsor-value">0 sponsor · objectif 1</div>
+        <div class="progress" id="mi-sponsor-progress" role="progressbar" aria-label="Objectif d'un sponsor" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+          <div class="progress-bar" style="width:0%"></div>
+        </div>
+        <div class="mi-status" id="mi-sponsor-status">En cours</div>
+      </div>
+    </div>
+    <div class="mi-join" aria-hidden="true"></div>
+    <div class="mi-stem" aria-hidden="true"></div>
+    <div class="mi-result" aria-live="polite">
+      <div class="text-small" id="mi-condition">1 / 2 Komisyon nécessaires accomplies</div>
+      <h3 id="mi-adventure-status">Aventure en cours</h3>
+      <p id="mi-effect">Le contenu collectif attend la réussite des deux Komisyon.</p>
+      <div class="mi-route"><span aria-hidden="true">→</span><span id="mi-next">Suite accessible après les deux réussites</span></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById('macomisyon-aventure-exemple');
+      const find = id => root.querySelector('#' + id);
+      const count = find('mi-inscrits');
+      const sponsor = find('mi-sponsor');
+      function progress(id, value, max) {
+        const bar = find(id);
+        const bounded = Math.min(max, Math.max(0, value));
+        bar.setAttribute('aria-valuenow', String(bounded));
+        bar.querySelector('.progress-bar').style.width = (bounded / max * 100) + '%';
+      }
+      function render() {
+        const n = Math.max(0, Math.floor(Number(count.value) || 0));
+        const reached = n >= 10;
+        const bonus = n >= 100;
+        const supported = sponsor.checked;
+        const accomplished = Number(reached) + Number(supported);
+        const finished = accomplished === 2;
+        find('mi-members-mission').dataset.complete = String(reached);
+        find('mi-sponsor-mission').dataset.complete = String(supported);
+        find('mi-members-value').textContent = n.toLocaleString('fr-FR') + ' inscrits · objectif 10';
+        find('mi-members-status').textContent = reached ? 'Réussie' : 'En cours';
+        find('mi-bonus-value').textContent = n.toLocaleString('fr-FR') + ' / 100';
+        find('mi-bonus-status').textContent = bonus ? 'Bonus débloqué' : 'Bonus à débloquer';
+        find('mi-sponsor-value').textContent = (supported ? '1' : '0') + ' sponsor · objectif 1';
+        find('mi-sponsor-status').textContent = supported ? 'Réussie' : 'En cours';
+        progress('mi-members-progress', n, 10);
+        progress('mi-bonus-progress', n, 100);
+        progress('mi-sponsor-progress', Number(supported), 1);
+        find('mi-condition').textContent = accomplished + ' / 2 Komisyon nécessaires accomplies';
+        find('mi-adventure-status').textContent = finished ? 'Aventure accomplie' : 'Aventure en cours';
+        find('mi-effect').textContent = finished ? 'Le contenu collectif est révélé. La réussite reste acquise sans atteindre le bonus à 100.' : 'Le contenu collectif attend la réussite des deux Komisyon.';
+        find('mi-next').textContent = finished ? 'Une suite de cette aventure devient accessible' : 'Suite accessible après les deux réussites';
+      }
+      count.addEventListener('input', render);
+      sponsor.addEventListener('change', render);
+      render();
+    })();
+  </script>
+</div>
