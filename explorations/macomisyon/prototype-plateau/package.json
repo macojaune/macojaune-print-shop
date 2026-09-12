@@ -1,5 +1,15 @@
 {
   "dependencies": {
     "three": "0.180.0"
+  },
+  "name": "macomisyon-prototypes",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 58012 --bind 127.0.0.1",
+    "test:v1": "node verify.cjs && node verify-touch.cjs",
+    "test:v2": "node verify-v2.cjs && node verify-gestures-v2.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
   }
 }

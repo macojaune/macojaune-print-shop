@@ -40,3 +40,7 @@ La coque est en CSS et le plateau en WebGL. Ce n’est pas une carte précise de
 - Détecteur Impeccable exécuté en mode dégradé faute de modules de parsing ; ombre du bouton physique examinée et conservée intentionnellement. Ce contrôle ne constitue pas un audit complet d’accessibilité.
 
 Les scripts `verify.cjs`, `verify-touch.cjs`, `record.cjs` et les vidéos `demo-mobile.*` correspondent à la v1 ; ils ne représentent pas cette version.
+
+## Archive Git portable
+
+Voir [le guide de reprise](../README.md). Dans cette archive, les scripts historiques v1 ciblent `/v1/`, et tous les tests utilisent la dépendance Playwright locale. `DEMO_URL` permet de changer le serveur. Le seul ajustement du code v1 est son import Three.js vers `../node_modules/`, pour partager les dépendances avec la v2 sans lien symbolique vers un dossier ignoré.
