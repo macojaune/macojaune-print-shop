@@ -4,6 +4,10 @@ Archive des explorations des 10 et 11 septembre 2026. Les fichiers existants ont
 
 Branche de travail : `explorations/macomisyon` du dépôt `macojaune/macojaune-print-shop`.
 
+## Direction suivante
+
+[Îlots vivants : trame de jeu, scènes et architecture proposée](ilots-vivants-2026-09-12.md), 12 septembre 2026. Préparation de la v3 ; les démos ci-dessous restent les versions v1 et v2.
+
 ## Retrouver une étape
 
 | Tag Git | Contenu ajouté | Où regarder |
