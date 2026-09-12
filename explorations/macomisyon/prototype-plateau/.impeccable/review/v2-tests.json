@@ -1,0 +1,38 @@
+[
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "deviceStable": true,
+    "statesAndBranches": true,
+    "projectPresentation": true,
+    "zoomPan": true,
+    "keyboard": true,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "deviceStable": true,
+    "statesAndBranches": true,
+    "projectPresentation": true,
+    "zoomPan": true,
+    "keyboard": true,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 360,
+      "height": 740
+    },
+    "deviceStable": true,
+    "statesAndBranches": true,
+    "projectPresentation": true,
+    "zoomPan": true,
+    "keyboard": true,
+    "errors": []
+  }
+]

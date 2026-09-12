@@ -1,0 +1,6 @@
+{
+  "pinchZoom": "passed",
+  "focusTrapBothDirections": "passed",
+  "parallelBranchIndependent": "passed",
+  "realPhone": false
+}
