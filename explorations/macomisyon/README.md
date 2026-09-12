@@ -6,7 +6,7 @@ Branche de travail : `explorations/macomisyon` du dépôt `macojaune/macojaune-p
 
 ## Dernière démo
 
-[Le dépôt Q, prototype v5](prototype-warehouse-v5/README.md) : tournées du Fenwick à chaque visite, aller chargé et retour à vide, balises d’alerte ambre, missions animées et commandes de pause. Serveur local sur le port 58016. La [v4](prototype-warehouse-v4/README.md) reste intacte sur 58015 et la [v3](prototype-warehouse/README.md) sur 58014.
+[Le dépôt Q, prototype v6](prototype-warehouse-v6/README.md) : alerte orange/rouge, gyrophares mural et Fenwick, animations de l’étape acquise à chaque arrivée et un seul contrôle Pause/Reprendre. Serveur local sur le port 58017. Les [v5](prototype-warehouse-v5/README.md), [v4](prototype-warehouse-v4/README.md) et [v3](prototype-warehouse/README.md) restent intactes sur leurs ports 58016, 58015 et 58014.
 
 ## Direction retenue
 
@@ -25,8 +25,9 @@ Branche de travail : `explorations/macomisyon` du dépôt `macojaune/macojaune-p
 | `macomisyon/07-depot-q-v3` | POC QuiLivreOù, entrepôt vivant et réparation du Fenwick Q | [Démo v3](prototype-warehouse/README.md) |
 | `macomisyon/08-depot-q-v4` | Accident, inventaire, mystère, compteurs indépendants et expédition | [Démo v4](prototype-warehouse-v4/README.md) |
 | `macomisyon/09-depot-q-v5` | Tournées permanentes, alerte ambre et mode calme | [Démo v5](prototype-warehouse-v5/README.md) |
+| `macomisyon/10-depot-q-v6` | Alerte dramatique, gyrophares et animations d’arrivée | [Démo v6](prototype-warehouse-v6/README.md) |
 
-Chaque jalon conserve les précédents. Sur la dernière branche, les cinq prototypes restent accessibles. Les images, prompts, captures, rapports et vidéos disponibles sont conservés, y compris les variantes abandonnées. Le fichier `manifest-source.json` permet de comparer les originaux aux copies archivées.
+Chaque jalon conserve les précédents. Sur la dernière branche, les six prototypes restent accessibles. Les images, prompts, captures, rapports et vidéos disponibles sont conservés, y compris les variantes abandonnées. Le fichier `manifest-source.json` permet de comparer les originaux aux copies archivées.
 
 ## Reprendre sur un autre ordinateur
 
@@ -34,12 +35,12 @@ Prérequis : Git, Node.js 20 ou supérieur, npm et Python 3. Aucune clé ni vari
 
 ```sh
 git clone --branch explorations/macomisyon https://github.com/macojaune/macojaune-print-shop.git
-cd macojaune-print-shop/explorations/macomisyon/prototype-warehouse-v5
+cd macojaune-print-shop/explorations/macomisyon/prototype-warehouse-v6
 npm ci --ignore-scripts
 npm start
 ```
 
-Ouvrir http://127.0.0.1:58016/ pour la v5. La v4 utilise le dossier `prototype-warehouse-v4` et le port 58015. La v3 utilise le dossier `prototype-warehouse` et le port 58014. Pour les versions précédentes, installer les dépendances et lancer `npm start` dans `prototype-plateau`, puis ouvrir http://127.0.0.1:58012/ pour la v2 ou http://127.0.0.1:58012/v1/ pour la v1. Pour les planches, servir le dossier `direction-artistique-2026-09-11` avec `python3 -m http.server 58011`, puis ouvrir http://127.0.0.1:58011/.
+Ouvrir http://127.0.0.1:58017/ pour la v6. La v5 utilise le dossier `prototype-warehouse-v5` et le port 58016. La v4 utilise le dossier `prototype-warehouse-v4` et le port 58015. La v3 utilise le dossier `prototype-warehouse` et le port 58014. Pour les versions précédentes, installer les dépendances et lancer `npm start` dans `prototype-plateau`, puis ouvrir http://127.0.0.1:58012/ pour la v2 ou http://127.0.0.1:58012/v1/ pour la v1. Pour les planches, servir le dossier `direction-artistique-2026-09-11` avec `python3 -m http.server 58011`, puis ouvrir http://127.0.0.1:58011/.
 
 Pour isoler un jalon dans une autre copie depuis le dépôt :
 
@@ -62,4 +63,4 @@ npm run test:v2
 
 Les scripts utilisent Playwright installé dans ce dossier. `DEMO_URL` permet de choisir une autre adresse, avec `/v1/` pour les tests v1. Le premier enregistrement `demo-mobile.mp4` montre la v1. Les tests et captures ne constituent pas une validation sur téléphone physique.
 
-Les compteurs sont fictifs. Les v1/v2 les réinitialisent au rechargement ; les v3/v4/v5 conservent chacune leur avancement local jusqu’à la réinitialisation dans leur console de démo. Cette branche archive la recherche et les prototypes ; elle n’intègre pas encore Maco’misyon dans le site de production.
+Les compteurs sont fictifs. Les v1/v2 les réinitialisent au rechargement ; les v3/v4/v5/v6 conservent chacune leur avancement local jusqu’à la réinitialisation dans leur console de démo. Cette branche archive la recherche et les prototypes ; elle n’intègre pas encore Maco’misyon dans le site de production.

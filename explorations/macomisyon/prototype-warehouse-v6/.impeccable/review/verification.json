@@ -1,0 +1,32 @@
+{
+  "reports": [
+    {
+      "name": "upright",
+      "arrival": true,
+      "completed": true,
+      "stateUnchanged": true
+    },
+    {
+      "name": "gathered",
+      "arrival": true,
+      "completed": true,
+      "stateUnchanged": true
+    },
+    {
+      "name": "dock",
+      "arrival": true,
+      "completed": true,
+      "stateUnchanged": true
+    },
+    {
+      "name": "repaired",
+      "arrival": true,
+      "completed": true,
+      "stateUnchanged": true
+    }
+  ],
+  "alarmAndGyros": true,
+  "pause": true,
+  "repairedTour": true,
+  "errors": []
+}
