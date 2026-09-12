@@ -1,0 +1,50 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const url=process.env.DEMO_URL||'http://127.0.0.1:58015/';
+const shotDir='.impeccable/review';
+(async()=>{
+ const browser=await chromium.launch({headless:true,args:['--enable-unsafe-swiftshader']});
+ const reports=[];fs.mkdirSync(shotDir,{recursive:true});
+ for(const [name,size] of Object.entries({desktop:{width:1280,height:900},mobile:{width:390,height:844},small:{width:360,height:740},'user-584':{width:584,height:1037}})){
+  const ctx=await browser.newContext({viewport:size,hasTouch:name!=='desktop'}),p=await ctx.newPage(),errors=[];
+  p.on('pageerror',e=>errors.push(e.message));
+  const state=()=>p.evaluate(()=>__demo.getState()),world=()=>p.evaluate(()=>__demo.getWorld());
+  const shot=async suffix=>{await p.waitForTimeout(350);await p.screenshot({path:`${shotDir}/${name}${suffix?'-'+suffix:''}.png`,fullPage:true});};
+  const preset=async id=>{await p.locator('#demoButton').click();await p.locator(`[data-preset=${id}]`).click();};
+  await p.goto(url);await p.waitForFunction(()=>window.__demo?.getWorld()?.renderCalls>0);await p.evaluate(()=>document.fonts.ready);await p.waitForTimeout(500);
+  const bounds=await p.locator('.console').boundingBox(),screen=await p.locator('.screen').boundingBox();
+  assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight),true,'page overflow');
+  assert.equal(await p.locator('#fallback').isVisible(),false);assert.ok((await world()).forkliftTilt < -1.4,'forklift must start overturned');
+  const locked=p.locator('.node-label[data-status=blocked]');assert.equal(await locked.count(),2);
+  for(const node of await locked.all()){assert.match(await node.textContent(),/Verrouillée/);assert.doesNotMatch(await node.getAttribute('aria-label'),/reco|boutique/i);}
+  await shot();
+  await p.locator('#projectButton').click();assert.equal(await p.locator('#sheetTitle').textContent(),'QUILIVREOÙ');assert.equal(await p.locator('#sheet a.action').getAttribute('href'),'https://quilivreou.marvinl.com');
+  assert.equal(await p.locator('a.game-monitor').getAttribute('href'),'https://quilivreou.marvinl.com');await p.locator('a.game-monitor').focus();assert.equal(await p.evaluate(()=>document.activeElement.className),'game-monitor');await shot('project');
+  await p.locator('#sheetBack').focus();await p.keyboard.press('Shift+Tab');assert.equal(await p.evaluate(()=>document.activeElement.hasAttribute('data-view')),true,'reverse focus trap');await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>document.activeElement.id),'sheetBack');await p.keyboard.press('Escape');
+  await p.locator('#recenter').click();await p.locator('#missionsButton').click();assert.equal(await p.locator('.inventory-slot').count(),4);assert.match(await p.locator('[data-locate=retours]').textContent(),/ÉTAPE VERROUILLÉE/);await shot('inventory');
+  const target=(await world()).target;await p.locator('[data-locate=retours]').click();await p.waitForFunction(()=>__demo.getWorld().focusedNode==='retours'&&!__demo.getWorld().cameraFlying);
+  assert.equal(await p.locator('#sheetWrap').isVisible(),false,'localise should leave panel closed');assert.notDeepEqual((await world()).target,target);assert.ok((await world()).zoom>=1.9);assert.equal(await p.evaluate(()=>document.activeElement.id),'missionsButton');
+  await p.locator('[data-node=retours]').click();assert.equal(await p.locator('#sheetTitle').textContent(),'SIGNAL VERROUILLÉ');assert.equal(await p.locator('[data-credit]').count(),0);await shot('clue');
+  await p.locator('[data-locate=inscrits]').click();await p.waitForFunction(()=>__demo.getWorld().focusedNode==='inscrits'&&!__demo.getWorld().cameraFlying);assert.equal(await p.locator('#sheetWrap').isVisible(),false);await p.locator('#missionsButton').click();assert.match(await p.locator('#sheetTitle').textContent(),/10 premiers inscrits/);await p.keyboard.press('Escape');
+  await preset('ahead');assert.equal((await state()).counts.inscrits,2);assert.equal((await state()).counts.retours,5);assert.deepEqual((await state()).completed,[]);assert.ok((await world()).forkliftTilt < -1.4);
+  await p.locator('#missionsButton').click();assert.match(await p.locator('[data-locate=retours]').textContent(),/RÉSERVE COMPLÈTE/);await shot('ahead');await p.keyboard.press('Escape');
+  await p.locator('#demoButton').click();await p.locator('[data-credit=inscrits]').focus();for(let i=0;i<8;i++)await p.keyboard.press('Enter');await p.waitForTimeout(1300);
+  assert.equal(await p.locator('#sheetWrap').isVisible(),false);assert.deepEqual((await state()).completed,['inscrits','retours']);assert.equal((await state()).repaired,false);assert.ok(Math.abs((await world()).forkliftTilt)<.01);assert.ok((await world()).cargoGathered>.99);
+  await p.locator('#missionsButton').click();await p.locator('[data-locate=boutiques]').click();await p.waitForFunction(()=>__demo.getWorld().focusedNode==='boutiques'&&!__demo.getWorld().cameraFlying);await p.locator('#demoButton').click();for(let i=0;i<5;i++)await p.locator('[data-credit=boutiques]').click();assert.equal((await state()).repaired,true);await p.waitForTimeout(5800);
+  assert.ok((await world()).doorOpen>.99);assert.ok((await world()).dispatchProgress>.99);assert.equal((await world()).cargoVisible,false);assert.equal((await world()).focusedNode,null,'finale must reset camera');assert.equal(await p.locator('.world-label[data-selected=true]').count(),0);assert.deepEqual(await p.locator('.console').boundingBox(),bounds,'device moved');assert.deepEqual(await p.locator('.screen').boundingBox(),screen,'screen changed');await shot('repaired');await p.locator('#projectButton').click();assert.match(await p.locator('.project-mission').textContent(),/quai est ouvert et la cargaison est expédiée/);assert.doesNotMatch(await p.locator('.project-mission').textContent(),/s’est renversé/);await shot('project-repaired');await p.keyboard.press('Escape');
+  await p.reload();await p.waitForFunction(()=>window.__demo?.getWorld()?.renderCalls>0);assert.equal((await state()).repaired,true);assert.ok((await world()).doorOpen>.99);assert.ok((await world()).dispatchProgress>.99);assert.equal(await p.locator('#announcement').evaluate(el=>el.classList.contains('visible')),false,'restore must not replay success');
+  await preset('progress');assert.deepEqual((await world()).labels.filter(l=>l.status==='open'&&l.id!=='project').map(l=>l.id).sort(),['bonus','boutiques','retours']);
+  await preset('bonus');await p.waitForTimeout(1300);assert.equal((await state()).repaired,false);assert.deepEqual((await state()).completed,['bonus']);assert.ok((await world()).forkliftTilt < -1.4);if(name==='mobile')await shot('bonus');
+  const z=(await world()).zoom;await p.locator('#zoomIn').click();assert.ok((await world()).zoom>z);await p.locator('#zoomOut').click();
+  const canvas=await p.locator('#scene').boundingBox(),before=(await world()).target;
+  await p.mouse.move(canvas.x+canvas.width*.15,canvas.y+canvas.height*.9);await p.mouse.down();await p.mouse.move(canvas.x+canvas.width*.15+50,canvas.y+canvas.height*.9+15,{steps:5});await p.mouse.up();assert.notDeepEqual((await world()).target,before);await p.locator('#recenter').click();
+  await p.emulateMedia({reducedMotion:'reduce'});await preset('repaired');assert.ok((await world()).dispatchProgress>.99);assert.equal((await world()).animationRunning,false);await preset('start');assert.equal((await state()).counts.inscrits,2);
+  await p.locator('#demoButton').click();await p.locator('#revealLocked').check();await p.keyboard.press('Escape');await p.locator('[data-node=retours]').click();await p.keyboard.press('Escape');assert.match(await p.locator('#depotTitle').textContent(),/RECOS/);await p.locator('#demoButton').click();await p.locator('#revealLocked').uncheck();await p.keyboard.press('Escape');assert.equal(await p.locator('#depotTitle').textContent(),'ÉTAPE VERROUILLÉE');
+  assert.deepEqual(errors,[]);reports.push({viewport:size,deviceStable:true,maskedAndClue:true,inventoryCameraFocus:true,keyboard:true,blockedCountsAndCascade:true,parallelMissions:true,dispatch:true,bonusIndependent:true,restoredWithoutReplay:true,reducedMotion:true,panZoom:true,errors});await ctx.close();
+ }
+ const ctx=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),p=await ctx.newPage();await p.goto(url);await p.waitForFunction(()=>window.__demo?.getWorld()?.renderCalls>0);
+ const c=await p.locator('#scene').boundingBox(),x=c.x+c.width/2,y=c.y+c.height*.82,z=await p.evaluate(()=>__demo.getWorld().zoom),cdp=await ctx.newCDPSession(p);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-25,y,id:1},{x:x+25,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-55,y,id:1},{x:x+55,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.ok(await p.evaluate(()=>__demo.getWorld().zoom)>z);await ctx.close();
+ fs.writeFileSync(`${shotDir}/verification.json`,JSON.stringify({reports,pinchZoom:true,realPhone:false},null,2));await browser.close();console.log('V4 browser verification passed:',reports.length,'viewports + pinch.');
+})().catch(e=>{console.error(e);process.exit(1)});

@@ -6,11 +6,11 @@ Branche de travail : `explorations/macomisyon` du dépôt `macojaune/macojaune-p
 
 ## Dernière démo
 
-[Le dépôt Q, prototype v3](prototype-warehouse/README.md) : entrepôt QuiLivreOù, Fenwick à réparer, trois missions principales et bonus indépendant. Serveur local sur le port 58014.
+[Le dépôt Q, prototype v4](prototype-warehouse-v4/README.md) : Fenwick renversé, cargaison éparpillée, inventaire de Komisyon, étapes masquées avec indices, contributions en réserve et expédition finale. Serveur local sur le port 58015. La [v3](prototype-warehouse/README.md) reste disponible sur 58014.
 
 ## Direction retenue
 
-[Îlots vivants : trame de jeu, scènes et architecture proposée](ilots-vivants-2026-09-12.md), 12 septembre 2026. Trame validée qui guide le POC v3.
+[Îlots vivants : trame de jeu, scènes et architecture proposée](ilots-vivants-2026-09-12.md), 12 septembre 2026. Trame validée à l’origine des POC du dépôt Q ; le brief propre à chaque version précise les retours intégrés.
 
 ## Retrouver une étape
 
@@ -23,8 +23,9 @@ Branche de travail : `explorations/macomisyon` du dépôt `macojaune/macojaune-p
 | `macomisyon/05-territoires-v2` | Territoire par projet, branches, zoom, déplacement et panneaux | [Prototype actuel](prototype-plateau/README.md) |
 | `macomisyon/06-archive-portable` | Guide de reprise, dépendances des tests et chemins portables | Cette archive complète |
 | `macomisyon/07-depot-q-v3` | POC QuiLivreOù, entrepôt vivant et réparation du Fenwick Q | [Démo v3](prototype-warehouse/README.md) |
+| `macomisyon/08-depot-q-v4` | Accident, inventaire, mystère, compteurs indépendants et expédition | [Démo v4](prototype-warehouse-v4/README.md) |
 
-Chaque jalon conserve les précédents. Sur la dernière branche, les trois prototypes restent accessibles. Les images, prompts, captures, rapports et vidéos disponibles sont conservés, y compris les variantes abandonnées. Le fichier `manifest-source.json` permet de comparer les originaux aux copies archivées.
+Chaque jalon conserve les précédents. Sur la dernière branche, les quatre prototypes restent accessibles. Les images, prompts, captures, rapports et vidéos disponibles sont conservés, y compris les variantes abandonnées. Le fichier `manifest-source.json` permet de comparer les originaux aux copies archivées.
 
 ## Reprendre sur un autre ordinateur
 
@@ -32,12 +33,12 @@ Prérequis : Git, Node.js 20 ou supérieur, npm et Python 3. Aucune clé ni vari
 
 ```sh
 git clone --branch explorations/macomisyon https://github.com/macojaune/macojaune-print-shop.git
-cd macojaune-print-shop/explorations/macomisyon/prototype-warehouse
+cd macojaune-print-shop/explorations/macomisyon/prototype-warehouse-v4
 npm ci --ignore-scripts
 npm start
 ```
 
-Ouvrir http://127.0.0.1:58014/ pour la v3. Pour les versions précédentes, installer les dépendances et lancer `npm start` dans `prototype-plateau`, puis ouvrir http://127.0.0.1:58012/ pour la v2 ou http://127.0.0.1:58012/v1/ pour la v1. Pour les planches, servir le dossier `direction-artistique-2026-09-11` avec `python3 -m http.server 58011`, puis ouvrir http://127.0.0.1:58011/.
+Ouvrir http://127.0.0.1:58015/ pour la v4. La v3 utilise le dossier `prototype-warehouse` et le port 58014. Pour les versions précédentes, installer les dépendances et lancer `npm start` dans `prototype-plateau`, puis ouvrir http://127.0.0.1:58012/ pour la v2 ou http://127.0.0.1:58012/v1/ pour la v1. Pour les planches, servir le dossier `direction-artistique-2026-09-11` avec `python3 -m http.server 58011`, puis ouvrir http://127.0.0.1:58011/.
 
 Pour isoler un jalon dans une autre copie depuis le dépôt :
 
@@ -60,4 +61,4 @@ npm run test:v2
 
 Les scripts utilisent Playwright installé dans ce dossier. `DEMO_URL` permet de choisir une autre adresse, avec `/v1/` pour les tests v1. Le premier enregistrement `demo-mobile.mp4` montre la v1. Les tests et captures ne constituent pas une validation sur téléphone physique.
 
-Les compteurs sont fictifs et réinitialisés au rechargement. Cette branche archive la recherche et les prototypes ; elle n’intègre pas encore Maco’misyon dans le site de production.
+Les compteurs sont fictifs. Les v1/v2 les réinitialisent au rechargement ; les v3/v4 conservent chacune leur avancement local jusqu’à la réinitialisation dans leur console de démo. Cette branche archive la recherche et les prototypes ; elle n’intègre pas encore Maco’misyon dans le site de production.

@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "name": "macomisyon-warehouse-v4",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 58015 --bind 127.0.0.1",
+    "test": "node --test model.test.mjs",
+    "test:browser": "node verify.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  },
+  "type": "module"
+}
