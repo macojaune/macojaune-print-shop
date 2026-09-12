@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "name": "macomisyon-warehouse-v5",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 58016 --bind 127.0.0.1",
+    "test": "node --test model.test.mjs ambient.test.mjs",
+    "test:browser": "node verify.cjs",
+    "test:motion": "node verify-motion.cjs && node verify-motion-controls.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  },
+  "type": "module"
+}

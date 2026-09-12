@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "checks": [
+    "new state while paused",
+    "transition pause and resume",
+    "system reduced-motion continuity"
+  ]
+}

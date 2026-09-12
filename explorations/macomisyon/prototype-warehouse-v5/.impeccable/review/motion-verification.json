@@ -1,0 +1,1260 @@
+{
+  "cycles": 2,
+  "samples": [
+    {
+      "time": 933,
+      "phase": "loading",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 1342,
+      "phase": "loading",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 1742,
+      "phase": "loading",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 2216,
+      "phase": "lifting",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 2691,
+      "phase": "lifting",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 3167,
+      "phase": "turning-out",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 3608,
+      "phase": "turning-out",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 4025,
+      "phase": "outbound",
+      "cycle": 0,
+      "position": [
+        0.05000064420013615,
+        0.07,
+        0.03000029158532478
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 4442,
+      "phase": "outbound",
+      "cycle": 0,
+      "position": [
+        0.09860976068933319,
+        0.07,
+        0.0520023127330666
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 4850,
+      "phase": "outbound",
+      "cycle": 0,
+      "position": [
+        0.5228526620113697,
+        0.07,
+        0.24402804701567257
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 5275,
+      "phase": "outbound",
+      "cycle": 0,
+      "position": [
+        1.5709868473309625,
+        0.07,
+        0.7184466782655935
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 5691,
+      "phase": "outbound",
+      "cycle": 0,
+      "position": [
+        2.799018667778018,
+        0.07,
+        1.2742926601521556
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 6133,
+      "phase": "outbound",
+      "cycle": 0,
+      "position": [
+        3.6387561544282345,
+        0.07,
+        1.6543843646359377
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 6550,
+      "phase": "outbound",
+      "cycle": 0,
+      "position": [
+        3.844301712639235,
+        0.07,
+        1.7474207751946012
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 6958,
+      "phase": "turning-dock",
+      "cycle": 0,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 7350,
+      "phase": "turning-dock",
+      "cycle": 0,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 7792,
+      "phase": "turning-dock",
+      "cycle": 0,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 8233,
+      "phase": "approaching-dock",
+      "cycle": 0,
+      "position": [
+        3.850967303075959,
+        0.07,
+        1.746153547768541
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 8666,
+      "phase": "approaching-dock",
+      "cycle": 0,
+      "position": [
+        3.8970091446487563,
+        0.07,
+        1.5630695189261234
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 9100,
+      "phase": "approaching-dock",
+      "cycle": 0,
+      "position": [
+        4.079904806813998,
+        0.07,
+        0.8357902976102217
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 9542,
+      "phase": "approaching-dock",
+      "cycle": 0,
+      "position": [
+        4.370653559636275,
+        0.07,
+        -0.3203635665536586
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 9958,
+      "phase": "approaching-dock",
+      "cycle": 0,
+      "position": [
+        4.597458344739948,
+        0.07,
+        -1.2222461237894402
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 10392,
+      "phase": "approaching-dock",
+      "cycle": 0,
+      "position": [
+        4.691852513018815,
+        0.07,
+        -1.597601757651287
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 10833,
+      "phase": "unloading",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 11275,
+      "phase": "unloading",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 11650,
+      "phase": "unloading",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 12041,
+      "phase": "unloading",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 12483,
+      "phase": "unloading",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 12916,
+      "phase": "dock-pause",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 13358,
+      "phase": "dock-pause",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 13800,
+      "phase": "dock-pause",
+      "cycle": 0,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 14216,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        4.693242795493568,
+        0.07,
+        -1.6031301750214806
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 14641,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        4.618203155774646,
+        0.07,
+        -1.304737254727414
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 15074,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        4.41535044233184,
+        0.07,
+        -0.49809940597837477
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 15508,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        4.145245345996713,
+        0.07,
+        0.5759655653307183
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 15925,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        3.9431420880329897,
+        0.07,
+        1.379623226409994
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 16358,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        3.8584567874495495,
+        0.07,
+        1.71637183343591
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 16749,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        3.8500019316111267,
+        0.07,
+        1.749992319005167
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 17241,
+      "phase": "turning-home",
+      "cycle": 0,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 17666,
+      "phase": "turning-home",
+      "cycle": 0,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 18074,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        3.849818539236796,
+        0.07,
+        1.749917865128234
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 18516,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        3.5734128257939193,
+        0.07,
+        1.6248079106225108
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 18924,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        2.2745530525352513,
+        0.07,
+        1.036902960621219
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 19365,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        0.5946978450339361,
+        0.07,
+        0.27654744564693945
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 19765,
+      "phase": "returning-empty",
+      "cycle": 0,
+      "position": [
+        0.06611216064284423,
+        0.07,
+        0.03729287271202423
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 20207,
+      "phase": "turning-home",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 20640,
+      "phase": "turning-home",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 21008,
+      "phase": "home-pause",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 21424,
+      "phase": "home-pause",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 21858,
+      "phase": "home-pause",
+      "cycle": 0,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 22291,
+      "phase": "loading",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 22764,
+      "phase": "loading",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 23190,
+      "phase": "loading",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 23648,
+      "phase": "loading",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 24056,
+      "phase": "lifting",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 24497,
+      "phase": "lifting",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 24922,
+      "phase": "turning-out",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 25389,
+      "phase": "turning-out",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 25839,
+      "phase": "turning-out",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 26272,
+      "phase": "outbound",
+      "cycle": 1,
+      "position": [
+        0.05788375166363816,
+        0.07,
+        0.033568434963541484
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 26714,
+      "phase": "outbound",
+      "cycle": 1,
+      "position": [
+        0.3165984395156967,
+        0.07,
+        0.1506708726228943
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 27156,
+      "phase": "outbound",
+      "cycle": 1,
+      "position": [
+        1.227831269616238,
+        0.07,
+        0.5631236272999813
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 27564,
+      "phase": "outbound",
+      "cycle": 1,
+      "position": [
+        2.4434114432225345,
+        0.07,
+        1.1133336006165155
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 27997,
+      "phase": "outbound",
+      "cycle": 1,
+      "position": [
+        3.4568673783035466,
+        0.07,
+        1.5720557607058159
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 28430,
+      "phase": "outbound",
+      "cycle": 1,
+      "position": [
+        3.82489003384876,
+        0.07,
+        1.7386344363736495
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 28872,
+      "phase": "turning-dock",
+      "cycle": 1,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 29297,
+      "phase": "turning-dock",
+      "cycle": 1,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 29613,
+      "phase": "turning-dock",
+      "cycle": 1,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 30105,
+      "phase": "approaching-dock",
+      "cycle": 1,
+      "position": [
+        3.8500425426293106,
+        0.07,
+        1.7498308304858008
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 30538,
+      "phase": "approaching-dock",
+      "cycle": 1,
+      "position": [
+        3.8722641619289906,
+        0.07,
+        1.6614672149176606
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 30971,
+      "phase": "approaching-dock",
+      "cycle": 1,
+      "position": [
+        4.010105779550921,
+        0.07,
+        1.1133440766092801
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 31238,
+      "phase": "approaching-dock",
+      "cycle": 1,
+      "position": [
+        4.166003852333095,
+        0.07,
+        0.493419975428399
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 31554,
+      "phase": "approaching-dock",
+      "cycle": 1,
+      "position": [
+        4.378688854612606,
+        0.07,
+        -0.3523156806948311
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 31971,
+      "phase": "approaching-dock",
+      "cycle": 1,
+      "position": [
+        4.60249658941831,
+        0.07,
+        -1.242280555569279
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 32405,
+      "phase": "approaching-dock",
+      "cycle": 1,
+      "position": [
+        4.692781683831137,
+        0.07,
+        -1.6012965780579314
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 32813,
+      "phase": "unloading",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 33212,
+      "phase": "unloading",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 33655,
+      "phase": "unloading",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 34096,
+      "phase": "unloading",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 34354,
+      "phase": "unloading",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 34454,
+      "phase": "unloading",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 34654,
+      "phase": "unloading",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": true,
+      "door": 1
+    },
+    {
+      "time": 35045,
+      "phase": "dock-pause",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 35495,
+      "phase": "dock-pause",
+      "cycle": 1,
+      "position": [
+        4.7,
+        0.07,
+        -1.63
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 35962,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        4.699818798985451,
+        0.07,
+        -1.6292794594950846
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 36387,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        4.676315497101885,
+        0.07,
+        -1.5358192708286706
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 36812,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        4.553040084882754,
+        0.07,
+        -1.0456182198867148
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 37237,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        4.3148322928545575,
+        0.07,
+        -0.09839194099812199
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 37653,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        4.062849920834635,
+        0.07,
+        0.9036085500928632
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 38104,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        3.8931658021767688,
+        0.07,
+        1.5783524572264962
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 38512,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        3.851669359344538,
+        0.07,
+        1.7433618416652497
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 38946,
+      "phase": "turning-home",
+      "cycle": 1,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 39362,
+      "phase": "turning-home",
+      "cycle": 1,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 39796,
+      "phase": "turning-home",
+      "cycle": 1,
+      "position": [
+        3.85,
+        0.07,
+        1.75
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 40212,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        3.838947960298721,
+        0.07,
+        1.7449974978194212
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 40629,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        3.320518862458846,
+        0.07,
+        1.5103401166918988
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 41087,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        1.5790236724745792,
+        0.07,
+        0.7220843991200727
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 41487,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        0.3212076026006325,
+        0.07,
+        0.1527571253876547
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 41929,
+      "phase": "returning-empty",
+      "cycle": 1,
+      "position": [
+        0.05015408882251109,
+        0.07,
+        0.030069745467031336
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 42371,
+      "phase": "turning-home",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 42804,
+      "phase": "home-pause",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 43254,
+      "phase": "home-pause",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 43687,
+      "phase": "home-pause",
+      "cycle": 1,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": false,
+      "door": 1
+    },
+    {
+      "time": 44053,
+      "phase": "loading",
+      "cycle": 2,
+      "position": [
+        0.05,
+        0.07,
+        0.03
+      ],
+      "cargo": true,
+      "door": 1
+    }
+  ],
+  "pausePersists": true,
+  "calmMode": true,
+  "visibilityClock": "simulated visibilitychange event; no hidden time jump",
+  "stateUnchanged": true,
+  "deviceStable": true,
+  "realPhone": false,
+  "errors": []
+}

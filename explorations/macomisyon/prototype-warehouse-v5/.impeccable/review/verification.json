@@ -1,0 +1,78 @@
+{
+  "reports": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "deviceStable": true,
+      "maskedAndClue": true,
+      "inventoryCameraFocus": true,
+      "keyboard": true,
+      "blockedCountsAndCascade": true,
+      "parallelMissions": true,
+      "dispatch": true,
+      "bonusIndependent": true,
+      "restoredWithoutReplay": true,
+      "reducedMotion": true,
+      "panZoom": true,
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceStable": true,
+      "maskedAndClue": true,
+      "inventoryCameraFocus": true,
+      "keyboard": true,
+      "blockedCountsAndCascade": true,
+      "parallelMissions": true,
+      "dispatch": true,
+      "bonusIndependent": true,
+      "restoredWithoutReplay": true,
+      "reducedMotion": true,
+      "panZoom": true,
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "deviceStable": true,
+      "maskedAndClue": true,
+      "inventoryCameraFocus": true,
+      "keyboard": true,
+      "blockedCountsAndCascade": true,
+      "parallelMissions": true,
+      "dispatch": true,
+      "bonusIndependent": true,
+      "restoredWithoutReplay": true,
+      "reducedMotion": true,
+      "panZoom": true,
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 584,
+        "height": 1037
+      },
+      "deviceStable": true,
+      "maskedAndClue": true,
+      "inventoryCameraFocus": true,
+      "keyboard": true,
+      "blockedCountsAndCascade": true,
+      "parallelMissions": true,
+      "dispatch": true,
+      "bonusIndependent": true,
+      "restoredWithoutReplay": true,
+      "reducedMotion": true,
+      "panZoom": true,
+      "errors": []
+    }
+  ],
+  "pinchZoom": true,
+  "realPhone": false
+}
