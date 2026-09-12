@@ -1,0 +1,45 @@
+{
+  "reports": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "deviceStable": true,
+      "projectAndKeyboard": true,
+      "allRepairs": true,
+      "bonusIndependent": true,
+      "persistence": true,
+      "panZoom": true,
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceStable": true,
+      "projectAndKeyboard": true,
+      "allRepairs": true,
+      "bonusIndependent": true,
+      "persistence": true,
+      "panZoom": true,
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "deviceStable": true,
+      "projectAndKeyboard": true,
+      "allRepairs": true,
+      "bonusIndependent": true,
+      "persistence": true,
+      "panZoom": true,
+      "errors": []
+    }
+  ],
+  "pinchZoom": true,
+  "realPhone": false
+}

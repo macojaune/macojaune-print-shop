@@ -1,0 +1,1 @@
+Détecteur exécuté une fois en mode dégradé, modules de parsing indisponibles. Un signalement : animation de width dans la jauge de mission. Corrigé avec scaleX sur un élément de largeur fixe et transform-origin:left. Aucun autre résultat du détecteur ne vaut audit complet.

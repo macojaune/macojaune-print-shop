@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-12T07:07:01.347461+00:00",
+  "title": "Design System: Maco'misyon · Le dépôt Q",
+  "extensions": {
+    "colorMeta": {
+      "yellow": {
+        "role": "primary",
+        "displayName": "Jaune Macojaune",
+        "tonalRamp": [
+          "oklch(15.00% 0.1648 85.50)",
+          "oklch(26.43% 0.1648 85.50)",
+          "oklch(37.86% 0.1648 85.50)",
+          "oklch(49.29% 0.1648 85.50)",
+          "oklch(60.71% 0.1648 85.50)",
+          "oklch(72.14% 0.1648 85.50)",
+          "oklch(83.57% 0.1648 85.50)",
+          "oklch(95.00% 0.1648 85.50)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Charbon",
+        "tonalRamp": [
+          "oklch(15.00% 0.0141 163.35)",
+          "oklch(26.43% 0.0141 163.35)",
+          "oklch(37.86% 0.0141 163.35)",
+          "oklch(49.29% 0.0141 163.35)",
+          "oklch(60.71% 0.0141 163.35)",
+          "oklch(72.14% 0.0141 163.35)",
+          "oklch(83.57% 0.0141 163.35)",
+          "oklch(95.00% 0.0141 163.35)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Crème interface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0561 92.86)",
+          "oklch(26.43% 0.0561 92.86)",
+          "oklch(37.86% 0.0561 92.86)",
+          "oklch(49.29% 0.0561 92.86)",
+          "oklch(60.71% 0.0561 92.86)",
+          "oklch(72.14% 0.0561 92.86)",
+          "oklch(83.57% 0.0561 92.86)",
+          "oklch(95.00% 0.0561 92.86)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Texte atténué",
+        "tonalRamp": [
+          "oklch(15.00% 0.0293 126.90)",
+          "oklch(26.43% 0.0293 126.90)",
+          "oklch(37.86% 0.0293 126.90)",
+          "oklch(49.29% 0.0293 126.90)",
+          "oklch(60.71% 0.0293 126.90)",
+          "oklch(72.14% 0.0293 126.90)",
+          "oklch(83.57% 0.0293 126.90)",
+          "oklch(95.00% 0.0293 126.90)"
+        ]
+      },
+      "sheet-action": {
+        "role": "secondary",
+        "displayName": "Vert des actions de panneau",
+        "tonalRamp": [
+          "oklch(15.00% 0.0514 164.90)",
+          "oklch(26.43% 0.0514 164.90)",
+          "oklch(37.86% 0.0514 164.90)",
+          "oklch(49.29% 0.0514 164.90)",
+          "oklch(60.71% 0.0514 164.90)",
+          "oklch(72.14% 0.0514 164.90)",
+          "oklch(83.57% 0.0514 164.90)",
+          "oklch(95.00% 0.0514 164.90)"
+        ]
+      },
+      "scene-yellow": {
+        "role": "primary",
+        "displayName": "Jaune du chariot",
+        "tonalRamp": [
+          "oklch(15.00% 0.1655 86.09)",
+          "oklch(26.43% 0.1655 86.09)",
+          "oklch(37.86% 0.1655 86.09)",
+          "oklch(49.29% 0.1655 86.09)",
+          "oklch(60.71% 0.1655 86.09)",
+          "oklch(72.14% 0.1655 86.09)",
+          "oklch(83.57% 0.1655 86.09)",
+          "oklch(95.00% 0.1655 86.09)"
+        ]
+      },
+      "scene-cream": {
+        "role": "neutral",
+        "displayName": "Crème du dépôt",
+        "tonalRamp": [
+          "oklch(15.00% 0.0322 87.29)",
+          "oklch(26.43% 0.0322 87.29)",
+          "oklch(37.86% 0.0322 87.29)",
+          "oklch(49.29% 0.0322 87.29)",
+          "oklch(60.71% 0.0322 87.29)",
+          "oklch(72.14% 0.0322 87.29)",
+          "oklch(83.57% 0.0322 87.29)",
+          "oklch(95.00% 0.0322 87.29)"
+        ]
+      },
+      "scene-teal": {
+        "role": "secondary",
+        "displayName": "Vert des accessoires",
+        "tonalRamp": [
+          "oklch(15.00% 0.0591 177.76)",
+          "oklch(26.43% 0.0591 177.76)",
+          "oklch(37.86% 0.0591 177.76)",
+          "oklch(49.29% 0.0591 177.76)",
+          "oklch(60.71% 0.0591 177.76)",
+          "oklch(72.14% 0.0591 177.76)",
+          "oklch(83.57% 0.0591 177.76)",
+          "oklch(95.00% 0.0591 177.76)"
+        ]
+      },
+      "kraft": {
+        "role": "neutral",
+        "displayName": "Carton kraft",
+        "tonalRamp": [
+          "oklch(15.00% 0.0971 66.60)",
+          "oklch(26.43% 0.0971 66.60)",
+          "oklch(37.86% 0.0971 66.60)",
+          "oklch(49.29% 0.0971 66.60)",
+          "oklch(60.71% 0.0971 66.60)",
+          "oklch(72.14% 0.0971 66.60)",
+          "oklch(83.57% 0.0971 66.60)",
+          "oklch(95.00% 0.0971 66.60)"
+        ]
+      },
+      "floor": {
+        "role": "neutral",
+        "displayName": "Dalle grège",
+        "tonalRamp": [
+          "oklch(15.00% 0.0233 101.42)",
+          "oklch(26.43% 0.0233 101.42)",
+          "oklch(37.86% 0.0233 101.42)",
+          "oklch(49.29% 0.0233 101.42)",
+          "oklch(60.71% 0.0233 101.42)",
+          "oklch(72.14% 0.0233 101.42)",
+          "oklch(83.57% 0.0233 101.42)",
+          "oklch(95.00% 0.0233 101.42)"
+        ]
+      },
+      "backdrop": {
+        "role": "neutral",
+        "displayName": "Fond chaud",
+        "tonalRamp": [
+          "oklch(15.00% 0.0304 92.34)",
+          "oklch(26.43% 0.0304 92.34)",
+          "oklch(37.86% 0.0304 92.34)",
+          "oklch(49.29% 0.0304 92.34)",
+          "oklch(60.71% 0.0304 92.34)",
+          "oklch(72.14% 0.0304 92.34)",
+          "oklch(83.57% 0.0304 92.34)",
+          "oklch(95.00% 0.0304 92.34)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Titre d’introduction",
+        "purpose": "Grand titre desktop."
+      },
+      "panel-title": {
+        "displayName": "Titre de panneau",
+        "purpose": "Titre Tanker, 37 px sur mobile."
+      },
+      "body": {
+        "displayName": "Texte courant",
+        "purpose": "Space Grotesk, nommé Space dans CSS ; panneaux à 12 px."
+      },
+      "button": {
+        "displayName": "Action",
+        "purpose": "Commandes principales."
+      },
+      "map-label": {
+        "displayName": "Nom de station",
+        "purpose": "Nom Tanker, 14 px sur mobile."
+      }
+    },
+    "shadows": [
+      {
+        "name": "console",
+        "value": "inset 2px 2px 3px #ffdc7d, inset -4px -5px 6px #7f4a22, 12px 20px 40px #0007",
+        "purpose": "Coque ambre desktop."
+      },
+      {
+        "name": "world-label",
+        "value": "0 3px 8px #10251a55",
+        "purpose": "Étiquette HTML au-dessus du dépôt."
+      },
+      {
+        "name": "sheet",
+        "value": "0 12px 28px #0005",
+        "purpose": "Panneau crème dans l’écran."
+      }
+    ],
+    "motion": [
+      {
+        "name": "sheet-in",
+        "value": "250ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Entrée verticale de 18 px du panneau."
+      },
+      {
+        "name": "goal",
+        "value": "transform 300ms ease-out",
+        "purpose": "Progression de la jauge."
+      },
+      {
+        "name": "announcement",
+        "value": "transform 350ms cubic-bezier(.16,1,.3,1), opacity 200ms",
+        "purpose": "Annonce de réussite."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max-width",
+        "value": "760px"
+      },
+      {
+        "name": "compact-desktop-max-width",
+        "value": "1000px"
+      },
+      {
+        "name": "short-mobile-max-height",
+        "value": "720px"
+      },
+      {
+        "name": "short-desktop-max-height",
+        "value": "740px"
+      }
+    ],
+    "notes": [
+      "Les rampes sont des aperçus OKLCH synthétisés pour le panneau de design, pas des gammes implémentées.",
+      "Respecter prefers-reduced-motion et la suspension des animations hors visibilité.",
+      "Modèles procéduraux Three.js sans GLB ; téléphone physique non vérifié ; fines stries au sol connues, faible gravité.",
+      "Sources : style.css:1-10, index.html, app.js:13-25, world.js:36-59 et 201-240, props.js:7-43, model.js:118."
+    ]
+  },
+  "components": [
+    {
+      "name": "Action principale",
+      "kind": "button",
+      "description": "Commande existante du dock ou du panneau.",
+      "html": "<button class=\"ds-primary\">Les missions<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h15m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-primary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 43px; border: 0; border-radius: 5px; padding: 11px 14px; background: var(--yellow, #ffc52c); color: var(--ink, #151d19); font: 700 12px Space, sans-serif; cursor: pointer; } .ds-primary:hover { background: #ffdb72; } .ds-primary:focus-visible { outline: 3px solid var(--yellow, #ffc52c); outline-offset: 4px; } .ds-primary:disabled { opacity: .48; cursor: default; } .ds-primary svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }",
+      "refersTo": "button-primary"
+    },
+    {
+      "name": "Action secondaire",
+      "kind": "button",
+      "description": "Commande existante du dock ou du panneau.",
+      "html": "<button class=\"ds-secondary\">Le projet</button>",
+      "css": ".ds-secondary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 43px; border: 1px solid #76806a; border-radius: 5px; padding: 11px 14px; background: transparent; color: var(--cream, #fff2c8); font: 400 12px Space, sans-serif; cursor: pointer; } .ds-secondary:hover { background: #ffffff0b; } .ds-secondary:focus-visible { outline: 3px solid var(--yellow, #ffc52c); outline-offset: 4px; } .ds-secondary:disabled { opacity: .48; cursor: default; } .ds-secondary svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }",
+      "refersTo": "button-secondary"
+    },
+    {
+      "name": "Action de panneau",
+      "kind": "button",
+      "description": "Commande existante du dock ou du panneau.",
+      "html": "<button class=\"ds-sheet-action\">Voir le dépôt<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h15m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-sheet-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 47px; border: 0; border-radius: 5px; padding: 11px 14px; background: #173d2e; color: var(--cream, #fff2c8); font: 700 12px Space, sans-serif; cursor: pointer; } .ds-sheet-action:hover { background: #235c45; } .ds-sheet-action:focus-visible { outline: 3px solid #125a47; outline-offset: 4px; } .ds-sheet-action:disabled { opacity: .48; cursor: default; } .ds-sheet-action svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }",
+      "refersTo": "button-sheet"
+    },
+    {
+      "name": "Étiquettes de station",
+      "kind": "custom",
+      "description": "Numéro ouvert, cadenas bloqué et coche accomplie. Les boutons restent accessibles.",
+      "html": "<div class=\"ds-stations\"><button class=\"ds-station\" aria-label=\"Les inscrits, ouvert\"><span class=\"ds-code\">01</span>Inscrits</button><button class=\"ds-station ds-blocked\" aria-label=\"Les retours, bloqué\"><span class=\"ds-code\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 10h12v11H6zM8 10V7a4 4 0 0 1 8 0v3\"/></svg></span>Retours</button><button class=\"ds-station ds-completed\" aria-label=\"Les boutiques, accompli\"><span class=\"ds-code\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12 4 4L19 6\"/></svg></span>Boutiques</button></div>",
+      "css": ".ds-stations { display: flex; flex-wrap: wrap; gap: 12px; padding: 8px; } .ds-station { display: flex; align-items: center; gap: 5px; min-height: 33px; border: 0; border-radius: 5px; padding: 5px 7px 5px 5px; background: var(--cream, #fff2c8); color: var(--ink, #151d19); font: 400 15px Tanker, sans-serif; white-space: nowrap; box-shadow: 0 3px 8px #10251a55; cursor: pointer; } .ds-code { display: grid; place-content: center; width: 24px; height: 24px; border-radius: 3px; background: #223b2d; color: var(--cream, #fff2c8); font: 400 19px Tanker, sans-serif; } .ds-blocked { background: #263e33; color: #e0e6cd; } .ds-blocked .ds-code { background: #46594d; color: #e0e6cd; } .ds-completed { background: var(--yellow, #ffc52c); } .ds-station:focus-visible { outline: 3px solid var(--yellow, #ffc52c); outline-offset: 4px; } .ds-station[aria-pressed=true] { outline: 2px solid var(--cream, #fff2c8); outline-offset: 3px; } .ds-code svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }",
+      "refersTo": "world-label"
+    },
+    {
+      "name": "Statut de mission",
+      "kind": "chip",
+      "description": "Un état écrit avec un symbole, utilisé dans le détail de mission.",
+      "html": "<span class=\"ds-state\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12 4 4L19 6\"/></svg>Accomplie</span>",
+      "css": ".ds-state { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; background: #ffd14c; color: var(--ink, #151d19); font: 700 10px Space, sans-serif; border-radius: 3px; } .ds-state svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; }"
+    },
+    {
+      "name": "Ligne de mission",
+      "kind": "custom",
+      "description": "Une ligne de la liste conserve le titre, le statut écrit et le compteur.",
+      "html": "<button class=\"ds-mission\"><span class=\"ds-mission-code\">01</span><span class=\"ds-mission-content\"><strong>Les 10 premiers inscrits</strong><small>Ouverte · Mission principale</small></span><span class=\"ds-mission-count\">7/10</span></button>",
+      "css": ".ds-mission { width: 100%; display: flex; align-items: center; gap: 11px; padding: 15px 0; border: 0; border-top: 1px solid #bdb48d; border-bottom: 1px solid #bdb48d; background: var(--cream, #fff2c8); color: var(--ink, #151d19); text-align: left; cursor: pointer; } .ds-mission-code { width: 29px; flex-shrink: 0; color: #4a6449; font: 400 23px Tanker, sans-serif; } .ds-mission-content { flex: 1; min-width: 0; } .ds-mission-content strong { display: block; font: 400 24px/1.1 Tanker, sans-serif; } .ds-mission-content small { display: block; margin-top: 5px; font: 400 10px Space, sans-serif; } .ds-mission-count { font: 400 25px Tanker, sans-serif; white-space: nowrap; } .ds-mission:hover { background: #d1c69b25; } .ds-mission:focus-visible { outline: 3px solid #125a47; outline-offset: 4px; }"
+    },
+    {
+      "name": "Entrée du projet Q",
+      "kind": "nav",
+      "description": "Accès au panneau du projet depuis la barre supérieure.",
+      "html": "<button class=\"ds-project\"><span class=\"ds-q\" aria-hidden=\"true\">Q</span><span>QUILIVREOÙ<small>LE DÉPÔT</small></span></button>",
+      "css": ".ds-project { display: flex; align-items: center; gap: 9px; border: 0; background: var(--ink, #151d19); color: var(--cream, #fff2c8); padding: 0; text-align: left; font: 400 23px/1 Tanker, sans-serif; cursor: pointer; } .ds-project small { display: block; margin-top: 4px; color: #bbc1a8; font: 8px Space, sans-serif; letter-spacing: .11em; } .ds-q { display: grid; place-content: center; width: 34px; height: 37px; color: var(--ink, #151d19); background: var(--yellow, #ffc52c); font-size: 28px; border-radius: 3px; transform: rotate(-5deg); } .ds-project:focus-visible { outline: 3px solid var(--yellow, #ffc52c); outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Le dépôt Q",
+    "overview": "Un entrepôt de transitaire en miniature, centré sur le Fenwick jaune Q. Les cartons, pochettes souples, palettes et rayonnages donnent au lieu son échelle de jouet. La console ambre encadre cette scène sur ordinateur ; le mobile lui réserve l'écran disponible.\n\nLe véhicule raconte l'avancement par ses pièces et sa lumière. Le décor garde les traces des missions accomplies. Cette documentation décrit le POC v3 actuel et les engagements déjà fixés dans [BRIEF.md](BRIEF.md) et [PRODUCT.md](PRODUCT.md), sans nouvelle direction graphique.",
+    "keyCharacteristics": [
+      "Entrepôt en coupe, caméra orthographique et matériaux mats.",
+      "Jaune Q, coque ambre, interface charbon et panneaux crème.",
+      "États lisibles par texte et symboles, avec accès aux missions hors de la scène 3D.",
+      "Réparations visibles et conservées localement lorsque le stockage est disponible."
+    ],
+    "rules": [],
+    "dos": [
+      "Do conserver le Fenwick Q au centre de la lecture du dépôt, avec ses pièces de réparation distinctes.",
+      "Do garder des boutons HTML, des statuts écrits et les symboles de cadenas et de coche en complément de la 3D.",
+      "Do préserver les poses acquises au rechargement lorsque le stockage local est disponible.",
+      "Do garder les mentions de simulation près des commandes de contribution."
+    ],
+    "donts": [
+      "Don't introduire de pion ni de fontaine dans ce dépôt.",
+      "Don't transformer la capture documentaire du site en faux décor 3D.",
+      "Don't présenter QuiLivreOù comme un transporteur ou les contributions simulées comme des actions réelles."
+    ]
+  }
+}

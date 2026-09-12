@@ -1,0 +1,5 @@
+{
+  "forkliftRaycastTouch": true,
+  "contextLossFallback": true,
+  "missionAccessWithoutCanvas": true
+}
