@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#11100e">
+    <meta name="description" content="Signal × Pocket : une direction artistique se précise pour Maco’misyon.">
+    <title>Maco’misyon · Une direction se précise</title>
+    <link rel="preload" href="assets/tanker.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="gallery.css">
+    <script src="gallery.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#directions">Aller aux directions</a>
+    <main class="gallery">
+      <header class="page-header">
+        <div>
+          <h1>Maco’misyon</h1>
+          <p class="intro">Une direction se précise.</p>
+        </div>
+        <p class="header-note">Exploration graphique<br>11 septembre 2026</p>
+      </header>
+
+      <nav class="direction-picker" id="directions" aria-label="Choisir une direction artistique">
+        <button type="button" data-direction="fusion" aria-pressed="true" aria-controls="direction-panel">Signal × Pocket</button>
+        <button type="button" data-direction="signal" aria-pressed="false" aria-controls="direction-panel">Signal jaune</button>
+        <button type="button" data-direction="club" aria-pressed="false" aria-controls="direction-panel">Club Komisyon</button>
+        <button type="button" data-direction="pocket" aria-pressed="false" aria-controls="direction-panel">Maco Pocket</button>
+      </nav>
+
+      <div id="direction-panel" data-direction="fusion">
+        <figure class="board">
+          <a id="board-link" class="board-link" href="04-signal-pocket.png" target="_blank" rel="noopener" aria-label="Ouvrir la planche Signal × Pocket en plein format">
+            <img id="board-image" src="04-signal-pocket.png" alt="Planche Signal × Pocket : device ambre, marques de peinture jaunes, interface mobile, affiche et widget." width="1536" height="1024" fetchpriority="high">
+          </a>
+          <p id="image-error" class="image-error" hidden>La planche n’a pas pu être chargée. Le lien ci-dessus ouvre le fichier image.</p>
+          <figcaption>
+            <span>Toucher la planche pour l’ouvrir en grand.</span>
+            <a id="download-link" href="04-signal-pocket.png" download>Télécharger le PNG <span aria-hidden="true">↗</span></a>
+          </figcaption>
+        </figure>
+
+        <section class="direction-copy" aria-labelledby="direction-title">
+          <h2 id="direction-title">Signal × Pocket</h2>
+          <p id="direction-thesis" class="thesis">Le device ambre de Maco Pocket, les marques de peinture et le jaune vif de Signal jaune.</p>
+          <div class="details-grid">
+            <div class="specimens">
+              <h3>Couleurs</h3>
+              <ul id="palette" class="palette" aria-label="Palette de Signal × Pocket">
+                <li><span class="swatch" style="--swatch:#FBBF24"></span><span>#FBBF24</span></li>
+                <li><span class="swatch" style="--swatch:#000000"></span><span>#000000</span></li>
+                <li><span class="swatch" style="--swatch:#F5F5F4"></span><span>#F5F5F4</span></li>
+                <li><span class="swatch" style="--swatch:#2BB3A3"></span><span>#2BB3A3</span></li>
+              </ul>
+              <h3>Les vraies polices</h3>
+              <div class="type-specimen">
+                <p id="type-display" class="type-display">KOMISYON ACTIVÉE</p>
+                <p id="type-counter" class="type-counter">07 / 10</p>
+                <p id="type-caption" class="type-caption">Tanker pour les titres, Chakra Petch pour les chiffres. Space Grotesk pour lire et agir.</p>
+                <p class="body-specimen">Une participation. Quelque chose se débloque.</p>
+              </div>
+            </div>
+
+            <div class="applications">
+              <h3>Comment elle se déploie</h3>
+              <dl id="applications-list">
+                <div><dt>Mobile</dt><dd>Le projet et sa jauge en plein écran. Les marques de peinture restent dans les marges.</dd></div>
+                <div><dt>Vidéo et posts</dt><dd>Des titres massifs et de grandes marques de peinture qui signent les épisodes.</dd></div>
+                <div><dt>Widget</dt><dd>Un repère jaune et une jauge sobre pour garder l’objectif lisible sur chaque site.</dd></div>
+                <div><dt>Device desktop</dt><dd>La coque ambrée en 3D de Maco Pocket comme interface dans le navigateur.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <section class="motion-section" aria-labelledby="motion-title">
+          <div class="motion-header">
+            <div>
+              <h3 id="motion-title">Le déblocage, en mouvement</h3>
+              <p id="motion-description">Un point s’allume, le cadre s’ouvre, la vidéo apparaît.</p>
+            </div>
+            <button id="replay-alert" class="replay-button" type="button">Rejouer l’alerte</button>
+          </div>
+          <p class="demo-label">Démo visuelle, aucune publication</p>
+          <div class="motion-stage" id="motion-stage" data-variant="signal">
+            <div class="signal-marker" aria-hidden="true"><span></span></div>
+            <div class="club-stamp" aria-hidden="true">DÉBLOQUÉ</div>
+            <div class="pocket-lamp" aria-hidden="true"></div>
+            <div class="alert-example">
+              <p class="alert-heading">Vous avez débloqué la vidéo</p>
+              <p class="alert-project">Shootareas</p>
+              <p class="example-link">Exemple de lien vers la vidéo</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="recommendation" aria-label="Ta sélection">
+        <p>Ta sélection : l’énergie de Signal jaune et le device de Maco Pocket.</p>
+        <span>Nouvelle planche à affiner avant la mise en place.</span>
+      </aside>
+
+      <footer class="page-footer">
+        <p>Planches générées : lettrages et pictogrammes illustratifs. Les spécimens ci-dessus utilisent les vraies polices. Les compteurs sont des exemples.</p>
+        <nav aria-label="Sites de référence">
+          <a href="https://macojaune.com" target="_blank" rel="noopener">Macojaune</a>
+          <a href="https://shootareas.marvinl.com" target="_blank" rel="noopener">Shootareas</a>
+          <a href="https://quilivreou.marvinl.com" target="_blank" rel="noopener">QuiLivreOù</a>
+          <a href="https://marvinl.com" target="_blank" rel="noopener">MarvinL</a>
+          <a href="https://zikak-dev.marvinl.com" target="_blank" rel="noopener">Zikak</a>
+          <a href="https://memebank-dev.marvinl.com" target="_blank" rel="noopener">MemeBank</a>
+          <a href="https://omasla.fr" target="_blank" rel="noopener">OMasLa</a>
+        </nav>
+      </footer>
+      <p id="selection-status" class="sr-only" role="status" aria-live="polite"></p>
+    </main>
+  </body>
+</html>
