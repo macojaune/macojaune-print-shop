@@ -104,6 +104,7 @@ node_modules
 .agents
 .data
 .impeccable.md
+.impeccable/review/
 assets/photo-originals
 assets/project-originals
 public/derived

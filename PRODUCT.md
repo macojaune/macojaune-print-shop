@@ -14,9 +14,13 @@ Macojaune's visitors discover his photography, follow his projects, buy prints, 
 
 Macojaune.com publishes Marvin's photographic work and supports direct relationships around that work. Cho Kaché turns selected physical prints into free objects hidden in Guadeloupe. Success means that a finder understands the rules, documents the discovery if they want to, takes the print, and lets the site record that it has been found.
 
+Maco'misyon gathers selected projects into a navigable world where their real progress can become visible. A visitor can understand a project, explore its place in the world and later see what collective actions changed.
+
 ## Positioning
 
 Cho Kaché links a numbered physical photograph, a real hiding place, public clues, and a unique scan page. The print itself is the object won by the finder.
+
+Maco'misyon links the projects Marvin chooses to share, their concrete stages and their visible consequences.
 
 ## Operating Context
 
@@ -30,6 +34,9 @@ Macojaune hides prints during outings, events, and trips. People learn about the
 - The exact locations and visibility choices for the current three prints have not yet been supplied in the repository.
 - The existing article at `/blog/cho-kache` explains the origin and general rules of the project.
 - Finding a print must remain possible without creating an account.
+- `/macomisyon` begins with a simplified isometric map of Jarry around La Jaille, then opens the QuiLivreOù warehouse called Dépôt Q.
+- The first map integration uses demonstrative data. Real counts, Zikak, notifications and the private control panel come later.
+- The map must remain usable on a phone, explain projects without relying on WebGL and respect reduced-motion settings.
 
 ## Brand Commitments
 
