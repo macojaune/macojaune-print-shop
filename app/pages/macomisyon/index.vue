@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import GameIcon from '../../components/macomisyon/GameIcon.vue'
 import { createStore } from '../../lib/macomisyon/depot/model.js'
+import { places } from '../../lib/macomisyon/places.js'
 
 definePageMeta({ layout: false, pageTransition: false })
 useSeoMeta({
-  title: "Maco'misyon · Bienvenue à Jarry",
-  description: "Mes projets prennent vie dans un petit Jarry à explorer. Entre dans le Dépôt Q pour découvrir QuiLivreOù.",
+  title: "Maco'misyon · Un monde à découvrir",
+  description: "Un monde à explorer. Des lieux à découvrir, des Komisyon à accomplir et des projets qui prennent vie.",
   robots: 'noindex, nofollow',
 })
 
@@ -28,11 +29,6 @@ const backButton = ref<HTMLButtonElement | null>(null)
 let alive = true
 let savedMapView: MapView | undefined
 
-const places = [
-  { id: 'quilivreou', letter: 'Q', name: 'QuiLivreOù', subtitle: 'Le Dépôt Q', description: "Trouver les boutiques qui livrent chez nous. Trois Komisyon pour remettre le dépôt en route.", available: true },
-  { id: 'shootareas', letter: 'S', name: 'Shootareas', subtitle: 'Au bord de l’eau', description: "Un studio se prépare au bord de l’eau. Ce lieu ouvrira dans une prochaine étape.", available: false },
-  { id: 'zikak', letter: 'Z', name: 'Zikak', subtitle: 'Un signal à suivre', description: "Le nom circule déjà. Il faudra revenir pour découvrir ce qui se construit ici.", available: false },
-]
 const currentPlace = computed(() => places.find(place => place.id === selected.value))
 
 onMounted(() => {
@@ -45,6 +41,7 @@ watch(paused, value => {
 })
 watch(inDepot, async value => {
   panel.value = null
+  if (!value && !selected.value) selected.value = 'quilivreou'
   await nextTick()
   if (!alive) return
   if (value) backButton.value?.focus({ preventScroll: true })
@@ -60,7 +57,7 @@ async function selectPlace(id: string) {
   panel.value = null
   await map.value?.focusProject(id)
   if (!alive) return
-  liveMessage.value = currentPlace.value?.available ? 'Le Dépôt Q est repéré. Tu peux entrer.' : `${currentPlace.value?.name}. Ce lieu est encore fermé.`
+  liveMessage.value = currentPlace.value?.available ? 'Le hangar est repéré. Tu peux entrer.' : `${currentPlace.value?.name}. Ce lieu est encore fermé.`
 }
 
 async function enterDepot() {
@@ -93,13 +90,13 @@ function togglePanel(next: 'places' | 'help') {
 
 <template>
   <main class="maco-game" @keydown.esc="panel = null">
-    <!-- THESIS: Jarry is the project selector, each building a living project.
+    <!-- THESIS: Real coastal geography becomes a fictional world, with projects discovered inside buildings.
     OWN-WORLD: Macojaune amber and Tanker, sage industrial game panels, a turquoise island.
-    STORY: Explore Jarry, select Q, enter the warehouse, return to the same camera.
+    STORY: Explore the unnamed world, inspect a landmark, enter the warehouse to reveal its project.
     FIRST VIEWPORT: A full-height miniature framed by a compact title, camera controls and one project dock.
     FORM: Extension of the approved Depot Q game, code-first interactive Three.js scene.
     FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->
-    <a class="game-skip" href="#project-access">Aller aux projets</a>
+    <a class="game-skip" href="#project-access">Aller aux lieux</a>
     <header class="game-header">
       <NuxtLink to="/" class="site-return" aria-label="Retour sur Macojaune"><GameIcon name="back" /><span>Macojaune</span></NuxtLink>
       <h1>Maco’misyon<span aria-hidden="true">.</span></h1>
@@ -108,20 +105,20 @@ function togglePanel(next: 'places' | 'help') {
 
     <section class="game-console" :class="{ 'is-depot': inDepot }" aria-label="Le monde de Maco’misyon">
       <div class="console-topline">
-        <button v-if="inDepot" ref="backButton" class="world-back" type="button" @click="leaveDepot"><GameIcon name="back" />Retour à Jarry</button>
-        <span v-else class="world-address"><span class="signal-dot" aria-hidden="true" />Guadeloupe · Grande carte</span>
+        <button v-if="inDepot" ref="backButton" class="world-back" type="button" @click="leaveDepot"><GameIcon name="back" />Retour au monde</button>
+        <span v-else class="world-address"><span class="signal-dot" aria-hidden="true" />Exploration libre</span>
         <button class="motion-control" type="button" :aria-pressed="paused" :aria-label="paused ? 'Reprendre les animations' : 'Mettre les animations en pause'" @click="paused = !paused"><GameIcon :name="paused ? 'play' : 'pause'" :size="16" />{{ paused ? 'Reprendre' : 'Pause' }}</button>
       </div>
 
       <div class="game-stage">
         <div v-show="!inDepot" class="world-layer">
           <ClientOnly>
-            <MacomisyonJarryMap ref="map" :paused="paused" :active="!inDepot" :repaired="depotRepaired" @select="selectPlace" @ready="loaded = true; mapError = false" @error="mapError = true" />
+            <MacomisyonJarryMap ref="map" :paused="paused" :active="!inDepot" :repaired="depotRepaired" :selected="selected" @select="selectPlace" @ready="loaded = true; mapError = false" @error="mapError = true" />
           </ClientOnly>
-          <div v-if="!loaded && !mapError" class="world-loading" aria-live="polite"><strong>On ouvre la carte.</strong><span>Les projets prennent leur place.</span></div>
-          <div v-if="mapError" class="world-loading world-fallback" role="status"><GameIcon name="map" :size="40" /><strong>Jarry attendra un peu.</strong><span>La vue 3D n’a pas démarré. Tu peux quand même ouvrir les lieux et leurs Komisyon.</span><button type="button" class="game-button" @click="togglePanel('places')">Voir les lieux</button></div>
+          <div v-if="!loaded && !mapError" class="world-loading" aria-live="polite"><strong>On ouvre la carte.</strong><span>Les lumières s’allument.</span></div>
+          <div v-if="mapError" class="world-loading world-fallback" role="status"><GameIcon name="map" :size="40" /><strong>La vue 3D est indisponible.</strong><span>La vue 3D n’a pas démarré. Tu peux quand même ouvrir les lieux et leurs Komisyon.</span><button type="button" class="game-button" @click="togglePanel('places')">Voir les lieux</button></div>
 
-          <div class="map-title" aria-hidden="true"><span>Jarry</span><small>Un petit monde.<br>Des projets bien réels.</small></div>
+          <div class="map-title" aria-hidden="true"><span>Terre<br>inconnue.</span><small>À toi d’explorer.</small></div>
           <div class="map-tools" aria-label="Commandes de la carte">
             <button type="button" title="Zoomer" aria-label="Zoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1.2)"><GameIcon name="plus" /></button>
             <button type="button" title="Dézoomer" aria-label="Dézoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1 / 1.2)"><GameIcon name="minus" /></button>
@@ -134,8 +131,8 @@ function togglePanel(next: 'places' | 'help') {
 
           <section v-if="panel === 'places'" id="places-panel" class="map-panel" aria-labelledby="places-title">
             <div class="panel-title"><h2 id="places-title">Les lieux</h2><button type="button" aria-label="Fermer les lieux" @click="panel = null"><GameIcon name="close" /></button></div>
-            <p>Chaque projet a son adresse. Chaque avancée laisse une trace.</p>
-            <ul><li v-for="place in places" :key="place.id"><button type="button" class="place-row" @click="selectPlace(place.id)"><span class="place-letter" :class="{ muted: !place.available }">{{ place.letter }}</span><span><strong>{{ place.name }}</strong><small>{{ place.available ? 'Le dépôt est visitable' : 'Encore fermé' }}</small></span><GameIcon :name="place.available ? 'arrow' : 'lock'" :size="18" /></button></li></ul>
+            <p>Des portes à pousser, des indices à suivre. Choisis un lieu pour t’en approcher.</p>
+            <ul><li v-for="place in places" :key="place.id"><button type="button" class="place-row" @click="selectPlace(place.id)"><span class="place-letter" :class="{ muted: !place.available }"><GameIcon :name="place.icon" :size="24" /></span><span><strong>{{ place.name }}</strong><small>{{ place.available ? 'Une porte est ouverte' : 'Encore fermé' }}</small></span><GameIcon :name="place.available ? 'arrow' : 'lock'" :size="18" /></button></li></ul>
           </section>
           <section v-if="panel === 'help'" id="help-panel" class="map-panel help-panel" aria-labelledby="help-title">
             <div class="panel-title"><h2 id="help-title">À toi d’explorer</h2><button type="button" aria-label="Fermer l’aide" @click="panel = null"><GameIcon name="close" /></button></div>
@@ -148,24 +145,25 @@ function togglePanel(next: 'places' | 'help') {
 
         <ClientOnly v-if="inDepot">
           <LazyMacomisyonDepotQ :paused="paused" @state-change="depotRepaired = $event.repaired" />
-          <template #fallback><div class="world-loading"><strong>Ouverture du Dépôt Q.</strong><span>La cargaison arrive.</span></div></template>
+          <template #fallback><div class="world-loading"><strong>La porte s’ouvre.</strong><span>La cargaison arrive.</span></div></template>
         </ClientOnly>
       </div>
 
       <div v-show="!inDepot" id="project-access" class="project-dock" tabindex="-1">
-        <span class="dock-emblem" aria-hidden="true">{{ currentPlace?.letter || 'Q' }}</span>
+        <span class="dock-emblem" aria-hidden="true"><GameIcon :name="currentPlace?.icon || 'map'" :size="30" /></span>
         <div class="dock-copy">
-          <h2>{{ currentPlace ? currentPlace.name : 'Quelque chose se prépare.' }}</h2>
-          <p>{{ currentPlace ? currentPlace.description : 'Le Dépôt Q a besoin d’un coup de main. Fais un tour à l’intérieur.' }}</p>
+          <h2>{{ currentPlace ? currentPlace.name : 'Un monde à découvrir.' }}</h2>
+          <p>{{ currentPlace ? currentPlace.description : 'Touche un repère pour t’en approcher et découvrir ce qu’il abrite.' }}</p>
         </div>
-        <button v-if="!currentPlace || currentPlace.available" ref="enterButton" type="button" class="enter-depot" :disabled="entering" @click="enterDepot">{{ entering ? 'On y va…' : 'Entrer au dépôt' }}<GameIcon name="arrow" /></button>
-        <button v-else type="button" class="closed-place" @click="selectPlace('quilivreou')"><GameIcon name="lock" :size="16" />Lieu fermé<span>Rejoindre le dépôt Q</span></button>
+        <button v-if="currentPlace?.available" ref="enterButton" type="button" class="enter-depot" :disabled="entering" @click="enterDepot">{{ entering ? 'On y va…' : 'Entrer au dépôt' }}<GameIcon name="arrow" /></button>
+        <button v-else-if="currentPlace" type="button" class="closed-place" @click="selectPlace('quilivreou')"><GameIcon name="lock" :size="16" />Lieu fermé<span>Approcher le hangar</span></button>
+        <button v-else type="button" class="enter-depot" @click="togglePanel('places')">Explorer les lieux<GameIcon name="map" /></button>
       </div>
     </section>
 
-    <footer class="game-footer"><span>{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : 'La Jaille · Voie Verte · Bord de mer' }}</span><span>Première exploration · données de démo</span></footer>
+    <footer class="game-footer"><span>{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : 'Des lieux familiers. Une autre histoire.' }}</span><span>Première exploration · données de démo</span></footer>
     <p class="game-live" aria-live="polite">{{ liveMessage }}</p>
-    <noscript>Active JavaScript pour explorer Jarry en 3D. QuiLivreOù est un annuaire de boutiques et d’expériences de livraison aux Antilles, disponible sur quilivreou.marvinl.com.</noscript>
+    <noscript>Active JavaScript pour explorer ce monde, entrer dans ses bâtiments et découvrir leurs Komisyon.</noscript>
   </main>
 </template>
 
@@ -192,7 +190,7 @@ function togglePanel(next: 'places' | 'help') {
 .game-stage { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #cae0ca; }
 .world-layer { position: absolute; inset: 0; }
 .map-title { position: absolute; left: 30px; top: 23px; color: #143c3e; pointer-events: none; }
-.map-title > span { display: block; font: 400 clamp(52px, 5vw, 78px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
+.map-title > span { display: block; font: 400 clamp(32px, 3.5vw, 52px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
 .map-title small { display: block; font-size: 12px; line-height: 1.4; margin-top: 10px; }
 .map-tools { position: absolute; display: flex; flex-direction: column; right: 18px; top: 20px; border: 1px solid #23474b; background: #f1ebd3; }
 .map-tools button { display: grid; place-items: center; width: 44px; height: 44px; background: none; border: 0; color: #183d3e; }
@@ -245,7 +243,7 @@ function togglePanel(next: 'places' | 'help') {
   .console-topline { padding: 0 14px; height: 39px; }
   .world-address { font-size: 9px; letter-spacing: .04em; }
   .map-title { left: 18px; top: 18px; }
-  .map-title > span { font-size: 54px; }
+  .map-title > span { font-size: 32px; }
   .map-title small { font-size: 10px; margin-top: 6px; }
   .map-tools { right: 12px; top: 15px; }
   .map-tools button { height: 40px; width: 40px; }

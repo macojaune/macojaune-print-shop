@@ -8,15 +8,26 @@ Le travail se fait directement sur `develop` dans `macojaune-web`, selon le choi
 
 Le dossier préexistant `.letta/worktrees/macotidien-episode-16` appartient à un ancien travail Letta. Il contient un brouillon d'article non suivi. Il reste conservé et exclu localement du dépôt parent.
 
+## Versions conservées
+
+Chaque étape a son commit et son tag Git. Les dix premiers repères, de `macomisyon/01-cadrage` à `macomisyon/10-depot-q-v6`, gardent les explorations antérieures.
+
+| Repère Git | Étape |
+| --- | --- |
+| `macomisyon/11-nuxt-jarry-v1` | Première intégration Nuxt, îlot initial avec noms visibles. Commit `ba7a2d2`. |
+| `macomisyon/12-monde-littoral-v2` | Géographie reconstruite à partir des deux captures aériennes, murets à 7 h, lieux anonymes et révélation du projet à l'intérieur. |
+
+Pour comparer une étape sans changer la branche de travail : `git show <repère>:<fichier>` ou `git diff <ancien-repère> <nouveau-repère>`. Les [captures de chaque version](macomisyon/versions/README.md) sont aussi conservées dans Git. Les captures de vérification locales sous `.impeccable/review` peuvent être régénérées.
+
 ## Parcours
 
-1. Arrivée sur un diorama isométrique de Jarry, avec La Jaille, la Voie Verte et le bord de mer.
+1. Arrivée dans un monde isométrique sans nom, dont le littoral et les grands axes suivent les références aériennes de Jarry.
 2. Déplacement et zoom avec le toucher, la souris ou le clavier. La liste des lieux donne le même accès sans sélectionner un objet 3D.
-3. Sélection du hangar QuiLivreOù, cadrage de la caméra puis entrée au Dépôt Q.
+3. Sélection d’un pictogramme, indice sur le lieu, puis entrée au hangar qui révèle QuiLivreOù et son Dépôt Q.
 4. Exploration des Komisyon, de leurs indices et des scénarios de démonstration.
 5. Retour à la carte sans perdre le cadrage précédent.
 
-L'intérieur est adressable par `/macomisyon?lieu=depot-q`. Le bouton Retour à Jarry et l'historique du navigateur permettent de changer de scène. La carte reste montée mais suspend son rendu quand le dépôt est affiché. Les scènes respectent la réduction de mouvement du système et le bouton Pause. Leurs rendus, contrôles et ressources GPU sont libérés en quittant la route.
+L'intérieur est adressable par `/macomisyon?lieu=depot-q`. Le bouton Retour au monde et l'historique du navigateur permettent de changer de scène. La carte reste montée mais suspend son rendu quand le dépôt est affiché. Les scènes respectent la réduction de mouvement du système et le bouton Pause. Leurs rendus, contrôles et ressources GPU sont libérés en quittant la route.
 
 ## Où modifier quoi
 
@@ -24,7 +35,8 @@ L'intérieur est adressable par `/macomisyon?lieu=depot-q`. Le bouton Retour à 
 | --- | --- |
 | `app/pages/macomisyon/index.vue` | Cadre de jeu, navigation entre les scènes, commandes et accès textuel |
 | `app/components/macomisyon/JarryMap.client.vue` | Montage de la carte, étiquettes et préférences |
-| `app/lib/macomisyon/jarry-world.js` | Géométrie de Jarry, caméra, sélection et mouvements |
+| `app/lib/macomisyon/jarry-world.js` | Géographie du monde, caméra, sélection et mouvements |
+| `app/lib/macomisyon/places.js` | Noms fictifs des lieux et indices extérieurs, sans dévoiler les projets |
 | `app/components/macomisyon/DepotQ.client.vue` | Interface Vue du dépôt et console de démonstration |
 | `app/lib/macomisyon/depot/world.js` | Entrepôt et transformations visuelles issus de la v6 |
 | `app/lib/macomisyon/depot/props.js` | Objets procéduraux : Fenwick, cartons, rayonnages |
@@ -75,5 +87,13 @@ La validation mobile utilise un navigateur émulé. Les performances sur un tél
 - Revue visuelle indépendante des sept captures : aucun défaut bloquant pour cette première démo. Les animations ont été vérifiées par les parcours navigateur ; la revue indépendante portait sur les captures et le code.
 
 Cette validation concerne l'intégration de démonstration. Elle ne valide ni des compteurs réels ni un déploiement distant. Le build complet Tina n'a pas été exécuté ; les contenus et sa configuration n'ont pas changé.
+
+### Reprise géographique, version 12
+
+Les dix parcours navigateur ont été rejoués après la reconstruction du monde et le changement du parcours de découverte. Ils contrôlent aussi l'absence des noms de projets et de lieux réels dans la vue extérieure, ses libellés accessibles et son titre. Le projet apparaît une fois le hangar ouvert.
+
+La revue indépendante a comparé les vues bureau, mobile et le détail du giratoire aux deux références aériennes. Elle a demandé de dégager la végétation qui cachait une bretelle. Après correction et nouvelles captures, ce point a été jugé résolu. Les trois vues finales ont aussi été contrôlées sans débordement horizontal ni erreur JavaScript capturée. Sur mobile, la vue d'ensemble montre toute la péninsule ; il faut zoomer pour lire les détails du giratoire.
+
+La compilation Nuxt a été rejouée après la dernière correction. Le serveur compilé confirme le parcours monde anonyme, indice du hangar, révélation du projet, puis retour anonyme, sans erreur JavaScript ni erreur d'hydratation détectée.
 
 Le montage côté navigateur suit le [fonctionnement des composants Nuxt](https://nuxt.com/docs/4.x/directory-structure/app/components). Le HTML initial contient le titre, les explications et l'accès au projet avant le chargement des scènes.

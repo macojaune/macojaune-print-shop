@@ -34,7 +34,7 @@ Macojaune hides prints during outings, events, and trips. People learn about the
 - The exact locations and visibility choices for the current three prints have not yet been supplied in the repository.
 - The existing article at `/blog/cho-kache` explains the origin and general rules of the project.
 - Finding a print must remain possible without creating an account.
-- `/macomisyon` begins with a simplified isometric map of Jarry around La Jaille, then opens the QuiLivreOù warehouse called Dépôt Q.
+- `/macomisyon` begins with a fictional isometric world whose geography follows Jarry and La Jaille. Real place names and project identities stay hidden outside. Visitors inspect anonymous landmarks, then discover QuiLivreOù when entering its warehouse, Dépôt Q.
 - The first map integration uses demonstrative data. Real counts, Zikak, notifications and the private control panel come later.
 - The map must remain usable on a phone, explain projects without relying on WebGL and respect reduced-motion settings.
 

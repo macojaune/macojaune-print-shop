@@ -47,6 +47,10 @@ try {
     await settle(page, '.jarry-map', value => value?.renderCount > 2)
     assert.equal(await page.getByRole('button', { name: 'Zoomer', exact: true }).isEnabled(), true)
     assert.equal((await debug(page, '.jarry-map')).contextIsLost, false)
+    assert.doesNotMatch(await page.locator('.maco-game').innerText(), /Jarry|La Jaille|QuiLivreOù|Shootareas|Zikak/)
+    assert.doesNotMatch(await page.title(), /Jarry|QuiLivreOù/)
+    const labels = await page.locator('.maco-game').evaluate(root => [...root.querySelectorAll('[aria-label], [title]')].map(element => `${element.getAttribute('aria-label')} ${element.getAttribute('title')}`).join(' '))
+    assert.doesNotMatch(labels, /Jarry|La Jaille|QuiLivreOù|Shootareas|Zikak/)
     await capture(page, 'desktop')
   })
   await test('Pause, keyboard pan and zoom operate independently', async () => {
@@ -65,20 +69,23 @@ try {
   })
   await test('Locked project gives a clue without opening an interior', async () => {
     await page.getByRole('button', { name: 'Les lieux', exact: true }).click()
-    await page.locator('.place-row').filter({ hasText: 'Shootareas' }).click()
-    await settle(page, '.jarry-map', value => !value?.view || Math.abs(value.view.zoom - 2) < 0.01)
+    await page.locator('.place-row').filter({ hasText: 'La maison sur l’eau' }).click()
+    await settle(page, '.jarry-map', value => !value?.view || Math.abs(value.view.zoom - 3.6) < 0.01)
     assert.match(await page.locator('.dock-copy').innerText(), /studio/)
+    assert.doesNotMatch(await page.locator('.maco-game').innerText(), /Jarry|La Jaille|QuiLivreOù|Shootareas|Zikak/)
     assert.equal(await page.locator('.depot-q').count(), 0)
     await page.getByRole('button', { name: 'Recentrer la carte' }).click()
     await settle(page, '.jarry-map', value => Math.abs(value.view.zoom - 1) < 0.01)
   })
   const originalView = (await debug(page, '.jarry-map')).view
-  await test('Depot opens; hidden Jarry pauses its renderer', async () => {
+  await test('Depot opens and reveals its project; hidden world pauses its renderer', async () => {
+    await page.locator('[data-project="quilivreou"]').click()
     await page.getByRole('button', { name: 'Entrer au dépôt', exact: true }).click()
     await page.locator('.depot-q[data-world-error="false"][data-completed-count="0"]').waitFor()
     await settle(page, '.depot-q', value => value?.renderCount > 0)
     assert.equal((await debug(page, '.jarry-map')).active, false)
     assert.ok(page.url().includes('lieu=depot-q'))
+    assert.match(await page.locator('.game-footer').innerText(), /QuiLivreOù/)
     await capture(page, 'depot-desktop')
   })
   await test('Locked contributions validate with prerequisite; registrations alone cannot repair', async () => {
@@ -121,17 +128,17 @@ try {
     await page.getByRole('button', { name: 'Reprendre les animations', exact: true }).click()
   })
   await test('Returning to Jarry preserves camera; exterior reflects repair', async () => {
-    await page.getByRole('button', { name: 'Retour à Jarry', exact: true }).click()
+    await page.getByRole('button', { name: 'Retour au monde', exact: true }).click()
     await page.locator('.project-dock').waitFor({ state: 'visible' })
     await settle(page, '.jarry-map', value => value.active && value.repaired)
     assert.equal(await page.locator('.depot-q').count(), 0)
-    assert.match(await page.locator('[data-project="quilivreou"]').innerText(), /opérationnel/i)
+    assert.match(await page.locator('[data-project="quilivreou"]').getAttribute('aria-label'), /activité reprise/i)
     // A page reload naturally starts at the map's default view. Verify preservation on a same-page round trip.
     await page.getByRole('button', { name: 'Zoomer', exact: true }).click()
     const before = (await debug(page, '.jarry-map')).view
     await page.getByRole('button', { name: 'Entrer au dépôt', exact: true }).click()
     await page.locator('.depot-q[data-repaired="true"]').waitFor()
-    await page.getByRole('button', { name: 'Retour à Jarry', exact: true }).click()
+    await page.getByRole('button', { name: 'Retour au monde', exact: true }).click()
     await settle(page, '.jarry-map', value => Math.abs(value.view.zoom - before.zoom) < 0.001 && before.target.every((v, i) => Math.abs(v - value.view.target[i]) < 0.001))
     const after = (await debug(page, '.jarry-map')).view
     before.target.forEach((v, i) => assert.ok(Math.abs(v - after.target[i]) < 0.001))
@@ -161,7 +168,8 @@ try {
     assert.equal(await phone.evaluate(() => document.documentElement.scrollWidth > innerWidth), false)
     await capture(phone, 'mobile')
     await phone.locator('[data-project="quilivreou"]').tap()
-    assert.match(await phone.locator('.dock-copy').innerText(), /QuiLivreOù/)
+    assert.match(await phone.locator('.dock-copy').innerText(), /Le hangar/)
+    assert.doesNotMatch(await phone.locator('.maco-game').innerText(), /Jarry|La Jaille|QuiLivreOù|Shootareas|Zikak/)
     await phone.getByRole('button', { name: 'Entrer au dépôt', exact: true }).tap()
     await phone.locator('.depot-q[data-world-error="false"]').waitFor()
     assert.equal((await debug(phone, '.depot-q')).reducedMotion, true)
@@ -183,6 +191,8 @@ try {
   await test('No WebGL still exposes project and all mission panels', async () => {
     await withoutGL.goto(baseURL, { waitUntil: 'domcontentloaded' })
     await withoutGL.locator('.world-fallback').waitFor()
+    await withoutGL.getByRole('button', { name: 'Voir les lieux', exact: true }).click()
+    await withoutGL.locator('.place-row').filter({ hasText: 'Le hangar' }).click()
     await withoutGL.getByRole('button', { name: 'Entrer au dépôt', exact: true }).click()
     await withoutGL.locator('.depot-q[data-world-error="true"]').waitFor()
     await withoutGL.getByRole('button', { name: 'Découvrir QuiLivreOù', exact: true }).click()
