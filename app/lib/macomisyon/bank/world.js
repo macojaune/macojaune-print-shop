@@ -70,7 +70,7 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
   let ambientTime = 0, hasState = false, state = normalizeState(), transition = null, cameraFlight = null
   let pose = { curiosity: 0, mail: 0, stamp: 0, open: 0 }
   let sun, vaultHinge, wheel, rug, rugRoll, tapes, capsule, mailCurve, stamp, receiptSeal, clockHand
-  let mailSeal, betaLamp, entryMeter, mailMeter, stampMeter, mailPapers, dossierPapers, confetti
+  let mailSeal, betaLamp, entryMeter, mailMeter, stampMeter, mailPapers, dossierPapers
   const employees = [], customers = []
   let mailLoad = getBankLoad(0, GOALS.newsletter), dossierLoad = getBankLoad(0, GOALS.applications)
   const scratch = new THREE.Vector3()
@@ -678,7 +678,7 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
     batchRigid(wheel)
     tapes = createVhsArchives({ root, group, box, mesh, disc, geometry, painted, palette: PALETTE })
     batchRigid(tapes.archives)
-    batchRigid(tapes.heroTape)
+    tapes.spillTapes.forEach(batchRigid)
     betaLamp = new THREE.PointLight(0xffdb87, 0, 5, 2)
     betaLamp.position.set(1.45, 2, -2.2)
     root.add(betaLamp)
@@ -689,12 +689,6 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
     for (let i = 0; i < 9; i++) box(rug, [.055, .02, .14], [-.72 + i * .18, -.003, 3.2], PALETTE.paper)
     rugRoll = cylinder(root, .15, 1.86, [1.45, .26, -1.34], PALETTE.amber, .15, 16)
     rugRoll.rotation.z = Math.PI / 2
-    confetti = Array.from({ length: 16 }, (_, i) => {
-      const part = box(root, [.055 + (i % 3) * .018, .012, .1], [0, 0, 0], [PALETTE.amber, PALETTE.teal, PALETTE.paper][i % 3])
-      part.castShadow = false
-      part.visible = false
-      return part
-    })
   }
 
   // Local batching retains the hinge/wheel/archive transforms. Only truly rigid
@@ -814,7 +808,6 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
     })
   }
   function quietEffects() {
-    confetti.forEach(part => { part.visible = false })
     capsule.visible = true
     placeCapsule((.105 + mailLoad.progress * .59 + mailLoad.overflow * .07) % 1)
     stamp.rotation.z = 0
@@ -865,14 +858,7 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
     }
     if (transition.beta) {
       wheel.rotation.z += Math.sin(phase(progress, 0, .27) * Math.PI) * .68
-      confetti.forEach((part, i) => {
-        const flight = (progress - .49 - (i % 4) * .022) / .46
-        part.visible = flight > 0 && flight < 1
-        if (!part.visible) return
-        const angle = i * 2.39996
-        part.position.set(1.45 + Math.cos(angle) * (.2 + flight * 1.45), .28 + Math.sin(flight * Math.PI) * (1.05 + (i % 3) * .17), -.65 + flight * 1.85 + Math.sin(angle) * .47)
-        part.rotation.set(flight * 2 + i, flight + i, flight * 2.5)
-      })
+      // The archive itself spills out: no unrelated confetti over the VHS.
     }
     if (progress >= 1) settleTransition()
   }
@@ -935,11 +921,16 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
       ? [[-7.5, .06, -1.85], [-3.1, Math.max(3.2, mailPapers.height + .2), 2.9]]
       : id === 'applications'
         ? [[3.2, .06, .28], [7.8, Math.max(3.15, dossierPapers.height + .2), 4.9]]
-        : [[-2.05, .06, -5.5], [2.9, 4.5, .05]]
+        : [[-2.05, .06, -5.5], [2.9, 4.5, .20]]
     return new THREE.Box3(new THREE.Vector3(...limits[0]), new THREE.Vector3(...limits[1]))
   }
   function inspectionView(id) {
-    if (width >= 1120) return { target: new THREE.Vector3(...stations[id]), zoom: Math.max(zoom, 2.35), rect: null }
+    if (width >= 1120) {
+      const target = new THREE.Vector3(...stations[id])
+      // Keep the new foreground spill above the dock, not just the vault in view.
+      if (id === 'beta') target.y -= .45
+      return { target, zoom: Math.max(zoom, 2.35), rect: null }
+    }
     // Keep these mobile drawer dimensions in sync with MemeBank.client.vue.
     // Controls occupy the top 64px, the sheet at most 46% of the actual canvas.
     const rect = window.innerWidth < 700
@@ -1123,7 +1114,6 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
     const beta = !previous.betaOpen && state.betaOpen
     const mailArrival = state.counts.newsletter > previous.counts.newsletter
     const dossierArrival = state.counts.applications > previous.counts.applications
-    confetti.forEach(part => { part.visible = false })
     mailSeal.scale.set(.095, .025, .095)
     receiptSeal.scale.setScalar(1)
     if (mayAnimate) {
@@ -1191,7 +1181,7 @@ export function createBankWorld(container, { onReady = () => {}, onError = () =>
       celebrations: { newsletter: Boolean(transition?.mail), applications: Boolean(transition?.stamp), beta: Boolean(transition?.beta) },
       arrivals: { newsletter: Boolean(transition?.mailArrival), applications: Boolean(transition?.dossierArrival) },
       employees: employees.map(actor => ({ id: actor.body.name, position: actor.body.getWorldPosition(new THREE.Vector3()).toArray(), yaw: actor.body.rotation.y, headPitch: actor.head.rotation.x })),
-      betaOpen: state.betaOpen, vaultContents: 'VHS',
+      betaOpen: state.betaOpen, vaultContents: 'VHS', vhs: tapes?.getDebug(),
       disposed, visible: active(), ambientTime, cameraFlying: Boolean(cameraFlight), focusedStation,
       controlsEnabled: controls?.enabled ?? false, rotationEnabled: controls?.enableRotate ?? false,
       labels: labelPositions.map(label => ({ ...label })),

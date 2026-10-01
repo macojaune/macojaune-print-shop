@@ -21,7 +21,7 @@ let previousFocus = null
 const steps = [
   { id: 'newsletter', number: 1, icon: 'mail', short: 'Le guichet déborde', title: 'Submerger le guichet', goal: BANK_GOALS.newsletter, unit: 'inscriptions newsletter', description: 'Le tube pneumatique livre les inscriptions au premier employé. Plus le courrier arrive, moins il regarde ailleurs.', effect: 'Les enveloppes s’empilent sur le comptoir, tombent au sol et attirent une file d’attente. Après l’objectif, la pile continue de monter.', action: 'Simuler une inscription newsletter' },
   { id: 'applications', number: 2, icon: 'file', short: 'Les dossiers s’emballent', title: 'Occuper le deuxième bureau', goal: BANK_GOALS.applications, unit: 'formulaires reçus', description: 'Chaque candidature rejoint le bureau du deuxième employé. Il tamponne. Il classe. Il perd de vue le coffre.', effect: 'Le tampon s’active, les dossiers envahissent le bureau et débordent après le quota. Reçu ne veut jamais dire admis.', action: 'Simuler un formulaire reçu' },
-  { id: 'beta', number: 3, icon: 'tape', short: 'Le coffre VHS', title: 'Ouvrir les archives', goal: 1, unit: 'ouverture explicite', description: 'Pendant que les deux bureaux font diversion, la porte révèle le vrai trésor : des cassettes vidéo, rien que des cassettes.', effect: 'Le coffre pivote, le tapis se déroule et une VHS sort des archives. Les deux employés restent occupés à leur bureau.' },
+  { id: 'beta', number: 3, icon: 'tape', short: 'Le coffre VHS', title: 'Ouvrir les archives', goal: 1, unit: 'ouverture explicite', description: 'Pendant que les deux bureaux font diversion, la porte révèle le vrai trésor : des cassettes vidéo, rien que des cassettes.', effect: 'Le coffre pivote, le tapis se déroule et plusieurs VHS dégringolent sur le tapis et le sol. Les deux employés restent occupés à leur bureau.' },
 ]
 const scenarios = [
   { id: 'discovered', title: 'Hall ouvert, guichets vides', text: 'Trois postes à découvrir, la diversion commence.' },
@@ -45,7 +45,7 @@ const situation = computed(() => {
   return newsletter + ' courriers · ' + applications + ' dossiers. La diversion prend forme.'
 })
 const sceneDescription = computed(() => props.state.betaOpen
-  ? 'Le coffre est ouvert : rayonnages, piles et cassette sur le tapis ne contiennent que des VHS. Deux employés font face à leurs bureaux, occupés par les piles.'
+  ? 'Le coffre est ouvert : des VHS garnissent les rayonnages et débordent sur le tapis et le sol. Deux employés font face à leurs bureaux, occupés par les piles.'
   : 'Une grande banque en coupe. Étape 1 à gauche : courrier et file d’attente. Étape 2 au deuxième bureau : dossiers reçus. Étape 3 au fond : coffre à VHS fermé.')
 const stepFor = id => steps.find(step => step.id === id)
 const markerLabel = id => { const step = stepFor(id); return step ? 'Étape ' + step.number + ' — ' + step.short + ', ' + countFor(step) + ' sur ' + step.goal : '' }

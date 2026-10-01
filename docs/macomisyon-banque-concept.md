@@ -64,7 +64,7 @@ Trois foyers visuels, trois fonctions :
 2. **Dossiers** : bureau, piles classées, tampon « REÇU ». Des personnes se proposent pour tester ; cela n’est pas une admission.
 3. **Coffre VHS** : porte ronde lourde, rayonnages et piles de cassettes. Ni argent, ni lingots, ni canapé, ni salon bêta. Le stock est illustratif, pas une statistique du catalogue réel.
 
-Les VHS ont une coque sombre, deux bobines et une étiquette claire. Quelques piles dépassent leur rangement : archives précieuses, gestion légèrement douteuse. Une cassette peut sortir sur le tapis avec toute la solennité d’un lingot.
+Après validation et sauvegarde de la base (`2f0d480`, tag `macomisyon/13-memebank-diversion`), Marvin a demandé des VHS plus reconnaissables et un coffre qui en laisse tomber plusieurs. Les coques sombres reprennent les proportions et détails moulés d’une VHS : deux fenêtres rectangulaires laissant voir les bobines, étiquette papier « MÈMES », marquage « VHS ». Sept cassettes dégringolent en cascade puis se stabilisent autour du tapis, tandis que 35 restent dans les archives : le stock est illustratif, pas une statistique réelle. Pas de son, de boucle physique ni de confettis ajoutés ; pause, mouvement réduit et restauration montrent directement le même arrangement final.
 
 ## Même langage que le hangar
 

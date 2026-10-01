@@ -3,7 +3,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 
 const baseURL = process.env.DEMO_URL || 'http://127.0.0.1:3000/macomisyon'
-const output = '.impeccable/review/bank'
+const output = process.env.BANK_REVIEW_DIR || '.impeccable/review/bank'
 await mkdir(output, { recursive: true })
 const browser = await chromium.launch({ headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] })
 const results = [], errors = []
@@ -152,12 +152,21 @@ try {
     assert.equal((await state(page)).counts.admitted, 0)
     await page.getByRole('button', { name: 'Simuler une invitation bêta', exact: true }).click()
     assert.equal((await state(page)).betaOpen, false)
+    assert.equal((await debug(page)).vhs.visibleSpillCount, 0)
     await page.getByRole('button', { name: 'Simuler l’ouverture bêta', exact: true }).click()
+    await settled(page, '.meme-bank', value => value.vhs.visibleSpillCount > 0 && value.vhs.visibleSpillCount < 7)
+    const airborne = (await debug(page)).vhs
+    assert.ok(airborne.poses.some(tape => tape.visible && tape.position[1] > .35))
     await finish(page)
+    assert.equal((await debug(page)).vhs.visibleSpillCount, 7)
     assert.equal((await debug(page)).panel, null)
     assert.ok(Math.abs((await debug(page)).vaultAngle) > 1)
     assert.match(await page.locator('.depot-status').innerText(), /VHS|coffre/)
     await capture(page, 'vault-vhs-open')
+    await choose(page, 'beta')
+    await close(page)
+    await finish(page)
+    await capture(page, 'vhs-closeup')
   })
   await test('Zoom and keyboard pan work in pause; memory survives a reload', async () => {
     await page.getByRole('button', { name: 'Mettre les animations en pause', exact: true }).click()
@@ -177,6 +186,8 @@ try {
     await finish(page)
     assert.equal((await state(page)).counts.newsletter, 13)
     assert.equal((await state(page)).betaOpen, true)
+    assert.equal((await debug(page)).vhs.visibleSpillCount, 7)
+    assert.equal((await debug(page)).vhs.spillCount, 7)
     assert.match(await page.locator('.depot-status').innerText(), /VHS|coffre/)
   })
   await test('Beyond scenario produces more chaos, people and continuing overflow', async () => {
@@ -241,6 +252,7 @@ try {
     assert.equal(await phone.locator('.bank-labels .world-label').count(), 3)
     assert.equal(await phone.evaluate(() => document.documentElement.scrollWidth > innerWidth), false)
     assert.match(await phone.locator('.depot-status').innerText(), /coffre/)
+    assert.equal((await debug(phone)).vhs.visibleSpillCount, 7)
     await capture(phone, 'mobile-vault')
     await phone.locator('.bank-labels [data-step="1"]').tap()
     await phone.getByRole('heading', { name: 'Submerger le guichet', exact: true }).waitFor()
@@ -250,6 +262,11 @@ try {
     await phone.getByRole('button', { name: 'Simuler une inscription newsletter', exact: true }).tap()
     assert.equal((await state(phone)).counts.newsletter, 33)
     await finish(phone)
+    // Logical state can settle before its single reduced-motion redraw is drained.
+    await settled(phone, '.meme-bank', value => !value.frameScheduled)
+    const reducedFrames = (await debug(phone)).renderCount
+    await phone.waitForTimeout(250)
+    assert.equal((await debug(phone)).renderCount, reducedFrames)
     assert.equal((await debug(phone)).frameScheduled, false)
     await choose(phone, 'beta')
     await phone.getByRole('button', { name: 'Bêta ouverte · simulation', exact: true }).scrollIntoViewIfNeeded()
@@ -258,6 +275,8 @@ try {
     await close(phone)
     await phone.getByRole('button', { name: 'Zoomer dans la banque', exact: true }).tap()
     assert.ok(cameraZoom(await debug(phone)) > 1)
+    await finish(phone)
+    await capture(phone, 'mobile-vhs-closeup')
     await phone.getByRole('button', { name: 'Recentrer la banque', exact: true }).tap()
   })
   await mobile.close()

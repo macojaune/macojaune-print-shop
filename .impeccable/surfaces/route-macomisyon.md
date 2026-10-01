@@ -35,13 +35,19 @@ THESIS: “Le casse du sérieux”, refined by Marvin into a diversion: bury bot
 
 OWN-WORLD: Inherit the isometric low-poly coast, paper stone, dark green ink, amber, Tanker and Space Grotesk. Four columns and a triangular pediment distinguish the anonymous exterior. No project name outside. No new global visual identity.
 
-STORY: Curiosity opens the hall (outside the three interior steps). Étape 1 is the newsletter/mail counter; Étape 2 is the applications desk; Étape 3 is the VHS vault. Both clerks stay at their desks, distracted by increasing piles and waiting clients. Mail and dossiers continue growing after their quotas, not merely their counters. Qualification and invitations stay separate. Only an explicit beta-opening event opens the vault onto shelves and stacks of VHS tapes: no tester lounge, cash or gold. A distinct cassette glides onto a clear part of the yellow carpet. Newsletter and applications progress independently.
+STORY: Curiosity opens the hall (outside the three interior steps). Étape 1 is the newsletter/mail counter; Étape 2 is the applications desk; Étape 3 is the VHS vault. Both clerks stay at their desks, distracted by increasing piles and waiting clients. Mail and dossiers continue growing after their quotas, not merely their counters. Qualification and invitations stay separate. Only an explicit beta-opening event opens the vault onto shelves and stacks of VHS tapes: no tester lounge, cash or gold. Recognizable VHS cases, with short readable paper labels, spill from the full vault and settle around the yellow carpet. Newsletter and applications progress independently.
 
 FIRST VIEWPORT: Existing coastal map with one added bank west of the bridge. Inside, a spacious cutaway with three anchored numbered hotspots (Étape 1 / 2 / 3), a bottom status/inventory dock, and the SAME mission/inventory/scenario panel styles as the hangar. No permanent side ledger. Mobile uses a compact bottom panel while keeping the selected station visible. Zoom, pan and station focus expose the details. A short-lived reaction leaves a persistent prop change.
 
 FORM: Local extension of the approved Three.js experience, code-led. No concept seed: user-selected bank metaphor and “Le casse du sérieux”, not a replacement world. Curiosity gate confirmed; all thresholds and actions are labelled local simulations.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## VHS refinement — approved base saved first
+
+The approved bank remains recoverable at commit `2f0d480`, tag `macomisyon/13-memebank-diversion`. Refinement is restricted to the VHS object and its opening sequence: real cassette proportions, molded dark case, two recessed tape windows, a readable “MÈMES” label and a small “VHS” mark. No changes to the three steps, shared hangar UI, clerks, queues, mission rules or exterior.
+
+Motion plan: the vault opening is the focal moment. Seven tapes tip, fall in a short cascade and settle at different angles near the runner, instead of one ceremonial object. Replace the generic paper confetti at this moment with the cassettes themselves. Keep the current opening duration, state continuity and explicit beta trigger. The models are allocated once, rigid meshes batched per material, with no extra simulation loop or physics dependency. Reduced motion, pause, hidden pages and a restored open state jump directly to the same settled arrangement. Inspect final desktop/mobile views together, correct in one batch if necessary, then confirm once.
 
 ## Memebank boundaries
 

@@ -132,3 +132,21 @@ Ne pas compiler dans le même dossier de build qu’un serveur de développement
 [Concept, règles et storyboard](<docs/macomisyon-banque-concept.md>) · [Archive visuelle de la banque](<docs/macomisyon/versions/13-memebank-diversion/README.md>)
 
 Cette validation reste celle d’une démo locale. Les objectifs réels, les consentements newsletter, la sélection des candidatures et les invitations ne sont pas branchés à un service réel ; aucun déploiement distant ni build Tina n’a été effectué.
+
+### Handoff — affinement VHS, variante approuvée et sauvegardée
+
+La base approuvée a été sauvée **avant** cet affinement : commit `2f0d480`, tag `macomisyon/13-memebank-diversion`. La nouvelle variante a été **approuvée le 1er octobre 2026 et sauvegardée sous le tag `macomisyon/14-vhs-debordantes`**, sans action distante. Mode **Experience**, héritage du hangar et progression inchangés : trois étapes, newsletter et candidatures parallèles, qualification/invitations distinctes, ouverture bêta explicite. Le diff fonctionnel et visuel est strictement limité aux VHS, à leurs descriptions et au cadrage bêta ; aucune nouvelle identité ni modification des tokens globaux ou du frontmatter. Le [contrat de surface](<.impeccable/surfaces/route-macomisyon.md#L46-L50>) et le [concept](<docs/macomisyon-banque-concept.md#L67>) suffisent à cette persistance locale, sans nouveau sidecar.
+
+**Réalisation et reprise technique.** [VHS procédurales](<app/lib/macomisyon/bank/tapes.js>) : proportions 1 × 0,55 × 0,14, coque noire moulée, deux fenêtres fumées, ruban brun-noir, petits moyeux dentés et grandes inscriptions « MÈMES » / « VHS ». Une texture Canvas opaque partagée de 1024 × 544, sans asset importé. Le coffre conserve 35 cassettes ; sept dégringolent, dont trois sur le tapis et quatre sur le carrelage, sans chevauchement final. Chute parabolique, bascule, départs décalés, petit rebond puis glisse remplacent les anciens confettis bêta. Allocations fixes, aucune RAF propre ; pause, mouvement réduit et restauration retrouvent la même pose finale. Les [tests VHS](<app/lib/macomisyon/bank/tapes.test.mjs>) couvrent ces invariants. Dans [le monde](<app/lib/macomisyon/bank/world.js#L679-L718>), `batchRigid` regroupe les éléments rigides ; [`inspectionView`](<app/lib/macomisyon/bank/world.js#L927-L952>) abaisse la cible bêta desktop de 0,45. Deux phrases de [Memebank](<app/components/macomisyon/MemeBank.client.vue#L24-L49>) décrivent désormais le débordement.
+
+Commande de reprise, sur le serveur déjà disponible :
+
+```sh
+BANK_REVIEW_DIR=.impeccable/review/bank-vhs node scripts/verify-memebank.mjs
+```
+
+**État transmis par le Lead, sans réexécution documentaire :** 84 tests unitaires et 12 contrôles E2E banque PASS après le dernier correctif ; lint et contrôle du diff PASS ; cadrages 390/740 px contrôlés. L’échec initial de timing `frameScheduled` en mouvement réduit est corrigé dans [la vérification](<scripts/verify-memebank.mjs#L265-L270>) : attendre le rendu unique, puis vérifier 250 ms sans nouvelle frame (PASS). Le nouveau build Nuxt CLI est encore en cours au moment du handoff : **résultat non confirmé**.
+
+Captures fraîches signalées par le Lead, non réinspectées ici : [détail VHS](<.impeccable/review/bank-vhs/vhs-closeup.png>), [coffre ouvert](<.impeccable/review/bank-vhs/vault-vhs-open.png>), [fiche mobile](<.impeccable/review/bank-vhs/mobile-ledger.png>). Archivage et confirmation du bundle de production restent au Lead ; cette passe ne lance ni serveur, navigateur, test ni build.
+
+**Confirmation finale du Lead :** build Nuxt CLI PASS, puis smoke test de production ordinateur/mobile PASS, sans erreur JavaScript ni d’hydratation. La revue indépendante confirme « ship » dans le périmètre VHS : étiquettes lisibles au zoom desktop, sept cassettes visibles, coffre plein, mobile préservé. Aucun score de détecteur CLI annoncé. Les [captures de la variante](<docs/macomisyon/versions/14-vhs-debordantes/README.md>) sont archivées avec provenance et pixels vérifiés identiques. Après validation utilisateur, l’affinement est sauvegardé dans un commit distinct, repéré par le tag `macomisyon/14-vhs-debordantes` ; le repère de la base précédente est conservé.
