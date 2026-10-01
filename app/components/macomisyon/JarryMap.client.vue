@@ -15,7 +15,8 @@
           class="jarry-marker"
           :class="{
             'is-offscreen': !marker.visible,
-            'is-open': placesById[marker.id].available,
+            'is-open': isAvailable(marker.id),
+            'is-beta-open': marker.id === 'memebank' && bankState?.betaOpen,
             'is-selected': selected === marker.id,
             'is-repaired': marker.id === 'quilivreou' && repaired,
           }"
@@ -28,7 +29,7 @@
           @click="emit('select', marker.id)"
         >
           <GameIcon :name="placesById[marker.id].icon" :size="24" />
-          <span v-if="placesById[marker.id].available" class="jarry-marker__light" aria-hidden="true" />
+          <span v-if="isAvailable(marker.id)" class="jarry-marker__light" aria-hidden="true" />
           <span class="jarry-marker__stem" aria-hidden="true" />
         </button>
       </template>
@@ -45,12 +46,14 @@ const props = defineProps({
   paused: { type: Boolean, default: false },
   active: { type: Boolean, default: true },
   repaired: { type: Boolean, default: false },
+  bankState: { type: Object, default: null },
   selected: { type: String, default: null },
 })
 const emit = defineEmits(['select', 'ready', 'error'])
 const surface = ref(null)
 const markers = ref([])
 const placesById = Object.fromEntries(places.map(place => [place.id, place]))
+const isAvailable = id => id === 'memebank' ? props.bankState?.completed?.includes('curiosity') : placesById[id]?.available
 let world = null
 let unmounted = false
 
@@ -69,6 +72,7 @@ onMounted(async () => {
     world.setPaused(props.paused)
     world.setActive(props.active)
     world.setRepaired(props.repaired)
+    world.setBankState(props.bankState)
     emit('ready')
   } catch (error) {
     world?.dispose()
@@ -80,6 +84,7 @@ onMounted(async () => {
 watch(() => props.paused, value => world?.setPaused(value))
 watch(() => props.active, value => world?.setActive(value))
 watch(() => props.repaired, value => world?.setRepaired(value))
+watch(() => props.bankState, value => world?.setBankState(value))
 
 onBeforeUnmount(() => {
   unmounted = true
@@ -113,6 +118,7 @@ defineExpose({
   transition: background-color 150ms, box-shadow 150ms;
 }
 .jarry-marker.is-open { background: #ffd33d; }
+.jarry-marker.is-beta-open { background: #c8df8e; }
 .jarry-marker.is-repaired { background: #c8df8e; }
 .jarry-marker:hover, .jarry-marker:focus-visible, .jarry-marker.is-selected {
   background: #fff0a7; box-shadow: 3px 4px 0 #223c40; outline: 3px solid #fff5cf; outline-offset: 3px; z-index: 2;

@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { BANK_POSITION, createBankExterior } from './bank/exterior.js'
 
 /** A fictional floating world whose coast and road hierarchy follow Marvin’s aerial references. */
 export function createJarryWorld(container, { onSelect = () => {}, onLabels = () => {}, onError = () => {}, onReady = () => {} } = {}) {
@@ -256,6 +257,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     for(let i=0;i<density;i++) {
       const x=minX+seeded(i*3+seed)*(maxX-minX),z=minZ+seeded(i*3+seed+1)*(maxZ-minZ)
       if(!insidePolygon(x,z,polygon)) continue
+      if(Math.abs(x-BANK_POSITION.x)<4.5 && Math.abs(z-BANK_POSITION.z)<4.4) continue
       const scale=0.52+seeded(i*3+seed+2)*0.52
       if(canopyOverlapsRoad(x,z,scale*1.3)) continue
       batch([scale*1.3,scale,scale*1.15],[x,scale*0.69,z],[0x427961,0x54886a,0x67956d,0x385f52][i%4],[0,i,0],'canopy')
@@ -286,8 +288,8 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   const roofColors=[0xa9b8ac,0xe2ddc3,0x71958d,0xccb69b,0xa1b4ad,0xddd8c1]
   // Aerial reading: long low sheds and offset blocks, denser east of the main junction.
   const industrialLots=[
-    [-34,-5,3.7,3,1.2,0.08],[-29,-5,3.4,3,1.5,0.08],[-24,-4.4,3.6,2.5,1.35,0.08],
-    [-34,-10,4.8,3,1.45,0.02],[-28,-10,4.0,2.8,1.2,0.02],
+    [-34,-5,3.7,3,1.2,0.08],
+    [-34,-10,4.8,3,1.45,0.02],
     [-11,-3.8,3,2.7,1.2,-0.24],[-7,-4.8,3,2.4,1.5,-0.2],[-3.1,-6.1,3.1,3,1.5,-0.16],
     [1.2,-7,3.2,3.2,1.35,-0.15],[5.2,-8,3.1,3.5,1.6,-0.15],
     [11.2,-9,3.2,3.3,1.4,-0.05],[16,-9,4,3,1.5,0],[20,-9,2.4,3,1.4,0],
@@ -314,7 +316,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     warehouse(x,z,1.9,1.4,0.95,i%3?0xbf8568:palette.paper,0xdfccb0,-0.2)
   }
   // Service yards, parked cars and loading lines carry industrial scale.
-  for(const [x,z] of [[-32,-7.4],[-27,-7.4],[2,2.9],[11,2.5],[19,1.7],[29,8.6]]) {
+  for(const [x,z] of [[2,2.9],[11,2.5],[19,1.7],[29,8.6]]) {
     for(let i=0;i<4;i++) {
       batch([0.62,0.3,1.25],[x+i*0.82,0.23,z],i%2?palette.paper:palette.teal)
       batch([0.45,0.18,0.55],[x+i*0.82,0.46,z-0.08],palette.ink)
@@ -322,6 +324,8 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     }
   }
   for(const [x,z] of [[-31,-23],[-28,-23],[-25,-23],[-39,0],[-33,2.3],[-21,-1.5],[-12,5],[-3,6],[6,5],[15,5],[22,6],[29,20],[37,24],[-20,-31]]) palm(x,z,0.66+seeded(x+z)*0.28,0.12)
+
+  const bank = createBankExterior({ scene, box, mesh, palette })
 
   // The warm warehouse is a physical clue. Its parcel pictogram contains no project name.
   const depot={x:-3.9,z:0.8}
@@ -449,13 +453,14 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   scene.add(alarmLight)
 
   const markerData=[
+    {id:'memebank',position:new THREE.Vector3(BANK_POSITION.x,5.1,BANK_POSITION.z)},
     {id:'quilivreou',position:new THREE.Vector3(depot.x,4.0,depot.z)},
     {id:'shootareas',position:new THREE.Vector3(studio.x,3.3,studio.z)},
     {id:'zikak',position:new THREE.Vector3(workshop.x,3.1,workshop.z)},
   ]
-  const targets={quilivreou:new THREE.Vector3(depot.x,0.6,depot.z),shootareas:new THREE.Vector3(studio.x,0.5,studio.z),zikak:new THREE.Vector3(workshop.x,0.5,workshop.z)}
+  const targets={memebank:new THREE.Vector3(BANK_POSITION.x,1,BANK_POSITION.z),quilivreou:new THREE.Vector3(depot.x,0.6,depot.z),shootareas:new THREE.Vector3(studio.x,0.5,studio.z),zikak:new THREE.Vector3(workshop.x,0.5,workshop.z)}
   const pickables=[]
-  for(const [id,size,pos] of [['quilivreou',[7,4.5,6],[depot.x,2,depot.z]],['shootareas',[5,3.5,4.5],[studio.x,1.5,studio.z]],['zikak',[4.5,3.3,4],[workshop.x,1.5,workshop.z]]]) {
+  for(const [id,size,pos] of [['memebank',[7,5,6],[BANK_POSITION.x,2.5,BANK_POSITION.z]],['quilivreou',[7,4.5,6],[depot.x,2,depot.z]],['shootareas',[5,3.5,4.5],[studio.x,1.5,studio.z]],['zikak',[4.5,3.3,4],[workshop.x,1.5,workshop.z]]]) {
     const hit=mesh(cube,palette.paper,pos,scene,{transparent:true,opacity:0,depthWrite:false})
     hit.scale.set(...size)
     hit.castShadow=false
@@ -507,6 +512,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   }
   function updateAnimation(dt) {
     elapsed+=dt
+    bank.update(dt)
     for(const [vehicle,t,reverse] of [[traffic,(elapsed*0.016)%1,false],[traffic2,(elapsed*0.013+0.4)%1,true]]) {
       const progress=reverse?1-t:t
       const point=boulevardCurve.getPointAt(progress),tangent=boulevardCurve.getTangentAt(progress)
@@ -658,7 +664,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   function motionChange(event) {
     reducedMotion=event.matches
     lastTime=0
-    if(reducedMotion) finishTween()
+    if(reducedMotion) {finishTween();bank.settle()}
     requestRender()
   }
   function contextLost(event) {
@@ -707,9 +713,10 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     resetView() {return moveTo(initialTarget,1)},
     zoomBy,
     getView() {return {target:controls.target.toArray(),zoom:camera.zoom}},
-    getDebug() {return {active,requestedActive,contextIsLost,paused,reducedMotion,repaired,disposed,renderCount,view:{target:controls.target.toArray(),zoom:camera.zoom},frameScheduled:!!frameId,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures}},
+    getDebug() {return {bank:bank.getDebug(),active,requestedActive,contextIsLost,paused,reducedMotion,repaired,disposed,renderCount,view:{target:controls.target.toArray(),zoom:camera.zoom},frameScheduled:!!frameId,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures}},
     setView(view) {if(view?.target?.length===3) return moveTo(new THREE.Vector3(...view.target),THREE.MathUtils.clamp(view.zoom||1,controls.minZoom,controls.maxZoom));return Promise.resolve()},
-    setPaused(value) {paused=value;lastTime=0;requestRender()},
+    setPaused(value) {paused=value;lastTime=0;if(value) bank.settle();requestRender()},
+    setBankState(state) {bank.setState(state,{animate:active&&!paused&&!reducedMotion});requestRender()},
     setActive,
     setRepaired(value) {
       repaired=value

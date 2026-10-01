@@ -2,6 +2,12 @@
 withDefaults(defineProps<{ name: string; size?: number }>(), { size: 20 })
 
 const paths: Record<string, string> = {
+  bank: 'm2 8 10-5 10 5H2Zm2 12h16M2 23h20M5 11v6m5-6v6m4-6v6m5-6v6',
+  chat: 'M3 4h18v12H9l-6 5V4Zm4 4h10M7 12h6',
+  mail: 'M3 5h18v14H3V5Zm0 1 9 7 9-7',
+  file: 'M5 3h10l4 4v14H5V3Zm10 0v5h4M8 12h8m-8 4h6',
+  tape: 'M3 5h18v14H3V5Zm4 3h10v6H7V8Zm2 2v2m6-2v2M8 19v-2h8v2',
+  check: 'm4 12 5 5L20 5',
   parcel: 'm3 7 9-4 9 4v10l-9 4-9-4V7Zm0 0 9 4 9-4m-9 4v10M7 5l9 4v5',
   camera: 'M3 7h5l2-3h5l2 3h4v13H3V7Zm13 6a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z',
   arrow: 'M5 12h14m-6-6 6 6-6 6',

@@ -1,6 +1,10 @@
 # Maco'misyon dans Nuxt
 
-La première intégration se trouve à `/macomisyon`. Elle rassemble la carte extérieure de Jarry et le Dépôt Q de QuiLivreOù. C'est une démo locale à compteurs fictifs, sans connexion aux comptes utilisateurs, aux événements de QuiLivreOù, à Zikak ou aux publications sociales.
+L’intégration se trouve à `/macomisyon`. Elle rassemble la carte extérieure, le Dépôt Q de QuiLivreOù et la banque de Memebank. C’est une démo locale à compteurs fictifs, sans connexion aux comptes utilisateurs, aux événements des produits, à Zikak ou aux publications sociales.
+
+## Document de référence
+
+Le lien Drive est déjà connu : [Maco’misyon · Synthèse fondatrice](https://drive.google.com/file/d/1JGOO_S5Ht72q_g-UE3ZMAHN6rTAYkUq6/view). La section 25 décrit Memebank ; elle a été relue le 1 octobre 2026 via l’accès Drive local existant. Si le lien web demande une connexion, cela ne signifie pas que l’URL manque. Le [brainstorming et storyboard de la banque](macomisyon-banque-concept.md) distingue la source, les choix confirmés et les valeurs illustratives.
 
 ## Reprendre ici
 
@@ -23,7 +27,7 @@ Pour comparer une étape sans changer la branche de travail : `git show <repère
 
 1. Arrivée dans un monde isométrique sans nom, dont le littoral et les grands axes suivent les références aériennes de Jarry.
 2. Déplacement et zoom avec le toucher, la souris ou le clavier. La liste des lieux donne le même accès sans sélectionner un objet 3D.
-3. Sélection d’un pictogramme, indice sur le lieu, puis entrée au hangar qui révèle QuiLivreOù et son Dépôt Q.
+3. Sélection d’un pictogramme et indice sur le lieu. Le hangar révèle QuiLivreOù ; la banque révèle Memebank après son palier de curiosité simulé.
 4. Exploration des Komisyon, de leurs indices et des scénarios de démonstration.
 5. Retour à la carte sans perdre le cadrage précédent.
 
@@ -42,6 +46,12 @@ L'intérieur est adressable par `/macomisyon?lieu=depot-q`. Le bouton Retour au 
 | `app/lib/macomisyon/depot/props.js` | Objets procéduraux : Fenwick, cartons, rayonnages |
 | `app/lib/macomisyon/depot/model.js` | Compteurs distincts, dépendances et sauvegarde locale |
 | `app/lib/macomisyon/depot/ambient.js` | Horloges, signaux et tournée du Fenwick |
+| `app/components/macomisyon/MemeBank.client.vue` | Trois points d’étapes, panneaux cohérents avec le hangar et simulations |
+| `app/assets/css/macomisyon-interior.css` | Styles communs des docks, fiches, jauges et carnets du hangar et de la banque |
+| `app/lib/macomisyon/bank/model.js` | Curiosité, newsletter, dossiers, qualification, invitations et ouverture explicite |
+| `app/lib/macomisyon/bank/exterior.js` | Façade à colonnes, rideau et conséquences sur la map |
+| `app/lib/macomisyon/bank/world.js` | Grand intérieur en coupe, employés, clients, files, courrier, dossiers et coffre VHS animé |
+| `app/lib/macomisyon/bank/progression.js` | Volume des piles et dépassements logarithmiques indépendants des quotas |
 
 Le rendu Three.js reçoit un état. Les règles de contribution restent dans le modèle, sans dépendre de la scène. Cette séparation permettra de remplacer la sauvegarde locale par un état issu du serveur.
 
@@ -69,8 +79,9 @@ Utiliser la version Node du projet indiquée dans `.nvmrc`, puis installer les d
 ```sh
 bun install --frozen-lockfile
 node node_modules/nuxt/bin/nuxt.mjs dev --host 127.0.0.1 --port 3000 --dotenv .env
-node --test app/lib/macomisyon/depot/*.test.mjs
+node --experimental-default-type=module --test app/lib/macomisyon/depot/*.test.mjs app/lib/macomisyon/bank/*.test.mjs
 node scripts/verify-macomisyon.mjs
+node scripts/verify-memebank.mjs
 ```
 
 Le lancement Nuxt direct permet de vérifier Maco'misyon sans régénérer l'inventaire des images ni démarrer l'éditeur Tina. Le script habituel `npm run dev` conserve sa fonction complète pour le reste du site.
@@ -97,3 +108,27 @@ La revue indépendante a comparé les vues bureau, mobile et le détail du girat
 La compilation Nuxt a été rejouée après la dernière correction. Le serveur compilé confirme le parcours monde anonyme, indice du hangar, révélation du projet, puis retour anonyme, sans erreur JavaScript ni erreur d'hydratation détectée.
 
 Le montage côté navigateur suit le [fonctionnement des composants Nuxt](https://nuxt.com/docs/4.x/directory-structure/app/components). Le HTML initial contient le titre, les explications et l'accès au projet avant le chargement des scènes.
+
+### Memebank — validation du 1er octobre 2026
+
+- 77 tests unitaires ; 12 parcours banque et 10 parcours carte/hangar réussis.
+- Trois étapes numérotées, styles du hangar réellement partagés, employés et clients ; la croissance géométrique après quota est contrôlée, pas seulement les chiffres.
+- Mobile 390 px et largeur intermédiaire 740 px : coins du poste hors fiche, commandes de zoom accessibles, défilement interne, aucun débordement horizontal.
+- Lint ciblé et `git diff --check` réussis. Build Nuxt CLI final réussi avec Node 22.15.0 ; avertissements existants de source maps, taille de chunks et base Browserslist ancienne, sans erreur de compilation.
+- Smoke test du bundle compilé sur ordinateur et téléphone : garde de curiosité, étapes, dépassement, scénarios, sauvegarde, zoom et retour carte, sans erreur JavaScript ou d’hydratation. Le script public ne dépend pas de l’inspection Vue de développement.
+- Revue indépendante : version ordinateur conforme ; masquage mobile corrigé, puis confirmation des deux écarts restants avec disposition « ship ». Détecteur CLI indisponible, aucun score annoncé.
+
+Après le build, attendre le message d’écoute du serveur avant le smoke test :
+
+```sh
+node node_modules/nuxt/bin/nuxt.mjs build
+HOST=127.0.0.1 PORT=3000 node --env-file=.env .output/server/index.mjs
+# Dans un autre terminal, lorsque le serveur est prêt :
+npm run test:memebank:production
+```
+
+Ne pas compiler dans le même dossier de build qu’un serveur de développement actif. Utiliser la commande Nuxt CLI, et non l’essai d’API programmatique isolée (initialisation Stylus incompatible avec ce lancement ESM).
+
+[Concept, règles et storyboard](<docs/macomisyon-banque-concept.md>) · [Archive visuelle de la banque](<docs/macomisyon/versions/13-memebank-diversion/README.md>)
+
+Cette validation reste celle d’une démo locale. Les objectifs réels, les consentements newsletter, la sélection des candidatures et les invitations ne sont pas branchés à un service réel ; aucun déploiement distant ni build Tina n’a été effectué.

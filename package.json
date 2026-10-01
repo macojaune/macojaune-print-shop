@@ -17,6 +17,9 @@
     "generate": "npm run images:sync && nuxi generate",
     "preview": "nuxi preview",
     "lint": "eslint .",
+    "test:macomisyon": "node --experimental-default-type=module --test app/lib/macomisyon/depot/*.test.mjs app/lib/macomisyon/bank/*.test.mjs",
+    "test:memebank:browser": "node scripts/verify-memebank.mjs",
+    "test:memebank:production": "node scripts/smoke-memebank-production.mjs",
     "upload:pictures": "node scripts/upload-pictures-to-r2.mjs",
     "upload:wallpaper-pack": "node scripts/upload-wallpaper-pack.mjs"
   },

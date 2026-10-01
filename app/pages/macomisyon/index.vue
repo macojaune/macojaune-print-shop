@@ -2,6 +2,7 @@
 import GameIcon from '../../components/macomisyon/GameIcon.vue'
 import { createStore } from '../../lib/macomisyon/depot/model.js'
 import { places } from '../../lib/macomisyon/places.js'
+import { BANK_GOALS, createBankStore } from '../../lib/macomisyon/bank/model.js'
 
 definePageMeta({ layout: false, pageTransition: false })
 useSeoMeta({
@@ -15,7 +16,15 @@ type MapHandle = { focusProject: (id: string) => Promise<unknown>; resetView: ()
 const route = useRoute()
 const router = useRouter()
 const map = ref<MapHandle | null>(null)
+const bankState = ref(createBankStore({ storage: null }).getState())
+const bankLoaded = ref(false)
+const bankUnlocked = computed(() => bankState.value.completed.includes('curiosity'))
 const inDepot = computed(() => route.query.lieu === 'depot-q')
+const inBank = computed(() => route.query.lieu === 'bank' && bankUnlocked.value)
+const interior = computed(() => inDepot.value ? 'depot-q' : inBank.value ? 'bank' : null)
+const inInterior = computed(() => !!interior.value)
+let bankStore: ReturnType<typeof createBankStore> | undefined
+let unsubscribeBank: (() => void) | undefined
 const selected = ref<string | null>(null)
 const panel = ref<'places' | 'help' | null>(null)
 const paused = ref(false)
@@ -25,29 +34,35 @@ const depotRepaired = ref(false)
 const entering = ref(false)
 const liveMessage = ref('')
 const enterButton = ref<HTMLButtonElement | null>(null)
+const curiosityButton = ref<HTMLButtonElement | null>(null)
 const backButton = ref<HTMLButtonElement | null>(null)
 let alive = true
 let savedMapView: MapView | undefined
 
-const currentPlace = computed(() => places.find(place => place.id === selected.value))
+const worldPlaces = computed(() => places.map(place => place.id === 'memebank' ? { ...place, available: bankUnlocked.value, description: bankUnlocked.value ? 'Le rideau est levé. On entend un drôle de remue-ménage derrière le guichet. Entre pour découvrir ce qui se cache ici.' : place.description } : place))
+const currentPlace = computed(() => worldPlaces.value.find(place => place.id === selected.value))
 
 onMounted(() => {
   try { paused.value = localStorage.getItem('macomisyon-motion') === 'paused' } catch { /* Storage is optional. */ }
   depotRepaired.value = createStore().getState().repaired
+  bankStore = createBankStore()
+  bankState.value = bankStore.getState()
+  bankLoaded.value = true
+  unsubscribeBank = bankStore.subscribe(next => { bankState.value = next })
 })
-onBeforeUnmount(() => { alive = false })
+onBeforeUnmount(() => { alive = false; unsubscribeBank?.() })
 watch(paused, value => {
   try { localStorage.setItem('macomisyon-motion', value ? 'paused' : 'running') } catch { /* Storage is optional. */ }
 })
-watch(inDepot, async value => {
+watch(interior, async (value, previous) => {
   panel.value = null
-  if (!value && !selected.value) selected.value = 'quilivreou'
+  if (!value) selected.value = previous === 'bank' ? 'memebank' : 'quilivreou'
   await nextTick()
   if (!alive) return
   if (value) backButton.value?.focus({ preventScroll: true })
   else {
     if (savedMapView) await map.value?.setView(savedMapView)
-    if (alive) enterButton.value?.focus({ preventScroll: true })
+    if (alive) (enterButton.value || curiosityButton.value)?.focus({ preventScroll: true })
   }
 })
 
@@ -57,24 +72,47 @@ async function selectPlace(id: string) {
   panel.value = null
   await map.value?.focusProject(id)
   if (!alive) return
-  liveMessage.value = currentPlace.value?.available ? 'Le hangar est repéré. Tu peux entrer.' : `${currentPlace.value?.name}. Ce lieu est encore fermé.`
+  liveMessage.value = `${currentPlace.value?.name}. ${currentPlace.value?.available ? 'Tu peux entrer.' : 'Ce lieu est encore fermé.'}`
 }
 
-async function enterDepot() {
-  if (entering.value) return
+async function enterPlace() {
+  if (entering.value || !currentPlace.value?.available || !currentPlace.value.interior) return
+  const place = currentPlace.value
   entering.value = true
   savedMapView = map.value?.getView()
   try {
-    if (!mapError.value) await map.value?.focusProject('quilivreou')
+    if (!mapError.value) await map.value?.focusProject(place.id)
     if (!alive) return
-    await router.push({ path: '/macomisyon', query: { ...route.query, lieu: 'depot-q' } })
+    await router.push({ path: '/macomisyon', query: { ...route.query, lieu: place.interior } })
   } finally { entering.value = false }
 }
 
-function leaveDepot() {
+function leavePlace() {
   const query = { ...route.query }
   delete query.lieu
   return router.push({ path: '/macomisyon', query })
+}
+
+watch([() => route.query.lieu, bankUnlocked, bankLoaded], ([lieu, unlocked, ready]) => {
+  if (ready && lieu === 'bank' && !unlocked) {
+    selected.value = 'memebank'
+    const query = { ...route.query }; delete query.lieu
+    void router.replace({ path: '/macomisyon', query })
+  }
+}, { immediate: true })
+
+async function bankAction(action: string, id?: string) {
+  const wasUnlocked = bankUnlocked.value
+  if (action === 'contribute' && id) bankStore?.contribute(id)
+  else if (action === 'qualify') bankStore?.qualify()
+  else if (action === 'invite') bankStore?.invite()
+  else if (action === 'openBeta') bankStore?.openBeta()
+  else if (action === 'scenario' && id) bankStore?.loadScenario(id)
+  if (!wasUnlocked && bankUnlocked.value) {
+    liveMessage.value = 'Palier simulé atteint. Le rideau se lève : tu peux entrer dans la banque.'
+    await nextTick()
+    if (alive && !inInterior.value) enterButton.value?.focus({ preventScroll: true })
+  } else if (id === 'curiosity') liveMessage.value = `${bankState.value.counts.curiosity} visites simulées sur ${BANK_GOALS.curiosity}.`
 }
 
 function resetMap() {
@@ -90,30 +128,24 @@ function togglePanel(next: 'places' | 'help') {
 
 <template>
   <main class="maco-game" @keydown.esc="panel = null">
-    <!-- THESIS: Real coastal geography becomes a fictional world, with projects discovered inside buildings.
-    OWN-WORLD: Macojaune amber and Tanker, sage industrial game panels, a turquoise island.
-    STORY: Explore the unnamed world, inspect a landmark, enter the warehouse to reveal its project.
-    FIRST VIEWPORT: A full-height miniature framed by a compact title, camera controls and one project dock.
-    FORM: Extension of the approved Depot Q game, code-first interactive Three.js scene.
-    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->
-    <a class="game-skip" href="#project-access">Aller aux lieux</a>
+    <a class="game-skip" :href="inBank ? '#bank-missions' : '#project-access'">{{ inBank ? 'Aller aux Komisyon' : 'Aller aux lieux' }}</a>
     <header class="game-header">
       <NuxtLink to="/" class="site-return" aria-label="Retour sur Macojaune"><GameIcon name="back" /><span>Macojaune</span></NuxtLink>
       <h1>Maco’misyon<span aria-hidden="true">.</span></h1>
       <span class="demo-stamp">Démo<span>en construction</span></span>
     </header>
 
-    <section class="game-console" :class="{ 'is-depot': inDepot }" aria-label="Le monde de Maco’misyon">
+    <section class="game-console" :class="{ 'is-interior': inInterior }" aria-label="Le monde de Maco’misyon">
       <div class="console-topline">
-        <button v-if="inDepot" ref="backButton" class="world-back" type="button" @click="leaveDepot"><GameIcon name="back" />Retour au monde</button>
+        <button v-if="inInterior" ref="backButton" class="world-back" type="button" @click="leavePlace"><GameIcon name="back" />Retour au monde</button>
         <span v-else class="world-address"><span class="signal-dot" aria-hidden="true" />Exploration libre</span>
         <button class="motion-control" type="button" :aria-pressed="paused" :aria-label="paused ? 'Reprendre les animations' : 'Mettre les animations en pause'" @click="paused = !paused"><GameIcon :name="paused ? 'play' : 'pause'" :size="16" />{{ paused ? 'Reprendre' : 'Pause' }}</button>
       </div>
 
       <div class="game-stage">
-        <div v-show="!inDepot" class="world-layer">
+        <div v-show="!inInterior" class="world-layer">
           <ClientOnly>
-            <MacomisyonJarryMap ref="map" :paused="paused" :active="!inDepot" :repaired="depotRepaired" :selected="selected" @select="selectPlace" @ready="loaded = true; mapError = false" @error="mapError = true" />
+            <MacomisyonJarryMap ref="map" :paused="paused" :active="!inInterior" :bank-state="bankState" :repaired="depotRepaired" :selected="selected" @select="selectPlace" @ready="loaded = true; mapError = false" @error="mapError = true" />
           </ClientOnly>
           <div v-if="!loaded && !mapError" class="world-loading" aria-live="polite"><strong>On ouvre la carte.</strong><span>Les lumières s’allument.</span></div>
           <div v-if="mapError" class="world-loading world-fallback" role="status"><GameIcon name="map" :size="40" /><strong>La vue 3D est indisponible.</strong><span>La vue 3D n’a pas démarré. Tu peux quand même ouvrir les lieux et leurs Komisyon.</span><button type="button" class="game-button" @click="togglePanel('places')">Voir les lieux</button></div>
@@ -132,7 +164,7 @@ function togglePanel(next: 'places' | 'help') {
           <section v-if="panel === 'places'" id="places-panel" class="map-panel" aria-labelledby="places-title">
             <div class="panel-title"><h2 id="places-title">Les lieux</h2><button type="button" aria-label="Fermer les lieux" @click="panel = null"><GameIcon name="close" /></button></div>
             <p>Des portes à pousser, des indices à suivre. Choisis un lieu pour t’en approcher.</p>
-            <ul><li v-for="place in places" :key="place.id"><button type="button" class="place-row" @click="selectPlace(place.id)"><span class="place-letter" :class="{ muted: !place.available }"><GameIcon :name="place.icon" :size="24" /></span><span><strong>{{ place.name }}</strong><small>{{ place.available ? 'Une porte est ouverte' : 'Encore fermé' }}</small></span><GameIcon :name="place.available ? 'arrow' : 'lock'" :size="18" /></button></li></ul>
+            <ul><li v-for="place in worldPlaces" :key="place.id"><button type="button" class="place-row" @click="selectPlace(place.id)"><span class="place-letter" :class="{ muted: !place.available }"><GameIcon :name="place.icon" :size="24" /></span><span><strong>{{ place.name }}</strong><small>{{ place.available ? 'Une porte est ouverte' : 'Encore fermé' }}</small></span><GameIcon :name="place.available ? 'arrow' : 'lock'" :size="18" /></button></li></ul>
           </section>
           <section v-if="panel === 'help'" id="help-panel" class="map-panel help-panel" aria-labelledby="help-title">
             <div class="panel-title"><h2 id="help-title">À toi d’explorer</h2><button type="button" aria-label="Fermer l’aide" @click="panel = null"><GameIcon name="close" /></button></div>
@@ -143,25 +175,34 @@ function togglePanel(next: 'places' | 'help') {
           </section>
         </div>
 
+        <ClientOnly v-if="inBank">
+          <LazyMacomisyonMemeBank :paused="paused" :state="bankState" @action="bankAction" />
+          <template #fallback><div class="world-loading"><strong>On pousse la porte.</strong><span>Le sérieux est sous surveillance.</span></div></template>
+        </ClientOnly>
         <ClientOnly v-if="inDepot">
           <LazyMacomisyonDepotQ :paused="paused" @state-change="depotRepaired = $event.repaired" />
           <template #fallback><div class="world-loading"><strong>La porte s’ouvre.</strong><span>La cargaison arrive.</span></div></template>
         </ClientOnly>
       </div>
 
-      <div v-show="!inDepot" id="project-access" class="project-dock" tabindex="-1">
+      <div v-show="!inInterior" id="project-access" class="project-dock" tabindex="-1">
         <span class="dock-emblem" aria-hidden="true"><GameIcon :name="currentPlace?.icon || 'map'" :size="30" /></span>
         <div class="dock-copy">
           <h2>{{ currentPlace ? currentPlace.name : 'Un monde à découvrir.' }}</h2>
           <p>{{ currentPlace ? currentPlace.description : 'Touche un repère pour t’en approcher et découvrir ce qu’il abrite.' }}</p>
         </div>
-        <button v-if="currentPlace?.available" ref="enterButton" type="button" class="enter-depot" :disabled="entering" @click="enterDepot">{{ entering ? 'On y va…' : 'Entrer au dépôt' }}<GameIcon name="arrow" /></button>
+        <button v-if="currentPlace?.available" ref="enterButton" type="button" class="enter-depot" :disabled="entering" @click="enterPlace">{{ entering ? 'On y va…' : currentPlace.enterLabel }}<GameIcon name="arrow" /></button>
+        <div v-else-if="selected === 'memebank'" class="bank-curiosity">
+          <span>Curiosité · {{ bankState.counts.curiosity }} / {{ BANK_GOALS.curiosity }} visites simulées</span>
+          <button ref="curiosityButton" type="button" class="enter-depot" :disabled="!bankLoaded" @click="bankAction('contribute', 'curiosity')">Simuler une visite<GameIcon name="plus" /></button>
+          <small>Quota de démo. Aucun suivi réel de visites.</small>
+        </div>
         <button v-else-if="currentPlace" type="button" class="closed-place" @click="selectPlace('quilivreou')"><GameIcon name="lock" :size="16" />Lieu fermé<span>Approcher le hangar</span></button>
         <button v-else type="button" class="enter-depot" @click="togglePanel('places')">Explorer les lieux<GameIcon name="map" /></button>
       </div>
     </section>
 
-    <footer class="game-footer"><span>{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : 'Des lieux familiers. Une autre histoire.' }}</span><span>Première exploration · données de démo</span></footer>
+    <footer class="game-footer"><span>{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : 'Des lieux familiers. Une autre histoire.' }}</span><span>Première exploration · données de démo</span></footer>
     <p class="game-live" aria-live="polite">{{ liveMessage }}</p>
     <noscript>Active JavaScript pour explorer ce monde, entrer dans ses bâtiments et découvrir leurs Komisyon.</noscript>
   </main>
@@ -225,6 +266,9 @@ function togglePanel(next: 'places' | 'help') {
 .dock-copy p { margin: 6px 0 0; color: #cfdbc9; max-width: 62ch; font-size: 12px; line-height: 1.5; }
 .enter-depot { display: flex; align-items: center; justify-content: center; gap: 20px; min-height: 50px; flex-shrink: 0; padding: 10px 20px; border: 0; background: var(--game-yellow); color: #143c3e; font-size: 13px !important; font-weight: 700 !important; }
 .enter-depot:hover { background: #ffe292; }
+.bank-curiosity { display: grid; gap: 6px; min-width: 250px; color: var(--game-paper); }
+.bank-curiosity > span { font-size: 12px; font-variant-numeric: tabular-nums; }
+.bank-curiosity small { font-size: 10px; color: #cfdbc9; }
 .closed-place { border: 0; background: transparent; color: #d4dfce; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 5px 10px; flex-wrap: wrap; max-width: 160px; font-size: 12px !important; }
 .closed-place span { display: block; color: var(--game-yellow); font-size: 10px; }
 .game-footer { min-height: 45px; max-width: 1480px; width: 100%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #b4c1b5; font-size: 10px; }
@@ -253,6 +297,7 @@ function togglePanel(next: 'places' | 'help') {
   .dock-emblem { width: 43px; height: 43px; font-size: 38px; }
   .dock-copy h2 { font-size: 23px; }
   .dock-copy p { font-size: 11px; line-height: 1.4; margin-top: 5px; }
+  .bank-curiosity { grid-column: 1 / -1; min-width: 0; }
   .enter-depot, .closed-place { grid-column: 1 / -1; min-height: 44px; width: 100%; max-width: none; font-size: 12px !important; }
   .closed-place span { font-size: 11px; }
   .game-footer { padding: 0 15px; min-height: 28px; font-size: 8px; gap: 8px; }

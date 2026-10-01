@@ -145,3 +145,15 @@ The Macojaune wordmark uses Tanker and amber. Supporting navigation uses Space G
 - **Don't** set paragraphs or operational copy in Tanker.
 - **Don't** round every block into a generic card.
 - **Don't** use animation, color, or image position as the only way to communicate state.
+
+## OBSERVATION — Variante locale Maco’misyon — héritage du Dépôt Q
+
+Cette observation décrit une extension ordinaire du jeu existant, non une nouvelle identité Macojaune. Le frontmatter, les tokens et toutes les règles globales ci-dessus restent inchangés, notamment Amber Signal, Two-Voice, Phone Order et Flat Field. Les valeurs locales constatées ne deviennent pas de nouveaux tokens globaux et cette documentation n’autorise aucune modification de l’identité du site.
+
+Les intérieurs emploient l’encre vert sombre (`--depot-ink`, #1a302a), le papier sable (`--depot-sand`, #f6edce), le jaune d’action (`--depot-yellow`, #ffcf43) et la menthe des étapes accomplies (`--depot-mint`, #b6d4b8). La banque pose sa miniature sur un fond sauge (#d6dfc7). Ces couleurs prolongent les matériaux de la carte et du hangar ; elles ne remplacent pas le noir, l’ambre et le blanc des pages ordinaires. Les bandeaux et panneaux sombres portent les textes clairs ; Tanker reste réservé aux titres et compteurs, Space Grotesk aux explications et commandes.
+
+[Dépôt Q](<app/components/macomisyon/DepotQ.client.vue#L231>) et [Memebank](<app/components/macomisyon/MemeBank.client.vue#L200>) chargent exactement la même [feuille de styles intérieure](<app/assets/css/macomisyon-interior.css>). Dock, inventaire, fiche de mission, compteur, jauge et scénarios héritent donc d’une source commune, pas d’une nouvelle famille de cartes. Les adaptations propres à la banque, dont la fiche mobile défilante et le cadrage d’inspection, restent locales ; leurs réserves de place sont couplées en source, avec les limites de validation consignées dans le [rapport documentaire](<.impeccable/review/bank/documentation-review.md>).
+
+À l’extérieur, les pictogrammes, silhouettes et indices laissent les projets anonymes ; « La banque » ne révèle Memebank qu’à l’intérieur. La coupe spacieuse distingue Étape 1, Étape 2 et Étape 3. Deux employés restent absorbés par leurs bureaux, des clients attendent, et le volume de courrier et de dossiers augmente encore après les quotas. Le coffre montre uniquement des VHS, y compris la cassette sur le tapis, sans argent, lingots ni salon de testeurs. Les compteurs et actions sont des simulations locales : aucune inscription newsletter, invitation ou admission réelle n’est créée. Ce constat de scène n’étend pas les règles des autres pages.
+
+Drift préexistant signalé, non réparé : le sidecar `.impeccable/design.json` est absent (glob puis tentative de lecture). Aucun sidecar, seed ou système global de remplacement n’est créé pour cette extension.
