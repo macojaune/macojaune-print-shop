@@ -1,7 +1,50 @@
 <template>
   <section class="links-page px-4 pb-12">
     <div class="mx-auto flex w-full max-w-[32rem] flex-col gap-3 lg:max-w-[72rem] lg:gap-4">
-      <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div class="grid gap-2.5 lg:grid-cols-1">
+        <a
+          v-for="(link, index) in decoratedLinks"
+          :key="link.url"
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-umami-event="LinkClick"
+          data-umami-section="primary_links"
+          :data-umami-label="link.text || 'Lien externe'"
+          :data-umami-position="index + 1"
+          data-umami-surface="link_page"
+          class="link-interaction group relative overflow-hidden border border-white/10 px-3.5 py-3 text-left transition duration-300 hover:-translate-y-0.5 hover:border-amber-300/32 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-4 sm:py-3.5"
+          :class="index === 0 ? 'min-h-[7.3rem] lg:min-h-[8.7rem]' : 'min-h-[6.1rem] lg:min-h-[7.1rem]'"
+        >
+          <div
+            class="absolute inset-0 opacity-100 transition duration-300 group-hover:opacity-90"
+            :style="{ background: link.background }"
+          />
+          <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.06),rgba(12,10,9,0.3)_46%,rgba(12,10,9,0.82))]" />
+
+          <div class="relative z-10 flex h-full flex-col">
+            <div class="mt-auto pt-1.5">
+              <div class="flex items-end justify-between gap-3">
+                <h3
+                  class="font-display uppercase text-white"
+                  :class="index === 0 ? 'text-[1.78rem] leading-[0.92] sm:text-[2.1rem]' : 'text-[1.42rem] leading-[0.94] sm:text-[1.7rem]'"
+                >
+                  {{ link.text }}
+                </h3>
+              </div>
+
+              <p
+                v-if="link.description"
+                class="mt-1.5 text-[0.88rem] leading-5 text-stone-100/88"
+              >
+                {{ link.description }}
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
         <a
           v-for="social in socialLinks"
           :key="social.href"
@@ -12,10 +55,9 @@
           data-umami-section="social_links"
           :data-umami-label="social.label"
           data-umami-surface="link_page"
-          class="inline-flex min-h-11 items-center justify-between border border-white/10 bg-black/30 px-3 py-2 text-[11px] uppercase tracking-[0.22em] text-stone-100 transition hover:border-amber-300/35 hover:bg-amber-300/10 hover:text-amber-100"
+          class="link-interaction inline-flex min-h-11 items-center justify-center border border-white/10 bg-black/30 px-3 py-2 text-[11px] uppercase tracking-[0.22em] text-stone-100 transition hover:border-amber-300/35 hover:bg-amber-300/10 hover:text-amber-100"
         >
           <span>{{ social.label }}</span>
-          <span aria-hidden="true" class="text-sm leading-none text-amber-300/80">↗</span>
         </a>
       </div>
 
@@ -41,55 +83,6 @@
             En lire plus
           </NuxtLink>
         </div>
-      </div>
-
-      <div class="grid gap-2.5 lg:grid-cols-2">
-        <a
-          v-for="(link, index) in decoratedLinks"
-          :key="link.url"
-          :href="link.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-umami-event="LinkClick"
-          data-umami-section="primary_links"
-          :data-umami-label="link.text || 'Lien externe'"
-          :data-umami-position="index + 1"
-          data-umami-surface="link_page"
-          class="group relative overflow-hidden border border-white/10 px-3.5 py-3 text-left transition duration-300 hover:-translate-y-0.5 hover:border-amber-300/32 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-4 sm:py-3.5"
-          :class="index === 0 ? 'min-h-[7.3rem] lg:min-h-[8.7rem]' : 'min-h-[6.1rem] lg:min-h-[7.1rem]'"
-        >
-          <div
-            class="absolute inset-0 opacity-100 transition duration-300 group-hover:opacity-90"
-            :style="{ background: link.background }"
-          />
-          <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.06),rgba(12,10,9,0.3)_46%,rgba(12,10,9,0.82))]" />
-
-          <div class="relative z-10 flex h-full flex-col">
-            <div class="mt-auto pt-1.5">
-              <div class="flex items-end justify-between gap-3">
-                <h3
-                  class="font-display uppercase text-white"
-                  :class="index === 0 ? 'text-[1.78rem] leading-[0.92] sm:text-[2.1rem]' : 'text-[1.42rem] leading-[0.94] sm:text-[1.7rem]'"
-                >
-                  {{ link.text }}
-                </h3>
-                <span
-                  aria-hidden="true"
-                  class="inline-flex h-7 w-7 shrink-0 items-center justify-center border border-black/25 bg-black/30 text-sm text-amber-100 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:h-8 sm:w-8 sm:text-base"
-                >
-                  ↗
-                </span>
-              </div>
-
-              <p
-                v-if="link.description"
-                class="mt-1.5 text-[0.88rem] leading-5 text-stone-100/88"
-              >
-                {{ link.description }}
-              </p>
-            </div>
-          </div>
-        </a>
       </div>
 
       <div class="space-y-3 lg:hidden">
@@ -405,14 +398,6 @@ const data = computed<LinkEntry[]>(() => {
 
 const aboutExcerpt = 'Je suis un grand curieux, un touche-à-tout. Ma passion pour la beauté m’a naturellement conduit vers la photographie, un médium qui me permet de retranscrire et de partager ma vision du monde, simplement, un instant à la fois.'
 
-if (import.meta.client) {
-  watchEffect(() => {
-    if (data.value.length === 1 && data.value[0]?.url) {
-      window.location.href = data.value[0].url
-    }
-  })
-}
-
 const cardBackgrounds = [
   'linear-gradient(135deg, rgba(180,83,9,0.95), rgba(120,53,15,0.88) 58%, rgba(28,25,23,0.98))',
   'linear-gradient(135deg, rgba(21,128,61,0.96), rgba(6,95,70,0.88) 56%, rgba(12,10,9,0.98))',
@@ -423,7 +408,6 @@ const cardBackgrounds = [
 
 const socialLinks = [
   { label: 'Instagram', href: 'https://instagram.com/macojaune' },
-  { label: 'YouTube', href: 'https://www.youtube.com/@macojaune' },
   { label: 'Twitter', href: 'https://twitter.com/macojaune' },
 ]
 
@@ -490,3 +474,22 @@ const decoratedLinks = computed(() =>
   })),
 )
 </script>
+
+<style scoped>
+.link-interaction {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms, background-color 220ms;
+}
+.link-interaction:active {
+  transform: scale(0.985);
+}
+.link-interaction:focus-visible {
+  outline: 2px solid #fcd34d;
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-interaction {
+    transition: none;
+    transform: none !important;
+  }
+}
+</style>
