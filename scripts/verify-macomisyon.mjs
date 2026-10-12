@@ -70,7 +70,7 @@ try {
   await test('Locked project gives a clue without opening an interior', async () => {
     await page.getByRole('button', { name: 'Les lieux', exact: true }).click()
     await page.locator('.place-row').filter({ hasText: 'La maison sur l’eau' }).click()
-    await settle(page, '.jarry-map', value => !value?.view || Math.abs(value.view.zoom - 3.6) < 0.01)
+    await settle(page, '.jarry-map', value => value?.selectedProject === 'shootareas' && !value.cameraFlying && value.view.zoom > 1)
     assert.match(await page.locator('.dock-copy').innerText(), /studio/)
     assert.doesNotMatch(await page.locator('.maco-game').innerText(), /Jarry|La Jaille|QuiLivreOù|Shootareas|Zikak/)
     assert.equal(await page.locator('.depot-q').count(), 0)

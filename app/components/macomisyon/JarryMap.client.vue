@@ -26,7 +26,7 @@
           :aria-label="`${placesById[marker.id].name}, ${marker.id === 'quilivreou' && repaired ? 'activité reprise, ' : ''}explorer ce lieu`"
           :aria-pressed="selected === marker.id"
           :title="placesById[marker.id].name"
-          @click="emit('select', marker.id)"
+          @click="selectMarker($event, marker.id)"
         >
           <GameIcon :name="placesById[marker.id].icon" :size="24" />
           <span v-if="isAvailable(marker.id)" class="jarry-marker__light" aria-hidden="true" />
@@ -57,6 +57,10 @@ const isAvailable = id => id === 'memebank' ? props.bankState?.completed?.includ
 let world = null
 let unmounted = false
 
+// Pointer taps are handled with the map gesture so a drag starting on a marker
+// never also selects it. Keyboard activation still uses the native button.
+const selectMarker = (event, id) => { if (event.detail === 0 || !world) emit('select', id) }
+
 const markerStyle = marker => ({ left: `${marker.x}px`, top: `${marker.y}px` })
 
 onMounted(async () => {
@@ -84,6 +88,7 @@ onMounted(async () => {
 watch(() => props.paused, value => world?.setPaused(value))
 watch(() => props.active, value => world?.setActive(value))
 watch(() => props.repaired, value => world?.setRepaired(value))
+watch(() => props.selected, value => world?.setSelected(value))
 watch(() => props.bankState, value => world?.setBankState(value))
 
 onBeforeUnmount(() => {
@@ -104,7 +109,7 @@ defineExpose({
 
 <style scoped>
 .jarry-map, .jarry-map__surface, .jarry-map__labels { position: absolute; inset: 0; }
-.jarry-map { overflow: hidden; isolation: isolate; }
+.jarry-map { touch-action: none; overflow: hidden; isolation: isolate; }
 .jarry-map__surface { touch-action: none; cursor: grab; }
 .jarry-map__surface:active { cursor: grabbing; }
 .jarry-map__surface:focus-visible { outline: 3px solid #d4aa20; outline-offset: -5px; }

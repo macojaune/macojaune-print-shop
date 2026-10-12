@@ -151,6 +151,7 @@ function togglePanel(next: 'places' | 'help') {
           <div v-if="mapError" class="world-loading world-fallback" role="status"><GameIcon name="map" :size="40" /><strong>La vue 3D est indisponible.</strong><span>La vue 3D n’a pas démarré. Tu peux quand même ouvrir les lieux et leurs Komisyon.</span><button type="button" class="game-button" @click="togglePanel('places')">Voir les lieux</button></div>
 
           <div class="map-title" aria-hidden="true"><span>Terre<br>inconnue.</span><small>À toi d’explorer.</small></div>
+          <a class="map-attribution" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
           <div class="map-tools" aria-label="Commandes de la carte">
             <button type="button" title="Zoomer" aria-label="Zoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1.2)"><GameIcon name="plus" /></button>
             <button type="button" title="Dézoomer" aria-label="Dézoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1 / 1.2)"><GameIcon name="minus" /></button>
@@ -230,6 +231,7 @@ function togglePanel(next: 'places' | 'help') {
 .world-back { font-weight: 600 !important; }
 .game-stage { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #cae0ca; }
 .world-layer { position: absolute; inset: 0; }
+.map-attribution { position: absolute; right: 8px; bottom: 5px; padding: 3px 5px; color: #173b3c; background: #f1ebd3e8; font-size: 9px; line-height: 1.4; text-decoration: underline; text-underline-offset: 2px; }
 .map-title { position: absolute; left: 30px; top: 23px; color: #143c3e; pointer-events: none; }
 .map-title > span { display: block; font: 400 clamp(32px, 3.5vw, 52px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
 .map-title small { display: block; font-size: 12px; line-height: 1.4; margin-top: 10px; }
@@ -290,7 +292,7 @@ function togglePanel(next: 'places' | 'help') {
   .map-title > span { font-size: 32px; }
   .map-title small { font-size: 10px; margin-top: 6px; }
   .map-tools { right: 12px; top: 15px; }
-  .map-tools button { height: 40px; width: 40px; }
+  .map-tools button { height: 44px; width: 44px; }
   .map-tabs { left: 14px; bottom: 13px; }
   .map-panel { left: 14px; bottom: 65px; width: calc(100% - 28px); padding: 16px; }
   .project-dock { display: grid; grid-template-columns: 43px 1fr; gap: 8px 13px; padding: 13px 16px max(14px, env(safe-area-inset-bottom)); min-height: 150px; }

@@ -1,10 +1,13 @@
+import { PROJECT_SITES } from '../jarry-geography.js'
 import * as THREE from 'three'
 
 // Resources are owned by Jarry's shared mesh/material helpers and disposed with it.
-export const BANK_POSITION = { x: -26, z: -7 }
+export const BANK_POSITION = PROJECT_SITES.memebank
+export const BANK_SCALE = 0.55
 export function createBankExterior({ scene, box, mesh, palette }) {
   const root = new THREE.Group()
   root.position.set(BANK_POSITION.x, 0, BANK_POSITION.z)
+  root.scale.setScalar(BANK_SCALE)
   scene.add(root)
   const stone = 0xe6dec2
   const brass = 0xd2a345

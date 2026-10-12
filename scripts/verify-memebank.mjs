@@ -87,7 +87,7 @@ try {
     await page.reload({ waitUntil: 'domcontentloaded' })
     await page.getByRole('button', { name: 'Les lieux', exact: true }).click()
     await page.locator('.place-row').filter({ hasText: 'La banque' }).click()
-    await settled(page, '.jarry-map', value => Math.abs(value.view.zoom - 3.6) < .01)
+    await settled(page, '.jarry-map', value => value.selectedProject === 'memebank' && !value.cameraFlying && value.view.zoom > 1)
     assert.ok((await page.locator('.bank-curiosity').innerText()).includes('0 / 10'))
     await capture(page, 'exterior-locked')
   })
