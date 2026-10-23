@@ -1,5 +1,7 @@
 # Géographie réelle, monde imaginaire
 
+La [reprise du 22 octobre 2026](macomisyon-jarry-relief.md) ajoute le terrain IGN, densifie le bâti OSM et affiche les vrais noms des rues au rapprochement. Elle remplace les limites de sélection et de hauteur du rendu du 12 octobre décrites plus bas. Les contours du quartier, les rues, les surfaces végétales et les quatre lieux restent conservés.
+
 Le décor reprend les formes réelles de Jarry pour qu'une personne qui connaît les lieux puisse les reconnaître. L'emprise approuvée le 12 octobre 2026 couvre toute la zone de l'entrée de La Jaille jusqu'à la pointe et au port, avec la mangrove et le littoral. L'interface conserve le monde anonyme : elle ne le nomme ni Jarry ni La Jaille. Les bâtiments des projets et leurs activités restent fictifs.
 
 ## Géographie utilisée depuis le 12 octobre 2026

@@ -1,5 +1,7 @@
 # Sources géographiques de Maco’misyon
 
+**Mise à jour du 22 octobre 2026 :** la [reprise du relief et du bâti](macomisyon-jarry-relief.md) décrit la version actuelle. Les bâtiments ont été réimportés seuls : 5 693 empreintes, hauteurs avec provenance et sans plafond de sélection. Le contexte OSM, son emprise, ses routes et sa végétation restent ceux décrits ci-dessous. Les paragraphes sur les 1 500 bâtiments et leurs 44 hauteurs documentent l'export historique du 12 octobre, pas le fichier actuel.
+
 Le décor utilise un extrait vectoriel OpenStreetMap de Jarry, de La Jaille à la pointe portuaire. Le fichier consommé par l’application est [`app/lib/macomisyon/data/jarry-osm.json`](../app/lib/macomisyon/data/jarry-osm.json). Les noms, bâtiments et transformations propres aux projets restent une création du monde Maco’misyon, sans correspondance avec des établissements réellement installés à ces emplacements.
 
 La géométrie sert à reconnaître la péninsule, les routes et la mangrove. Elle ne constitue pas un relevé cadastral, un inventaire complet des bâtiments, une information de circulation ou une mesure des hauteurs actuelles.

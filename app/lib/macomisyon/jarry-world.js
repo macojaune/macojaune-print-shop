@@ -2,14 +2,19 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { PROJECT_SITES, WORLD_BOUNDS } from './jarry-geography.js'
 import { createJarryTerrain } from './jarry-terrain.js'
+import { createJarryLandmarks } from './jarry-landmarks.js'
+import { createJarryRoadworks } from './jarry-roadworks.js'
+import { LANDMARK_SITES } from './jarry-landmark-sites.js'
+import { groundHeight, padPoint, siteFoundations, siteHeights } from './jarry-elevation.js'
+import { projectStreetLabels } from './jarry-streets.js'
 import { BANK_POSITION, BANK_SCALE, createBankExterior } from './bank/exterior.js'
 
 /** A playable miniature on the real Jarry footprint; project buildings remain fictional. */
-export function createJarryWorld(container, { onSelect = () => {}, onLabels = () => {}, onError = () => {}, onReady = () => {} } = {}) {
+export function createJarryWorld(container, { onSelect = () => {}, onLabels = () => {}, onStreetLabels = () => {}, onError = () => {}, onReady = () => {} } = {}) {
   const palette = {
-    ink: 0x283e45, road: 0x384f52, asphalt: 0x516a68, paper: 0xf6edd6,
+    ink: 0x283e45, road: 0x606966, asphalt: 0x7a817b, paper: 0xf6edd6,
     yellow: 0xffd23f, yellowDark: 0xdba527, sand: 0xd8ae78, clay: 0xab7152,
-    ground: 0xa9c39c, pavement: 0xcecfb0, teal: 0x329c9b, sea: 0x63c5ba,
+    ground: 0xa9c39c, pavement: 0xcecfb0, teal: 0x329c9b, sea: 0x75afa9,
     coral: 0xef8056, green: 0x4b8763, leaf: 0x71aa66, grey: 0x839690,
   }
   const scene = new THREE.Scene()
@@ -20,7 +25,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
   renderer.outputColorSpace = THREE.SRGBColorSpace
   renderer.toneMapping = THREE.ACESFilmicToneMapping
-  renderer.toneMappingExposure = 1.23
+  renderer.toneMappingExposure = 1.06
   renderer.domElement.setAttribute('aria-hidden', 'true')
   renderer.domElement.setAttribute('data-jarry-canvas', '')
   container.appendChild(renderer.domElement)
@@ -36,7 +41,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   controls.enableDamping = false
   controls.screenSpacePanning = false
   controls.minZoom = 0.6
-  controls.maxZoom = 24
+  controls.maxZoom = 48
   controls.zoomSpeed = 0.85
   controls.panSpeed = 0.8
   controls.mouseButtons.LEFT = THREE.MOUSE.PAN
@@ -45,8 +50,8 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   controls.touches.TWO = THREE.TOUCH.DOLLY_PAN
   controls.update()
 
-  scene.add(new THREE.HemisphereLight(0xfbf3d9, 0x779f99, 2.3))
-  const sun = new THREE.DirectionalLight(0xfff3d6, 3.6)
+  scene.add(new THREE.HemisphereLight(0xfbf3d9, 0x779f99, 1.8))
+  const sun = new THREE.DirectionalLight(0xfff3d6, 2.8)
   sun.position.set(-100, 240, 100)
   sun.castShadow = true
   sun.shadow.mapSize.set(2048, 2048)
@@ -64,7 +69,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   const textures = new Set()
   const batches = new Map()
   const cube = new THREE.BoxGeometry(1, 1, 1)
-  const cylinder = new THREE.CylinderGeometry(1, 1, 1, 8)
+  const cylinder = new THREE.CylinderGeometry(1, 1, 1, 5)
   geometries.add(cube)
   geometries.add(cylinder)
   function material(color, extra = {}) {
@@ -96,7 +101,8 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     dummy.updateMatrix()
     batches.get(key).matrices.push(dummy.matrix.clone())
   }
-  const canopy = new THREE.DodecahedronGeometry(1,0)
+  const siteBatch = id => (size, [x, y, z], ...rest) => batch(size, [x, y + siteHeights[id], z], ...rest)
+  const canopy = new THREE.IcosahedronGeometry(1,0)
   geometries.add(canopy)
   const roofProfile = new THREE.Shape()
   roofProfile.moveTo(-0.5,0)
@@ -108,9 +114,9 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   geometries.add(roofGeometry)
   const batchGeometries={box:cube,cylinder,canopy,roof:roofGeometry}
 
-  function warehouse(x,z,width,depth,height,roofColor,wallColor=palette.paper,angle=0) {
+  function warehouse(x,z,width,depth,height,roofColor,wallColor=palette.paper,angle=0,groundY=groundHeight(x,z)) {
     const rotate=(dx,dz)=>[x+dx*Math.cos(angle)+dz*Math.sin(angle),z-dx*Math.sin(angle)+dz*Math.cos(angle)]
-    const block=(size,dx,y,dz,color,kind='box')=>{const [px,pz]=rotate(dx,dz);batch(size,[px,y,pz],color,[0,angle,0],kind)}
+    const block=(size,dx,y,dz,color,kind='box')=>{const [px,pz]=rotate(dx,dz);batch(size,[px,y+groundY,pz],color,[0,angle,0],kind)}
     block([width+0.35,0.1,depth+0.35],0,0.09,0,palette.pavement)
     block([width,height,depth],0,height/2+0.17,0,wallColor)
     const roofH=Math.min(width*0.15,0.52)
@@ -122,42 +128,57 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   }
   const terrain = createJarryTerrain({ scene, mesh, batch, palette })
   const boulevardCurve = terrain.trafficCurve
+  const landmarks = createJarryLandmarks(LANDMARK_SITES)
+  scene.add(landmarks.group)
+  const roadworks = createJarryRoadworks()
+  scene.add(roadworks.group)
 
-  const bank = createBankExterior({ scene, box, mesh, palette })
+  for (const [id, pads] of Object.entries(siteFoundations)) for (const pad of pads) {
+    const [x, z] = padPoint(PROJECT_SITES[id], pad, 0, 0)
+    const bottom = pad.min - .025, top = siteHeights[id] + pad.bottom + .005
+    batch([pad.width, top - bottom, pad.depth], [x, (top + bottom) / 2, z], palette.pavement, [0, pad.angle || 0, 0])
+  }
+
+  const bank = createBankExterior({ scene, box, mesh, palette, groundY: siteHeights.memebank })
 
   // The warm warehouse is a physical clue. Its parcel pictogram contains no project name.
   const depot=PROJECT_SITES.quilivreou
-  warehouse(depot.x,depot.z,5.8,4.8,2.25,palette.yellow)
-  batch([6.6,0.06,1.8],[depot.x,0.13,depot.z+3.1],0xc0c3a6)
-  for(let x=depot.x-2.6;x<depot.x+2.9;x+=1.15) batch([0.045,0.025,1.3],[x,0.18,depot.z+3],palette.paper)
+  const depotBatch=siteBatch('quilivreou')
+  warehouse(depot.x,depot.z,5.8,4.8,2.25,palette.yellow,palette.paper,0,siteHeights.quilivreou)
+  depotBatch([6.6,0.06,1.8],[depot.x,0.13,depot.z+3.1],0xc0c3a6)
+  for(let x=depot.x-2.6;x<depot.x+2.9;x+=1.15) depotBatch([0.045,0.025,1.3],[x,0.18,depot.z+3],palette.paper)
   // A little taped parcel sits on the roof like a toy-model landmark.
-  batch([1.2,0.95,1.1],[depot.x,3.29,depot.z],0xd4a25f,[0,0.12,0])
-  batch([0.18,0.018,1.15],[depot.x,3.78,depot.z],palette.paper,[0,0.12,0])
-  batch([1.21,0.018,0.17],[depot.x,3.79,depot.z],palette.paper,[0,0.12,0])
+  depotBatch([1.2,0.95,1.1],[depot.x,3.29,depot.z],0xd4a25f,[0,0.12,0])
+  depotBatch([0.18,0.018,1.15],[depot.x,3.78,depot.z],palette.paper,[0,0.12,0])
+  depotBatch([1.21,0.018,0.17],[depot.x,3.79,depot.z],palette.paper,[0,0.12,0])
   for(let i=0;i<8;i++) {
     const x=depot.x-2.4+(i%2)*0.5,z=depot.z+2.7+Math.floor(i/4)*0.53,y=0.42+(Math.floor(i/2)%2)*0.48
-    batch([0.45,0.46,0.46],[x,y,z],i%3?0xc99458:0xe2b875)
-    batch([0.1,0.018,0.47],[x,y+0.24,z],0xf4dc9d)
+    depotBatch([0.45,0.46,0.46],[x,y,z],i%3?0xc99458:0xe2b875)
+    depotBatch([0.1,0.018,0.47],[x,y+0.24,z],0xf4dc9d)
   }
   // A seaside pavilion hints at image-making, with no name or giant brand initial.
   const studio=PROJECT_SITES.shootareas
-  batch([5.1,0.17,3.5],[studio.x,0.14,studio.z],palette.pavement)
-  batch([3.8,1.55,2.55],[studio.x,0.98,studio.z],0xf0d8bd)
-  batch([4.15,0.2,2.9],[studio.x,1.88,studio.z],0xe89277)
-  batch([2.65,1.18,0.08],[studio.x,0.99,studio.z+1.32],0x577473)
-  batch([0.08,1.2,0.15],[studio.x,1.0,studio.z+1.37],palette.paper)
-  batch([0.85,0.61,0.62],[studio.x,2.31,studio.z],palette.ink)
-  const lens=mesh(new THREE.CylinderGeometry(0.29,0.29,0.4,16),0x95bfc1,[studio.x,2.32,studio.z+0.49])
+  const studioBatch=siteBatch('shootareas')
+  studioBatch([5.1,0.17,3.5],[studio.x,0.14,studio.z],palette.pavement)
+  studioBatch([3.8,1.55,2.55],[studio.x,0.98,studio.z],0xf0d8bd)
+  studioBatch([4.15,0.2,2.9],[studio.x,1.88,studio.z],0xe89277)
+  studioBatch([2.65,1.18,0.08],[studio.x,0.99,studio.z+1.32],0x577473)
+  studioBatch([0.08,1.2,0.15],[studio.x,1.0,studio.z+1.37],palette.paper)
+  studioBatch([0.85,0.61,0.62],[studio.x,2.31,studio.z],palette.ink)
+  const lens=mesh(new THREE.CylinderGeometry(0.29,0.29,0.4,16),0x95bfc1,[studio.x,siteHeights.shootareas+2.32,studio.z+0.49])
   lens.rotation.x=Math.PI/2
   for(let i=0;i<3;i++) {
-    batch([0.55,0.08,1.1],[studio.x+2.5+i*0.72,0.24,studio.z+0.3],palette.paper)
-    batch([0.45,0.05,0.45],[studio.x+2.5+i*0.72,0.4,studio.z-0.05],palette.coral,[-0.5,0,0])
+    const x=studio.x+2.5+i*0.72, y=groundHeight(x,studio.z+.3)
+    batch([0.55,0.08,1.1],[x,y+0.24,studio.z+0.3],palette.paper)
+    batch([0.45,0.05,0.45],[x,y+0.4,studio.z-0.05],palette.coral,[-0.5,0,0])
+    for(const dz of [-.1,.7]) batch([.4,.2,.08],[x,y+.1,studio.z+dz],palette.paper)
   }
   const workshop=PROJECT_SITES.zikak
-  warehouse(workshop.x,workshop.z,3.4,2.7,1.5,palette.grey,0xa9b9ad,0.1)
-  batch([3.4,0.14,0.16],[workshop.x,0.65,workshop.z+1.6],palette.ink)
-  for(let i=0;i<5;i++) batch([0.24,0.28,0.2],[workshop.x-1.4+i*0.65,0.65,workshop.z+1.62],palette.yellow,[0,0,0.4])
-  const disk=mesh(new THREE.CylinderGeometry(0.52,0.52,0.15,12),0xb3bdad,[workshop.x,2.52,workshop.z])
+  const workshopBatch=siteBatch('zikak')
+  warehouse(workshop.x,workshop.z,3.4,2.7,1.5,palette.grey,0xa9b9ad,0.1,siteHeights.zikak)
+  workshopBatch([3.4,0.14,0.16],[workshop.x,0.65,workshop.z+1.6],palette.ink)
+  for(let i=0;i<5;i++) workshopBatch([0.24,0.28,0.2],[workshop.x-1.4+i*0.65,0.65,workshop.z+1.62],palette.yellow,[0,0,0.4])
+  const disk=mesh(new THREE.CylinderGeometry(0.52,0.52,0.15,12),0xb3bdad,[workshop.x,siteHeights.zikak+2.52,workshop.z])
   disk.rotation.x=Math.PI/2
 
   // Two stylised cranes stand inland of actual quay vertices. They add relief without
@@ -165,7 +186,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   const quayAngle=-0.72
   const quayPoint=(x,z,dx,dz)=>[x+dx*Math.cos(quayAngle)+dz*Math.sin(quayAngle),z-dx*Math.sin(quayAngle)+dz*Math.cos(quayAngle)]
   for(const [x,z] of [[106.9,57.0],[94.7,70.9]]) {
-    const block=(size,dx,y,dz,color)=>{const [px,pz]=quayPoint(x,z,dx,dz);batch(size,[px,y,pz],color,[0,quayAngle,0])}
+    const block=(size,dx,y,dz,color)=>{const [px,pz]=quayPoint(x,z,dx,dz);batch(size,[px,y+groundHeight(x,z),pz],color,[0,quayAngle,0])}
     for(const dx of [-0.8,0.8]) {
       for(const dz of [-1.1,1.1]) block([0.16,3.5,0.16],dx,1.9,dz,palette.yellow)
       block([0.22,0.24,2.6],dx,3.7,0,palette.yellow)
@@ -174,13 +195,13 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   }
   const hookOrigin=quayPoint(106.9,57.0,2.4,0)
   const craneHook=new THREE.Group()
-  craneHook.position.set(hookOrigin[0],2.8,hookOrigin[1])
+  craneHook.position.set(hookOrigin[0],2.8+groundHeight(106.9,57),hookOrigin[1])
   box([0.04,1.6,0.04],[0,0,0],palette.ink,craneHook)
   box([0.25,0.18,0.16],[0,-0.85,0],palette.ink,craneHook)
   scene.add(craneHook)
   const boat=new THREE.Group()
   const boatPosition=quayPoint(108.67,58.24,3.4,0)
-  boat.position.set(boatPosition[0],-0.43,boatPosition[1])
+  boat.position.set(boatPosition[0],-0.11,boatPosition[1])
   boat.rotation.y=quayAngle
   box([1.8,0.66,6.9],[0,0.24,0],palette.ink,boat)
   box([1.82,0.23,6.8],[0,0.6,0],palette.paper,boat)
@@ -205,10 +226,10 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     return group
   }
   const delivery=truck(palette.yellow,0.42)
-  delivery.position.set(depot.x+1.5,0.12,depot.z+3)
+  delivery.position.set(depot.x+1.5,siteHeights.quilivreou+0.12,depot.z+3)
   delivery.rotation.y=Math.PI/2
-  const traffic=truck(palette.coral,0.36)
-  const traffic2=truck(0x7ba8a4,0.31)
+  const traffic=truck(palette.coral,0.095)
+  const traffic2=truck(0x7ba8a4,0.09)
   for(const {color,kind,matrices} of batches.values()) {
     const instanced=new THREE.InstancedMesh(batchGeometries[kind],material(color),matrices.length)
     matrices.forEach((matrix,index)=>instanced.setMatrixAt(index,matrix))
@@ -221,7 +242,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   materials.set('beacon',beaconMaterial)
   const beacon=new THREE.Mesh(new THREE.CylinderGeometry(0.19,0.22,0.29,12),beaconMaterial)
   geometries.add(beacon.geometry)
-  beacon.position.set(depot.x+2.45,2.7,depot.z+1.9)
+  beacon.position.set(depot.x+2.45,siteHeights.quilivreou+2.7,depot.z+1.9)
   scene.add(beacon)
   const alarmLight=new THREE.PointLight(0xff7733,7,7,2)
   alarmLight.position.copy(beacon.position)
@@ -233,10 +254,13 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     {id:'shootareas',position:new THREE.Vector3(studio.x,3.3,studio.z)},
     {id:'zikak',position:new THREE.Vector3(workshop.x,3.1,workshop.z)},
   ]
-  const targets={memebank:new THREE.Vector3(BANK_POSITION.x,0,BANK_POSITION.z),quilivreou:new THREE.Vector3(depot.x,0,depot.z),shootareas:new THREE.Vector3(studio.x,0,studio.z),zikak:new THREE.Vector3(workshop.x,0,workshop.z)}
-  const pickables=[]
+  for(const marker of markerData) marker.position.y+=siteHeights[marker.id]
+  markerData.push(...landmarks.markers)
+  const targets={...Object.fromEntries(Object.entries(PROJECT_SITES).map(([id,site])=>[id,new THREE.Vector3(site.x,siteHeights[id],site.z)])),...landmarks.targets}
+  const pickables=[...landmarks.pickables]
   for(const [id,size,pos] of [['memebank',[7*BANK_SCALE,5*BANK_SCALE,6*BANK_SCALE],[BANK_POSITION.x,2.5*BANK_SCALE,BANK_POSITION.z]],['quilivreou',[7,4.5,6],[depot.x,2,depot.z]],['shootareas',[5,3.5,4.5],[studio.x,1.5,studio.z]],['zikak',[4.5,3.3,4],[workshop.x,1.5,workshop.z]]]) {
     const hit=mesh(cube,palette.paper,pos,scene,{transparent:true,opacity:0,depthWrite:false})
+    hit.position.y+=siteHeights[id]
     hit.scale.set(...size)
     hit.castShadow=false
     hit.receiveShadow=false
@@ -268,11 +292,12 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   const raycaster=new THREE.Raycaster()
   const pointer=new THREE.Vector2()
   let previousLabels=[]
+  let streetView=''
 
   function publishLabels() {
-    const labels=markerData.map(({id,position})=>{
+    const labels=markerData.map(({id,position,selectedOnly,labelOffset=0})=>{
       projection.copy(position).project(camera)
-      return {id,x:(projection.x+1)*width/2,y:(1-projection.y)*height/2,visible:Math.abs(projection.x)<1.08&&Math.abs(projection.y)<1.08&&projection.z<1}
+      return {id,x:(projection.x+1)*width/2,y:(1-projection.y)*height/2-labelOffset,visible:(!selectedOnly||id===selectedProject)&&Math.abs(projection.x)<1.08&&Math.abs(projection.y)<1.08&&projection.z<1}
     })
     // Keep touch targets at their readable size. At overview scale only display
     // non-overlapping landmarks; every place remains in the ordinary place list.
@@ -286,6 +311,11 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     if(labels.some((label,index)=>!previousLabels[index]||Math.abs(label.x-previousLabels[index].x)>0.2||Math.abs(label.y-previousLabels[index].y)>0.2||label.visible!==previousLabels[index].visible)) {
       previousLabels=labels
       onLabels(labels)
+    }
+    const nextStreetView=[width,height,camera.zoom,controls.target.x,controls.target.z,selectedProject,bottomInset].join(':')
+    if(nextStreetView!==streetView) {
+      streetView=nextStreetView
+      onStreetLabels(projectStreetLabels(camera,width,height,labels))
     }
   }
   function render() {
@@ -302,17 +332,17 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
       const progress=reverse?1-t:t
       const point=boulevardCurve.getPointAt(progress),tangent=boulevardCurve.getTangentAt(progress)
       const direction=reverse?-1:1
-      vehicle.position.set(point.x-tangent.z*0.2*direction,point.y,point.z+tangent.x*0.2*direction)
+      vehicle.position.set(point.x-tangent.z*0.09*direction,point.y,point.z+tangent.x*0.09*direction)
       vehicle.rotation.y=Math.atan2(tangent.x,tangent.z)+(reverse?Math.PI:0)
     }
-    boat.position.y=-0.43+Math.sin(elapsed*1.2)*0.045
+    boat.position.y=-0.11+Math.sin(elapsed*1.2)*0.045
     boat.rotation.z=Math.sin(elapsed*0.9)*0.012
     craneHook.position.x=hookOrigin[0]+Math.sin(elapsed*0.19)*0.3
     beaconMaterial.emissiveIntensity=repaired?0.35:1.15+(Math.sin(elapsed*1.5)+1)*0.45
     alarmLight.intensity=repaired?0:5.5+(Math.sin(elapsed*1.5)+1)*2
     if(repaired) {
       const travel=(Math.sin(elapsed*0.23)+1)*0.5
-      delivery.position.set(depot.x-1.8+travel*4.3,0.12,depot.z+3)
+      delivery.position.set(depot.x-1.8+travel*4.3,siteHeights.quilivreou+0.12,depot.z+3)
       delivery.rotation.y=Math.cos(elapsed*0.23)>0?Math.PI/2:-Math.PI/2
     }
   }
@@ -378,13 +408,19 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   function constrainPan() {
     const old=controls.target.clone()
     controls.target.x=THREE.MathUtils.clamp(controls.target.x,WORLD_BOUNDS.minX,WORLD_BOUNDS.maxX)
-    controls.target.y=0
+    // Keep the terrain height of the selected place while panning in X/Z.
     controls.target.z=THREE.MathUtils.clamp(controls.target.z,WORLD_BOUNDS.minZ,WORLD_BOUNDS.maxZ)
     camera.position.add(controls.target.clone().sub(old))
     requestRender()
   }
   controls.addEventListener('change',constrainPan)
   controls.addEventListener('start',settleTween)
+  let bottomInset=0
+  function frameViewport() {
+    camera.setViewOffset(width,height,0,Math.min(bottomInset,height*.75)/2,width,height)
+    camera.updateProjectionMatrix()
+    requestRender()
+  }
   function resize() {
     const rect=container.getBoundingClientRect()
     width=Math.max(rect.width,1)
@@ -401,7 +437,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
     camera.right=viewWidth/2
     camera.top=viewWidth/aspect/2
     camera.bottom=-viewWidth/aspect/2
-    camera.updateProjectionMatrix()
+    frameViewport()
     renderer.setSize(width,height)
     requestRender()
   }
@@ -506,12 +542,13 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
   updateAnimation(0)
   resize()
   return {
-    focusProject(id) {selectedProject=id;const zoom=THREE.MathUtils.clamp((camera.right-camera.left)/Math.max(22,25*width/height)*(id==='memebank'?1.4:1),controls.minZoom,controls.maxZoom);return targets[id]?moveTo(targets[id],zoom):Promise.resolve()},
+    focusProject(id) {selectedProject=id;const frameWidth=landmarks.focusWidths[id];const zoom=THREE.MathUtils.clamp((camera.right-camera.left)/(frameWidth?Math.max(frameWidth,frameWidth*width/height):Math.max(22,25*width/height))*(id==='memebank'?1.4:1),controls.minZoom,controls.maxZoom);return targets[id]?moveTo(targets[id],zoom):Promise.resolve()},
     setSelected(id) {selectedProject=id;requestRender()},
+    setBottomInset(pixels) {bottomInset=Math.max(0,Number.isFinite(pixels)?pixels:0);frameViewport()},
     resetView() {selectedProject=null;return moveTo(initialTarget,1)},
     zoomBy,
     getView() {return {target:controls.target.toArray(),zoom:camera.zoom}},
-    getDebug() {return {cameraFlying:!!tween,selectedProject,terrain:terrain.counts,bounds:WORLD_BOUNDS,bank:bank.getDebug(),active,requestedActive,contextIsLost,paused,reducedMotion,repaired,disposed,renderCount,view:{target:controls.target.toArray(),zoom:camera.zoom},frameScheduled:!!frameId,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures}},
+    getDebug() {return {cameraFlying:!!tween,selectedProject,terrain:terrain.counts,landmarks:landmarks.counts,roadworks:roadworks.counts,bounds:WORLD_BOUNDS,bank:bank.getDebug(),active,requestedActive,contextIsLost,paused,reducedMotion,repaired,disposed,renderCount,view:{target:controls.target.toArray(),zoom:camera.zoom},frameScheduled:!!frameId,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures}},
     setView(view) {if(view?.target?.length===3) return moveTo(new THREE.Vector3(...view.target),THREE.MathUtils.clamp(view.zoom||1,controls.minZoom,controls.maxZoom));return Promise.resolve()},
     setPaused(value) {paused=value;lastTime=0;if(value) bank.settle();requestRender()},
     setBankState(state) {bank.setState(state,{animate:active&&!paused&&!reducedMotion});requestRender()},
@@ -522,7 +559,7 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
       beaconMaterial.emissive.set(value?0x6d9c38:0xff6425)
       beaconMaterial.emissiveIntensity=value?0.35:1.5
       alarmLight.intensity=value?0:7
-      if(!value) {delivery.position.set(depot.x+1.5,0.12,depot.z+3);delivery.rotation.y=Math.PI/2}
+      if(!value) {delivery.position.set(depot.x+1.5,siteHeights.quilivreou+0.12,depot.z+3);delivery.rotation.y=Math.PI/2}
       requestRender()
     },
     dispose() {
@@ -544,6 +581,8 @@ export function createJarryWorld(container, { onSelect = () => {}, onLabels = ()
       document.removeEventListener('visibilitychange',visibilityChange)
       motionQuery.removeEventListener('change',motionChange)
       scene.traverse(object=>{if(object.isInstancedMesh) object.dispose()})
+      landmarks.dispose()
+      roadworks.dispose()
       sun.shadow.dispose()
       geometries.forEach(geometry=>geometry.dispose())
       materials.forEach(value=>value.dispose())
