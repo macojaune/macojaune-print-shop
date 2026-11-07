@@ -70,3 +70,17 @@ La fiche de lieu remplace le bandeau inférieur : fenêtre à droite sur grand �
 - Build Nuxt/Nitro réussi ; paquet servi `kFIkPCqz.js` identique au fichier compilé, SHA-256 `841f30a1b31196e33e7199f833fd8811aa906d64644388b5fdf888923c11c41a`. Captures, rapport des cinq formats et preuve HTTP dans `.impeccable/review/jarry-controls-roadworks-20261023/` (ignoré par Git).
 
 Ces contrôles portent sur l'application locale compilée, pas sur un déploiement distant ni un téléphone physique. Le push demandé vise la branche Git `develop`.
+
+## Scolo / BÈT a milpat — 7 novembre 2026
+
+Le lieu « L’abri aux trois bornes » ajoute un auvent jaune, trois bornes statiques et une sandale sur le toit. Son emplacement `x: -10, z: -22` est fictif, sur une surface industrielle cartographiée libre. Il ne désigne aucune adresse privée et ne remplace aucun bâtiment. Le relief, les routes, la végétation et les autres lieux sont conservés.
+
+Le repère et la liste restent anonymes. Dans la fiche, « Regarder sous l’auvent » révèle Scolo / BÈT a milpat et exactement trois steps :
+
+- `scolo-mini-jeu-1`, jeu Scolo `1`, « mini-jeu 1 » : sandale, survie. Disponible en production sur Scolo.
+- `scolo-mini-jeu-2`, jeu Scolo `2`, « mini-jeu 2 » : Digrain, tir par vagues et réserve de pression. DEV uniquement à cette livraison.
+- `scolo-mini-jeu-3`, jeu Scolo `3`, « mini-jeu 3 » : coutelas, lancer balistique avec angle et puissance. DEV uniquement à cette livraison.
+
+Les trois steps ont `status: 'prepared'` et `completionCriteria: null`. Ils n'ont aucun objectif actif, seuil, compteur, score, gain, contrôle de validation ou événement de progression. L'ouverture de la fiche et de sa présentation ne valide rien et ne persiste rien. Les classements `/?classement=1`, `2`, `3` ne sont ni des liens de lancement ni des preuves d'accomplissement ; aucun lien de classement n'est ajouté ici. Les règles des jeux restent dans `macojaune/scolo-web`.
+
+La disponibilité des jeux est celle du périmètre transmis pour cette livraison ; elle n'est pas synchronisée automatiquement. Les futurs critères demandent une décision séparée. Cette intégration n'effectue aucune promotion PROD.

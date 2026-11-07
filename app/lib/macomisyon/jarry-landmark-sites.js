@@ -1,6 +1,8 @@
 // Additional authored landmarks use exact replacement IDs rather than the
 // original 120 m site clearance. Coordinates use Jarry's local 20 m scene grid.
 export const LANDMARK_SITES = {
+  // Fictional arcade shelter on clear mapped industrial land, never a private address.
+  scolo: { x: -10, z: -22, angle: 0, replaceBuildings: [] },
   kokolo: { x: 63.5, z: 77, angle: -.45, replaceBuildings: [] },
   // The small U above the original A/B candidates, identified by Marvin.
   'maggma-studio': { x: 45.328375, z: 17.117870, angle: -.0862610221, model: { width: .4, depth: .64, height: .45 }, replaceBuildings: ['way/131121970/0'] },

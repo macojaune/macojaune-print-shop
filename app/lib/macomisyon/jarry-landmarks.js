@@ -1,10 +1,11 @@
 import * as THREE from 'three'
+import { createScoloLandmark } from './landmarks/scolo.js'
 import { createKokoloLandmark } from './landmarks/kokolo.js'
 import { createMaggmaLandmark } from './landmarks/maggma.js'
 import { createOmaslaLandmark } from './landmarks/omasla.js'
 import { parkOnTerrain, seatOnTerrain } from './landmarks/placement.js'
 
-const factories = { kokolo: createKokoloLandmark, 'maggma-studio': createMaggmaLandmark, omasla: createOmaslaLandmark }
+const factories = { scolo: createScoloLandmark, kokolo: createKokoloLandmark, 'maggma-studio': createMaggmaLandmark, omasla: createOmaslaLandmark }
 
 /** Additional authored places, separate from the four original project plinths. */
 export function createJarryLandmarks(sites) {
