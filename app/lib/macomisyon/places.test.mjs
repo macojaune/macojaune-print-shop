@@ -108,11 +108,12 @@ function harness() {
       now = end
     },
   }
+  const storageWrites = []
   const globals = {
     ...Vue,
     definePageMeta() {}, useSeoMeta() {},
     document,
-    localStorage: { getItem() { return null }, setItem() {} },
+    localStorage: { getItem() { return null }, setItem(...args) { storageWrites.push(args) } },
     ...clock, HTMLElement: Element, Node: Element,
   }
   function compile(relativePath, imports, extraGlobals = {}) {
@@ -153,7 +154,7 @@ function harness() {
     await Vue.nextTick()
     return event
   }
-  return { renderer, compile, root, walk, all, byClass, text, click, keydown, clock, document, focused: () => document.activeElement }
+  return { storageWrites, renderer, compile, root, walk, all, byClass, text, click, keydown, clock, document, focused: () => document.activeElement }
 }
 
 async function mountPage(t) {
@@ -414,7 +415,7 @@ test('discovery and external places stay usable without WebGL and do not enter m
   const actions = () => h.walk(dock()).filter(node => (node.tag === 'button' || node.tag === 'a') && node !== h.closeButton())
 
   await openList()
-  assert.equal(h.byClass('place-row').length, 7)
+  assert.equal(h.byClass('place-row').length, 8)
   for (const name of ['La voiture à l’écart', 'MAGGMA Studio', 'La cour du mas']) {
     const row = h.byClass('place-row').find(node => h.text(node).includes(name))
     assert.doesNotMatch(h.text(row), /fermé|porte/i)
@@ -525,7 +526,48 @@ test('the car marker only appears while selected, including selection before wor
   assert.equal(marker('kokolo'), undefined)
   assert.ok(marker('maggma-studio'))
   assert.ok(marker('omasla'))
-  assert.equal(h.byClass('jarry-marker').length, 6)
+  assert.equal(h.byClass('jarry-marker').length, 7)
   callbacks.onSelect('kokolo')
   assert.deepEqual(selections, ['kokolo', 'kokolo'])
+})
+
+
+test('Scolo reveals exactly three prepared steps, without navigation, objectives or completion controls', async t => {
+  const h = await mountPage(t)
+  const place = placesModule.places.find(place => place.id === 'scolo')
+  assert.doesNotMatch(place.name + place.description, /Scolo|BÈT|marvinl|https:/i)
+  assert.deepEqual(place.project.steps.map(step => [step.gameId, step.label]), [[1, 'mini-jeu 1'], [2, 'mini-jeu 2'], [3, 'mini-jeu 3']])
+  for (const step of place.project.steps) {
+    assert.equal(step.status, 'prepared')
+    assert.equal(step.completionCriteria, null)
+    for (const key of ['goal', 'target', 'count', 'score', 'reward', 'completed', 'url', 'href', 'action']) assert.equal(Object.hasOwn(step, key), false, key)
+  }
+  assert.match(place.project.steps[1].availability, /DEV uniquement/)
+  assert.match(place.project.steps[2].availability, /DEV uniquement/)
+  const original = structuredClone(place.project.steps)
+  const writes = [...h.storageWrites]
+  await h.select(place.name)
+  h.assertDetail('scolo')
+  const reveal = h.byClass('prepared-project')[0]
+  assert.equal(reveal.tag, 'details')
+  assert.equal(reveal.props.open, undefined, 'Project identity is behind a collapsed native disclosure')
+  assert.match(h.text(reveal), /Scolo · BÈT a milpat/)
+  assert.match(h.text(reveal), /Aucun objectif actif/)
+  assert.equal(h.all(node => node.props['data-step-status'] === 'prepared').length, 3)
+  assert.equal(h.walk(reveal).filter(node => ['button', 'a', 'input', 'progress'].includes(node.tag)).length, 0)
+  await h.click(h.closeButton())
+  await h.click(h.marker('scolo'))
+  h.assertDetail('scolo')
+  assert.deepEqual(place.project.steps, original)
+  assert.deepEqual(h.storageWrites, writes, 'Exploring does not persist progress or contributions')
+  assert.deepEqual(h.navigations, [])
+  h.callbacks.onError()
+  await Vue.nextTick()
+  await h.click(h.closeButton())
+  await h.select(place.name)
+  h.assertDetail('scolo')
+  assert.equal(h.all(node => node.props['data-step-status'] === 'prepared').length, 3)
+  await h.keydown()
+  assert.equal(h.dock(), undefined)
+  assert.equal(h.focused(), h.placesButton())
 })

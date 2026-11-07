@@ -13,6 +13,7 @@
  * @property {'selected'} [markerMode]
  * @property {string} [externalUrl]
  * @property {string} [externalLabel]
+ * @property {{ name: string, revealLabel: string, steps: Array<{ id: string, gameId: number, label: string, description: string, availability: string, status: 'prepared', completionCriteria: null }> }} [project]
  */
 
 /** @type {Place[]} */
@@ -24,4 +25,18 @@ export const places = [
   { id: 'kokolo', kind: 'discovery', markerMode: 'selected', icon: 'car', name: 'La voiture à l’écart', description: 'Une voiture garée à l’écart.' },
   { id: 'maggma-studio', kind: 'external', icon: 'volcano', name: 'MAGGMA Studio', description: 'Retrouve le studio sur son site.', externalUrl: 'https://maggma.studio/', externalLabel: 'Visiter le site du studio' },
   { id: 'omasla', kind: 'discovery', icon: 'drum', name: 'La cour du mas', description: 'Des tambours rangés, des costumes et des fanions. Les préparatifs se poursuivent dans la cour.', available: false },
+  {
+    id: 'scolo', kind: 'discovery', icon: 'arcade', name: 'L’abri aux trois bornes',
+    description: 'Sous un auvent jaune, trois bornes attendent. Une sandale est posée sur le toit.',
+    project: {
+      name: 'Scolo · BÈT a milpat', revealLabel: 'Regarder sous l’auvent',
+      // Prepared editorial steps only. No objective, counter, reward or completion action.
+      // gameId belongs to Scolo; its scores and gains remain entirely in that product.
+      steps: [
+        { id: 'scolo-mini-jeu-1', gameId: 1, label: 'mini-jeu 1', description: 'Sandale · Survie', availability: 'Disponible sur Scolo', status: 'prepared', completionCriteria: null },
+        { id: 'scolo-mini-jeu-2', gameId: 2, label: 'mini-jeu 2', description: 'Digrain · Tir par vagues, réserve de pression', availability: 'En test sur DEV uniquement', status: 'prepared', completionCriteria: null },
+        { id: 'scolo-mini-jeu-3', gameId: 3, label: 'mini-jeu 3', description: 'Coutelas · Lancer avec angle et puissance', availability: 'En test sur DEV uniquement', status: 'prepared', completionCriteria: null },
+      ],
+    },
+  },
 ]

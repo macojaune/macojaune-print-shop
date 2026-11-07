@@ -2,6 +2,7 @@
 withDefaults(defineProps<{ name: string; size?: number }>(), { size: 20 })
 
 const paths: Record<string, string> = {
+  arcade: 'M5 4h14l2 16h-5l-2-4h-4l-2 4H3L5 4Zm2 4v6m-3-3h6m5-2h.01M18 12h.01',
   bank: 'm2 8 10-5 10 5H2Zm2 12h16M2 23h20M5 11v6m5-6v6m4-6v6m5-6v6',
   chat: 'M3 4h18v12H9l-6 5V4Zm4 4h10M7 12h6',
   mail: 'M3 5h18v14H3V5Zm0 1 9 7 9-7',

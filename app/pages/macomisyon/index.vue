@@ -312,6 +312,19 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
             </header>
             <div class="place-detail-content">
               <p>{{ currentPlace.description }}</p>
+              <details v-if="currentPlace.project" class="prepared-project">
+                <summary>{{ currentPlace.project.revealLabel }}</summary>
+                <h3>{{ currentPlace.project.name }}</h3>
+                <p>Trois étapes préparées. Aucun objectif actif pour le moment.</p>
+                <ol class="prepared-steps">
+                  <li v-for="step in currentPlace.project.steps" :key="step.id" :data-step-id="step.id" :data-step-status="step.status">
+                    <div><h4>{{ step.label }}</h4><span>Préparé</span></div>
+                    <p>{{ step.description }}</p>
+                    <small>{{ step.availability }}</small>
+                  </li>
+                </ol>
+                <p class="prepared-note">Les critères d’accomplissement restent à définir. Explorer ce lieu ne valide aucune étape.</p>
+              </details>
               <a v-if="currentPlace?.kind === 'external' && currentPlace.externalUrl && currentPlace.externalLabel" class="enter-depot" :href="currentPlace.externalUrl" target="_blank" rel="noopener noreferrer" :aria-label="`${currentPlace.externalLabel} (nouvel onglet)`">{{ currentPlace.externalLabel }}<GameIcon name="external" /></a>
               <button v-else-if="currentPlace?.available && currentPlace.interior" ref="enterButton" type="button" class="enter-depot" :disabled="entering" @click="enterPlace">{{ entering ? 'On y va…' : currentPlace.enterLabel }}<GameIcon name="arrow" /></button>
               <div v-else-if="selected === 'memebank'" class="bank-curiosity">
@@ -415,6 +428,20 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .place-detail-content > :is(.enter-depot, .bank-curiosity, .closed-place) { margin-top: 20px; }
 .place-detail .enter-depot { width: 100%; gap: 12px; justify-content: space-between; }
 .place-detail .closed-place { max-width: none; width: 100%; justify-content: flex-start; padding: 10px 0; }
+.prepared-project { margin-top: 20px; }
+.prepared-project summary { cursor: pointer; padding: 14px 12px; min-height: 48px; background: var(--game-yellow); color: var(--game-ink); font-size: 14px; font-weight: 700; }
+.prepared-project summary:hover { background: #ffe292; }
+.prepared-project summary:focus-visible { outline: 2px solid var(--game-paper); outline-offset: 3px; }
+.prepared-project h3 { margin: 24px 0 12px; font: 400 28px/1.15 Tanker, sans-serif; }
+.prepared-project p { font-size: 14px; line-height: 1.6; }
+.prepared-steps { list-style: none; margin: 20px 0; padding: 0; }
+.prepared-steps li { border-top: 1px solid #8aa79755; padding: 16px 0; }
+.prepared-steps li:last-child { border-bottom: 1px solid #8aa79755; }
+.prepared-steps li > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.prepared-steps h4 { margin: 0; font-size: 15px; }
+.prepared-steps li > div > span, .prepared-steps small { font-size: 12px; color: #cfdbc9; }
+.prepared-steps p { margin: 8px 0 4px; }
+.prepared-project .prepared-note { color: #cfdbc9; font-size: 12px; }
 .has-place .map-title { display: none; }
 @keyframes place-reveal { from { opacity: .65; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
 @media (prefers-reduced-motion: reduce) { .place-detail { animation: none; } }
