@@ -1,91 +1,143 @@
-<script setup lang="ts">
-const rooms = [
-  {
-    gameId: 1, room: 'Le salon', game: 'Sandale',
-    story: 'Une sandale au milieu du carrelage. Tout autour, des scolos sur le dos. On enjambe le tas pour récupérer le carton de vaisselle.',
-    play: 'Dans le mini-jeu Sandale, tiens aussi longtemps que possible face aux scolos.',
-    records: 'https://scolo.marvinl.com/?classement=sandale',
-  },
-  {
-    gameId: 3, room: 'La cuisine', game: 'Coutelas',
-    story: 'Le coutelas de tonton est resté sur la table. Sous l’évier, ça gratte encore. On laisse le buffet au prochain locataire.',
-    play: 'Le mini-jeu Coutelas se joue en ajustant l’angle et la puissance du lancer.',
-    records: 'https://scolo.marvinl.com/?classement=coutelas',
-  },
-  {
-    gameId: 2, room: 'La galerie', game: 'Digrain',
-    story: 'Une bombe de Digrain vide roule entre deux cartons. On entend le camion klaxonner. Les clés de la nouvelle maison sont au crochet.',
-    play: 'Digrain, le troisième mini-jeu, arrive plus tard sur le site public.',
-  },
-]
-const selected = ref(0)
-const moved = ref(false)
-const activeRoom = computed(() => rooms[selected.value]!)
-function explore(index: number) {
-  selected.value = index
-  moved.value = false
+<script setup>
+import { computed, nextTick, ref } from 'vue'
+import GameIcon from './GameIcon.vue'
+import { missions } from '../../lib/macomisyon/scolo/model.js'
+
+const props = defineProps({ state: { type: Object, required: true }, paused: Boolean })
+const emit = defineEmits(['contribute'])
+const scene = ref(null)
+const panel = ref(null)
+const current = ref(null)
+const heading = ref(null)
+const inventory = ref(null)
+const ready = ref(false)
+const unavailable = ref(false)
+const nextMission = computed(() => missions[props.state.completed.length])
+const situation = computed(() => [
+  'Le camion attend devant la maison. Tout le salon reste à emballer.',
+  'La vaisselle est emballée. Il reste les cartons de la cuisine.',
+  'Le camion est chargé. Un dernier passage sous la galerie.',
+  'Le camion est parti. La maison est vide.',
+][props.state.completed.length])
+const rooms = { sandale: 'Le salon', coutelas: 'La cuisine', digrain: 'La galerie' }
+const descriptions = {
+  sandale: 'Des scolos sur le dos, une sandale par terre et toute la vaisselle à emballer. Première Komisyon du déménagement.',
+  coutelas: 'Le coutelas est resté sur la table. Le camion attend les cartons de la cuisine.',
+  digrain: 'La bombe de Digrain est encore sous la galerie. Dernier carton, dernier tour de clé.',
+}
+let trigger
+function status(id) {
+  if (props.state.completed.includes(id)) return 'completed'
+  return nextMission.value?.id === id ? 'open' : 'blocked'
+}
+async function open(name, id) {
+  if (!panel.value) trigger = document.activeElement
+  current.value = missions.find(m => m.id === id) || null
+  panel.value = name
+  await nextTick()
+  heading.value?.focus({ preventScroll: true })
+}
+async function close() {
+  current.value = null
+  panel.value = null
+  await nextTick()
+  const target = trigger?.isConnected && trigger !== document.body ? trigger : inventory.value
+  target?.focus({ preventScroll: true })
+}
+function finish() {
+  if (!current.value || status(current.value.id) !== 'open') return
+  emit('contribute', current.value.id)
+  close()
+}
+function escape(event) {
+  if (panel.value) {
+    event.stopPropagation()
+    close()
+  }
 }
 </script>
 
 <template>
-  <section id="house-story" class="house" aria-labelledby="house-title" tabindex="-1">
-    <div class="house-art">
-      <img src="/macomisyon/dernier-carton.webp" width="1120" height="747" alt="Dans la maison aux volets turquoise, une sandale et des scolopendres retournés jonchent le carrelage. Des cartons attendent près de la porte ouverte.">
+  <section class="depot-q scolo-house" :data-completed="state.completed.length" :data-moved="state.moved" aria-label="La maison aux cartons" @keydown.esc="escape">
+    <div class="depot-viewport">
+      <MacomisyonScoloDiorama
+ref="scene" :completed="state.completed" :selected="current?.id" :paused="paused"
+        @select="id => open('mission', id)" @ready="ready = true; unavailable = false" @error="unavailable = true" />
+      <div v-if="unavailable" class="depot-fallback" role="status">
+        <GameIcon name="home" /><p>La vue 3D est indisponible. Ouvre les Komisyon pour préparer le déménagement.</p>
+      </div>
+      <div v-else-if="!ready" class="depot-fallback" role="status"><p>On ouvre les volets…</p></div>
+      <div v-if="ready && !unavailable && !panel" class="depot-scene-tools">
+        <button type="button" aria-label="Zoomer dans la maison" @click="scene?.zoomBy(1.22)"><GameIcon name="plus" /></button>
+        <button type="button" aria-label="Dézoomer dans la maison" @click="scene?.zoomBy(1 / 1.22)"><GameIcon name="minus" /></button>
+        <button type="button" aria-label="Recentrer la maison" @click="scene?.resetView()"><GameIcon name="locate" /></button>
+      </div>
+      <div class="depot-demo-strip"><span class="depot-simulation">Démo locale</span></div>
     </div>
-    <div class="house-story">
-      <p class="house-project">Scolo · BÈT a milpat</p>
-      <h2 id="house-title">Le dernier carton</h2>
-      <nav aria-label="Pièces de la maison">
-        <button v-for="(room, index) in rooms" :key="room.gameId" type="button" :aria-pressed="selected === index" @click="explore(index)">{{ room.room }}</button>
-      </nav>
-      <div class="house-room" aria-live="polite">
-        <template v-if="!moved">
-          <h3>{{ activeRoom.game }}</h3>
-          <p>{{ activeRoom.story }}</p>
-          <p class="house-game">{{ activeRoom.play }}</p>
-          <a v-if="activeRoom.records" :href="activeRoom.records" target="_blank" rel="noopener noreferrer">Classement {{ activeRoom.game }} ↗</a>
-          <button v-if="selected === rooms.length - 1" class="keys" type="button" @click="moved = true">Prendre les clés</button>
+
+    <footer class="depot-dock">
+      <div class="depot-status" aria-live="polite">
+        <div><h2>{{ state.moved ? 'On a déménagé !' : 'Le dernier carton' }}</h2><p>{{ situation }}</p></div>
+        <span class="depot-repair-count" :aria-label="state.completed.length + ' Komisyon accomplies sur 3'"><b>{{ state.completed.length }}</b><span>/ 3</span></span>
+      </div>
+      <div class="depot-dock-actions">
+        <button id="scolo-missions" ref="inventory" type="button" class="depot-action" @click="open('inventory')"><GameIcon name="parcel" />Les Komisyon<GameIcon name="arrow" /></button>
+        <button type="button" class="depot-project-button" @click="open('project')"><GameIcon name="arcade" />Le projet</button>
+      </div>
+    </footer>
+
+    <section v-if="panel" class="depot-panel" aria-labelledby="scolo-panel-title">
+      <header class="depot-panel-bar">
+        <span>{{ panel === 'inventory' ? 'Carnet de Komisyon' : panel === 'project' ? 'Fiche projet' : 'Komisyon · Étape ' + current.stage }}</span>
+        <button type="button" aria-label="Fermer le panneau" @click="close"><GameIcon name="close" /></button>
+      </header>
+      <div class="depot-panel-content">
+        <template v-if="panel === 'inventory'">
+          <h2 id="scolo-panel-title" ref="heading" tabindex="-1">Préparer le déménagement</h2>
+          <div class="depot-inventory">
+            <button v-for="m in missions" :key="m.id" type="button" :data-state="status(m.id)" :data-mission="m.id" @click="open('mission', m.id)">
+              <GameIcon :name="status(m.id) === 'completed' ? 'check' : status(m.id) === 'blocked' ? 'lock' : 'arcade'" />
+              <span class="depot-inventory-copy"><strong>{{ m.stage }} · {{ m.label }}</strong><small>{{ rooms[m.id] }} · {{ status(m.id) === 'completed' ? 'Accomplie' : status(m.id) === 'blocked' ? 'En attente' : 'À accomplir' }}</small></span>
+            </button>
+          </div>
+        </template>
+        <template v-else-if="panel === 'mission' && current">
+          <h2 id="scolo-panel-title" ref="heading" tabindex="-1">{{ current.label }}</h2>
+          <p>{{ descriptions[current.id] }}</p>
+          <div class="depot-goal"><strong>{{ status(current.id) === 'completed' ? '1' : '0' }}<span>/ 1</span></strong><span>partie terminée simulée</span></div>
+          <div class="depot-effect"><strong>Dans la maison</strong><p>{{ current.effect }}</p></div>
+          <button v-if="status(current.id) === 'open'" type="button" class="depot-action" @click="finish">Simuler une partie terminée<GameIcon name="check" /></button>
+          <p v-else class="depot-waiting">{{ status(current.id) === 'completed' ? 'Komisyon accomplie.' : 'Termine d’abord la Komisyon ' + missions[current.stage - 2].label + '.' }}</p>
+          <button type="button" class="depot-text-button" @click="open('inventory')">Toutes les Komisyon</button>
         </template>
         <template v-else>
-          <h3>On déménage !</h3>
-          <p>Le dernier carton monte dans le camion. À la nouvelle maison, on pose la vaisselle, on ouvre les volets… et on garde la sandale à portée de main.</p>
+          <h2 id="scolo-panel-title" ref="heading" tabindex="-1">Scolo · BÈT a milpat</h2>
+          <p>Sur Scolo, la dernière rencontre avec un scolopendre détermine le jeu disponible. Dans cette maison, tu peux simuler une partie de chaque mini-jeu pour voir le déménagement.</p>
+          <a class="depot-action" href="https://scolo.marvinl.com/#run" target="_blank" rel="noopener noreferrer">Jouer sur Scolo<GameIcon name="external" /></a>
+          <a v-for="id in ['sandale', 'coutelas']" :key="id" class="depot-text-button" :href="'https://scolo.marvinl.com/?classement=' + id" target="_blank" rel="noopener noreferrer">Classement {{ id === 'sandale' ? 'Sandale' : 'Coutelas' }} ↗</a>
+          <p class="depot-note">Digrain est à venir sur le site public. Les parties simulées ici sont sauvegardées sur cet appareil. Elles ne donnent aucun score sur Scolo.</p>
         </template>
       </div>
-      <div class="house-exit">
-        <a href="https://scolo.marvinl.com/#run" target="_blank" rel="noopener noreferrer">Jouer sur Scolo ↗</a>
-        <small>Le jeu proposé dépend de l’arme de la dernière rencontre.</small>
-      </div>
-    </div>
+    </section>
   </section>
 </template>
 
+<style scoped src="~/assets/css/macomisyon-interior.css" />
 <style scoped>
-.house { height: 100%; overflow: auto; overscroll-behavior: contain; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr); background: #f1ebd3; color: #173b3c; }
-.house-art { position: relative; min-height: 100%; background: #34554b; }
-.house-art img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
-.house-story { margin: auto 0; padding: clamp(20px, 4vw, 60px); }
-.house-story p { color: inherit; }
-.house-project { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .05em; }
-.house h2, .house h3 { font-family: Tanker, sans-serif; font-weight: 400; }
-.house h2 { font-size: clamp(40px, 5vw, 72px); line-height: .98; margin: 8px 0 24px; }
-.house nav { display: flex; flex-wrap: wrap; gap: 4px; }
-.house nav button { color: inherit; background: transparent; border: 1px solid #768d77; padding: 8px 12px; min-height: 44px; font-size: 13px; }
-.house nav button[aria-pressed=true] { background: #173b3c; color: #fff7d8; }
-.house-room { margin: 22px 0; }
-.house h3 { margin: 0 0 8px; font-size: 32px; line-height: 1; }
-.house-room p { font-size: 16px; line-height: 1.5; margin: 0 0 10px; }
-.house-room .house-game, .house-exit small { font-size: 13px; }
-.house-room a, .keys { display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-weight: 700; text-decoration: underline; }
-.keys { border: 0; background: #ffcf43; padding: 8px 16px; }
-.house-exit { display: grid; justify-items: start; gap: 6px; border-top: 1px solid #9ba89a; padding-top: 16px; }
-.house-exit a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 18px; background: #173b3c; color: #fff7d8; font-weight: 700; text-decoration: none; }
-.house :is(button, a):focus-visible { outline: 3px solid #a34523; outline-offset: 2px; }
-@media (max-width: 760px) {
-  .house { display: block; }
-  .house-art { min-height: 0; aspect-ratio: 2.1; }
-  .house-art img { object-position: center 64%; }
-  .house-story { padding: 18px; }
-  .house h2 { margin-bottom: 14px; }
-  .house-room { margin: 16px 0; }
+.scolo-house { min-height: 0; background: #d6dfc7; }
+.depot-simulation { border: 0; }
+@media (min-width: 700px) {
+  .scolo-house .depot-panel { width: min(350px, 38%); }
+}
+@media (max-width: 699px) and (orientation: portrait) {
+  .scolo-house .depot-panel { top: auto; bottom: 138px; right: 8px; width: calc(100% - 16px); max-height: min(330px, calc((100% - 138px) * .58)); }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .depot-viewport { bottom: 64px; }
+  .depot-dock { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 5px 12px; }
+  .depot-status { margin: 0; flex: 1; }
+  .depot-status h2 { font-size: 20px; }
+  .depot-status p { font-size: 10px; }
+  .depot-panel { inset: 4px 4px 68px auto; width: min(330px, 48%); max-height: none; }
 }
 </style>

@@ -7,6 +7,7 @@ import ts from 'typescript'
 import * as placesModule from './places.js'
 import * as depotModule from './depot/model.js'
 import * as bankModule from './bank/model.js'
+import * as scoloModule from './scolo/model.js'
 
 const icon = { props: ['name'], setup: props => () => Vue.h('svg', { 'data-icon': props.name }) }
 
@@ -189,6 +190,7 @@ async function mountPage(t) {
     '../../lib/macomisyon/places.js': placesModule,
     '../../lib/macomisyon/depot/model.js': depotModule,
     '../../lib/macomisyon/bank/model.js': bankModule,
+    '../../lib/macomisyon/scolo/model.js': scoloModule,
   }, {
     useRoute: () => route,
     useRouter: () => ({ push: navigate, replace: navigate }),
@@ -197,7 +199,11 @@ async function mountPage(t) {
   app.component('NuxtLink', { props: ['to'], setup: (props, { slots }) => () => Vue.h('a', { href: props.to }, slots.default?.()) })
   app.component('ClientOnly', { setup: (_props, { slots }) => () => slots.default?.() })
   app.component('MacomisyonJarryMap', map)
-  app.component('LazyMacomisyonScoloHouse', h.compile('../../components/macomisyon/ScoloHouse.vue', {}))
+  app.component('LazyMacomisyonScoloHouse', {
+    props: ['state', 'paused'],
+    emits: ['contribute'],
+    render() { return Vue.h('section', { 'data-interior': 'scolo' }) },
+  })
   app.component('LazyMacomisyonMemeBank', { render: () => Vue.h('section', { 'data-interior': 'bank' }) })
   app.component('LazyMacomisyonDepotQ', { render: () => Vue.h('section', { 'data-interior': 'depot-q' }) })
   app.mount(h.root)
@@ -533,7 +539,7 @@ test('the car marker only appears while selected, including selection before wor
 })
 
 
-test('Scolo opens from the map without WebGL and tells the moving story without recording a score', async t => {
+test('Scolo opens without WebGL and returns to the selected house without advancing the demo', async t => {
   const h = await mountPage(t)
   h.callbacks.onError()
   await Vue.nextTick()
@@ -544,18 +550,7 @@ test('Scolo opens from the map without WebGL and tells the moving story without 
   await h.select(place.name)
   await h.click(button('Entrer dans la maison'))
   assert.equal(h.route.query.lieu, 'scolo')
-  const room = () => h.byClass('house-room')[0]
-  assert.match(h.text(room()), /Sandale/)
-  assert.equal(h.walk(room()).find(node => node.tag === 'a').props.href, 'https://scolo.marvinl.com/?classement=sandale')
-  await h.click(button('La cuisine'))
-  assert.match(h.text(room()), /Coutelas/)
-  assert.equal(h.walk(room()).find(node => node.tag === 'a').props.href, 'https://scolo.marvinl.com/?classement=coutelas')
-  await h.click(button('La galerie'))
-  assert.match(h.text(room()), /Digrain.*plus tard/)
-  assert.equal(h.walk(room()).filter(node => node.tag === 'a').length, 0)
-  await h.click(button('Prendre les clés'))
-  assert.match(h.text(room()), /On déménage/)
-  assert.equal(h.byClass('house-exit')[0].children[0].props.href, 'https://scolo.marvinl.com/#run')
+  assert.equal(h.all(node => node.props['data-interior'] === 'scolo').length, 1)
   await h.click(h.byClass('world-back')[0])
   assert.equal(h.route.query.lieu, undefined)
   assert.equal(h.selected(), 'scolo')
