@@ -33,7 +33,7 @@
                 alt="Vue d’ensemble de la map en miniature, entre terre et mer."
                 class="block h-auto w-full"
               >
-              <span id="home-map-action" class="absolute bottom-0 right-0 inline-flex min-h-11 items-center gap-3 bg-amber-400 px-4 font-medium text-black group-hover:bg-amber-200">
+              <span id="home-map-action" class="ml-auto flex min-h-11 w-fit sm:absolute sm:bottom-0 sm:right-0 items-center gap-3 bg-amber-400 px-4 font-medium text-black group-hover:bg-amber-200">
                 Explorer la carte <span aria-hidden="true">→</span>
               </span>
             </div>
