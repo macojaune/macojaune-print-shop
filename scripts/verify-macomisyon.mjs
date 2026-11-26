@@ -85,7 +85,7 @@ try {
     await settle(page, '.depot-q', value => value?.renderCount > 0)
     assert.equal((await debug(page, '.jarry-map')).active, false)
     assert.ok(page.url().includes('lieu=depot-q'))
-    await page.getByRole('button', { name: 'Découvrir QuiLivreOù', exact: true }).waitFor()
+    assert.match(await page.locator('.game-footer .interior-name').innerText(), /QuiLivreOù/)
     await capture(page, 'depot-desktop')
   })
   await test('Locked contributions validate with prerequisite; registrations alone cannot repair', async () => {
