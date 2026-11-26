@@ -30,7 +30,7 @@ function explore(index: number) {
 <template>
   <section id="house-story" class="house" aria-labelledby="house-title" tabindex="-1">
     <div class="house-art">
-      <img src="/macomisyon/dernier-carton.webp" width="1120" height="747" alt="Dans la maison aux volets turquoise, une sandale et des scolopendres retournés jonchent le carrelage. Des cartons attendent près de la porte ouverte." />
+      <img src="/macomisyon/dernier-carton.webp" width="1120" height="747" alt="Dans la maison aux volets turquoise, une sandale et des scolopendres retournés jonchent le carrelage. Des cartons attendent près de la porte ouverte.">
     </div>
     <div class="house-story">
       <p class="house-project">Scolo · BÈT a milpat</p>
@@ -64,6 +64,7 @@ function explore(index: number) {
 .house-art { position: relative; min-height: 100%; background: #34554b; }
 .house-art img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
 .house-story { margin: auto 0; padding: clamp(20px, 4vw, 60px); }
+.house-story p { color: inherit; }
 .house-project { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .05em; }
 .house h2, .house h3 { font-family: Tanker, sans-serif; font-weight: 400; }
 .house h2 { font-size: clamp(40px, 5vw, 72px); line-height: .98; margin: 8px 0 24px; }
