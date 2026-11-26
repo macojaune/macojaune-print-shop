@@ -84,3 +84,9 @@ Le repère et la liste restent anonymes. Dans la fiche, « Regarder sous l’auv
 Les trois steps ont `status: 'prepared'` et `completionCriteria: null`. Ils n'ont aucun objectif actif, seuil, compteur, score, gain, contrôle de validation ou événement de progression. L'ouverture de la fiche et de sa présentation ne valide rien et ne persiste rien. Les classements `/?classement=1`, `2`, `3` ne sont ni des liens de lancement ni des preuves d'accomplissement ; aucun lien de classement n'est ajouté ici. Les règles des jeux restent dans `macojaune/scolo-web`.
 
 La disponibilité des jeux est celle du périmètre transmis pour cette livraison ; elle n'est pas synchronisée automatiquement. Les futurs critères demandent une décision séparée. Cette intégration n'effectue aucune promotion PROD.
+
+## Scolo · Le dernier carton
+
+La maison créole en coupe occupe l’emplacement de l’ancien abri. Le visiteur peut entrer depuis le repère ou la liste des lieux. Les trois pièces racontent le déménagement dans l’ordre Sandale (jeu 1), Coutelas (jeu 3), Digrain (jeu 2). Prendre les clés dans la galerie conclut le récit. Les visites ne valident aucun score.
+
+Sandale et Coutelas ont chacun un classement consultable sur Scolo. Le bouton « Jouer sur Scolo » ouvre la dernière rencontre, qui détermine l’arme jouable. Digrain reste annoncé pour plus tard.

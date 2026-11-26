@@ -22,7 +22,8 @@ const bankLoaded = ref(false)
 const bankUnlocked = computed(() => bankState.value.completed.includes('curiosity'))
 const inDepot = computed(() => route.query.lieu === 'depot-q')
 const inBank = computed(() => route.query.lieu === 'bank' && bankUnlocked.value)
-const interior = computed(() => inDepot.value ? 'depot-q' : inBank.value ? 'bank' : null)
+const inScolo = computed(() => route.query.lieu === 'scolo')
+const interior = computed(() => inDepot.value ? 'depot-q' : inBank.value ? 'bank' : inScolo.value ? 'scolo' : null)
 const inInterior = computed(() => !!interior.value)
 let bankStore: ReturnType<typeof createBankStore> | undefined
 let unsubscribeBank: (() => void) | undefined
@@ -134,7 +135,7 @@ watch(paused, value => {
 })
 watch(interior, async (value, previous) => {
   panel.value = null
-  if (!value) selected.value = previous === 'bank' ? 'memebank' : 'quilivreou'
+  if (!value) selected.value = previous === 'bank' ? 'memebank' : previous === 'scolo' ? 'scolo' : 'quilivreou'
   await nextTick()
   if (!alive) return
   if (value) backButton.value?.focus({ preventScroll: true })
@@ -244,7 +245,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 
 <template>
   <main class="maco-game" @keydown.esc="escapePanel">
-    <a class="game-skip" :href="inBank ? '#bank-missions' : '#project-access'">{{ inBank ? 'Aller aux Komisyon' : 'Aller aux lieux' }}</a>
+    <a class="game-skip" :href="inBank ? '#bank-missions' : inScolo ? '#house-story' : '#project-access'">{{ inBank ? 'Aller aux Komisyon' : inScolo ? 'Explorer la maison' : 'Aller aux lieux' }}</a>
     <header class="game-header">
       <NuxtLink to="/" class="site-return" aria-label="Retour sur Macojaune"><GameIcon name="back" /><span>Macojaune</span></NuxtLink>
       <h1>Maco’misyon<span aria-hidden="true">.</span></h1>
@@ -255,7 +256,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
       <div class="console-topline">
         <button v-if="inInterior" ref="backButton" class="world-back" type="button" @click="leavePlace"><GameIcon name="back" />Retour au monde</button>
         <span v-else class="world-address"><span class="signal-dot" aria-hidden="true" />Exploration libre</span>
-        <button class="motion-control" type="button" :aria-pressed="paused" :aria-label="paused ? 'Reprendre les animations' : 'Mettre les animations en pause'" @click="paused = !paused"><GameIcon :name="paused ? 'play' : 'pause'" :size="16" />{{ paused ? 'Reprendre' : 'Pause' }}</button>
+        <button v-if="!inScolo" class="motion-control" type="button" :aria-pressed="paused" :aria-label="paused ? 'Reprendre les animations' : 'Mettre les animations en pause'" @click="paused = !paused"><GameIcon :name="paused ? 'play' : 'pause'" :size="16" />{{ paused ? 'Reprendre' : 'Pause' }}</button>
       </div>
 
       <div ref="gameStage" class="game-stage">
@@ -312,19 +313,6 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
             </header>
             <div class="place-detail-content">
               <p>{{ currentPlace.description }}</p>
-              <details v-if="currentPlace.project" class="prepared-project">
-                <summary>{{ currentPlace.project.revealLabel }}</summary>
-                <h3>{{ currentPlace.project.name }}</h3>
-                <p>Trois étapes préparées. Aucun objectif actif pour le moment.</p>
-                <ol class="prepared-steps">
-                  <li v-for="step in currentPlace.project.steps" :key="step.id" :data-step-id="step.id" :data-step-status="step.status">
-                    <div><h4>{{ step.label }}</h4><span>Préparé</span></div>
-                    <p>{{ step.description }}</p>
-                    <small>{{ step.availability }}</small>
-                  </li>
-                </ol>
-                <p class="prepared-note">Les critères d’accomplissement restent à définir. Explorer ce lieu ne valide aucune étape.</p>
-              </details>
               <a v-if="currentPlace?.kind === 'external' && currentPlace.externalUrl && currentPlace.externalLabel" class="enter-depot" :href="currentPlace.externalUrl" target="_blank" rel="noopener noreferrer" :aria-label="`${currentPlace.externalLabel} (nouvel onglet)`">{{ currentPlace.externalLabel }}<GameIcon name="external" /></a>
               <button v-else-if="currentPlace?.available && currentPlace.interior" ref="enterButton" type="button" class="enter-depot" :disabled="entering" @click="enterPlace">{{ entering ? 'On y va…' : currentPlace.enterLabel }}<GameIcon name="arrow" /></button>
               <div v-else-if="selected === 'memebank'" class="bank-curiosity">
@@ -337,6 +325,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
           </section>
         </div>
 
+        <LazyMacomisyonScoloHouse v-if="inScolo" />
         <ClientOnly v-if="inBank">
           <LazyMacomisyonMemeBank :paused="paused" :state="bankState" @action="bankAction" />
           <template #fallback><div class="world-loading"><strong>On pousse la porte.</strong><span>Le sérieux est sous surveillance.</span></div></template>
@@ -348,7 +337,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
       </div>
     </section>
 
-    <footer class="game-footer"><span>{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : 'Des lieux familiers. Une autre histoire.' }}</span><span>Première exploration · données de démo</span></footer>
+    <footer class="game-footer"><span>{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : inScolo ? 'Scolo · Le dernier carton' : 'Des lieux familiers. Une autre histoire.' }}</span><span>Première exploration · données de démo</span></footer>
     <p class="game-live" aria-live="polite">{{ liveMessage }}</p>
     <noscript>Active JavaScript pour explorer ce monde, entrer dans ses bâtiments et découvrir leurs Komisyon.</noscript>
   </main>
@@ -428,20 +417,6 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .place-detail-content > :is(.enter-depot, .bank-curiosity, .closed-place) { margin-top: 20px; }
 .place-detail .enter-depot { width: 100%; gap: 12px; justify-content: space-between; }
 .place-detail .closed-place { max-width: none; width: 100%; justify-content: flex-start; padding: 10px 0; }
-.prepared-project { margin-top: 20px; }
-.prepared-project summary { cursor: pointer; padding: 14px 12px; min-height: 48px; background: var(--game-yellow); color: var(--game-ink); font-size: 14px; font-weight: 700; }
-.prepared-project summary:hover { background: #ffe292; }
-.prepared-project summary:focus-visible { outline: 2px solid var(--game-paper); outline-offset: 3px; }
-.prepared-project h3 { margin: 24px 0 12px; font: 400 28px/1.15 Tanker, sans-serif; }
-.prepared-project p { font-size: 14px; line-height: 1.6; }
-.prepared-steps { list-style: none; margin: 20px 0; padding: 0; }
-.prepared-steps li { border-top: 1px solid #8aa79755; padding: 16px 0; }
-.prepared-steps li:last-child { border-bottom: 1px solid #8aa79755; }
-.prepared-steps li > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.prepared-steps h4 { margin: 0; font-size: 15px; }
-.prepared-steps li > div > span, .prepared-steps small { font-size: 12px; color: #cfdbc9; }
-.prepared-steps p { margin: 8px 0 4px; }
-.prepared-project .prepared-note { color: #cfdbc9; font-size: 12px; }
 .has-place .map-title { display: none; }
 @keyframes place-reveal { from { opacity: .65; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
 @media (prefers-reduced-motion: reduce) { .place-detail { animation: none; } }
@@ -497,5 +472,14 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .game-header { height: 56px; }
   .game-footer { min-height: 25px; }
   .place-detail { top: 18px; bottom: auto; right: 82px; width: min(280px, calc(50% - 130px)); max-height: calc(100% - 96px); }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .maco-game { min-height: 100svh; padding: 0; }
+  .game-header { height: 44px; padding: 0 14px; }
+  .game-footer { display: none; }
+  .console-topline { height: 36px; }
+  .place-detail { top: 8px; bottom: auto; right: 70px; width: min(300px, 52%); max-height: calc(100% - 20px); }
+  .map-tools { top: 8px; right: 10px; }
+  .map-title { top: 10px; }
 }
 </style>
