@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import GameIcon from '../../components/macomisyon/GameIcon.vue'
 import { createStore } from '../../lib/macomisyon/depot/model.js'
+import { createScoloStore } from '../../lib/macomisyon/scolo/model.js'
 import { places } from '../../lib/macomisyon/places.js'
 import type { Place } from '../../lib/macomisyon/places.js'
 import { BANK_GOALS, createBankStore } from '../../lib/macomisyon/bank/model.js'
@@ -18,6 +19,11 @@ const route = useRoute()
 const router = useRouter()
 const map = ref<MapHandle | null>(null)
 const bankState = ref(createBankStore({ storage: null }).getState())
+let scoloStore: ReturnType<typeof createScoloStore>
+const scoloState = ref(createScoloStore({ storage: null }).getState())
+function finishScoloGame(id: string) {
+  if (scoloStore) scoloState.value = scoloStore.contribute(id)
+}
 const bankLoaded = ref(false)
 const bankUnlocked = computed(() => bankState.value.completed.includes('curiosity'))
 const inDepot = computed(() => route.query.lieu === 'depot-q')
@@ -55,7 +61,15 @@ let placeTrigger: HTMLElement | null = null
 let alive = true
 let savedMapView: MapView | undefined
 
-const worldPlaces = computed(() => places.map(place => place.id === 'memebank' ? { ...place, available: bankUnlocked.value, description: bankUnlocked.value ? 'Le rideau est levé. On entend un drôle de remue-ménage derrière le guichet. Entre pour découvrir ce qui se cache ici.' : place.description } : place))
+const worldPlaces = computed(() => places.map(place => {
+  if (place.id === 'scolo' && scoloState.value.moved) {
+    return { ...place, description: 'Le camion a emporté le dernier carton. Le déménagement est terminé.' }
+  }
+  if (place.id === 'memebank' && bankUnlocked.value) {
+    return { ...place, available: true, description: 'Le rideau est levé. On entend un drôle de remue-ménage derrière le guichet. Entre pour découvrir ce qui se cache ici.' }
+  }
+  return place
+}))
 const currentPlace = computed(() => worldPlaces.value.find(place => place.id === selected.value))
 
 function placeStatus(place: Place) {
@@ -69,6 +83,8 @@ onMounted(() => {
   document.addEventListener('visibilitychange', updatePageVisibility)
   try { paused.value = localStorage.getItem('macomisyon-motion') === 'paused' } catch { /* Storage is optional. */ }
   depotRepaired.value = createStore().getState().repaired
+  scoloStore = createScoloStore()
+  scoloState.value = scoloStore.getState()
   bankStore = createBankStore()
   bankState.value = bankStore.getState()
   bankLoaded.value = true
@@ -245,7 +261,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 
 <template>
   <main class="maco-game" @keydown.esc="escapePanel">
-    <a class="game-skip" :href="inBank ? '#bank-missions' : inScolo ? '#house-story' : '#project-access'">{{ inBank ? 'Aller aux Komisyon' : inScolo ? 'Explorer la maison' : 'Aller aux lieux' }}</a>
+    <a class="game-skip" :href="inBank ? '#bank-missions' : inScolo ? '#scolo-missions' : '#project-access'">{{ inBank || inScolo ? 'Aller aux Komisyon' : 'Aller aux lieux' }}</a>
     <header class="game-header">
       <NuxtLink to="/" class="site-return" aria-label="Retour sur Macojaune"><GameIcon name="back" /><span>Macojaune</span></NuxtLink>
       <h1>Maco’misyon<span aria-hidden="true">.</span></h1>
@@ -256,7 +272,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
       <div class="console-topline">
         <button v-if="inInterior" ref="backButton" class="world-back" type="button" @click="leavePlace"><GameIcon name="back" />Retour au monde</button>
         <span v-else class="world-address"><span class="signal-dot" aria-hidden="true" />Exploration libre</span>
-        <button v-if="!inScolo" class="motion-control" type="button" :aria-pressed="paused" :aria-label="paused ? 'Reprendre les animations' : 'Mettre les animations en pause'" @click="paused = !paused"><GameIcon :name="paused ? 'play' : 'pause'" :size="16" />{{ paused ? 'Reprendre' : 'Pause' }}</button>
+        <button class="motion-control" type="button" :aria-pressed="paused" :aria-label="paused ? 'Reprendre les animations' : 'Mettre les animations en pause'" @click="paused = !paused"><GameIcon :name="paused ? 'play' : 'pause'" :size="16" />{{ paused ? 'Reprendre' : 'Pause' }}</button>
       </div>
 
       <div ref="gameStage" class="game-stage">
@@ -325,7 +341,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
           </section>
         </div>
 
-        <LazyMacomisyonScoloHouse v-if="inScolo" />
+        <LazyMacomisyonScoloHouse v-if="inScolo" :state="scoloState" :paused="paused" @contribute="finishScoloGame" />
         <ClientOnly v-if="inBank">
           <LazyMacomisyonMemeBank :paused="paused" :state="bankState" @action="bankAction" />
           <template #fallback><div class="world-loading"><strong>On pousse la porte.</strong><span>Le sérieux est sous surveillance.</span></div></template>
