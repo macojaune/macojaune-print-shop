@@ -161,7 +161,7 @@ try {
     await page.locator('.jarry-marker[data-project="quilivreou"].is-selected').waitFor({ timeout: 10000 })
     const after = await view()
     assert.deepEqual(await selected(), ['quilivreou'])
-    assert.match(await page.locator('.dock-copy').innerText(), /Le hangar/)
+    assert.match(await page.locator('#place-detail-title').innerText(), /Le hangar/)
     assert.equal(await page.getByRole('button', { name: 'Entrer au dépôt', exact: true }).isVisible(), true)
     assert.ok(after.zoom > before.zoom, 'Sélectionner depuis la vue générale doit agrandir le lieu')
     await markerPoint('quilivreou')

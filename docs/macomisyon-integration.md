@@ -31,7 +31,7 @@ Pour comparer une étape sans changer la branche de travail : `git show <repère
 4. Exploration des Komisyon, de leurs indices et des scénarios de démonstration.
 5. Retour à la carte sans perdre le cadrage précédent.
 
-L'intérieur est adressable par `/macomisyon?lieu=depot-q`. Le bouton Retour au monde et l'historique du navigateur permettent de changer de scène. La carte reste montée mais suspend son rendu quand le dépôt est affiché. Les scènes respectent la réduction de mouvement du système et le bouton Pause. Leurs rendus, contrôles et ressources GPU sont libérés en quittant la route.
+L'intérieur est adressable par `/macomisyon?lieu=depot-q`. Le bouton Retour au monde et l'historique du navigateur permettent de changer de scène. La carte reste montée mais suspend son rendu quand le dépôt est affiché. Les scènes respectent la préférence système de réduction de mouvement. Leurs rendus, contrôles et ressources GPU sont libérés en quittant la route.
 
 ## Où modifier quoi
 
@@ -86,7 +86,7 @@ node scripts/verify-memebank.mjs
 
 Le lancement Nuxt direct permet de vérifier Maco'misyon sans régénérer l'inventaire des images ni démarrer l'éditeur Tina. Le script habituel `npm run dev` conserve sa fonction complète pour le reste du site.
 
-Le script navigateur requiert Chromium installé par Playwright, avec `bunx playwright install chromium` si nécessaire. Il vérifie le passage entre les scènes, les règles dans l'interface, la sauvegarde, la pause, le retour au cadrage précédent, la réduction de mouvement et l'absence ou la perte de WebGL. Il produit un rapport et des captures bureau et mobile sous `.impeccable/review`, dossier généré exclu de Git. `DEMO_URL` permet de choisir un autre serveur.
+Le script navigateur requiert Chromium installé par Playwright, avec `bunx playwright install chromium` si nécessaire. Il vérifie le passage entre les scènes, les règles dans l'interface, la sauvegarde, le retour au cadrage précédent, la réduction de mouvement et l'absence ou la perte de WebGL. Il produit un rapport et des captures bureau et mobile sous `.impeccable/review`, dossier généré exclu de Git. `DEMO_URL` permet de choisir un autre serveur.
 
 La validation mobile utilise un navigateur émulé. Les performances sur un téléphone physique restent à mesurer avant une mise en ligne publique.
 

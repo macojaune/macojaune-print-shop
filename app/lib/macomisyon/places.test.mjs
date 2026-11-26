@@ -79,43 +79,13 @@ function harness() {
       return [node, node]
     },
   })
-  // A deterministic clock exercises the page's credit timeout without real waits.
-  let now = 0
-  let nextHandle = 0
-  const frames = new Map()
-  const timers = new Map()
-  const clock = {
-    requestAnimationFrame(callback) { frames.set(++nextHandle, callback); return nextHandle },
-    cancelAnimationFrame(handle) { frames.delete(handle) },
-    setTimeout(callback, delay) { timers.set(++nextHandle, { callback, at: now + delay }); return nextHandle },
-    clearTimeout(handle) { timers.delete(handle) },
-    async frame() {
-      const callbacks = [...frames.values()]
-      frames.clear()
-      callbacks.forEach(callback => callback(now))
-      await Vue.nextTick()
-    },
-    async advance(milliseconds) {
-      const end = now + milliseconds
-      for (;;) {
-        const next = [...timers].filter(([, timer]) => timer.at <= end).sort((a, b) => a[1].at - b[1].at)[0]
-        if (!next) break
-        const [handle, timer] = next
-        timers.delete(handle)
-        now = timer.at
-        timer.callback()
-        await Vue.nextTick()
-      }
-      now = end
-    },
-  }
   const storageWrites = []
   const globals = {
     ...Vue,
     definePageMeta() {}, useSeoMeta() {},
     document,
     localStorage: { getItem() { return null }, setItem(...args) { storageWrites.push(args) } },
-    ...clock, HTMLElement: Element, Node: Element,
+    HTMLElement: Element, Node: Element,
   }
   function compile(relativePath, imports, extraGlobals = {}) {
     const filename = new URL(relativePath, import.meta.url).pathname
@@ -155,10 +125,10 @@ function harness() {
     await Vue.nextTick()
     return event
   }
-  return { storageWrites, renderer, compile, root, walk, all, byClass, text, click, keydown, clock, document, focused: () => document.activeElement }
+  return { storageWrites, renderer, compile, root, walk, all, byClass, text, click, keydown, document, focused: () => document.activeElement }
 }
 
-async function mountPage(t) {
+async function mountPage(t, beforeWorldStarts) {
   const h = harness()
   const route = Vue.reactive({ query: {} })
   const navigations = []
@@ -208,6 +178,7 @@ async function mountPage(t) {
   app.component('LazyMacomisyonDepotQ', { render: () => Vue.h('section', { 'data-interior': 'depot-q' }) })
   app.mount(h.root)
   t.after(() => app.unmount())
+  beforeWorldStarts?.(h)
   await new Promise(resolve => setImmediate(resolve))
   await Vue.nextTick()
   assert.ok(callbacks, 'The real map component started its stubbed 3D world')
@@ -397,23 +368,43 @@ test('places and help replace the detail, and Escape closes only the active exte
   assert.deepEqual(h.navigations, navigations)
 })
 
-test('the attribution timeout is suspended by a place and resumes with six fresh seconds', async t => {
-  const h = await mountPage(t)
-  assert.equal(h.byClass('map-attribution').length, 1)
-  await h.clock.frame()
-  await h.clock.frame()
-  await h.clock.advance(3000)
-  await h.mapSelect('omasla')
-  assert.equal(h.byClass('map-attribution').length, 0)
-  await h.clock.advance(10000)
-  await h.click(h.closeButton())
-  assert.equal(h.byClass('map-attribution').length, 1, 'The hidden credit was not dismissed by its old timer')
-  await h.clock.frame()
-  await h.clock.frame()
-  await h.clock.advance(5999)
-  assert.equal(h.byClass('map-attribution').length, 1)
-  await h.clock.advance(1)
-  assert.equal(h.byClass('map-attribution').length, 0)
+test('the footer credits the map before the world loads, with a selected place and after returning from it', async t => {
+  const expectedUrls = [
+    'https://www.openstreetmap.org/copyright',
+    'https://geoservices.ign.fr/rgealti',
+    'https://github.com/tilezen/joerd/blob/master/docs/attribution.md',
+  ]
+  function assertMapFooter(h) {
+    const [footer] = h.byClass('game-footer')
+    const credits = h.byClass('map-attribution')
+    assert.equal(credits.length, 1)
+    assert.ok(footer.contains(credits[0]), 'The attribution belongs to the permanent footer')
+    const links = h.walk(credits[0]).filter(node => node.tag === 'a')
+    assert.deepEqual(links.map(link => link.props.href).sort(), [...expectedUrls].sort())
+    for (const link of links) {
+      assert.ok(h.text(link).trim(), 'The source link has a name')
+      assert.ok(link.getClientRects().length > 0, 'The source link is visible')
+    }
+    assert.doesNotMatch(h.text(footer), /Des lieux familiers|Première exploration/)
+    assert.doesNotMatch(h.text(h.root), /Exploration libre/)
+    assert.equal(h.byClass('motion-control').length, 0)
+  }
+  const h = await mountPage(t, loading => {
+    assert.equal(loading.byClass('world-loading').length, 1)
+    assertMapFooter(loading)
+  })
+  assertMapFooter(h)
+  await h.mapSelect('scolo')
+  h.assertDetail('scolo')
+  assertMapFooter(h)
+
+  await h.click(h.byClass('enter-depot')[0])
+  assert.equal(h.route.query.lieu, 'scolo')
+  assert.match(h.text(h.byClass('game-footer')[0]), /Scolo · Le dernier carton/)
+  await h.click(h.byClass('world-back')[0])
+  assert.equal(h.route.query.lieu, undefined)
+  assert.equal(h.selected(), 'scolo')
+  assertMapFooter(h)
 })
 
 test('discovery and external places stay usable without WebGL and do not enter missions', async t => {
