@@ -221,7 +221,6 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
     <header class="game-header">
       <NuxtLink to="/" class="site-return" aria-label="Retour sur Macojaune"><GameIcon name="back" /><span>Macojaune</span></NuxtLink>
       <h1>Maco’misyon<span aria-hidden="true">.</span></h1>
-      <span class="demo-stamp">Démo<span>en construction</span></span>
     </header>
 
     <section class="game-console" :class="{ 'is-interior': inInterior }" aria-label="Le monde de Maco’misyon">
@@ -322,13 +321,11 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .maco-game button { font: inherit; cursor: pointer; }
 .maco-game button:disabled { cursor: default; opacity: .5; }
 .maco-game :is(button, a):focus-visible { outline: 3px solid var(--game-yellow); outline-offset: 4px; }
-.game-header { width: 100%; max-width: 1480px; margin: 0 auto; height: 84px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.game-header { width: 100%; max-width: 1480px; margin: 0 auto; height: 84px; flex-shrink: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
 .game-header h1 { font: 400 clamp(27px, 3.8vw, 44px)/1 Tanker, sans-serif; letter-spacing: .015em; color: var(--game-yellow); margin: 0; }
 .game-header h1 span { color: var(--game-paper); }
-.site-return { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; text-decoration: none; color: var(--game-paper); font-size: 12px; font-weight: 500; }
+.site-return { justify-self: start; display: inline-flex; align-items: center; gap: 9px; min-height: 44px; text-decoration: none; color: var(--game-paper); font-size: 12px; font-weight: 500; }
 .site-return:hover { color: var(--game-yellow); }
-.demo-stamp { border: 1px solid #657269; padding: 6px 10px; text-transform: uppercase; color: #e8dcc1; font-size: 11px; line-height: 1.1; text-align: right; }
-.demo-stamp span { display: block; text-transform: none; font-size: 9px; padding-top: 3px; }
 .game-console { display: flex; flex: 1; flex-direction: column; min-height: 0; width: 100%; max-width: 1480px; margin: 0 auto; overflow: hidden; border-radius: 18px 18px 5px 5px; border: 2px solid #4c6057; background: var(--game-ink); box-shadow: 0 22px 48px #0005; }
 .console-topline { position: relative; display: flex; justify-content: space-between; align-items: center; height: 43px; flex-shrink: 0; padding: 0 18px; background: var(--game-ink); color: var(--game-paper); border-bottom: 1px solid #ffffff24; }
 .world-back { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 40px; background: none; border: 0; padding: 4px 0; font-size: 11px !important; color: var(--game-paper); }
@@ -416,8 +413,6 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .game-header h1 { font-size: 29px; }
   .site-return span { display: none; }
   .site-return { width: 38px; }
-  .demo-stamp { padding: 4px 6px; font-size: 9px; }
-  .demo-stamp span { font-size: 8px; }
   .game-console { border-left: 0; border-right: 0; border-radius: 0; }
   .console-topline { padding: 0 14px; height: 39px; }
   .map-title { left: 18px; top: 18px; }
