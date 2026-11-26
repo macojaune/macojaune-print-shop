@@ -31,15 +31,12 @@ try {
     assert.ok(links.some(text => text.includes('IGN')) && links.some(text => text.includes('Terrain Tiles')))
     const layout = await page.evaluate(() => {
       const attribution = document.querySelector('.map-attribution').getBoundingClientRect()
-      const controls = document.querySelector('.map-tabs').getBoundingClientRect()
-      return { overflow: document.documentElement.scrollWidth > innerWidth, attribution: { left: attribution.left, right: attribution.right, bottom: attribution.bottom }, controls: { right: controls.right, top: controls.top }, width: innerWidth }
+      const stage = document.querySelector('.game-stage').getBoundingClientRect()
+      return { overflow: document.documentElement.scrollWidth > innerWidth, attribution: { left: attribution.left, right: attribution.right, top: attribution.top }, stageBottom: stage.bottom, width: innerWidth }
     })
     assert.equal(layout.overflow, false)
     assert.ok(layout.attribution.left >= 0 && layout.attribution.right <= layout.width)
-    assert.ok(layout.attribution.left >= layout.controls.right || layout.attribution.bottom <= layout.controls.top, 'Attribution must not cover the map controls')
-    // Startup credits collapse after a readable interval; the full source
-    // notices remain in About (covered by verify-jarry-credits.mjs).
-    await page.locator('.map-attribution').waitFor({ state: 'hidden', timeout: 20000 })
+    assert.ok(layout.attribution.top >= layout.stageBottom - 1, 'The permanent credits are below the map')
     await page.screenshot({ path: `${output}/after-${device}.png` })
     views.push({ device, state: 'overview', layout })
     for (const [id, title] of [['memebank', 'La banque'], ['quilivreou', 'Le hangar'], ['shootareas', 'La maison sur l’eau'], ['zikak', 'L’atelier']]) {
