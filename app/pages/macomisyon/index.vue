@@ -35,7 +35,6 @@ let bankStore: ReturnType<typeof createBankStore> | undefined
 let unsubscribeBank: (() => void) | undefined
 const selected = ref<string | null>(null)
 const panel = ref<'places' | 'help' | null>(null)
-const paused = ref(false)
 const loaded = ref(false)
 const mapError = ref(false)
 const depotRepaired = ref(false)
@@ -51,11 +50,6 @@ const placeWindow = ref<HTMLElement | null>(null)
 const placesButton = ref<HTMLButtonElement | null>(null)
 const gameStage = ref<HTMLElement | null>(null)
 let placeObserver: ResizeObserver | undefined
-const attributionDismissed = ref(false)
-const attributionHovered = ref(false)
-const attributionFocused = ref(false)
-const pageVisible = ref(false)
-const showAttribution = computed(() => loaded.value && !mapError.value && !inInterior.value && !panel.value && !selected.value && !attributionDismissed.value)
 let panelTrigger: HTMLElement | null = null
 let placeTrigger: HTMLElement | null = null
 let alive = true
@@ -79,9 +73,6 @@ function placeStatus(place: Place) {
 }
 
 onMounted(() => {
-  updatePageVisibility()
-  document.addEventListener('visibilitychange', updatePageVisibility)
-  try { paused.value = localStorage.getItem('macomisyon-motion') === 'paused' } catch { /* Storage is optional. */ }
   depotRepaired.value = createStore().getState().repaired
   scoloStore = createScoloStore()
   scoloState.value = scoloStore.getState()
@@ -94,39 +85,7 @@ onBeforeUnmount(() => {
   alive = false
   placeObserver?.disconnect()
   unsubscribeBank?.()
-  document.removeEventListener('visibilitychange', updatePageVisibility)
 })
-
-function updatePageVisibility() {
-  pageVisible.value = !document.hidden
-}
-
-// Start after the loaded map and its credits have painted. A hidden map or an
-// interrupted reading gets a fresh six seconds, never a shorter visible credit.
-watch([showAttribution, pageVisible, attributionHovered, attributionFocused], ([shown, visible, hovered, focused], _previous, onCleanup) => {
-  if (!shown || !visible || hovered || focused) return
-  let timer: ReturnType<typeof setTimeout> | undefined
-  let frame = requestAnimationFrame(() => {
-    frame = requestAnimationFrame(() => {
-      timer = setTimeout(() => { attributionDismissed.value = true }, 6000)
-    })
-  })
-  onCleanup(() => {
-    cancelAnimationFrame(frame)
-    clearTimeout(timer)
-  })
-}, { flush: 'post' })
-
-watch(showAttribution, shown => {
-  if (!shown) {
-    attributionHovered.value = false
-    attributionFocused.value = false
-  }
-})
-
-function leaveAttribution(event: FocusEvent) {
-  attributionFocused.value = event.relatedTarget instanceof Node && (event.currentTarget as HTMLElement).contains(event.relatedTarget)
-}
 
 // Keep the selected building in the exposed part of the map when the compact
 // window spans its centre. Layout offsets ignore the window's entrance animation.
@@ -146,9 +105,6 @@ watch([placeWindow, loaded, inInterior], () => {
   framePlace()
 }, { flush: 'post' })
 
-watch(paused, value => {
-  try { localStorage.setItem('macomisyon-motion', value ? 'paused' : 'running') } catch { /* Storage is optional. */ }
-})
 watch(interior, async (value, previous) => {
   panel.value = null
   if (!value) selected.value = previous === 'bank' ? 'memebank' : previous === 'scolo' ? 'scolo' : 'quilivreou'
@@ -269,26 +225,19 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
     </header>
 
     <section class="game-console" :class="{ 'is-interior': inInterior }" aria-label="Le monde de Maco’misyon">
-      <div class="console-topline">
-        <button v-if="inInterior" ref="backButton" class="world-back" type="button" @click="leavePlace"><GameIcon name="back" />Retour au monde</button>
-        <span v-else class="world-address"><span class="signal-dot" aria-hidden="true" />Exploration libre</span>
-        <button class="motion-control" type="button" :aria-pressed="paused" :aria-label="paused ? 'Reprendre les animations' : 'Mettre les animations en pause'" @click="paused = !paused"><GameIcon :name="paused ? 'play' : 'pause'" :size="16" />{{ paused ? 'Reprendre' : 'Pause' }}</button>
+      <div v-if="inInterior" class="console-topline">
+        <button ref="backButton" class="world-back" type="button" @click="leavePlace"><GameIcon name="back" />Retour au monde</button>
       </div>
 
       <div ref="gameStage" class="game-stage">
         <div v-show="!inInterior" class="world-layer" :class="{ 'has-place': currentPlace && !panel }">
           <ClientOnly>
-            <MacomisyonJarryMap ref="map" :paused="paused" :active="!inInterior" :bank-state="bankState" :repaired="depotRepaired" :selected="selected" @select="selectPlace" @ready="loaded = true; mapError = false" @error="mapError = true" />
+            <MacomisyonJarryMap ref="map" :active="!inInterior" :bank-state="bankState" :repaired="depotRepaired" :selected="selected" @select="selectPlace" @ready="loaded = true; mapError = false" @error="mapError = true" />
           </ClientOnly>
           <div v-if="!loaded && !mapError" class="world-loading" aria-live="polite"><strong>On ouvre la carte.</strong><span>Les lumières s’allument.</span></div>
           <div v-if="mapError" class="world-loading world-fallback" role="status"><GameIcon name="map" :size="40" /><strong>La vue 3D est indisponible.</strong><span>Tu peux quand même découvrir les lieux et accéder aux Komisyon disponibles depuis la liste.</span><button type="button" class="game-button" @click="togglePanel('places', $event)">Voir les lieux</button></div>
 
           <div class="map-title" aria-hidden="true"><span>Terre<br>inconnue.</span><small>À toi d’explorer.</small></div>
-          <div v-if="showAttribution" class="map-attribution" @pointerenter="attributionHovered = $event.pointerType === 'mouse'" @pointerleave="attributionHovered = false" @focusin="attributionFocused = true" @focusout="leaveAttribution">
-            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
-            <a href="https://geoservices.ign.fr/rgealti" target="_blank" rel="noopener noreferrer">Relief © IGN</a>
-            <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener noreferrer">Terrain Tiles</a>
-          </div>
           <div class="map-tools" aria-label="Commandes de la carte">
             <button type="button" title="Zoomer" aria-label="Zoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1.2)"><GameIcon name="plus" /></button>
             <button type="button" title="Dézoomer" aria-label="Dézoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1 / 1.2)"><GameIcon name="minus" /></button>
@@ -341,19 +290,26 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
           </section>
         </div>
 
-        <LazyMacomisyonScoloHouse v-if="inScolo" :state="scoloState" :paused="paused" @contribute="finishScoloGame" />
+        <LazyMacomisyonScoloHouse v-if="inScolo" :state="scoloState" @contribute="finishScoloGame" />
         <ClientOnly v-if="inBank">
-          <LazyMacomisyonMemeBank :paused="paused" :state="bankState" @action="bankAction" />
+          <LazyMacomisyonMemeBank :state="bankState" @action="bankAction" />
           <template #fallback><div class="world-loading"><strong>On pousse la porte.</strong><span>Le sérieux est sous surveillance.</span></div></template>
         </ClientOnly>
         <ClientOnly v-if="inDepot">
-          <LazyMacomisyonDepotQ :paused="paused" @state-change="depotRepaired = $event.repaired" />
+          <LazyMacomisyonDepotQ @state-change="depotRepaired = $event.repaired" />
           <template #fallback><div class="world-loading"><strong>La porte s’ouvre.</strong><span>La cargaison arrive.</span></div></template>
         </ClientOnly>
       </div>
     </section>
 
-    <footer class="game-footer"><span>{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : inScolo ? 'Scolo · Le dernier carton' : 'Des lieux familiers. Une autre histoire.' }}</span><span>Première exploration · données de démo</span></footer>
+    <footer class="game-footer">
+      <span v-if="inInterior" class="interior-name">{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : 'Scolo · Le dernier carton' }}</span>
+      <span class="map-attribution">
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
+        <a href="https://geoservices.ign.fr/rgealti" target="_blank" rel="noopener noreferrer">Relief © IGN</a>
+        <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener noreferrer">Terrain Tiles</a>
+      </span>
+    </footer>
     <p class="game-live" aria-live="polite">{{ liveMessage }}</p>
     <noscript>Active JavaScript pour explorer ce monde, entrer dans ses bâtiments et découvrir leurs Komisyon.</noscript>
   </main>
@@ -375,14 +331,12 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .demo-stamp span { display: block; text-transform: none; font-size: 9px; padding-top: 3px; }
 .game-console { display: flex; flex: 1; flex-direction: column; min-height: 0; width: 100%; max-width: 1480px; margin: 0 auto; overflow: hidden; border-radius: 18px 18px 5px 5px; border: 2px solid #4c6057; background: var(--game-ink); box-shadow: 0 22px 48px #0005; }
 .console-topline { position: relative; display: flex; justify-content: space-between; align-items: center; height: 43px; flex-shrink: 0; padding: 0 18px; background: var(--game-ink); color: var(--game-paper); border-bottom: 1px solid #ffffff24; }
-.world-address { display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-size: 10px; letter-spacing: .11em; }
-.signal-dot { width: 6px; height: 6px; background: var(--game-yellow); }
-.motion-control, .world-back { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 40px; background: none; border: 0; padding: 4px 0; font-size: 11px !important; color: var(--game-paper); }
+.world-back { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 40px; background: none; border: 0; padding: 4px 0; font-size: 11px !important; color: var(--game-paper); }
 .world-back { font-weight: 600 !important; }
 .game-stage { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #cae0ca; }
 .world-layer { position: absolute; inset: 0; }
-.map-attribution { position: absolute; left: 22px; bottom: 75px; display: flex; flex-wrap: wrap; gap: 2px 10px; width: fit-content; max-width: calc(100% - 102px); padding: 6px 8px; color: #173b3c; background: #f1ebd3f5; font-size: 11px; line-height: 1.5; z-index: 3; }
-.map-attribution a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.map-attribution { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; column-gap: 12px; margin-left: auto; font-size: 11px; }
+.map-attribution a { display: inline-flex; align-items: center; min-height: 24px; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .map-title { position: absolute; left: 30px; top: 23px; color: #143c3e; pointer-events: none; }
 .map-title > span { display: block; font: 400 clamp(32px, 3.5vw, 52px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
 .map-title small { display: block; font-size: 12px; line-height: 1.4; margin-top: 10px; }
@@ -466,7 +420,6 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .demo-stamp span { font-size: 8px; }
   .game-console { border-left: 0; border-right: 0; border-radius: 0; }
   .console-topline { padding: 0 14px; height: 39px; }
-  .world-address { font-size: 9px; letter-spacing: .04em; }
   .map-title { left: 18px; top: 18px; }
   .map-title > span { font-size: 32px; }
   .map-title small { font-size: 10px; margin-top: 6px; }
@@ -474,14 +427,12 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .place-detail { bottom: 68px; }
   .map-tools button { height: 44px; width: 44px; }
   .map-tabs { left: 14px; bottom: 13px; }
-  .map-attribution { left: 14px; bottom: 65px; max-width: calc(100% - 84px); }
   .map-panel { left: 14px; bottom: 65px; width: calc(100% - 28px); padding: 16px; }
   .bank-curiosity { grid-column: 1 / -1; min-width: 0; }
   .enter-depot, .closed-place { grid-column: 1 / -1; min-height: 44px; width: 100%; max-width: none; font-size: 12px !important; }
   .closed-place span { font-size: 11px; }
   .game-footer { padding: 0 15px; min-height: 28px; font-size: 8px; gap: 8px; }
-  .game-footer > span:first-child { display: none; }
-  .game-footer > span:last-child { margin-left: auto; }
+  .interior-name { display: none; }
 }
 @media (max-height: 600px) and (min-width: 701px) {
   .maco-game { min-height: 450px; }
@@ -492,7 +443,8 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 @media (orientation: landscape) and (max-height: 500px) {
   .maco-game { min-height: 100svh; padding: 0; }
   .game-header { height: 44px; padding: 0 14px; }
-  .game-footer { display: none; }
+  .game-footer { min-height: 24px; padding: 0 14px; }
+  .interior-name { display: none; }
   .console-topline { height: 36px; }
   .place-detail { top: 8px; bottom: auto; right: 70px; width: min(300px, calc(50% - 102px)); max-height: calc(100% - 20px); }
   .map-tools { top: 8px; right: 10px; }

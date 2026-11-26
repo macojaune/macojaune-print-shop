@@ -168,9 +168,9 @@ try {
     await finish(page)
     await capture(page, 'vhs-closeup')
   })
-  await test('Zoom and keyboard pan work in pause; memory survives a reload', async () => {
-    await page.getByRole('button', { name: 'Mettre les animations en pause', exact: true }).click()
-    await settled(page, '.meme-bank', value => value.motionPaused && !value.frameScheduled)
+  await test('Zoom and keyboard pan work with reduced motion; bank progress survives a reload', async () => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await settled(page, '.meme-bank', value => value.reducedMotion && !value.frameScheduled)
     const before = cameraZoom(await debug(page))
     assert.ok(Number.isFinite(before))
     await page.getByRole('button', { name: 'Zoomer dans la banque', exact: true }).click()
