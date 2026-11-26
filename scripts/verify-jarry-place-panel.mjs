@@ -22,7 +22,7 @@ const hit = async (page, locator) => {
   })
 }
 try {
-  for (const [device, width, height] of [['desktop', 1440, 1000], ['mobile', 390, 844], ['narrow', 320, 740], ['tablet', 820, 900], ['landscape', 844, 500]]) {
+  for (const [device, width, height] of [['desktop', 1440, 1000], ['mobile', 390, 844], ['narrow', 320, 740], ['tablet', 820, 900], ['landscape', 844, 500], ['compact-landscape', 667, 375]]) {
     const context = await browser.newContext({ viewport: { width, height }, reducedMotion: 'reduce' })
     const page = await context.newPage()
     page.on('pageerror', error => errors.push(error.message))
@@ -42,7 +42,7 @@ try {
     if (device === 'desktop') assert.ok(panel.x > stage.x + stage.width / 2, 'Desktop window is on the right')
     const controls = [page.getByRole('button', { name: 'Fermer la fiche du lieu', exact: true }), page.getByRole('button', { name: 'Les lieux', exact: true }), ...['Zoomer', 'Dézoomer', 'Recentrer la carte'].map(name => page.getByRole('button', { name, exact: true })), page.locator('[data-project="memebank"]')]
     for (const control of controls) assert.ok(await hit(page, control), `${device}: ${await control.getAttribute('aria-label') || await control.innerText()} is not covered`)
-    if (width <= 700) {
+    if (width <= 700 && height > width) {
       const marker = await page.locator('[data-project="memebank"]').boundingBox()
       assert.ok(marker.y + marker.height + 60 < panel.y, 'Compact framing leaves room for the bank below its marker and above the window')
     }
@@ -69,6 +69,18 @@ try {
     await page.getByRole('button', { name: 'À propos — Comment explorer la carte', exact: true }).click()
     assert.equal(await page.locator('.place-detail').count(), 0, 'No stacked windows')
     await page.keyboard.press('Escape')
+    if (device.endsWith('landscape')) {
+      await select(page, 'La maison aux cartons')
+      const marker = page.locator('[data-project="scolo"]')
+      await page.waitForFunction(() => {
+        const pin = document.querySelector('[data-project="scolo"]')?.getBoundingClientRect()
+        const stage = document.querySelector('.game-stage')?.getBoundingClientRect()
+        const card = document.querySelector('.place-detail')?.getBoundingClientRect()
+        return pin && stage && card && pin.top >= stage.top && pin.bottom <= stage.bottom && pin.right < card.left
+      })
+      assert.ok(await hit(page, marker), 'The selected house stays visible beside the landscape panel')
+      assert.equal(await page.evaluate(() => document.documentElement.scrollHeight > innerHeight), false)
+    }
     await select(page, 'La voiture à l’écart')
     assert.equal(await page.locator('.place-detail .enter-depot, .place-detail .closed-place').count(), 0)
     await page.getByRole('button', { name: 'Fermer la fiche du lieu' }).click()

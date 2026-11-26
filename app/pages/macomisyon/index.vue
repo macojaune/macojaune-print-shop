@@ -478,7 +478,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .game-header { height: 44px; padding: 0 14px; }
   .game-footer { display: none; }
   .console-topline { height: 36px; }
-  .place-detail { top: 8px; bottom: auto; right: 70px; width: min(300px, 52%); max-height: calc(100% - 20px); }
+  .place-detail { top: 8px; bottom: auto; right: 70px; width: min(300px, calc(50% - 102px)); max-height: calc(100% - 20px); }
   .map-tools { top: 8px; right: 10px; }
   .map-title { top: 10px; }
 }
