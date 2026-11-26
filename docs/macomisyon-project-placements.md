@@ -87,6 +87,6 @@ La disponibilité des jeux est celle du périmètre transmis pour cette livraiso
 
 ## Scolo · Le dernier carton
 
-La maison créole en coupe occupe l’emplacement de l’ancien abri. Le visiteur peut entrer depuis le repère ou la liste des lieux. Les trois pièces racontent le déménagement dans l’ordre Sandale (jeu 1), Coutelas (jeu 3), Digrain (jeu 2). Prendre les clés dans la galerie conclut le récit. Les visites ne valident aucun score.
+La maison créole en coupe occupe l’emplacement de l’ancien abri. Le repère et la liste ouvrent un intérieur 3D avec trois postes et le même carnet de Komisyon que le dépôt et la banque. Chaque étape demande une partie terminée simulée. La Sandale (jeu 1) ferme le carton de vaisselle, le Coutelas (jeu 3) charge le camion et Digrain (jeu 2) déclenche le déménagement. La démo conserve cette progression sur l’appareil. La liste donne accès aux mêmes actions sans WebGL.
 
-Sandale et Coutelas ont chacun un classement consultable sur Scolo. Le bouton « Jouer sur Scolo » ouvre la dernière rencontre, qui détermine l’arme jouable. Digrain reste annoncé pour plus tard.
+Le bouton « Jouer sur Scolo » ouvre la dernière rencontre, qui détermine l’arme jouable. Les classements publics de la Sandale et du Coutelas restent consultables dans la fiche projet. Digrain reste annoncé pour plus tard sur le site public. Les simulations de la carte n’envoient aucun score à Scolo.
