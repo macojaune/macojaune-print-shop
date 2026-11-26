@@ -12,7 +12,7 @@
           </h1>
         </div>
 
-        <figure class="min-w-0 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:self-center">
+        <figure class="relative min-w-0 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:self-center">
           <NuxtLink
             to="/macomisyon"
             aria-labelledby="home-map-title home-map-action"
@@ -24,29 +24,34 @@
           >
             <div class="relative">
               <img
-                src="/macomisyon/jarry-1280.webp"
-                srcset="/macomisyon/jarry-640.webp 640w, /macomisyon/jarry-1280.webp 1280w"
+                src="/macomisyon/apercu-monde-1280.webp"
+                srcset="/macomisyon/apercu-monde-640.webp 640w, /macomisyon/apercu-monde-1280.webp 1280w"
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 width="1280"
-                height="728"
+                height="720"
                 fetchpriority="high"
-                alt="Vue en relief des rues de Jarry entre la mangrove et le port."
-                class="block aspect-[2/1] w-full object-cover lg:aspect-video"
+                alt="Vue d’ensemble de la map en miniature, entre terre et mer."
+                class="block h-auto w-full"
               >
               <span id="home-map-action" class="absolute bottom-0 right-0 inline-flex min-h-11 items-center gap-3 bg-amber-400 px-4 font-medium text-black group-hover:bg-amber-200">
                 Explorer la carte <span aria-hidden="true">→</span>
               </span>
             </div>
-            <div class="border-b border-amber-200/30 pb-3 pt-4">
-              <h2 id="home-map-title" class="font-display text-4xl leading-none text-amber-400 sm:text-5xl">Maco’misyon</h2>
-              <p class="mt-1 text-base leading-snug text-stone-200">Mes projets sur la carte de Jarry.</p>
+            <div class="pt-4">
+              <h2 id="home-map-title" class="font-display text-4xl leading-none text-amber-400 sm:text-5xl">Découvre Maco’misyon</h2>
+              <p class="mt-1 text-base leading-snug text-stone-200">Trouve mes projets sur la map.</p>
             </div>
           </NuxtLink>
-          <figcaption class="pt-2 text-xs leading-normal text-stone-400">
-            © <a href="https://www.openstreetmap.org/copyright" class="underline">contributeurs OpenStreetMap</a>
-            · Relief <a href="https://geoservices.ign.fr/rgealti" class="underline">IGN</a>
-            / <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" class="underline">Terrain Tiles</a>
-          </figcaption>
+          <details class="map-credits absolute right-1 top-1">
+            <summary aria-label="Crédits de la carte" title="Crédits de la carte" class="ml-auto grid size-11 cursor-pointer list-none place-items-center focus-visible:outline-2 focus-visible:outline-amber-400">
+              <span aria-hidden="true" class="grid size-6 place-items-center rounded-full bg-black/75 text-sm text-white">ⓘ</span>
+            </summary>
+            <p class="m-0 bg-black px-3 py-2 text-xs leading-relaxed text-stone-200">
+              © <a href="https://www.openstreetmap.org/copyright" class="underline">contributeurs OpenStreetMap</a><br>
+              Relief <a href="https://geoservices.ign.fr/rgealti" class="underline">IGN</a> /
+              <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" class="underline">Terrain Tiles</a>
+            </p>
+          </details>
         </figure>
 
         <div class="lg:col-span-5 lg:col-start-1 lg:row-start-2">
@@ -153,6 +158,7 @@ useHead({
 </script>
 
 <style scoped>
+.map-credits summary::-webkit-details-marker { display: none; }
 .home-map:focus-visible {
   outline: 2px solid #fcd34d;
   outline-offset: 4px;
