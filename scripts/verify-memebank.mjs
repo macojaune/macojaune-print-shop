@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
-import { devAction, devActionDisabled, expectNoSimulationInProduct } from './lib/macomisyon-dev.mjs'
+import { devAction, expectVueInspection, devActionDisabled, expectNoSimulationInProduct } from './lib/macomisyon-dev.mjs'
 
 const baseURL = process.env.DEMO_URL || 'http://127.0.0.1:3000/macomisyon'
 const output = process.env.BANK_REVIEW_DIR || '.impeccable/review/bank'
@@ -81,6 +81,7 @@ try {
   await test('Exterior stays anonymous and gates deep links without counting real visits', async () => {
     await page.goto(baseURL + '?lieu=bank', { waitUntil: 'domcontentloaded' })
     await page.locator('.bank-curiosity').waitFor()
+    await expectVueInspection(page, '.jarry-map')
     await settled(page, '.jarry-map', value => value.renderCount > 0)
     await expectNoSimulationInProduct(page)
     assert.doesNotMatch(await page.locator('.maco-game').innerText(), /Memebank|VHS|QuiLivreOù/)

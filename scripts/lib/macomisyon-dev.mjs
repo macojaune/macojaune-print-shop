@@ -43,3 +43,13 @@ export async function expectNoSimulationInProduct(page, scope = 'main') {
   const strip = await page.locator('.depot-demo-strip, .depot-simulation').count()
   assert.equal(strip, 0, 'Le bandeau « Démo locale » est encore affiché')
 }
+
+/**
+ * Some checks read component state through Vue's development handles, which a
+ * production build (DEV included) strips. Fail with the reason instead of a misleading assertion.
+ */
+export async function expectVueInspection(page, selector) {
+  await page.locator(selector).first().waitFor()
+  const available = await page.locator(selector).first().evaluate(element => !!element.__vueParentComponent)
+  assert.equal(available, true, 'Ce script lit l’état interne de Vue : lance-le contre `nuxi dev` (build de développement), pas contre DEV ou la production.')
+}

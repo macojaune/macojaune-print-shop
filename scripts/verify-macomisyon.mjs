@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
-import { devAction, expectNoSimulationInProduct } from './lib/macomisyon-dev.mjs'
+import { devAction, expectVueInspection, expectNoSimulationInProduct } from './lib/macomisyon-dev.mjs'
 
 const baseURL = process.env.DEMO_URL || 'http://127.0.0.1:3000/macomisyon'
 const screenshotDir = '.impeccable/review'
@@ -46,6 +46,7 @@ try {
     await page.goto(baseURL, { waitUntil: 'domcontentloaded' })
     await page.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
     await page.locator('[data-jarry-canvas]').waitFor()
+    await expectVueInspection(page, '.jarry-map')
     await settle(page, '.jarry-map', value => value?.renderCount > 2)
     assert.equal(await page.getByRole('button', { name: 'Zoomer', exact: true }).isEnabled(), true)
     assert.equal((await debug(page, '.jarry-map')).contextIsLost, false)
