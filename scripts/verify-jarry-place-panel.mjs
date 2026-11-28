@@ -27,6 +27,7 @@ try {
     const page = await context.newPage()
     page.on('pageerror', error => errors.push(error.message))
     await page.goto(url)
+    await page.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
     await ready(page)
     const initialTools = await page.locator('.map-tools').boundingBox()
     assert.equal(await page.locator('.place-detail').count(), 0, 'No permanent strip before selection')
@@ -39,7 +40,15 @@ try {
     const stage = await page.locator('.game-stage').boundingBox()
     assert.deepEqual(await page.locator('.map-tools').boundingBox(), initialTools, 'Opening a place leaves the map controls in their original far-right position')
     assert.ok(panel.x >= stage.x && panel.y >= stage.y && panel.x + panel.width <= stage.x + stage.width + 1 && panel.y + panel.height <= stage.y + stage.height + 1)
-    if (device === 'desktop') assert.ok(panel.x > stage.x + stage.width / 2, 'Desktop window is on the right')
+    const stacked = width <= 700 && height > width
+    if (stacked) {
+      assert.ok(Math.abs(panel.x + panel.width / 2 - stage.x - stage.width / 2) <= 1)
+      assert.ok(Math.abs(panel.y - stage.y - stage.height / 2) <= 1, 'The mobile card opens at the middle of the map')
+    } else {
+      const fromCentre = panel.x - stage.x - stage.width / 2
+      assert.ok(fromCentre > 0 && fromCentre <= 60, 'The card starts next to the centred building')
+      assert.ok(Math.abs(panel.y - stage.y - stage.height / 2) <= 80, 'The card starts near the vertical centre')
+    }
     const controls = [page.getByRole('button', { name: 'Fermer la fiche du lieu', exact: true }), page.getByRole('button', { name: 'Les lieux', exact: true }), ...['Zoomer', 'Dézoomer', 'Recentrer la carte'].map(name => page.getByRole('button', { name, exact: true })), page.locator('[data-project="memebank"]')]
     for (const control of controls) assert.ok(await hit(page, control), `${device}: ${await control.getAttribute('aria-label') || await control.innerText()} is not covered`)
     if (width <= 700 && height > width) {
@@ -62,6 +71,9 @@ try {
     assert.ok(await hit(page, page.getByRole('link', { name: 'Visiter le site du studio (nouvel onglet)', exact: true })))
     assert.equal(page.url(), url)
     await page.screenshot({ path: `${output}/studio-${device}.png` })
+    await select(page, 'L’atelier')
+    const workshop = await page.locator('.place-detail').boundingBox()
+    assert.ok(Math.abs(panel.x - workshop.x) <= 1 && Math.abs(panel.y - workshop.y) <= 1, 'Closed and open places share the same card position')
     await select(page, 'La maison sur l’eau')
     assert.deepEqual(await page.locator('.map-tools').boundingBox(), initialTools, 'Long place names do not move the map controls')
     for (const name of ['Zoomer', 'Dézoomer', 'Recentrer la carte']) assert.ok(await hit(page, page.getByRole('button', { name, exact: true })))

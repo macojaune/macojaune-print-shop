@@ -1,6 +1,6 @@
 # Jarry : géographie et relief
 
-La présentation plate est rétablie à la demande de Marvin : mer plane et cadrage géographique, sans cube ni fond sous-marin décoratif. Les altitudes terrestres IGN, les rues et la végétation sont conservées. Les crédits restent visibles en pied de carte. « À propos » détaille les sources et leurs licences.
+La présentation plate est rétablie à la demande de Marvin : mer plane et cadrage géographique, sans cube ni fond sous-marin décoratif. Les altitudes terrestres IGN, les rues et la végétation sont conservées. Le guide de première visite crédite OpenStreetMap. La rubrique « Carte et sources » dans « À propos » détaille les données et leurs licences.
 
 ## Direction du 22 octobre 2026
 

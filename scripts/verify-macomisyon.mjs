@@ -43,6 +43,7 @@ try {
   observeErrors(page)
   await test('Jarry loads with no hydration error and responsive canvas', async () => {
     await page.goto(baseURL, { waitUntil: 'domcontentloaded' })
+    await page.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
     await page.locator('[data-jarry-canvas]').waitFor()
     await settle(page, '.jarry-map', value => value?.renderCount > 2)
     assert.equal(await page.getByRole('button', { name: 'Zoomer', exact: true }).isEnabled(), true)
@@ -162,6 +163,7 @@ try {
   const phone = await mobile.newPage(); observeErrors(phone)
   await test('Phone layout, touch selection and reduced-motion still work', async () => {
     await phone.goto(baseURL, { waitUntil: 'domcontentloaded' })
+    await phone.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
     await phone.locator('[data-jarry-canvas]').waitFor()
     await settle(phone, '.jarry-map', value => value?.renderCount > 0)
     assert.equal((await debug(phone, '.jarry-map')).reducedMotion, true)
@@ -190,6 +192,7 @@ try {
   const withoutGL = await fallback.newPage(); observeErrors(withoutGL)
   await test('No WebGL still exposes project and all mission panels', async () => {
     await withoutGL.goto(baseURL, { waitUntil: 'domcontentloaded' })
+    await withoutGL.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
     await withoutGL.locator('.world-fallback').waitFor()
     await withoutGL.getByRole('button', { name: 'Voir les lieux', exact: true }).click()
     await withoutGL.locator('.place-row').filter({ hasText: 'Le hangar' }).click()

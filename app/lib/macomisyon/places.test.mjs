@@ -12,7 +12,7 @@ import * as scoloModule from './scolo/model.js'
 const icon = { props: ['name'], setup: props => () => Vue.h('svg', { 'data-icon': props.name }) }
 
 // Run the real SFC handlers and render functions without a browser or WebGL.
-function harness() {
+function harness(savedStorage = new Map([['macomisyon-guide-v1', 'seen']])) {
   const document = { hidden: false, addEventListener() {}, removeEventListener() {} }
   class Element {
     constructor(tag, text = '') {
@@ -84,7 +84,10 @@ function harness() {
     ...Vue,
     definePageMeta() {}, useSeoMeta() {},
     document,
-    localStorage: { getItem() { return null }, setItem(...args) { storageWrites.push(args) } },
+    localStorage: {
+      getItem(key) { return savedStorage.get(key) ?? null },
+      setItem(key, value) { storageWrites.push([key, value]); savedStorage.set(key, value) },
+    },
     HTMLElement: Element, Node: Element,
   }
   function compile(relativePath, imports, extraGlobals = {}) {
@@ -97,7 +100,9 @@ function harness() {
     const module = { exports: {} }
     const scope = { ...globals, ...extraGlobals }
     const require = name => {
-      if (name === 'vue') return Vue
+      // CSS transition timings belong to the browser checks. This renderer
+      // mounts and unmounts their real slot content without browser DOM APIs.
+      if (name === 'vue') return { ...Vue, Transition: (_props, { slots }) => slots.default?.()[0] }
       assert.ok(name in imports, `Unexpected import: ${name}`)
       return imports[name]
     }
@@ -128,8 +133,8 @@ function harness() {
   return { storageWrites, renderer, compile, root, walk, all, byClass, text, click, keydown, document, focused: () => document.activeElement }
 }
 
-async function mountPage(t, beforeWorldStarts) {
-  const h = harness()
+async function mountPage(t, beforeWorldStarts, savedStorage) {
+  const h = harness(savedStorage)
   const route = Vue.reactive({ query: {} })
   const navigations = []
   const cameraCalls = []
@@ -368,25 +373,34 @@ test('places and help replace the detail, and Escape closes only the active exte
   assert.deepEqual(h.navigations, navigations)
 })
 
-test('the footer credits the map before the world loads, with a selected place and after returning from it', async t => {
-  const expectedUrls = [
-    'https://www.openstreetmap.org/copyright',
-    'https://geoservices.ign.fr/rgealti',
-    'https://github.com/tilezen/joerd/blob/master/docs/attribution.md',
-  ]
+test('a first-time visitor can dismiss the guide, return to the map and replay it from About', async t => {
+  const storage = new Map()
+  const h = await mountPage(t, undefined, storage)
+  const guide = harness => harness.all(node => node.props.id === 'map-guide')[0]
+  const button = (harness, label) => harness.all(node => node.tag === 'button' && harness.text(node) === label)[0]
+  assert.ok(guide(h))
+  await h.click(button(h, 'Explorer la carte'))
+  assert.equal(guide(h), undefined)
+  assert.equal(storage.get('macomisyon-guide-v1'), 'seen')
+
+  const returning = await mountPage(t, undefined, storage)
+  assert.equal(guide(returning), undefined)
+  await returning.click(returning.helpButton())
+  await returning.click(button(returning, 'Revoir le guide'))
+  assert.ok(guide(returning))
+  await returning.keydown()
+  assert.equal(guide(returning), undefined)
+})
+
+test('the footer offers feedback while loading, with a selection, inside Scolo and on return', async t => {
   function assertMapFooter(h) {
     const [footer] = h.byClass('game-footer')
-    const credits = h.byClass('map-attribution')
-    assert.equal(credits.length, 1)
-    assert.ok(footer.contains(credits[0]), 'The attribution belongs to the permanent footer')
-    const links = h.walk(credits[0]).filter(node => node.tag === 'a')
-    assert.deepEqual(links.map(link => link.props.href).sort(), [...expectedUrls].sort())
-    for (const link of links) {
-      assert.ok(h.text(link).trim(), 'The source link has a name')
-      assert.ok(link.getClientRects().length > 0, 'The source link is visible')
-    }
-    assert.doesNotMatch(h.text(footer), /Des lieux familiers|Première exploration/)
-    assert.doesNotMatch(h.text(h.root), /Exploration libre/)
+    const feedback = h.walk(footer).find(node => node.tag === 'a' && h.text(node).includes('Signaler un bug ou une amélioration'))
+    assert.ok(feedback, 'The permanent footer names the feedback form')
+    assert.equal(feedback.props.href, 'https://tally.so/r/WJzDrJ')
+    assert.ok(feedback.getClientRects().length > 0)
+    assert.doesNotMatch(h.text(footer), /OpenStreetMap|Terrain Tiles|Première exploration|Des lieux familiers/)
+    assert.doesNotMatch(h.text(h.root), /Exploration libre|compteurs fictifs|aucune contribution réelle/i)
     assert.equal(h.byClass('motion-control').length, 0)
   }
   const h = await mountPage(t, loading => {
@@ -397,10 +411,9 @@ test('the footer credits the map before the world loads, with a selected place a
   await h.mapSelect('scolo')
   h.assertDetail('scolo')
   assertMapFooter(h)
-
   await h.click(h.byClass('enter-depot')[0])
   assert.equal(h.route.query.lieu, 'scolo')
-  assert.match(h.text(h.byClass('game-footer')[0]), /Scolo · Le dernier carton/)
+  assertMapFooter(h)
   await h.click(h.byClass('world-back')[0])
   assert.equal(h.route.query.lieu, undefined)
   assert.equal(h.selected(), 'scolo')
@@ -414,7 +427,7 @@ test('discovery and external places stay usable without WebGL and do not enter m
 
   await openList()
   assert.equal(h.byClass('place-row').length, 8)
-  for (const name of ['La voiture à l’écart', 'MAGGMA Studio', 'La cour du mas']) {
+  for (const name of ['La voiture à l’écart', 'MAGGMA Studio', 'La cour du Mas']) {
     const row = h.byClass('place-row').find(node => h.text(node).includes(name))
     assert.doesNotMatch(h.text(row), /fermé|porte/i)
     assert.equal(h.walk(row).filter(node => node.props['data-icon'] === 'lock').length, 0)
@@ -438,7 +451,7 @@ test('discovery and external places stay usable without WebGL and do not enter m
   assert.equal(navigations.length, 0)
   assert.match(h.text(h.byClass('game-live')[0]), /nouvel onglet/)
 
-  await select('La cour du mas')
+  await select('La cour du Mas')
   assert.match(h.text(dock()), /tambours rangés, des costumes et des fanions/)
   assert.equal(actions().length, 0)
   assert.doesNotMatch(h.text(h.byClass('game-live')[0]), /fermé|entrer|mission|quota/i)
@@ -447,7 +460,7 @@ test('discovery and external places stay usable without WebGL and do not enter m
   await Vue.nextTick()
   const callsBeforeFailure = cameraCalls.length
   await select('La voiture à l’écart')
-  await select('La cour du mas')
+  await select('La cour du Mas')
   await select('MAGGMA Studio')
   assert.equal(cameraCalls.length, callsBeforeFailure)
   assert.equal(h.walk(dock()).find(node => node.tag === 'a').props.href, 'https://maggma.studio/')
@@ -458,7 +471,7 @@ test('discovery and external places stay usable without WebGL and do not enter m
   assert.match(h.text(h.byClass('game-live')[0]), /encore fermé/)
   await select('Le hangar')
   assert.match(h.text(dock()), /Entrer au dépôt/)
-  await select('L’atelier fermé')
+  await select('L’atelier')
   assert.match(h.text(dock()), /Lieu fermé/)
   assert.equal(navigations.length, 0)
 })
