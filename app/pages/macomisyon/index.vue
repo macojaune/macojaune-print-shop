@@ -219,7 +219,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   <main class="maco-game" @keydown.esc="escapePanel">
     <a class="game-skip" :href="inBank ? '#bank-missions' : inScolo ? '#scolo-missions' : '#project-access'">{{ inBank || inScolo ? 'Aller aux Komisyon' : 'Aller aux lieux' }}</a>
     <header class="game-header">
-      <NuxtLink to="/" class="site-return" aria-label="Retour sur Macojaune"><GameIcon name="back" /><span>Macojaune</span></NuxtLink>
+      <NuxtLink to="/" class="site-return"><GameIcon name="back" :size="16" /><span>Retour au site</span></NuxtLink>
       <h1>Maco’misyon<span aria-hidden="true">.</span></h1>
     </header>
 
@@ -236,7 +236,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
           <div v-if="!loaded && !mapError" class="world-loading" aria-live="polite"><strong>On ouvre la carte.</strong><span>Les lumières s’allument.</span></div>
           <div v-if="mapError" class="world-loading world-fallback" role="status"><GameIcon name="map" :size="40" /><strong>La vue 3D est indisponible.</strong><span>Tu peux quand même découvrir les lieux et accéder aux Komisyon disponibles depuis la liste.</span><button type="button" class="game-button" @click="togglePanel('places', $event)">Voir les lieux</button></div>
 
-          <div class="map-title" aria-hidden="true"><span>Terre<br>inconnue.</span><small>À toi d’explorer.</small></div>
+          <div class="map-title"><h2>Découvre<br> mes projets</h2><p>Choisis un lieu sur la carte.</p></div>
           <div class="map-tools" aria-label="Commandes de la carte">
             <button type="button" title="Zoomer" aria-label="Zoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1.2)"><GameIcon name="plus" /></button>
             <button type="button" title="Dézoomer" aria-label="Dézoomer" :disabled="!loaded || mapError" @click="map?.zoomBy(1 / 1.2)"><GameIcon name="minus" /></button>
@@ -254,7 +254,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
           </section>
           <section v-if="panel === 'help'" id="help-panel" class="map-panel help-panel" aria-labelledby="help-title">
             <div class="panel-title"><h2 id="help-title" ref="helpTitle" tabindex="-1">À propos</h2><button type="button" aria-label="Fermer l’aide" @click="closePanel"><GameIcon name="close" /></button></div>
-            <h3>À toi d’explorer</h3>
+            <h3>Comment utiliser la carte</h3>
             <p>Déplace la carte avec un doigt. Pince avec deux doigts pour zoomer, ou utilise les boutons.</p>
             <p>Touche un lieu pour découvrir sa fiche. Tu peux entrer dans les bâtiments ouverts ou suivre le lien du studio.</p>
             <p class="keyboard-help">Au clavier : flèches pour déplacer la carte, + et − pour zoomer, Début pour recentrer. Les lieux sont aussi accessibles par leurs boutons.</p>
@@ -335,8 +335,8 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .map-attribution { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; column-gap: 12px; margin-left: auto; font-size: 11px; }
 .map-attribution a { display: inline-flex; align-items: center; min-height: 24px; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .map-title { position: absolute; left: 30px; top: 23px; color: #143c3e; pointer-events: none; }
-.map-title > span { display: block; font: 400 clamp(32px, 3.5vw, 52px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
-.map-title small { display: block; font-size: 12px; line-height: 1.4; margin-top: 10px; }
+.map-title h2 { margin: 0; font: 400 clamp(32px, 3.5vw, 52px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
+.map-title p { margin: 10px 0 0; font-size: 12px; line-height: 1.4; }
 .map-tools { position: absolute; display: flex; flex-direction: column; right: 18px; top: 20px; border: 1px solid #23474b; background: #f1ebd3; }
 .map-tools button { display: grid; place-items: center; width: 44px; height: 44px; background: none; border: 0; color: #183d3e; }
 .map-tools button + button { border-top: 1px solid #23474b40; }
@@ -409,15 +409,14 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 @media (min-width: 1600px) { .maco-game { padding-top: 10px; padding-bottom: 12px; } }
 @media (max-width: 700px) {
   .maco-game { min-height: 560px; padding: 0; }
-  .game-header { height: 64px; padding: 0 15px; }
+  .game-header { height: 64px; padding: 0 15px; column-gap: 6px; }
   .game-header h1 { font-size: 29px; }
-  .site-return span { display: none; }
-  .site-return { width: 38px; }
+  .site-return { gap: 4px; line-height: 1.2; }
   .game-console { border-left: 0; border-right: 0; border-radius: 0; }
   .console-topline { padding: 0 14px; height: 39px; }
   .map-title { left: 18px; top: 18px; }
-  .map-title > span { font-size: 32px; }
-  .map-title small { font-size: 10px; margin-top: 6px; }
+  .map-title h2 { font-size: 32px; }
+  .map-title p { font-size: 10px; margin-top: 6px; }
   .map-tools { right: 12px; top: 15px; }
   .place-detail { bottom: 68px; }
   .map-tools button { height: 44px; width: 44px; }
