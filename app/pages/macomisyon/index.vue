@@ -336,7 +336,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .map-attribution a { display: inline-flex; align-items: center; min-height: 24px; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .map-title { position: absolute; left: 30px; top: 23px; color: #143c3e; pointer-events: none; }
 .map-title h2 { margin: 0; font: 400 clamp(32px, 3.5vw, 52px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
-.map-title p { margin: 10px 0 0; font-size: 12px; line-height: 1.4; }
+.map-title p { color: inherit; margin: 10px 0 0; font-size: 12px; line-height: 1.4; }
 .map-tools { position: absolute; display: flex; flex-direction: column; right: 18px; top: 20px; border: 1px solid #23474b; background: #f1ebd3; }
 .map-tools button { display: grid; place-items: center; width: 44px; height: 44px; background: none; border: 0; color: #183d3e; }
 .map-tools button + button { border-top: 1px solid #23474b40; }
