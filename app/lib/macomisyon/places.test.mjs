@@ -8,6 +8,7 @@ import * as placesModule from './places.js'
 import * as depotModule from './depot/model.js'
 import * as bankModule from './bank/model.js'
 import * as scoloModule from './scolo/model.js'
+import * as devToolsModule from './dev-tools.js'
 
 const icon = { props: ['name'], setup: props => () => Vue.h('svg', { 'data-icon': props.name }) }
 
@@ -166,6 +167,7 @@ async function mountPage(t, beforeWorldStarts, savedStorage) {
     '../../lib/macomisyon/depot/model.js': depotModule,
     '../../lib/macomisyon/bank/model.js': bankModule,
     '../../lib/macomisyon/scolo/model.js': scoloModule,
+    '../../lib/macomisyon/dev-tools.js': devToolsModule,
   }, {
     useRoute: () => route,
     useRouter: () => ({ push: navigate, replace: navigate }),
@@ -174,6 +176,7 @@ async function mountPage(t, beforeWorldStarts, savedStorage) {
   app.component('NuxtLink', { props: ['to'], setup: (props, { slots }) => () => Vue.h('a', { href: props.to }, slots.default?.()) })
   app.component('ClientOnly', { setup: (_props, { slots }) => () => slots.default?.() })
   app.component('MacomisyonJarryMap', map)
+  app.component('MacomisyonDevPanel', { props: ['context'], render: () => Vue.h('aside', { 'data-dev-panel': '' }) })
   app.component('LazyMacomisyonScoloHouse', {
     props: ['state', 'paused'],
     emits: ['contribute'],
@@ -220,7 +223,14 @@ async function mountPage(t, beforeWorldStarts, savedStorage) {
     assert.equal(h.byClass('map-panel').length, 0)
     assert.equal(selected, id)
   }
-  return { ...h, route, navigations, cameraCalls, callbacks, labels, marker, placesButton, helpButton, openList, select, mapSelect, dock, closeButton, assertDetail, selected: () => selected, view: () => structuredClone(view) }
+  const devAction = async (sectionId, actionId) => {
+    const action = devToolsModule.devSections().find(section => section.id === sectionId)?.actions.find(item => item.id === actionId)
+    assert.ok(action, `Dev action ${sectionId}:${actionId} is registered`)
+    assert.notEqual(action.disabled, true, 'The dev action is enabled')
+    await action.run()
+    await Vue.nextTick()
+  }
+  return { ...h, devAction, route, navigations, cameraCalls, callbacks, labels, marker, placesButton, helpButton, openList, select, mapSelect, dock, closeButton, assertDetail, selected: () => selected, view: () => structuredClone(view) }
 }
 
 test('the place window is absent initially and map selection focuses its accessible heading', async t => {
@@ -466,8 +476,8 @@ test('discovery and external places stay usable without WebGL and do not enter m
   assert.equal(h.walk(dock()).find(node => node.tag === 'a').props.href, 'https://maggma.studio/')
 
   await select('La banque')
-  assert.match(h.text(dock()), new RegExp(`Curiosité · 0 / ${bankModule.BANK_GOALS.curiosity} visites simulées`))
-  assert.match(h.text(dock()), /Simuler une visite/)
+  assert.match(h.text(dock()), new RegExp(`Curiosité · 0 / ${bankModule.BANK_GOALS.curiosity} visites`))
+  assert.doesNotMatch(h.text(dock()), /simul/i, 'Simulations stay in the development panel')
   assert.match(h.text(h.byClass('game-live')[0]), /encore fermé/)
   await select('Le hangar')
   assert.match(h.text(dock()), /Entrer au dépôt/)
@@ -480,10 +490,12 @@ test('bank curiosity still unlocks the existing entrance and Escape leaves its i
   const h = await mountPage(t)
   await h.select('La banque')
   h.assertDetail('memebank')
-  assert.match(h.text(h.dock()), new RegExp(`Curiosité · 0 / ${bankModule.BANK_GOALS.curiosity} visites simulées`))
+  assert.match(h.text(h.dock()), new RegExp(`Curiosité · 0 / ${bankModule.BANK_GOALS.curiosity} visites`))
+  assert.equal(h.byClass('enter-depot').length, 0, 'The closed bank offers no simulation button')
+  assert.equal(devToolsModule.devSections()[0].id, 'memebank', 'The selected place comes first in the dev panel')
   const cameraCalls = [...h.cameraCalls]
   for (let count = 1; count <= bankModule.BANK_GOALS.curiosity; count++) {
-    await h.click(h.byClass('enter-depot')[0])
+    await h.devAction('memebank', 'visit')
     assert.equal(h.navigations.length, 0, 'Simulating curiosity never enters the bank directly')
     assert.equal(h.byClass('place-detail').length, 1)
     if (count < bankModule.BANK_GOALS.curiosity) assert.match(h.text(h.dock()), new RegExp(`Curiosité · ${count} /`))
@@ -493,7 +505,7 @@ test('bank curiosity still unlocks the existing entrance and Escape leaves its i
   const enter = h.byClass('enter-depot')[0]
   assert.match(h.text(enter), /Entrer dans la banque/)
   assert.equal(h.focused(), enter)
-  assert.match(h.text(h.byClass('game-live')[0]), /Palier simulé atteint/)
+  assert.match(h.text(h.byClass('game-live')[0]), /Le rideau se lève/)
   await h.click(enter)
   assert.deepEqual(h.navigations, [{ path: '/macomisyon', query: { lieu: 'bank' } }])
   assert.equal(h.all(node => node.props['data-interior'] === 'bank').length, 1)

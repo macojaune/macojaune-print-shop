@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import GameIcon from './GameIcon.vue'
 import { BANK_GOALS } from '../../lib/macomisyon/bank/model.js'
+import { registerDevSections } from '../../lib/macomisyon/dev-tools.js'
 
 const props = defineProps({ paused: { type: Boolean, default: false }, state: { type: Object, required: true } })
 const emit = defineEmits(['action'])
@@ -80,16 +81,35 @@ async function choose(id) {
 }
 function act(action, id, amount = 1) {
   for (let index = 0; index < amount; index++) emit('action', action, id)
-  if (action === 'qualify') announcement.value = 'Candidature qualifiée dans la démo, sans invitation automatique.'
-  else if (action === 'invite') announcement.value = 'Invitation simulée. Aucun message réel n’est envoyé.'
-  else if (id) announcement.value = 'Progression simulée. Les compteurs et les piles continuent après l’objectif.'
+  if (action === 'qualify') announcement.value = 'Candidature qualifiée, sans invitation automatique.'
+  else if (action === 'invite') announcement.value = 'Invitation à la bêta envoyée.'
+  else if (id) announcement.value = 'Les compteurs et les piles continuent après l’objectif.'
 }
 function applyScenario(id) {
   closePanel()
   world?.resetView()
   emit('action', 'scenario', id)
-  announcement.value = 'État de démonstration remplacé. Aucun compteur réel ne change.'
 }
+// Simulations are development tools: they never appear in the bank itself.
+const unregisterDev = registerDevSections('bank', () => [
+  {
+    id: 'bank-scenarios', title: 'Banque · états', context: 'interior', status: completedCount.value + '/3',
+    note: 'Chaque état remplace la progression locale de la banque. Quotas illustratifs : 8 inscriptions, 5 formulaires.',
+    actions: scenarios.map(scenario => ({ id: scenario.id, label: scenario.title, tone: scenario.id === 'new' ? 'reset' : undefined, run: () => applyScenario(scenario.id) })),
+  },
+  {
+    id: 'bank-missions', title: 'Banque · contributions', context: 'interior',
+    actions: [
+      ...steps.filter(step => step.id !== 'beta').flatMap(step => [
+        { id: step.id, label: step.action + ' (' + countFor(step) + '/' + step.goal + ')', run: () => act('contribute', step.id) },
+        { id: step.id + '-5', label: '+5', run: () => act('contribute', step.id, 5) },
+      ]),
+      { id: 'qualify', label: 'Qualifier une candidature (' + props.state.counts.qualified + ')', disabled: !canQualify.value, run: () => act('qualify') },
+      { id: 'invite', label: 'Inviter à la bêta (' + props.state.counts.admitted + ')', disabled: !canInvite.value, run: () => act('invite') },
+      { id: 'open-beta', label: 'Ouvrir la bêta', disabled: props.state.betaOpen || !props.state.counts.admitted, run: () => act('openBeta') },
+    ],
+  },
+])
 function onKeydown(event) {
   if (event.key === 'Escape' && (panel.value || selected.value)) { event.stopPropagation(); closePanel() }
 }
@@ -125,7 +145,7 @@ onMounted(async () => {
   } catch { world?.dispose(); world = null; error.value = true }
   finally { if (alive) loading.value = false }
 })
-onBeforeUnmount(() => { alive = false; selectionRequest++; world?.dispose(); world = null })
+onBeforeUnmount(() => { unregisterDev(); alive = false; selectionRequest++; world?.dispose(); world = null })
 defineExpose({ getDebug: () => ({ ...world?.getDebug(), panel: panel.value, selected: selected.value }), getState: () => props.state })
 </script>
 
@@ -141,13 +161,12 @@ defineExpose({ getDebug: () => ({ ...world?.getDebug(), panel: panel.value, sele
         </template>
       </div>
       <div v-if="loading" class="depot-fallback" role="status"><p>Ouverture des guichets…</p></div>
-      <div v-else-if="error" class="depot-fallback" role="status"><GameIcon name="tape" :size="48" /><h2>La banque reste ouverte.</h2><p>La vue 3D est indisponible. Les trois étapes et toutes les simulations restent accessibles dans les Komisyon.</p><button type="button" class="depot-action" @click="openPanel('inventory')">Voir les trois étapes</button></div>
+      <div v-else-if="error" class="depot-fallback" role="status"><GameIcon name="tape" :size="48" /><h2>La banque reste ouverte.</h2><p>La vue 3D est indisponible. Les trois étapes restent accessibles dans les Komisyon.</p><button type="button" class="depot-action" @click="openPanel('inventory')">Voir les trois étapes</button></div>
       <div class="depot-scene-tools">
         <button type="button" aria-label="Zoomer dans la banque" :disabled="error || loading" @click="world?.zoomBy(1.22)"><GameIcon name="plus" /></button>
         <button type="button" aria-label="Dézoomer dans la banque" :disabled="error || loading" @click="world?.zoomBy(1 / 1.22)"><GameIcon name="minus" /></button>
         <button type="button" aria-label="Recentrer la banque" :disabled="error || loading" @click="world?.resetView()"><GameIcon name="locate" /></button>
       </div>
-      <div class="depot-demo-strip"><span class="depot-simulation">Démo locale</span><button type="button" aria-label="Choisir un scénario de démonstration de la banque" @click="openPanel('demo')">Changer d’état<GameIcon name="arrow" /></button></div>
       <p id="bank-navigation" class="depot-sr-only">Flèches : déplacer la vue. Plus et moins : zoomer. Sélectionne une étape numérotée ou ouvre les Komisyon.</p>
       <p class="depot-sr-only">{{ sceneDescription }}</p>
     </div>
@@ -159,36 +178,30 @@ defineExpose({ getDebug: () => ({ ...world?.getDebug(), panel: panel.value, sele
 
     <Transition name="depot-panel">
       <section v-if="panel" class="depot-panel" aria-labelledby="bank-panel-title">
-        <header class="depot-panel-bar"><span>{{ panel === 'demo' ? 'Console de démo' : panel === 'inventory' ? 'Carnet de Komisyon' : panel === 'project' ? 'Fiche projet' : 'Komisyon · Étape ' + current?.number }}</span><button type="button" aria-label="Fermer le panneau" @click="closePanel"><GameIcon name="close" /></button></header>
+        <header class="depot-panel-bar"><span>{{ panel === 'inventory' ? 'Carnet de Komisyon' : panel === 'project' ? 'Fiche projet' : 'Komisyon · Étape ' + current?.number }}</span><button type="button" aria-label="Fermer le panneau" @click="closePanel"><GameIcon name="close" /></button></header>
         <div class="depot-panel-content">
           <template v-if="panel === 'project'">
             <h2 id="bank-panel-title" ref="panelHeading" tabindex="-1">Memebank</h2><p class="depot-lead">La banque des mèmes.</p><p>Une institution beaucoup trop sérieuse pour ce qu’elle protège. Dans le coffre : des VHS, uniquement des VHS.</p>
             <div class="depot-project-story"><GameIcon name="tape" :size="50" /><p>Le casse, c’est la diversion : on submerge les deux bureaux pendant que les archives deviennent accessibles. Les employés ont bien trop à classer pour regarder le coffre.</p></div>
-            <button type="button" class="depot-action" @click="openPanel('inventory')">Voir les trois étapes<GameIcon name="arrow" /></button><p class="depot-note">Le hall s’est ouvert après {{ state.counts.curiosity }} visites simulées. Les deux bureaux progressent en parallèle. La bêta reste une décision distincte.</p>
+            <button type="button" class="depot-action" @click="openPanel('inventory')">Voir les trois étapes<GameIcon name="arrow" /></button><p class="depot-note">Le hall s’est ouvert après {{ state.counts.curiosity }} visites. Les deux bureaux progressent en parallèle. La bêta reste une décision distincte.</p>
           </template>
           <template v-else-if="panel === 'inventory'">
             <h2 id="bank-panel-title" ref="panelHeading" tabindex="-1">Organiser la diversion</h2><p>Choisis une étape pour la retrouver dans la banque et voir ce qui s’y accumule.</p>
             <div class="depot-inventory bank-inventory"><button v-for="step in steps" :key="step.id" type="button" :data-state="statusFor(step)" :data-mission="step.id" @click="choose(step.id)"><GameIcon :name="statusFor(step) === 'completed' ? 'check' : step.icon" /><span class="depot-inventory-copy"><strong>Étape {{ step.number }} · {{ step.short }}</strong><small>{{ step.id === 'beta' ? state.betaOpen ? 'Archives accessibles' : 'Ouverture explicite après sélection' : countFor(step) > step.goal ? 'Objectif dépassé · la pile continue' : statusFor(step) === 'completed' ? 'Accomplie · on peut continuer' : 'Mission principale' }}</small></span><span class="depot-inventory-count">{{ countFor(step) }}/{{ step.goal }}</span></button></div>
-            <p class="depot-note">Quotas illustratifs : 8 inscriptions, 5 formulaires. Étapes 1 et 2 indépendantes. Aucun plafond de contribution à l’objectif ; l’ouverture du coffre ne sélectionne pas des candidats automatiquement.</p>
+            <p class="depot-note">Étapes 1 et 2 indépendantes. Les contributions continuent au-delà de l’objectif ; l’ouverture du coffre ne sélectionne pas des candidats automatiquement.</p>
           </template>
           <template v-else-if="panel === 'mission' && current">
             <div class="depot-mission-heading"><GameIcon :name="current.icon" /><h2 id="bank-panel-title" ref="panelHeading" tabindex="-1">{{ current.title }}</h2></div><p>{{ current.description }}</p>
-            <div class="depot-goal"><strong>{{ currentCount }}<span>/ {{ current.goal }}</span></strong><span>{{ current.unit }}<br>{{ excess ? 'objectif dépassé de ' + excess : currentCount >= current.goal ? 'objectif atteint' : 'objectif de démonstration' }}</span></div>
+            <div class="depot-goal"><strong>{{ currentCount }}<span>/ {{ current.goal }}</span></strong><span>{{ current.unit }}<br>{{ excess ? 'objectif dépassé de ' + excess : currentCount >= current.goal ? 'objectif atteint' : 'objectif' }}</span></div>
             <div class="depot-gauge" role="progressbar" :aria-label="'Progression : ' + current.unit" :aria-valuenow="Math.min(currentCount, current.goal)" :aria-valuemin="0" :aria-valuemax="current.goal" :aria-valuetext="currentCount + ' sur ' + current.goal + (excess ? ', ' + excess + ' au-delà de l’objectif' : '')"><span :style="{ transform: 'scaleX(' + Math.min(currentCount / current.goal, 1) + ')' }" /></div>
             <p v-if="excess" class="bank-over-goal">+{{ excess }} au-delà du quota. Le bureau ne redescend pas : continue, il déborde encore.</p>
             <div class="depot-effect"><strong>Dans la banque</strong><p>{{ current.effect }}</p></div>
-            <template v-if="current.id !== 'beta'"><button type="button" class="depot-action" @click="act('contribute', current.id)"><GameIcon name="plus" />{{ current.action }}</button><button type="button" class="depot-text-button" :aria-label="'Simuler cinq contributions pour l’étape ' + current.number" @click="act('contribute', current.id, 5)">Simuler +5 pour voir le débordement</button></template>
-            <template v-else>
-              <dl class="bank-admissions"><div><dt>Formulaires reçus</dt><dd>{{ state.counts.applications }}</dd></div><div><dt>Candidatures qualifiées</dt><dd>{{ state.counts.qualified }}</dd></div><div><dt>Invitations simulées</dt><dd>{{ state.counts.admitted }}</dd></div></dl>
-              <div class="bank-selection-actions"><button type="button" :disabled="!canQualify" aria-label="Simuler une candidature qualifiée" @click="act('qualify')">Qualifier +1</button><button type="button" :disabled="!canInvite" aria-label="Simuler une invitation bêta" @click="act('invite')">Inviter +1</button></div>
-              <p class="depot-note bank-beta-rule">Formulaire reçu ≠ candidature retenue. Qualifie un dossier, puis simule une invitation pour essayer l’ouverture.</p>
-              <button type="button" class="depot-action bank-open" :class="{ 'is-complete': state.betaOpen }" :disabled="state.betaOpen || !state.counts.admitted" @click="act('openBeta')"><GameIcon :name="state.betaOpen ? 'check' : 'lock'" />{{ state.betaOpen ? 'Bêta ouverte · simulation' : 'Simuler l’ouverture bêta' }}</button>
+            <template v-if="current.id === 'beta'">
+              <dl class="bank-admissions"><div><dt>Formulaires reçus</dt><dd>{{ state.counts.applications }}</dd></div><div><dt>Candidatures qualifiées</dt><dd>{{ state.counts.qualified }}</dd></div><div><dt>Invitations envoyées</dt><dd>{{ state.counts.admitted }}</dd></div></dl>
+              <p class="depot-note bank-beta-rule">Formulaire reçu ≠ candidature retenue. Le coffre s’ouvre avec la bêta, après les premières invitations.</p>
+              <p class="depot-waiting">{{ state.betaOpen ? 'Bêta ouverte.' : 'Bêta pas encore ouverte.' }}</p>
             </template>
-            <button type="button" class="depot-text-button" @click="openPanel('inventory')">Toutes les Komisyon</button><p class="depot-note">Simulation sauvegardée sur cet appareil. Aucun email, compte, accès réel ou Zikak n’est créé. Les quantités continuent au-delà des quotas ; le dessin des piles compresse les très grands nombres.</p>
-          </template>
-          <template v-else-if="panel === 'demo'">
-            <h2 id="bank-panel-title" ref="panelHeading" tabindex="-1">Essaie la diversion</h2><p>Chaque scénario remplace la progression locale de cette banque. Compare les bureaux vides, les objectifs atteints et le chaos après dépassement.</p>
-            <div class="depot-scenarios bank-scenarios"><button v-for="scenario in scenarios" :key="scenario.id" type="button" @click="applyScenario(scenario.id)"><strong>{{ scenario.title }}</strong><span>{{ scenario.text }}</span><GameIcon name="arrow" /></button></div><p class="depot-note">Ce sont des essais de mise en scène, pas des objectifs de production approuvés.</p>
+            <button type="button" class="depot-text-button" @click="openPanel('inventory')">Toutes les Komisyon</button>
           </template>
         </div>
       </section>
@@ -212,11 +225,7 @@ defineExpose({ getDebug: () => ({ ...world?.getDebug(), panel: panel.value, sele
 .bank-admissions > div { border-bottom: 1px solid #566b51; padding-bottom: 10px; }
 .bank-admissions dt { color: #cad3ba; font-size: 11px; line-height: 1.5; }
 .bank-admissions dd { margin: 7px 0 0; font-size: 25px; color: #ffcf43; font-variant-numeric: tabular-nums; }
-.bank-selection-actions { display: flex; gap: 10px; }
-.bank-selection-actions button { flex: 1; min-height: 44px; padding: 8px; font-size: 12px; border: 1px solid #78917b; color: #f6edce; background: transparent; }
-.bank-selection-actions button:hover { background: #3c5345; }
 .meme-bank .bank-beta-rule { margin: 16px 0; }
-.meme-bank .bank-open.is-complete { opacity: 1; background: #b6d4b8; color: #1a302a; }
 .meme-bank.has-panel .depot-scene-tools { right: 426px; }
 .meme-bank .depot-goal { flex-wrap: wrap; }
 .meme-bank .depot-goal strong { max-width: 100%; overflow-wrap: anywhere; }
@@ -226,7 +235,6 @@ defineExpose({ getDebug: () => ({ ...world?.getDebug(), panel: panel.value, sele
   .meme-bank.has-panel .depot-scene-tools { top: 10px; bottom: auto; right: 10px; flex-direction: row; }
   .meme-bank.has-panel .depot-scene-tools button { border-bottom: 0; border-right: 1px solid #506657; }
   .meme-bank.has-panel .depot-scene-tools button:last-child { border-right: 0; }
-  .meme-bank.has-panel .depot-simulation { display: none; }
   .bank-admissions { gap: 8px; }
 }
 </style>

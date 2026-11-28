@@ -21,9 +21,10 @@ const pickModel = async (page, id, name) => {
   const before = await marker.boundingBox()
   const centre = { x: canvas.x + canvas.width / 2, y: canvas.y + canvas.height / 2 - 3 }
   // Drag from the model itself: moving the map must not immediately refocus it.
+  // Drag left: the place window opens to the right of the selection on desktop.
   await page.mouse.move(centre.x, centre.y)
   await page.mouse.down()
-  await page.mouse.move(centre.x + 60, centre.y, { steps: 8 })
+  await page.mouse.move(centre.x - 60, centre.y, { steps: 8 })
   await page.mouse.up()
   await settle(page)
   const moved = await marker.boundingBox()

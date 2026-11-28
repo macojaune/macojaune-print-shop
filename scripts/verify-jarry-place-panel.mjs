@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
+import { devAction, expectNoSimulationInProduct } from './lib/macomisyon-dev.mjs'
 import { BANK_GOALS } from '../app/lib/macomisyon/bank/model.js'
 
 const url = process.env.DEMO_URL || 'http://127.0.0.1:3096/macomisyon'
@@ -109,8 +110,10 @@ try {
     assert.equal(await page.evaluate(() => document.activeElement.textContent.includes('Entrer au dépôt')), true)
     if (device === 'desktop' || device === 'mobile') {
       await select(page, 'La banque')
-      for (let i = 0; i < BANK_GOALS.curiosity; i++) await page.getByRole('button', { name: 'Simuler une visite', exact: true }).click()
-      assert.equal(await page.evaluate(() => document.activeElement.textContent.includes('Entrer dans la banque')), true)
+      assert.match(await page.locator('.bank-curiosity').innerText(), new RegExp(`0 / ${BANK_GOALS.curiosity} visites`))
+      await expectNoSimulationInProduct(page)
+      // Visits are counted outside the map; the dev panel stands in for them.
+      await devAction(page, 'memebank:visit', BANK_GOALS.curiosity)
       await page.getByRole('button', { name: 'Entrer dans la banque', exact: true }).click()
       await page.waitForURL(location => location.searchParams.get('lieu') === 'bank')
       await page.keyboard.press('Escape')

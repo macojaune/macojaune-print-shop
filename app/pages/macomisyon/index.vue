@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import GameIcon from '../../components/macomisyon/GameIcon.vue'
-import { createStore } from '../../lib/macomisyon/depot/model.js'
-import { createScoloStore } from '../../lib/macomisyon/scolo/model.js'
+import { STORAGE_KEY as DEPOT_STORAGE_KEY, createStore } from '../../lib/macomisyon/depot/model.js'
+import { createScoloStore, missions as scoloMissions } from '../../lib/macomisyon/scolo/model.js'
 import { places } from '../../lib/macomisyon/places.js'
 import type { Place } from '../../lib/macomisyon/places.js'
-import { BANK_GOALS, createBankStore } from '../../lib/macomisyon/bank/model.js'
+import { BANK_GOALS, BANK_STORAGE_KEY, createBankStore } from '../../lib/macomisyon/bank/model.js'
+import { registerDevSections } from '../../lib/macomisyon/dev-tools.js'
 
 definePageMeta({ layout: 'macomisyon', pageTransition: false })
 useSeoMeta({
@@ -46,7 +47,6 @@ const depotRepaired = ref(false)
 const entering = ref(false)
 const liveMessage = ref('')
 const enterButton = ref<HTMLButtonElement | null>(null)
-const curiosityButton = ref<HTMLButtonElement | null>(null)
 const backButton = ref<HTMLButtonElement | null>(null)
 const placesTitle = ref<HTMLHeadingElement | null>(null)
 const helpTitle = ref<HTMLHeadingElement | null>(null)
@@ -63,6 +63,9 @@ let savedMapView: MapView | undefined
 const worldPlaces = computed(() => places.map(place => {
   if (place.id === 'scolo' && scoloState.value.moved) {
     return { ...place, description: 'Le camion a emporté le dernier carton. Le déménagement est terminé.' }
+  }
+  if (place.id === 'quilivreou' && depotRepaired.value) {
+    return { ...place, description: 'Le gyrophare s’est éteint et la camionnette repart en livraison. Tu peux entrer.' }
   }
   if (place.id === 'memebank' && bankUnlocked.value) {
     return { ...place, available: true, description: 'Le rideau est levé. On entend un drôle de remue-ménage derrière le guichet. Entre pour découvrir ce qui se cache ici.' }
@@ -85,6 +88,7 @@ onMounted(() => {
   bankState.value = bankStore.getState()
   bankLoaded.value = true
   unsubscribeBank = bankStore.subscribe(next => { bankState.value = next })
+  unregisterDev = registerDevSections('world', devWorldSections)
   if (!route.query.lieu) {
     try { if (localStorage.getItem(guideKey) === 'seen') return } catch { /* Storage may be disabled. */ }
     void showGuide()
@@ -94,6 +98,7 @@ onBeforeUnmount(() => {
   alive = false
   placeObserver?.disconnect()
   unsubscribeBank?.()
+  unregisterDev?.()
 })
 
 // On narrow screens, leave room for the building immediately above its card.
@@ -122,7 +127,7 @@ watch(interior, async (value, previous) => {
   if (value) backButton.value?.focus({ preventScroll: true })
   else {
     if (savedMapView) await map.value?.setView(savedMapView)
-    if (alive) (enterButton.value || curiosityButton.value)?.focus({ preventScroll: true })
+    if (alive) (enterButton.value || placeTitle.value)?.focus({ preventScroll: true })
   }
 })
 
@@ -192,10 +197,62 @@ async function bankAction(action: string, id?: string) {
   else if (action === 'openBeta') bankStore?.openBeta()
   else if (action === 'scenario' && id) bankStore?.loadScenario(id)
   if (!wasUnlocked && bankUnlocked.value) {
-    liveMessage.value = 'Palier simulé atteint. Le rideau se lève : tu peux entrer dans la banque.'
+    liveMessage.value = 'Le rideau se lève : tu peux entrer dans la banque.'
     await nextTick()
     if (alive && !inInterior.value) enterButton.value?.focus({ preventScroll: true })
-  } else if (id === 'curiosity') liveMessage.value = `${bankState.value.counts.curiosity} visites simulées sur ${BANK_GOALS.curiosity}.`
+  } else if (id === 'curiosity') liveMessage.value = `${bankState.value.counts.curiosity} visites sur ${BANK_GOALS.curiosity}.`
+}
+
+// Simulation controls live in the development panel, outside the product UI.
+let unregisterDev: (() => void) | undefined
+const devContext = computed(() => inDepot.value ? 'Intérieur · Le Dépôt Q' : inBank.value ? 'Intérieur · La banque' : inScolo.value ? 'Intérieur · La maison aux cartons'
+  : currentPlace.value ? 'Carte · ' + currentPlace.value.name : 'Carte')
+function presetDepot(id: string) {
+  depotRepaired.value = createStore().preset(id).state.repaired
+}
+function resetEverything() {
+  try { for (const key of [guideKey, DEPOT_STORAGE_KEY, BANK_STORAGE_KEY]) localStorage.removeItem(key) } catch { /* Reload anyway. */ }
+  scoloStore?.reset()
+  window.location.assign('/macomisyon')
+}
+function devWorldSections() {
+  const next = scoloMissions[scoloState.value.completed.length]
+  const scolo = {
+    id: 'scolo', title: 'La maison aux cartons', context: inScolo.value ? 'interior' as const : 'map' as const, focus: selected.value === 'scolo',
+    status: `${scoloState.value.completed.length}/${scoloMissions.length} parties`,
+    actions: [
+      { id: 'next', label: next ? 'Terminer une partie ' + next.label : 'Toutes les parties sont terminées', disabled: !next, run: () => next && finishScoloGame(next.id) },
+      { id: 'moved', label: 'Déménagement terminé (final)', disabled: scoloState.value.moved, run: () => scoloMissions.forEach(mission => finishScoloGame(mission.id)) },
+      { id: 'reset', label: 'Réinitialiser la maison', tone: 'reset' as const, run: () => { if (scoloStore) scoloState.value = scoloStore.reset() } },
+    ],
+  }
+  const global = {
+    id: 'progress', title: 'Toute la progression', context: 'global' as const,
+    actions: [{ id: 'reset-all', label: 'Repartir en nouveau visiteur', tone: 'reset' as const, run: resetEverything }],
+  }
+  if (inScolo.value) return [scolo, global]
+  if (inInterior.value) return [global]
+  return [
+    {
+      id: 'memebank', title: 'La banque', context: 'map' as const, focus: selected.value === 'memebank',
+      status: `${bankState.value.counts.curiosity}/${BANK_GOALS.curiosity} visites`,
+      actions: [
+        { id: 'visit', label: '+1 visite', disabled: !bankLoaded.value, run: () => bankAction('contribute', 'curiosity') },
+        { id: 'open', label: 'Lever le rideau', disabled: !bankLoaded.value || bankUnlocked.value, run: () => bankAction('scenario', 'discovered') },
+        { id: 'beta', label: 'Coffre VHS ouvert (final)', disabled: !bankLoaded.value, run: () => bankAction('scenario', 'beta') },
+        { id: 'reset', label: 'Réinitialiser la banque', tone: 'reset' as const, disabled: !bankLoaded.value, run: () => bankAction('scenario', 'new') },
+      ],
+    },
+    {
+      id: 'quilivreou', title: 'Le hangar', context: 'map' as const, focus: selected.value === 'quilivreou',
+      status: depotRepaired.value ? 'réparé' : 'à l’arrêt',
+      actions: [
+        { id: 'repaired', label: 'Dépôt réparé (final)', disabled: depotRepaired.value, run: () => presetDepot('repaired') },
+        { id: 'reset', label: 'Réinitialiser le dépôt', tone: 'reset' as const, run: () => presetDepot('start') },
+      ],
+    },
+    scolo, global,
+  ]
 }
 
 function resetMap() {
@@ -328,16 +385,14 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
               <a v-if="currentPlace?.kind === 'external' && currentPlace.externalUrl && currentPlace.externalLabel" class="enter-depot" :href="currentPlace.externalUrl" target="_blank" rel="noopener noreferrer" :aria-label="`${currentPlace.externalLabel} (nouvel onglet)`">{{ currentPlace.externalLabel }}<GameIcon name="external" /></a>
               <button v-else-if="currentPlace?.available && currentPlace.interior" ref="enterButton" type="button" class="enter-depot" :disabled="entering" @click="enterPlace">{{ entering ? 'On y va…' : currentPlace.enterLabel }}<GameIcon name="arrow" /></button>
               <div v-else-if="selected === 'memebank'" class="bank-curiosity">
-                <span>Curiosité · {{ bankState.counts.curiosity }} / {{ BANK_GOALS.curiosity }} visites simulées</span>
-                <button ref="curiosityButton" type="button" class="enter-depot" :disabled="!bankLoaded" @click="bankAction('contribute', 'curiosity')">Simuler une visite<GameIcon name="plus" /></button>
-                <small>Quota de démo. Aucun suivi réel de visites.</small>
+                <span>Curiosité · {{ bankState.counts.curiosity }} / {{ BANK_GOALS.curiosity }} visites</span>
               </div>
               <button v-else-if="currentPlace && !currentPlace.kind" type="button" class="closed-place" @click="selectPlace('quilivreou')"><GameIcon name="lock" :size="16" />Lieu fermé<span>Approcher le hangar</span></button>
             </div>
           </section>
         </div>
 
-        <LazyMacomisyonScoloHouse v-if="inScolo" :state="scoloState" @contribute="finishScoloGame" />
+        <LazyMacomisyonScoloHouse v-if="inScolo" :state="scoloState" />
         <ClientOnly v-if="inBank">
           <LazyMacomisyonMemeBank :state="bankState" @action="bankAction" />
           <template #fallback><div class="world-loading"><strong>On pousse la porte.</strong><span>Le sérieux est sous surveillance.</span></div></template>
@@ -354,6 +409,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
       <a class="feedback-link" href="https://tally.so/r/WJzDrJ" target="_blank" rel="noopener noreferrer">Signaler un bug ou une amélioration</a>
     </footer>
     <p class="game-live" aria-live="polite">{{ liveMessage }}</p>
+    <ClientOnly><MacomisyonDevPanel :context="devContext" /></ClientOnly>
     <noscript>Active JavaScript pour explorer ce monde, entrer dans ses bâtiments et découvrir leurs Komisyon.</noscript>
   </main>
 </template>
@@ -365,6 +421,8 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .maco-game button { font: inherit; cursor: pointer; }
 .maco-game button:disabled { cursor: default; opacity: .5; }
 .maco-game :is(button, a):focus-visible { outline: 3px solid var(--game-yellow); outline-offset: 4px; }
+/* Headings only receive focus programmatically, to announce a new window. */
+.maco-game [tabindex='-1']:focus { outline: none; }
 .game-header { width: 100%; max-width: 1480px; margin: 0 auto; height: 84px; flex-shrink: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
 .game-header h1 { font: 400 clamp(27px, 3.8vw, 44px)/1 Tanker, sans-serif; letter-spacing: .015em; color: var(--game-yellow); margin: 0; }
 .game-header h1 span { color: var(--game-paper); }
@@ -443,7 +501,6 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .place-detail-bar { display: flex; align-items: center; gap: 12px; flex-shrink: 0; padding: 12px 8px 12px 20px; background: #37513f; color: var(--game-yellow); }
 .place-detail-bar > svg { flex-shrink: 0; }
 .place-detail-bar h2 { flex: 1; min-width: 0; margin: 0; font: 400 30px/1.05 Tanker, sans-serif; letter-spacing: .01em; overflow-wrap: anywhere; text-wrap: balance; }
-.place-detail-bar h2:focus-visible { outline: 2px solid var(--game-yellow); outline-offset: 4px; }
 .place-detail-bar button { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border: 0; background: none; color: var(--game-paper); }
 .place-detail-bar button:hover { background: var(--game-ink); color: var(--game-yellow); }
 .place-detail-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 20px; scrollbar-color: #c9b675 var(--game-ink); scrollbar-width: thin; }
