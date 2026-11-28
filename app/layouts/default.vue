@@ -22,16 +22,15 @@ useHead({
     ],
 });
 onMounted(() => {
+    if (document.querySelector('script[src="https://static.axept.io/sdk.js"]')) return;
     window.axeptioSettings = {
         clientId: "62e86de9c231db01ef04b2cc",
     };
 
-    (function (d, s) {
-        const t = d.getElementsByTagName(s)[0];
-        const e = d.createElement(s);
-        e.async = true;
-        e.src = "https://static.axept.io/sdk.js";
-        t.parentNode.insertBefore(e, t);
-    })(document, "script");
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://static.axept.io/sdk.js";
+    script.addEventListener("error", () => script.remove(), { once: true });
+    document.head.append(script);
 });
 </script>
