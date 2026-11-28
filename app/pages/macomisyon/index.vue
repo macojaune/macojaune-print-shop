@@ -6,7 +6,7 @@ import { places } from '../../lib/macomisyon/places.js'
 import type { Place } from '../../lib/macomisyon/places.js'
 import { BANK_GOALS, createBankStore } from '../../lib/macomisyon/bank/model.js'
 
-definePageMeta({ layout: false, pageTransition: false })
+definePageMeta({ layout: 'macomisyon', pageTransition: false })
 useSeoMeta({
   title: "Maco'misyon · Un monde à découvrir",
   description: "Un monde à explorer. Des lieux à découvrir, des Komisyon à accomplir et des projets qui prennent vie.",
