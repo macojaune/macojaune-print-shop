@@ -56,3 +56,14 @@ test('a later successful write also saves a finish made while storage was blocke
   store.contribute('coutelas')
   assert.deepEqual(createScoloStore({ storage }).getState(), { completed: ['sandale', 'coutelas'], moved: false })
 })
+
+test('the development reset forgets every finished game on this device', () => {
+  const storage = browserStorage()
+  storage.removeItem = key => storage.values.delete(key)
+  const store = createScoloStore({ storage })
+  for (const mission of missions) store.contribute(mission.id)
+  assert.deepEqual(store.reset(), { completed: [], moved: false })
+  assert.equal(storage.values.size, 0)
+  assert.deepEqual(createScoloStore({ storage }).getState(), { completed: [], moved: false })
+  assert.deepEqual(store.contribute('sandale'), { completed: ['sandale'], moved: false })
+})

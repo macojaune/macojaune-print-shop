@@ -10,6 +10,11 @@ const STATIONS = [
 ];
 const DEFAULT_STATE={completed:[],repaired:false,selected:null,statuses:{inscrits:'open',retours:'blocked',boutiques:'blocked',bonus:'open'},revealLocked:false};
 const clamp=THREE.MathUtils.clamp;
+// Label slots around an anchor, in half-label widths (x) and label heights (y), nearest first.
+const LABEL_OFFSETS=[];
+for(let i=-4;i<=4;i++)for(let j=-2;j<=2;j++)LABEL_OFFSETS.push([i,j]);
+const slotCost=([i,j])=>Math.hypot(i*.5,j)+(j<0?.05:0)+(i?.02:0);
+LABEL_OFFSETS.sort((a,b)=>slotCost(a)-slotCost(b));
 const motionQuery=()=>window.matchMedia('(prefers-reduced-motion: reduce)');
 
 /** One orthographic miniature. Business rules and persistent progress live in model.js. */
@@ -484,6 +489,9 @@ export function createWorld({canvas,container,labels,onSelect}) {
   }
   function positionLabels() {
     const placed=[];
+    // Keep clear of the scene tools, but shrink that margin on short landscape screens
+    // so the band left for labels never collapses into a single line.
+    const topMargin=Math.min(64,height*.16),bottomMargin=Math.min(58,height*.14);
     // Q wins its location above the canopy; floor labels move only when boxes truly overlap.
     const ordered=[...labelNodes].sort((a,b)=>Number(b.definition.id==='project')-Number(a.definition.id==='project'));
     for(const entry of ordered){
@@ -492,13 +500,16 @@ export function createWorld({canvas,container,labels,onSelect}) {
       let x=p.x,y=p.y+(definition.id==='project'?-8:15);
       const isOutside=p.x<0||p.x>width||p.y<0||p.y>height;
       el.hidden=isOutside;if(isOutside)continue;
-      x=clamp(x,w/2+8,width-w/2-8);y=clamp(y,h/2+64,height-h/2-58);
-      let boxBounds={left:x-w/2,right:x+w/2,top:y-h/2,bottom:y+h/2};
-      for(let attempt=0;attempt<5;attempt++){
-        const overlap=placed.find(rect=>boxBounds.left<rect.right+6&&boxBounds.right>rect.left-6&&boxBounds.top<rect.bottom+5&&boxBounds.bottom>rect.top-5);
-        if(!overlap)break;
-        y=clamp(overlap.bottom+h/2+8,h/2+64,height-h/2-58);
-        boxBounds={left:x-w/2,right:x+w/2,top:y-h/2,bottom:y+h/2};
+      const minY=h/2+topMargin,maxY=Math.max(minY,height-h/2-bottomMargin);
+      const anchorX=clamp(x,w/2+8,width-w/2-8),anchorY=clamp(y,minY,maxY);
+      const box=(cx,cy)=>({left:cx-w/2,right:cx+w/2,top:cy-h/2,bottom:cy+h/2});
+      const free=b=>!placed.some(rect=>b.left<rect.right+6&&b.right>rect.left-6&&b.top<rect.bottom+5&&b.bottom>rect.top-5);
+      // Try the anchor first, then the nearest free slot: below, above, then sideways.
+      // Short landscape screens leave no room below, so labels can also slide horizontally.
+      let boxBounds=box(anchorX,anchorY);x=anchorX;y=anchorY;
+      for(const [i,j] of LABEL_OFFSETS){
+        const cx=clamp(anchorX+i*(w/2+8),w/2+8,width-w/2-8),cy=clamp(anchorY+j*(h+8),minY,maxY),candidate=box(cx,cy);
+        if(free(candidate)){x=cx;y=cy;boxBounds=candidate;break;}
       }
       el.style.left=`${Math.round(x)}px`;el.style.top=`${Math.round(y)}px`;
       placed.push(boxBounds);

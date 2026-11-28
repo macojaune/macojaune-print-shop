@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
+import { devAction, devActionDisabled, expectNoSimulationInProduct } from './lib/macomisyon-dev.mjs'
 
 const baseURL = process.env.DEMO_URL || 'http://127.0.0.1:3000/macomisyon'
 const output = process.env.BANK_REVIEW_DIR || '.impeccable/review/bank'
@@ -41,8 +42,7 @@ const choose = async (page, id) => {
   await settled(page, '.meme-bank', value => value.panel === 'mission')
 }
 const chooseScenario = async (page, id) => {
-  await page.getByRole('button', { name: 'Choisir un scénario de démonstration de la banque', exact: true }).click()
-  await page.locator('.bank-scenarios button').filter({ has: page.locator('strong', { hasText: id }) }).click()
+  await devAction(page, 'bank-scenarios:' + id)
   await finish(page)
 }
 const enter = async page => {
@@ -80,8 +80,9 @@ try {
   watchErrors(page)
   await test('Exterior stays anonymous and gates deep links without counting real visits', async () => {
     await page.goto(baseURL + '?lieu=bank', { waitUntil: 'domcontentloaded' })
-    await page.getByRole('button', { name: 'Simuler une visite', exact: true }).waitFor()
+    await page.locator('.bank-curiosity').waitFor()
     await settled(page, '.jarry-map', value => value.renderCount > 0)
+    await expectNoSimulationInProduct(page)
     assert.doesNotMatch(await page.locator('.maco-game').innerText(), /Memebank|VHS|QuiLivreOù/)
     assert.doesNotMatch(page.url(), /lieu=bank/)
     await page.reload({ waitUntil: 'domcontentloaded' })
@@ -91,14 +92,12 @@ try {
     assert.ok((await page.locator('.bank-curiosity').innerText()).includes('0 / 10'))
     await capture(page, 'exterior-locked')
   })
-  await test('Ten simulated visits reveal three numbered physical steps and the shared dock', async () => {
-    const visit = page.getByRole('button', { name: 'Simuler une visite', exact: true })
-    for (let i = 0; i < 9; i++) await visit.click()
+  await test('Ten visits from the dev panel reveal three numbered physical steps and the shared dock', async () => {
+    await devAction(page, 'memebank:visit', 9)
     assert.equal(await page.getByRole('button', { name: 'Entrer dans la banque', exact: true }).count(), 0)
-    await visit.click()
-    await page.getByRole('button', { name: 'Entrer dans la banque', exact: true }).waitFor()
-    assert.equal(await page.getByRole('button', { name: 'Entrer dans la banque', exact: true }).evaluate(el => el === document.activeElement), true)
-    await page.keyboard.press('Enter')
+    assert.ok((await page.locator('.bank-curiosity').innerText()).includes('9 / 10'))
+    await devAction(page, 'memebank:visit')
+    await page.getByRole('button', { name: 'Entrer dans la banque', exact: true }).click()
     await finish(page)
     assert.equal((await inspect(page, '.jarry-map')).active, false)
     assert.equal(await page.locator('.bank-labels .world-label').count(), 3)
@@ -109,13 +108,14 @@ try {
     assert.equal((await debug(page)).selected, 'newsletter')
     const colors = await page.locator('.depot-panel p').first().evaluate(el => ({ text: getComputedStyle(el).color, background: getComputedStyle(el.closest('.depot-panel')).backgroundColor }))
     assert.deepEqual(colors, { text: 'rgb(240, 233, 206)', background: 'rgb(26, 48, 42)' })
+    await expectNoSimulationInProduct(page)
     await page.keyboard.press('Escape')
     await page.locator('.depot-panel').waitFor({ state: 'detached' })
     assert.equal(await page.locator('.depot-panel').count(), 0)
   })
   await test('Stage 2 progresses independently and five forms do not admit anyone', async () => {
     await choose(page, 'applications')
-    for (let i = 0; i < 5; i++) await page.getByRole('button', { name: 'Simuler un formulaire reçu', exact: true }).click()
+    await devAction(page, 'bank-missions:applications', 5)
     const current = await state(page)
     assert.deepEqual(current.completed, ['curiosity', 'applications'])
     assert.equal(current.counts.newsletter, 0)
@@ -128,10 +128,10 @@ try {
   })
   await test('Stage 1 continues past its quota and actual paper bulk grows', async () => {
     await choose(page, 'newsletter')
-    for (let i = 0; i < 8; i++) await page.getByRole('button', { name: 'Simuler une inscription newsletter', exact: true }).click()
+    await devAction(page, 'bank-missions:newsletter', 8)
     await finish(page)
     const atGoal = await debug(page)
-    await page.getByRole('button', { name: 'Simuler cinq contributions pour l’étape 1', exact: true }).click()
+    await devAction(page, 'bank-missions:newsletter-5')
     await finish(page)
     const beyond = await debug(page)
     assert.equal((await state(page)).counts.newsletter, 13)
@@ -147,13 +147,15 @@ try {
   })
   await test('Stage 3 keeps qualification, invitations and beta opening explicit', async () => {
     await choose(page, 'beta')
-    assert.equal(await page.getByRole('button', { name: 'Simuler l’ouverture bêta', exact: true }).isDisabled(), true)
-    await page.getByRole('button', { name: 'Simuler une candidature qualifiée', exact: true }).click()
+    await expectNoSimulationInProduct(page)
+    assert.equal(await page.locator('.depot-panel .depot-waiting').innerText(), 'Bêta pas encore ouverte.')
+    assert.equal(await devActionDisabled(page, 'bank-missions:open-beta'), true)
+    await devAction(page, 'bank-missions:qualify')
     assert.equal((await state(page)).counts.admitted, 0)
-    await page.getByRole('button', { name: 'Simuler une invitation bêta', exact: true }).click()
+    await devAction(page, 'bank-missions:invite')
     assert.equal((await state(page)).betaOpen, false)
     assert.equal((await debug(page)).vhs.visibleSpillCount, 0)
-    await page.getByRole('button', { name: 'Simuler l’ouverture bêta', exact: true }).click()
+    await devAction(page, 'bank-missions:open-beta')
     await settled(page, '.meme-bank', value => value.vhs.visibleSpillCount > 0 && value.vhs.visibleSpillCount < 7)
     const airborne = (await debug(page)).vhs
     assert.ok(airborne.poses.some(tape => tape.visible && tape.position[1] > .35))
@@ -191,14 +193,14 @@ try {
     assert.match(await page.locator('.depot-status').innerText(), /VHS|coffre/)
   })
   await test('Beyond scenario produces more chaos, people and continuing overflow', async () => {
-    await chooseScenario(page, 'Objectifs dépassés')
+    await chooseScenario(page, 'beyond')
     assert.equal((await state(page)).counts.newsletter, 32)
     assert.equal((await state(page)).counts.applications, 20)
     const before = await debug(page)
     assert.ok(before.mailOverflow > 0 && before.dossierOverflow > 0)
     await capture(page, 'beyond-goals')
     await choose(page, 'applications')
-    await page.getByRole('button', { name: 'Simuler cinq contributions pour l’étape 2', exact: true }).click()
+    await devAction(page, 'bank-missions:applications-5')
     await finish(page)
     assert.ok((await debug(page)).dossierOverflow > before.dossierOverflow)
     assert.ok((await debug(page)).paperHeights.dossiers > before.paperHeights.dossiers)
@@ -221,7 +223,7 @@ try {
     after.target.forEach((value, index) => assert.ok(Math.abs(value - before.target[index]) < 1e-8))
     await capture(page, 'exterior-open')
   })
-  await test('WebGL restoration preserves controls; reset returns focus to discovery', async () => {
+  await test('WebGL restoration preserves controls; reset returns to the closed bank', async () => {
     await enter(page)
     await page.locator('[data-bank-canvas]').evaluate(canvas => {
       const gl = canvas.getContext('webgl2') || canvas.getContext('webgl')
@@ -231,14 +233,14 @@ try {
     })
     await page.locator('.meme-bank[data-world-error="true"]').waitFor()
     await choose(page, 'newsletter')
-    assert.equal(await page.getByRole('button', { name: 'Simuler une inscription newsletter', exact: true }).isEnabled(), true)
+    assert.match(await page.locator('.depot-panel').innerText(), /Submerger le guichet/)
     await page.evaluate(() => window.__bankRestoreContext())
     await page.locator('.meme-bank[data-world-error="false"]').waitFor()
     await finish(page)
-    await page.getByRole('button', { name: 'Choisir un scénario de démonstration de la banque', exact: true }).click()
-    await page.locator('.bank-scenarios button').filter({ hasText: 'Réinitialiser la banque et revenir au monde' }).click()
-    await page.getByRole('button', { name: 'Simuler une visite', exact: true }).waitFor()
-    assert.equal(await page.getByRole('button', { name: 'Simuler une visite', exact: true }).evaluate(el => el === document.activeElement), true)
+    await devAction(page, 'bank-scenarios:new')
+    await page.locator('.bank-curiosity').waitFor()
+    assert.ok((await page.locator('.bank-curiosity').innerText()).includes('0 / 10'))
+    assert.doesNotMatch(page.url(), /lieu=bank/)
   })
   await context.close()
 
@@ -256,10 +258,10 @@ try {
     await capture(phone, 'mobile-vault')
     await phone.locator('.bank-labels [data-step="1"]').tap()
     await phone.getByRole('heading', { name: 'Submerger le guichet', exact: true }).waitFor()
-    await phone.getByRole('button', { name: 'Simuler une inscription newsletter', exact: true }).scrollIntoViewIfNeeded()
     await visibleInspection(phone)
     await capture(phone, 'mobile-mission')
-    await phone.getByRole('button', { name: 'Simuler une inscription newsletter', exact: true }).tap()
+    await expectNoSimulationInProduct(phone)
+    await devAction(phone, 'bank-missions:newsletter')
     assert.equal((await state(phone)).counts.newsletter, 33)
     await finish(phone)
     // Logical state can settle before its single reduced-motion redraw is drained.
@@ -269,7 +271,7 @@ try {
     assert.equal((await debug(phone)).renderCount, reducedFrames)
     assert.equal((await debug(phone)).frameScheduled, false)
     await choose(phone, 'beta')
-    await phone.getByRole('button', { name: 'Bêta ouverte · simulation', exact: true }).scrollIntoViewIfNeeded()
+    await phone.locator('.depot-panel .depot-waiting').filter({ hasText: 'Bêta ouverte.' }).scrollIntoViewIfNeeded()
     await visibleInspection(phone)
     await capture(phone, 'mobile-ledger')
     await close(phone)
@@ -302,11 +304,11 @@ try {
   }, saved)
   const plain = await fallback.newPage()
   watchErrors(plain)
-  await test('Without WebGL the same three Komisyon remain fully usable', async () => {
+  await test('Without WebGL the same three Komisyon stay readable and keep progressing', async () => {
     await plain.goto(baseURL + '?lieu=bank', { waitUntil: 'domcontentloaded' })
     await plain.locator('.meme-bank[data-world-error="true"]').waitFor()
     await choose(plain, 'applications')
-    await plain.getByRole('button', { name: 'Simuler un formulaire reçu', exact: true }).click()
+    await devAction(plain, 'bank-missions:applications')
     assert.equal((await state(plain)).counts.applications, 21)
     await plain.getByRole('button', { name: 'Retour au monde', exact: true }).click()
     await plain.getByRole('button', { name: 'Entrer dans la banque', exact: true }).click()

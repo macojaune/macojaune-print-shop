@@ -65,6 +65,8 @@ export default defineNuxtConfig({
       mediaBaseUrl: process.env.NUXT_PUBLIC_MEDIA_BASE_URL || process.env.R2_PUBLIC_BASE_URL || assetBaseUrl,
       siteUrl,
       assetBaseUrl,
+      // Shows the Maco'misyon simulation panel. Enabled on DEV only, never in production.
+      macomisyonDevTools: false,
       mapbox: {
         accessToken: process.env.NUXT_PUBLIC_MAPBOX_TOKEN || '',
         styleUrl: process.env.NUXT_PUBLIC_MAPBOX_STYLE_URL || 'mapbox://styles/mapbox/standard',

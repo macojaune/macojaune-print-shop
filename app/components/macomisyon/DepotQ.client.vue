@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { createStore, initialState, missions, statusFor, completedMainCount, deriveWorldState } from '~/lib/macomisyon/depot/model.js'
 import { createWorld } from '~/lib/macomisyon/depot/world.js'
+import { registerDevSections } from '~/lib/macomisyon/dev-tools.js'
 
 const props = defineProps({ paused: { type: Boolean, default: false } })
 const emit = defineEmits(['state-change', 'ready', 'error'])
@@ -89,12 +90,15 @@ async function choose(id) {
   panelHeading.value?.focus({ preventScroll: true })
 }
 
-function contribute() {
-  if (!currentMission.value || !store) return
-  const id = currentMission.value.id
-  const eventId = typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`
-  const result = store.contribute(id, eventId)
-  if (result.ok && !result.state.repaired) announcement.value = `Action simulée. ${result.state.counts[id]} ${currentMission.value.unit} comptabilisés.`
+function contribute(id, amount = 1) {
+  const mission = missions.find(item => item.id === id)
+  if (!mission || !store) return
+  let result
+  for (let index = 0; index < amount; index++) {
+    const eventId = typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`
+    result = store.contribute(id, eventId)
+  }
+  if (result?.ok && !result.state.repaired) announcement.value = `${result.state.counts[id]} ${mission.unit} comptabilisés.`
 }
 
 function applyScenario(id) {
@@ -103,6 +107,22 @@ function applyScenario(id) {
   world?.resetView()
   store?.preset(id)
 }
+
+// Simulations are development tools: they never appear in the dépôt itself.
+const unregisterDev = registerDevSections('depot-q', () => [
+  {
+    id: 'depot-scenarios', title: 'Dépôt Q · états', context: 'interior', status: `${completedCount.value}/3`,
+    note: 'Chaque état remplace la progression locale du dépôt. Seuils provisoires : 10 inscriptions, 5 sites, 5 avis.',
+    actions: scenarios.map(scenario => ({ id: scenario.id, label: scenario.title, run: () => applyScenario(scenario.id) })),
+  },
+  {
+    id: 'depot-missions', title: 'Dépôt Q · contributions', context: 'interior',
+    actions: missions.flatMap(mission => [
+      { id: mission.id, label: `${mission.action} (${state.value.counts[mission.id]}/${mission.goal})`, run: () => contribute(mission.id) },
+      { id: mission.id + '-5', label: '+5', run: () => contribute(mission.id, 5) },
+    ]),
+  },
+])
 
 function contextLost() { error.value = true; emit('error', 'Le contexte 3D du Dépôt Q a été interrompu.') }
 function contextRestored() { error.value = false; emit('ready') }
@@ -127,6 +147,7 @@ onMounted(() => {
   loading.value = false
 })
 onBeforeUnmount(() => {
+  unregisterDev()
   alive = false
   selectionRequest++
   unsubscribe?.()
@@ -145,17 +166,13 @@ onBeforeUnmount(() => {
       <div v-else-if="error" class="depot-fallback">
         <span class="depot-fallback-mark" aria-hidden="true">Q</span>
         <h2>Le dépôt reste ouvert.</h2>
-        <p>La vue 3D est indisponible sur cet appareil. Tu peux découvrir le projet et essayer toutes les Komisyon ci-dessous.</p>
+        <p>La vue 3D est indisponible sur cet appareil. Tu peux découvrir le projet et suivre toutes les Komisyon ci-dessous.</p>
         <button type="button" class="depot-action" @click="openPanel('project')">Découvrir QuiLivreOù</button>
       </div>
       <div class="depot-scene-tools">
         <button type="button" aria-label="Zoomer dans le dépôt" :disabled="error || loading" @click="world?.zoomBy(1.22)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></button>
         <button type="button" aria-label="Dézoomer dans le dépôt" :disabled="error || loading" @click="world?.zoomBy(1 / 1.22)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /></svg></button>
         <button type="button" aria-label="Recentrer le dépôt" :disabled="error || loading" @click="world?.resetView()"><svg viewBox="0 0 24 24" aria-hidden="true"><path :d="paths.target" /></svg></button>
-      </div>
-      <div class="depot-demo-strip">
-        <span class="depot-simulation">Démo locale</span>
-        <button type="button" aria-label="Choisir un scénario de démonstration du dépôt" @click="openPanel('demo')">Changer d’état <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 7 7-7 7" /></svg></button>
       </div>
     </div>
 
@@ -176,7 +193,7 @@ onBeforeUnmount(() => {
     <Transition name="depot-panel">
       <section v-if="panel" class="depot-panel" aria-labelledby="depot-panel-title">
         <header class="depot-panel-bar">
-          <span>{{ panel === 'demo' ? 'Console de démo' : panel === 'inventory' ? 'Carnet de Komisyon' : panel === 'project' ? 'Fiche projet' : locked ? 'Indice découvert' : 'Komisyon' }}</span>
+          <span>{{ panel === 'inventory' ? 'Carnet de Komisyon' : panel === 'project' ? 'Fiche projet' : locked ? 'Indice découvert' : 'Komisyon' }}</span>
           <button type="button" aria-label="Fermer le panneau" @click="closePanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path :d="paths.close" /></svg></button>
         </header>
         <div class="depot-panel-content">
@@ -187,7 +204,6 @@ onBeforeUnmount(() => {
             <div class="depot-project-story"><span aria-hidden="true">Q</span><p>Ce Fenwick représente le projet. Quand les trois Komisyon sont accomplies, le chariot se relève, le rideau s’ouvre et les colis repartent.</p></div>
             <a class="depot-action" href="https://quilivreou.marvinl.com" target="_blank" rel="noopener noreferrer">Ouvrir QuiLivreOù<svg viewBox="0 0 24 24" aria-hidden="true"><path :d="paths.arrow" /></svg></a>
             <button type="button" class="depot-text-button" @click="openPanel('inventory')">Voir les Komisyon du dépôt</button>
-            <p class="depot-note">Cette visite utilise des compteurs simulés. Elle ne change aucune donnée du site QuiLivreOù.</p>
           </template>
 
           <template v-else-if="panel === 'inventory'">
@@ -200,27 +216,20 @@ onBeforeUnmount(() => {
                 <span class="depot-inventory-count">{{ statusFor(mission.id, state) === 'blocked' ? '?' : `${state.counts[mission.id]}/${mission.goal}` }}</span>
               </button>
             </div>
-            <p class="depot-note">Objectifs provisoires : 10 inscriptions, 5 sites et 5 avis. Les inscriptions et les sites avancent en parallèle.</p>
+            <p class="depot-note">Les inscriptions et les sites avancent en parallèle.</p>
           </template>
 
           <template v-else-if="panel === 'mission' && currentMission">
             <div class="depot-mission-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path :d="paths[locked ? 'lock' : currentMission.icon]" /></svg><h2 id="depot-panel-title" ref="panelHeading" tabindex="-1">{{ locked ? 'Étape verrouillée' : currentMission.title }}</h2></div>
             <p>{{ locked ? currentMission.hint : currentMission.description }}</p>
-            <div class="depot-goal"><strong>{{ currentCount }}<span>/ {{ currentMission.goal }}</span></strong><span>{{ currentMission.unit }}<br>{{ locked ? 'enregistrés en avance' : currentReached ? 'objectif atteint' : 'objectif de démonstration' }}</span></div>
+            <div class="depot-goal"><strong>{{ currentCount }}<span>/ {{ currentMission.goal }}</span></strong><span>{{ currentMission.unit }}<br>{{ locked ? 'enregistrés en avance' : currentReached ? 'objectif atteint' : 'objectif' }}</span></div>
             <div class="depot-gauge" role="progressbar" :aria-label="`Progression : ${currentMission.unit}`" :aria-valuenow="Math.min(currentCount, currentMission.goal)" :aria-valuemax="currentMission.goal" :aria-valuetext="`${currentCount} sur ${currentMission.goal}${locked ? ', étape verrouillée' : ''}`"><span :style="{ transform: `scaleX(${Math.min(currentCount / currentMission.goal, 1)})` }" /></div>
             <p v-if="locked && currentReached" class="depot-waiting">Le compteur est prêt. L’étape sera validée dès que sa condition sera remplie.</p>
             <div v-else-if="!locked" class="depot-effect"><strong>Dans le dépôt</strong><p>{{ currentMission.effect }}</p></div>
-            <button type="button" class="depot-action" @click="contribute"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>{{ currentMission.action }}</button>
             <button type="button" class="depot-text-button" @click="openPanel('inventory')">Toutes les Komisyon</button>
-            <p class="depot-note">Simulation enregistrée sur cet appareil. {{ locked ? 'Le compteur avance même quand l’étape est verrouillée.' : currentReached ? 'Les contributions continuent au-delà de l’objectif.' : 'Aucune contribution réelle ni Zikak ne sont créés.' }}</p>
+            <p v-if="locked || currentReached" class="depot-note">{{ locked ? 'Le compteur avance même quand l’étape est verrouillée.' : 'Les contributions continuent au-delà de l’objectif.' }}</p>
           </template>
 
-          <template v-else-if="panel === 'demo'">
-            <h2 id="depot-panel-title" ref="panelHeading" tabindex="-1">Essaie la suite</h2>
-            <p>Change l’état de l’entrepôt pour voir les missions et leurs effets. Chaque scénario remplace ta progression locale.</p>
-            <div class="depot-scenarios"><button v-for="scenario in scenarios" :key="scenario.id" type="button" @click="applyScenario(scenario.id)"><strong>{{ scenario.title }}</strong><span>{{ scenario.text }}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path :d="paths.arrow" /></svg></button></div>
-            <p class="depot-note">Les seuils, l’ordre des étapes et le bonus sont des exemples. Les vraies Komisyon seront définies avant le lancement.</p>
-          </template>
         </div>
       </section>
     </Transition>

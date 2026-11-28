@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
+import { devAction, expectNoSimulationInProduct } from './lib/macomisyon-dev.mjs'
 
 const baseURL = process.env.DEMO_URL || 'http://127.0.0.1:3000/macomisyon'
 const screenshotDir = '.impeccable/review'
@@ -90,8 +91,8 @@ try {
     await capture(page, 'depot-desktop')
   })
   await test('Locked contributions validate with prerequisite; registrations alone cannot repair', async () => {
-    await page.getByRole('button', { name: 'Choisir un scénario de démonstration du dépôt' }).click()
-    await page.getByRole('button', { name: /Une longueur d’avance/ }).click()
+    await expectNoSimulationInProduct(page)
+    await devAction(page, 'depot-scenarios:ahead')
     await page.getByRole('button', { name: 'Les Komisyon', exact: true }).click()
     await page.locator('.depot-inventory button[data-state="blocked"]').click()
     await page.locator('#depot-panel-title').filter({ hasText: 'Étape verrouillée' }).waitFor()
@@ -99,8 +100,8 @@ try {
     await capture(page, 'locked-hint')
     await page.getByRole('button', { name: 'Toutes les Komisyon', exact: true }).click()
     await page.locator('.depot-inventory button').filter({ hasText: 'Boutiques' }).click()
-    const credit = page.getByRole('button', { name: 'Simuler un nouveau site', exact: true })
-    await credit.click({ clickCount: 1 }); await credit.click(); await credit.click()
+    await expectNoSimulationInProduct(page)
+    await devAction(page, 'depot-missions:boutiques', 3)
     const current = await state(page)
     assert.equal(current.counts.boutiques, 5)
     assert.equal(current.counts.retours, 5)
@@ -108,7 +109,7 @@ try {
     assert.ok(current.completed.includes('retours'))
     await page.getByRole('button', { name: 'Toutes les Komisyon', exact: true }).click()
     await page.locator('.depot-inventory button').filter({ hasText: 'Inscriptions' }).click()
-    for (let index = 0; index < 6; index++) await page.getByRole('button', { name: 'Simuler une inscription', exact: true }).click()
+    await devAction(page, 'depot-missions:inscrits', 6)
     assert.equal((await state(page)).repaired, true)
     await page.locator('.depot-panel').waitFor({ state: 'detached' })
     await settle(page, '.depot-q', value => value?.repaired && value.transitionProgress === null)
@@ -134,6 +135,8 @@ try {
     await settle(page, '.jarry-map', value => value.active && value.repaired)
     assert.equal(await page.locator('.depot-q').count(), 0)
     assert.match(await page.locator('[data-project="quilivreou"]').getAttribute('aria-label'), /activité reprise/i)
+    assert.match(await page.locator('.place-detail-content').innerText(), /gyrophare s’est éteint/)
+    assert.doesNotMatch(await page.locator('.place-detail-content').innerText(), /tourne encore/)
     // A page reload naturally starts at the map's default view. Verify preservation on a same-page round trip.
     await page.getByRole('button', { name: 'Zoomer', exact: true }).click()
     const before = (await debug(page, '.jarry-map')).view

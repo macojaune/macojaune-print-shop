@@ -41,5 +41,11 @@ export function createScoloStore({ storage = browserStorage() } = {}) {
       } catch { /* Keep the completed games in memory. */ }
       return snapshot();
     },
+    // Development tools only: forget every finished game on this device.
+    reset() {
+      completedCount = 0;
+      try { for (const mission of missions) storage?.removeItem(storageKey(mission.id)); } catch { /* Memory is reset anyway. */ }
+      return snapshot();
+    },
   };
 }
