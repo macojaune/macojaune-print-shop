@@ -31,44 +31,42 @@ try {
     assert.equal(await house.getAttribute('data-completed'), '0')
 
     await expectNoSimulationInProduct(page)
-    // A blocked game only says what it waits for; the open one links to the real game.
+    // A weapon still to come says what will release its game; it offers no game link yet.
     await button('Les Komisyon').tap()
     await house.locator('[data-mission="digrain"]').tap()
-    assert.match(await page.locator('.depot-panel .depot-waiting').innerText(), /Termine d’abord la Komisyon Coutelas/)
+    assert.match(await page.locator('.depot-panel .depot-waiting').innerText(), /prochaine élimination au Digrain/)
     assert.equal(await page.locator('.depot-panel a[href^="https://scolo.marvinl.com"]').count(), 0)
-    await button('Fermer le panneau').tap()
-    if (webgl) await house.locator('[data-station="sandale"]').tap()
-    else {
-      await button('Les Komisyon').tap()
-      await house.locator('[data-mission="sandale"]').tap()
-    }
-    assert.equal(await page.locator('.depot-panel').getByRole('link', { name: 'Jouer sur Scolo' }).getAttribute('href'), 'https://scolo.marvinl.com/#run')
     await expectNoSimulationInProduct(page)
     await button('Fermer le panneau').tap()
-    // Finished games come from real play; locally and on DEV the dev panel stands in for them.
-    for (const [index, game] of ['sandale', 'coutelas', 'digrain'].entries()) {
-      await devAction(page, 'scolo:next')
-      assert.equal(await house.getAttribute('data-completed'), String(index + 1), game + ' terminé')
+    // Real kills validate weapons in any order; locally and on DEV the dev panel stands in for them.
+    for (const [index, weapon] of ['digrain', 'sandale', 'coutelas'].entries()) {
+      await devAction(page, 'scolo:' + weapon)
+      assert.equal(await house.getAttribute('data-completed'), String(index + 1), weapon + ' utilisée')
+      assert.equal(await devActionDisabled(page, 'scolo:' + weapon), true)
     }
-    assert.equal(await house.getAttribute('data-moved'), 'true')
-    assert.equal(await devActionDisabled(page, 'scolo:next'), true)
-    await button('Les Komisyon').tap()
-    await house.locator('[data-mission="digrain"]').tap()
-    assert.equal(await page.locator('.depot-panel .depot-waiting').innerText(), 'Komisyon accomplie.')
+    assert.equal(await house.getAttribute('data-ready'), 'true')
+    assert.match(await house.locator('.depot-status h2').innerText(), /Ça suffit/i)
+    if (webgl) await house.locator('[data-station="digrain"]').tap()
+    else {
+      await button('Les Komisyon').tap()
+      await house.locator('[data-mission="digrain"]').tap()
+    }
+    assert.match(await page.locator('.depot-panel .depot-waiting').innerText(), /son mini-jeu est sorti/)
+    assert.equal(await page.locator('.depot-panel').getByRole('link', { name: 'Jouer sur Scolo' }).getAttribute('href'), 'https://scolo.marvinl.com/#run')
     await button('Fermer le panneau').tap()
     await button('Retour au monde').tap()
-    await page.locator('.place-detail-content').getByText(/Le camion a emporté/).waitFor()
+    await page.locator('.place-detail-content').getByText(/À louer/).waitFor()
     await button('Entrer dans la maison').tap()
     await page.waitForURL(url => url.searchParams.get('lieu') === 'scolo')
     await house.waitFor()
     await page.reload({ waitUntil: 'domcontentloaded' })
-    await page.locator('.scolo-house[data-moved="true"]').waitFor()
+    await page.locator('.scolo-house[data-ready="true"]').waitFor()
     assert.equal(await house.getAttribute('data-completed'), '3')
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false)
     assert.deepEqual(errors, [])
     await devAction(page, 'scolo:reset')
     assert.equal(await house.getAttribute('data-completed'), '0')
     await context.close()
-    console.log('PASS mobile, ' + (webgl ? 'scène 3D' : 'repli sans WebGL') + ' : accueil, trois Komisyon, déménagement via le panneau Dev, retour, rechargement et remise à zéro')
+    console.log('PASS mobile, ' + (webgl ? 'scène 3D' : 'repli sans WebGL') + ' : accueil, trois armes dans le désordre, final « Ça suffit » via le panneau Dev, retour, rechargement et remise à zéro')
   }
 } finally { await browser.close() }

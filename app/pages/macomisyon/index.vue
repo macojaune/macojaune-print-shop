@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import GameIcon from '../../components/macomisyon/GameIcon.vue'
 import { STORAGE_KEY as DEPOT_STORAGE_KEY, createStore } from '../../lib/macomisyon/depot/model.js'
-import { createScoloStore, missions as scoloMissions } from '../../lib/macomisyon/scolo/model.js'
+import { createScoloStore, weapons as scoloWeapons } from '../../lib/macomisyon/scolo/model.js'
 import { places } from '../../lib/macomisyon/places.js'
 import type { Place } from '../../lib/macomisyon/places.js'
 import { BANK_GOALS, BANK_STORAGE_KEY, createBankStore } from '../../lib/macomisyon/bank/model.js'
@@ -22,8 +22,8 @@ const map = ref<MapHandle | null>(null)
 const bankState = ref(createBankStore({ storage: null }).getState())
 let scoloStore: ReturnType<typeof createScoloStore>
 const scoloState = ref(createScoloStore({ storage: null }).getState())
-function finishScoloGame(id: string) {
-  if (scoloStore) scoloState.value = scoloStore.contribute(id)
+function validateScoloWeapon(id: string) {
+  if (scoloStore) scoloState.value = scoloStore.validate(id)
 }
 const bankLoaded = ref(false)
 const bankUnlocked = computed(() => bankState.value.completed.includes('curiosity'))
@@ -61,8 +61,8 @@ let alive = true
 let savedMapView: MapView | undefined
 
 const worldPlaces = computed(() => places.map(place => {
-  if (place.id === 'scolo' && scoloState.value.moved) {
-    return { ...place, description: 'Le camion a emporté le dernier carton. Le déménagement est terminé.' }
+  if (place.id === 'scolo' && scoloState.value.ready) {
+    return { ...place, description: 'Tous les cartons sont fermés. Un panneau « À louer » est planté dans la cour et le camion attend.' }
   }
   if (place.id === 'quilivreou' && depotRepaired.value) {
     return { ...place, description: 'Le gyrophare s’est éteint et la camionnette repart en livraison. Tu peux entrer.' }
@@ -216,13 +216,13 @@ function resetEverything() {
   window.location.assign('/macomisyon')
 }
 function devWorldSections() {
-  const next = scoloMissions[scoloState.value.completed.length]
   const scolo = {
     id: 'scolo', title: 'La maison aux cartons', context: inScolo.value ? 'interior' as const : 'map' as const, focus: selected.value === 'scolo',
-    status: `${scoloState.value.completed.length}/${scoloMissions.length} parties`,
+    status: `${scoloState.value.completed.length}/${scoloWeapons.length} armes`,
+    note: 'Une arme est validée par une vraie élimination de scolo. En attendant l’API Scolo, ces actions la simulent.',
     actions: [
-      { id: 'next', label: next ? 'Terminer une partie ' + next.label : 'Toutes les parties sont terminées', disabled: !next, run: () => next && finishScoloGame(next.id) },
-      { id: 'moved', label: 'Déménagement terminé (final)', disabled: scoloState.value.moved, run: () => scoloMissions.forEach(mission => finishScoloGame(mission.id)) },
+      ...scoloWeapons.map(weapon => ({ id: weapon.id, label: 'Élimination ' + weapon.with, disabled: scoloState.value.completed.includes(weapon.id), run: () => validateScoloWeapon(weapon.id) })),
+      { id: 'ready', label: 'Ça suffit (final acte I)', disabled: scoloState.value.ready, run: () => scoloWeapons.forEach(weapon => validateScoloWeapon(weapon.id)) },
       { id: 'reset', label: 'Réinitialiser la maison', tone: 'reset' as const, run: () => { if (scoloStore) scoloState.value = scoloStore.reset() } },
     ],
   }
@@ -405,7 +405,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
     </section>
 
     <footer class="game-footer">
-      <span v-if="inInterior" class="interior-name">{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : 'Scolo · Le dernier carton' }}</span>
+      <span v-if="inInterior" class="interior-name">{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : 'Scolo · Trop de scolos' }}</span>
       <a class="feedback-link" href="https://tally.so/r/WJzDrJ" target="_blank" rel="noopener noreferrer">Signaler un bug ou une amélioration</a>
     </footer>
     <p class="game-live" aria-live="polite">{{ liveMessage }}</p>

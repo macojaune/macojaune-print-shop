@@ -1,50 +1,53 @@
-export const missions = Object.freeze([
-  Object.freeze({ id: 'sandale', label: 'Sandale', stage: 1, effect: 'Le carton de vaisselle est fermé.' }),
-  Object.freeze({ id: 'coutelas', label: 'Coutelas', stage: 2, effect: 'Les cartons de la cuisine sont dans le camion.' }),
-  Object.freeze({ id: 'digrain', label: 'Digrain', stage: 3, effect: 'Le camion part pour la nouvelle maison.' }),
+// « Trop de scolos », acte I. A weapon is validated by a real kill with it, and that
+// kill releases its mini-game. Weapons can be validated in any order.
+// Until the Scolo API feeds this store, progress is local to the device and only
+// the development panel changes it.
+export const weapons = Object.freeze([
+  Object.freeze({ id: 'sandale', label: 'Sandale', with: 'à la Sandale', room: 'Le salon' }),
+  Object.freeze({ id: 'coutelas', label: 'Coutelas', with: 'au Coutelas', room: 'La cuisine' }),
+  Object.freeze({ id: 'digrain', label: 'Digrain', with: 'au Digrain', room: 'La galerie' }),
 ]);
 
-const storageKey = id => `macomisyon-scolo-demo-v1:${id}`;
+const storageKey = id => `macomisyon-scolo-v2:${id}`;
+const ids = new Set(weapons.map(weapon => weapon.id));
 
 function browserStorage() {
   try { return typeof window === 'undefined' ? null : window.localStorage; } catch { return null; }
 }
 
 export function createScoloStore({ storage = browserStorage() } = {}) {
-  let completedCount = 0;
-  // One key per finished game keeps an older tab from overwriting a later stage.
+  const used = new Set();
   function restore() {
     try {
-      while (completedCount < missions.length && storage?.getItem(storageKey(missions[completedCount].id)) === '1') {
-        completedCount++;
-      }
+      for (const weapon of weapons) if (storage?.getItem(storageKey(weapon.id)) === '1') used.add(weapon.id);
     } catch { /* Local progress also works when storage is unavailable. */ }
   }
-
-  function snapshot() {
-    return { completed: missions.slice(0, completedCount).map(mission => mission.id), moved: completedCount === missions.length };
+  function persist() {
+    try {
+      for (const weapon of weapons) {
+        if (used.has(weapon.id)) storage?.setItem(storageKey(weapon.id), '1');
+        else storage?.removeItem?.(storageKey(weapon.id));
+      }
+    } catch { /* Keep the state in memory. */ }
   }
-
+  function snapshot() {
+    const completed = weapons.filter(weapon => used.has(weapon.id)).map(weapon => weapon.id);
+    return { completed, ready: completed.length === weapons.length };
+  }
   return {
-    getState() {
+    getState() { restore(); return snapshot(); },
+    /** Records a real kill with this weapon. Repeated kills change nothing. */
+    validate(id) {
       restore();
+      if (!ids.has(id)) return snapshot();
+      used.add(id);
+      persist();
       return snapshot();
     },
-    contribute(id) {
-      restore();
-      const next = missions[completedCount];
-      if (!next || next.id !== id) return snapshot();
-      completedCount++;
-      try {
-        // Retry earlier writes if storage was temporarily full or inaccessible.
-        for (const mission of missions.slice(0, completedCount)) storage?.setItem(storageKey(mission.id), '1');
-      } catch { /* Keep the completed games in memory. */ }
-      return snapshot();
-    },
-    // Development tools only: forget every finished game on this device.
+    // Development tools only: forget every validated weapon on this device.
     reset() {
-      completedCount = 0;
-      try { for (const mission of missions) storage?.removeItem(storageKey(mission.id)); } catch { /* Memory is reset anyway. */ }
+      used.clear();
+      persist();
       return snapshot();
     },
   };
