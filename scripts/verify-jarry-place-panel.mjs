@@ -8,11 +8,13 @@ const output = process.env.REVIEW_DIR || '.impeccable/review/jarry-place-panel-2
 await mkdir(output, { recursive: true })
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] })
 const errors = [], results = []
+const isOverview = location => location.origin === new URL(url).origin && location.pathname.replace(/\/$/, '') === '/macomisyon' && !location.search
 const ready = page => page.waitForFunction(() => document.querySelector('[data-jarry-canvas]') && !document.querySelector('[aria-label="Zoomer"]')?.disabled)
 const select = async (page, name) => {
   await page.getByRole('button', { name: 'Les lieux', exact: true }).click()
   await page.locator('.place-row').filter({ hasText: name }).click()
   await page.locator('.place-detail h2').filter({ hasText: name }).waitFor()
+  await page.locator('#places-panel').waitFor({ state: 'detached' })
 }
 const hit = async (page, locator) => {
   await locator.scrollIntoViewIfNeeded()
@@ -69,7 +71,7 @@ try {
     assert.equal(await page.evaluate(() => document.activeElement.dataset.project), 'memebank')
     await select(page, 'MAGGMA Studio')
     assert.ok(await hit(page, page.getByRole('link', { name: 'Visiter le site du studio (nouvel onglet)', exact: true })))
-    assert.equal(page.url(), url)
+    assert.ok(isOverview(new URL(page.url())))
     await page.screenshot({ path: `${output}/studio-${device}.png` })
     await select(page, 'L’atelier')
     const workshop = await page.locator('.place-detail').boundingBox()
@@ -100,9 +102,9 @@ try {
     assert.equal(await page.evaluate(() => document.activeElement.id), 'project-access')
     await select(page, 'Le hangar')
     await page.getByRole('button', { name: 'Entrer au dépôt', exact: true }).click()
-    await page.waitForURL('**/macomisyon?lieu=depot-q')
+    await page.waitForURL(location => location.searchParams.get('lieu') === 'depot-q')
     await page.getByRole('button', { name: 'Retour au monde', exact: true }).click()
-    await page.waitForURL(url)
+    await page.waitForURL(isOverview)
     await page.getByRole('button', { name: 'Entrer au dépôt', exact: true }).waitFor()
     assert.equal(await page.evaluate(() => document.activeElement.textContent.includes('Entrer au dépôt')), true)
     if (device === 'desktop' || device === 'mobile') {
@@ -110,11 +112,11 @@ try {
       for (let i = 0; i < BANK_GOALS.curiosity; i++) await page.getByRole('button', { name: 'Simuler une visite', exact: true }).click()
       assert.equal(await page.evaluate(() => document.activeElement.textContent.includes('Entrer dans la banque')), true)
       await page.getByRole('button', { name: 'Entrer dans la banque', exact: true }).click()
-      await page.waitForURL('**/macomisyon?lieu=bank')
+      await page.waitForURL(location => location.searchParams.get('lieu') === 'bank')
       await page.keyboard.press('Escape')
       assert.ok(page.url().endsWith('?lieu=bank'), 'Exterior Escape handler leaves the interior alone')
       await page.getByRole('button', { name: 'Retour au monde', exact: true }).click()
-      await page.waitForURL(url)
+      await page.waitForURL(isOverview)
       await page.getByRole('button', { name: 'Entrer dans la banque', exact: true }).waitFor()
       assert.equal(await page.evaluate(() => document.activeElement.textContent.includes('Entrer dans la banque')), true)
     }
