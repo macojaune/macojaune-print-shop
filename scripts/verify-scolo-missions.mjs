@@ -19,6 +19,7 @@ try {
     await page.goto(site, { waitUntil: 'domcontentloaded' })
     const entry = page.locator('a[href="/macomisyon"]').first()
     await entry.tap()
+    await page.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
     if (webgl) await page.locator('.map-tools button[aria-label="Zoomer"]:enabled').waitFor()
     await button(webgl ? 'Les lieux' : 'Voir les lieux').tap()
     await page.locator('.place-row').filter({ hasText: 'La maison aux cartons' }).tap()
