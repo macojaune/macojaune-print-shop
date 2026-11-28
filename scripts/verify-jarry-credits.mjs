@@ -20,22 +20,18 @@ const sourceLinks = [
   'https://github.com/tilezen/joerd/blob/master/docs/attribution.md',
 ]
 
-const footerLinks = [sourceLinks[0], sourceLinks[2], sourceLinks[5]]
-
 async function checkFooter(page) {
-  const footer = page.locator('footer .map-attribution, footer.map-attribution')
-  await footer.waitFor()
-  const links = footer.getByRole('link')
-  assert.deepEqual(await links.evaluateAll(list => list.map(link => link.href)), footerLinks)
-  for (const link of await links.all()) {
-    const rect = await link.boundingBox()
-    const { width, height } = page.viewportSize()
-    assert.ok(rect && rect.x >= 0 && rect.y >= 0 && rect.x + rect.width <= width + 1 && rect.y + rect.height <= height + 1, 'Every credit is visible within the viewport')
-    assert.equal(await link.evaluate(el => {
-      const box = el.getBoundingClientRect()
-      return document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)?.closest('a') === el
-    }), true, 'Each visible source link can be activated')
-  }
+  const footer = page.locator('.game-footer')
+  const feedback = footer.getByRole('link', { name: 'Signaler un bug ou une amélioration' })
+  assert.equal(await feedback.getAttribute('href'), 'https://tally.so/r/WJzDrJ')
+  const rect = await feedback.boundingBox()
+  const { width, height } = page.viewportSize()
+  assert.ok(rect && rect.x >= 0 && rect.y >= 0 && rect.x + rect.width <= width + 1 && rect.y + rect.height <= height + 1, 'The feedback link fits within the viewport')
+  assert.equal(await feedback.evaluate(link => {
+    const box = link.getBoundingClientRect()
+    return link.contains(document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2))
+  }), true, 'The feedback link can be activated')
+  for (const href of sourceLinks) assert.equal(await footer.locator(`a[href="${href}"]`).count(), 0)
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false)
 }
 
@@ -48,58 +44,84 @@ async function checkHelpLayout(page) {
 }
 
 try {
-  for (const [device, viewport] of [['desktop', { width: 1440, height: 1000 }], ['mobile', { width: 390, height: 844 }], ['narrow', { width: 320, height: 568 }]]) {
+  for (const [device, viewport] of [['desktop', { width: 1440, height: 1000 }], ['mobile', { width: 390, height: 844 }], ['narrow', { width: 320, height: 568 }], ['landscape', { width: 667, height: 375 }]]) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce', isMobile: device !== 'desktop', hasTouch: device !== 'desktop' })
     const page = await context.newPage()
     page.on('pageerror', error => errors.push({ device, message: error.message }))
     await page.goto(url, { waitUntil: 'domcontentloaded' })
     await page.locator('.map-tools button[aria-label="Zoomer"]:enabled').waitFor()
     assert.equal(await page.locator('.world-fallback').count(), 0)
-    await checkFooter(page)
-    await page.screenshot({ path: `${output}/${device}-credits.png` })
-
+    const guide = page.locator('#map-guide')
     const about = page.getByRole('button', { name: /À propos.*Comment explorer la carte/ })
-    await about.focus()
-    await page.keyboard.press('Enter')
-    await page.locator('#help-title').waitFor()
-    assert.equal(await page.locator('#help-title').evaluate(element => element === document.activeElement), true, 'Opening the panel focuses its heading')
-    await checkHelpLayout(page)
-    const text = await page.locator('#help-panel').innerText()
-    for (const phrase of ['Déplace la carte avec un doigt', 'Pince avec deux doigts', 'Au clavier', 'compteurs fictifs', 'aucune contribution réelle', '22 octobre 2026', 'Licence Ouverte 2.0', 'SRTM', 'GMTED2010', 'U.S. Geological Survey']) assert.ok(text.includes(phrase), `Missing help or attribution: ${phrase}`)
-    assert.deepEqual(await page.locator('.map-sources a').evaluateAll(links => links.map(link => link.href)), sourceLinks)
-    await page.screenshot({ path: `${output}/${device}-about.png` })
+    const help = page.locator('#help-panel')
+    const toggle = help.getByRole('button', { name: 'La carte et ses sources' })
+    const sources = help.locator('#map-sources')
+    const openHelp = async () => {
+      await about.focus()
+      await page.keyboard.press('Enter')
+      await help.waitFor()
+      assert.equal(await help.locator('#help-title').evaluate(element => element === document.activeElement), true)
+      assert.equal(await toggle.getAttribute('aria-expanded'), 'false')
+      assert.equal(await sources.isVisible(), false, 'Detailed sources are collapsed on opening About')
+    }
+    await guide.waitFor()
+    assert.equal(await guide.locator(`a[href="${sourceLinks[0]}"]`).isVisible(), true, 'The guide credits OpenStreetMap')
+    await checkFooter(page)
+    await page.screenshot({ path: `${output}/${device}-guide.png` })
+    await guide.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
+    await guide.waitFor({ state: 'hidden' })
+    await page.reload({ waitUntil: 'domcontentloaded' })
+    await page.locator('.map-tools button[aria-label="Zoomer"]:enabled').waitFor()
+    assert.equal(await guide.isVisible(), false, 'The guide stays dismissed after reloading')
+    await checkFooter(page)
 
-    await page.keyboard.press('Tab')
-    assert.equal(await page.getByRole('button', { name: 'Fermer l’aide', exact: true }).evaluate(element => element === document.activeElement), true)
+    await openHelp()
+    await checkHelpLayout(page)
+    const helpText = await help.innerText()
+    assert.doesNotMatch(helpText, /compteurs fictifs|aucune contribution réelle/i)
+    await page.screenshot({ path: `${output}/${device}-about.png` })
+    await toggle.focus()
+    await page.keyboard.press('Enter')
+    await sources.waitFor()
+    assert.equal(await toggle.getAttribute('aria-expanded'), 'true')
+    assert.equal(await toggle.getAttribute('aria-controls'), 'map-sources')
+    for (const phrase of ['22 octobre 2026', 'Licence Ouverte 2.0', 'SRTM', 'GMTED2010', 'U.S. Geological Survey']) assert.ok((await sources.innerText()).includes(phrase), `Missing attribution: ${phrase}`)
+    const links = sources.getByRole('link')
+    assert.deepEqual(await links.evaluateAll(list => list.map(link => link.href)), sourceLinks)
     for (let index = 0; index < sourceLinks.length; index++) {
       await page.keyboard.press('Tab')
-      const reachable = await page.locator('.map-sources a').nth(index).evaluate(link => {
-        const panel = link.closest('.help-panel').getBoundingClientRect()
-        const title = link.closest('.help-panel').querySelector('.panel-title').getBoundingClientRect()
+      const reachable = await links.nth(index).evaluate(link => {
+        const panel = link.closest('#help-panel').getBoundingClientRect()
         return link === document.activeElement && [...link.getClientRects()].some(rect => {
           const x = (rect.left + rect.right) / 2
           const y = (rect.top + rect.bottom) / 2
-          return y >= title.bottom && y < panel.bottom && document.elementFromPoint(x, y)?.closest('a') === link
+          return y > panel.top && y < panel.bottom && link.contains(document.elementFromPoint(x, y))
         })
       })
-      assert.equal(reachable, true, `Source ${index + 1} must be reachable by keyboard within the scrolling panel`)
+      assert.equal(reachable, true, `Source ${index + 1} is reachable by keyboard in the scrolling panel`)
     }
     await checkHelpLayout(page)
     await page.screenshot({ path: `${output}/${device}-sources.png` })
+    await toggle.click()
+    await sources.waitFor({ state: 'hidden' })
+    assert.equal(await toggle.getAttribute('aria-expanded'), 'false')
     await page.keyboard.press('Escape')
-    await page.locator('#help-panel').waitFor({ state: 'detached' })
+    await help.waitFor({ state: 'hidden' })
     assert.equal(await about.evaluate(element => element === document.activeElement), true, 'Escape restores focus to About')
-    await page.keyboard.press('Enter')
-    await page.getByRole('button', { name: 'Fermer l’aide', exact: true }).click()
-    assert.equal(await about.evaluate(element => element === document.activeElement), true, 'The close button restores focus to About')
+    await openHelp()
+    await help.getByRole('button', { name: 'Revoir le guide' }).click()
+    await guide.waitFor()
+    await guide.getByRole('button', { name: 'Passer le guide' }).click()
+    await guide.waitFor({ state: 'hidden' })
+    await help.waitFor()
+    assert.equal(await help.getByRole('button', { name: 'Revoir le guide' }).evaluate(button => button === document.activeElement), true, 'Closing a replay returns to its trigger')
+    await help.getByRole('button', { name: 'Fermer l’aide' }).click()
+    await help.waitFor({ state: 'hidden' })
+    assert.equal(await about.evaluate(element => element === document.activeElement), true, 'Closing restores focus to About')
 
-    // The former overlay disappeared after six seconds. The links must still
-    // work after that interval without hovering, focusing or reopening anything.
-    if (device === 'desktop') await page.waitForTimeout(6500)
-    await checkFooter(page)
-    results.push({ device, viewport, sources: footerLinks })
+    results.push({ device, viewport, sources: sourceLinks })
     await context.close()
-    console.log(`PASS ${device}: permanent footer, detailed sources, keyboard and layout`)
+    console.log(`PASS ${device}: first visit, feedback link, source disclosure, keyboard and guide replay`)
   }
   assert.deepEqual(errors, [])
   await writeFile(`${output}/report.json`, JSON.stringify({ url, errors, results }, null, 2))

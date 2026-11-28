@@ -14,6 +14,16 @@ Le local de mas avec cour a été validé, puis déplacé à la demande de Marvi
 
 Les nouveaux lieux utilisent `jarry-landmark-sites.js`, distinct des quatre grands socles de projets historiques. Le modèle de voiture est à l’échelle du fond géographique : environ 4,6 × 1,9 m. Sa pose tient compte de la surface industrielle visible, au-dessus du MNT. Les fondations des bâtiments descendent jusqu’au relief sans le remodeler. Leurs ressources Three.js sont libérées par `createJarryLandmarks().dispose()`.
 
+## Proposition pour la cour du Mas — Sur les traces du mas
+
+La cour sert de point de départ à un spectateur qui cherche un groupe de carnaval. Dans cette proposition, le joueur suit un groupe de démonstration. Les observations, les heures et le trajet sont simulés.
+
+1. **Choisir le groupe.** Le joueur prend un fanion parmi ceux suspendus au portail. Le même fanion apparaît sur le plan de la cour.
+2. **Trouver son dernier passage.** Deux observations datées sont épinglées au tableau. Le joueur choisit la plus récente et place le fanion au lieu indiqué.
+3. **Rejoindre le dernier point connu.** Le joueur relie la cour à ce point sur le plan. Le portail s’ouvre. Le groupe a pu avancer depuis l’observation.
+
+La scène reprend la lecture de la source et de l’heure d’une position décrite dans le [parcours spectateur Omasla](https://github.com/macojaune/omasla/blob/c489ced/apps/expo/PRODUCT.md). L’intérieur et ses trois étapes restent à valider avant réalisation.
+
 ## MAGGMA Studio : petit bâtiment en U
 
 Marvin a retenu le petit U immédiatement au-dessus des premiers candidats A/B. Le volcan remplace uniquement `way/131121970/0`, au centre `x: 45.328375, z: 17.117870`, rotation Y `−0.0862610221`. Les deux premiers candidats restent rendus.

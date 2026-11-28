@@ -115,6 +115,7 @@ try {
   page.on('pageerror', error => errors.push(error.message))
   page.on('console', message => { if (message.type() === 'error' && /hydration|mismatch/i.test(message.text())) errors.push(message.text()) })
   await page.goto(baseURL, { waitUntil: 'domcontentloaded' })
+  await page.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
   await page.locator('[data-jarry-canvas]').waitFor()
   await page.addStyleTag({ content: 'nuxt-devtools-frame, #nuxt-devtools-container { display: none !important; }' })
   const initial = await view()

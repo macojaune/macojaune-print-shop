@@ -34,7 +34,12 @@ const inInterior = computed(() => !!interior.value)
 let bankStore: ReturnType<typeof createBankStore> | undefined
 let unsubscribeBank: (() => void) | undefined
 const selected = ref<string | null>(null)
-const panel = ref<'places' | 'help' | null>(null)
+const panel = ref<'guide' | 'places' | 'help' | null>(null)
+const guideKey = 'macomisyon-guide-v1'
+const guideTitle = ref<HTMLHeadingElement | null>(null)
+const replayGuideButton = ref<HTMLButtonElement | null>(null)
+const sourcesOpen = ref(false)
+let guideFromHelp = false
 const loaded = ref(false)
 const mapError = ref(false)
 const depotRepaired = ref(false)
@@ -80,6 +85,10 @@ onMounted(() => {
   bankState.value = bankStore.getState()
   bankLoaded.value = true
   unsubscribeBank = bankStore.subscribe(next => { bankState.value = next })
+  if (!route.query.lieu) {
+    try { if (localStorage.getItem(guideKey) === 'seen') return } catch { /* Storage may be disabled. */ }
+    void showGuide()
+  }
 })
 onBeforeUnmount(() => {
   alive = false
@@ -87,12 +96,12 @@ onBeforeUnmount(() => {
   unsubscribeBank?.()
 })
 
-// Keep the selected building in the exposed part of the map when the compact
-// window spans its centre. Layout offsets ignore the window's entrance animation.
+// On narrow screens, leave room for the building immediately above its card.
+// A side-by-side card needs no camera offset.
 function framePlace() {
   const window = placeWindow.value, stage = gameStage.value
   const bottom = !inInterior.value && window && stage && window.offsetLeft < stage.clientWidth / 2
-    ? stage.clientHeight - window.offsetTop : 0
+    ? Math.min(144, stage.clientHeight * .28) : 0
   map.value?.setBottomInset?.(bottom)
 }
 watch([placeWindow, loaded, inInterior], () => {
@@ -117,9 +126,23 @@ watch(interior, async (value, previous) => {
   }
 })
 
+async function showGuide() {
+  guideFromHelp = panel.value === 'help'
+  panel.value = 'guide'
+  sourcesOpen.value = false
+  await nextTick()
+  if (alive && panel.value === 'guide') guideTitle.value?.focus({ preventScroll: true })
+}
+
+function rememberGuide() {
+  if (panel.value !== 'guide') return
+  try { localStorage.setItem(guideKey, 'seen') } catch { /* The map still works for this visit. */ }
+}
+
 async function selectPlace(id: string) {
   const place = worldPlaces.value.find(place => place.id === id)
   if (!place) return
+  rememberGuide()
   const trigger = document.activeElement
   if (trigger instanceof HTMLElement && trigger !== document.body && !placeWindow.value?.contains(trigger)) placeTrigger = trigger
   else if (!currentPlace.value) placeTrigger = null
@@ -176,6 +199,7 @@ async function bankAction(action: string, id?: string) {
 }
 
 function resetMap() {
+  rememberGuide()
   selected.value = null
   panel.value = null
   map.value?.resetView()
@@ -183,9 +207,15 @@ function resetMap() {
 
 async function closePanel() {
   if (!panel.value) return
-  panel.value = null
+  const wasGuide = panel.value === 'guide'
+  const backToHelp = wasGuide && guideFromHelp
+  rememberGuide()
+  panel.value = backToHelp ? 'help' : null
+  sourcesOpen.value = false
   await nextTick()
-  if (alive && !inInterior.value && !panel.value && panelTrigger?.isConnected) panelTrigger.focus({ preventScroll: true })
+  if (!alive || inInterior.value) return
+  if (backToHelp && panel.value === 'help') replayGuideButton.value?.focus({ preventScroll: true })
+  else if (!panel.value) (wasGuide ? placesButton.value : panelTrigger)?.focus({ preventScroll: true })
 }
 
 async function closePlace() {
@@ -207,6 +237,8 @@ function escapePanel(event: KeyboardEvent) {
 
 async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   if (panel.value === next) return closePanel()
+  rememberGuide()
+  sourcesOpen.value = false
   panelTrigger = event.currentTarget as HTMLElement
   selected.value = null
   panel.value = next
@@ -247,28 +279,44 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
             <button type="button" :aria-expanded="panel === 'help'" aria-controls="help-panel" aria-label="À propos — Comment explorer la carte" @click="togglePanel('help', $event)"><GameIcon name="help" :size="18" />À propos</button>
           </nav>
 
-          <section v-if="panel === 'places'" id="places-panel" class="map-panel" aria-labelledby="places-title">
-            <div class="panel-title"><h2 id="places-title" ref="placesTitle" tabindex="-1">Les lieux</h2><button type="button" aria-label="Fermer les lieux" @click="closePanel"><GameIcon name="close" /></button></div>
-            <p>Choisis un lieu pour le repérer et découvrir sa fiche.</p>
-            <ul><li v-for="place in worldPlaces" :key="place.id"><button type="button" class="place-row" @click="selectPlace(place.id)"><span class="place-letter" :class="{ muted: !place.available && !place.kind }"><GameIcon :name="place.icon" :size="24" /></span><span><strong>{{ place.name }}</strong><small>{{ placeStatus(place) }}</small></span><GameIcon :name="place.available || place.kind ? 'arrow' : 'lock'" :size="18" /></button></li></ul>
-          </section>
-          <section v-if="panel === 'help'" id="help-panel" class="map-panel help-panel" aria-labelledby="help-title">
-            <div class="panel-title"><h2 id="help-title" ref="helpTitle" tabindex="-1">À propos</h2><button type="button" aria-label="Fermer l’aide" @click="closePanel"><GameIcon name="close" /></button></div>
-            <h3>Comment utiliser la carte</h3>
-            <p>Déplace la carte avec un doigt. Pince avec deux doigts pour zoomer, ou utilise les boutons.</p>
-            <p>Touche un lieu pour découvrir sa fiche. Tu peux entrer dans les bâtiments ouverts ou suivre le lien du studio.</p>
-            <p class="keyboard-help">Au clavier : flèches pour déplacer la carte, + et − pour zoomer, Début pour recentrer. Les lieux sont aussi accessibles par leurs boutons.</p>
-            <p class="demo-explanation">Cette première démo utilise des compteurs fictifs. Tes essais ne créent aucune contribution réelle.</p>
-            <section class="map-sources" aria-labelledby="map-sources-title">
-              <h3 id="map-sources-title">La carte et ses sources</h3>
-              <p>Les rues, la végétation et le relief suivent la géographie réelle. Les bâtiments des projets sont imaginaires ; les autres hauteurs sont estimées quand elles ne sont pas renseignées.</p>
-              <ul>
-                <li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a> — rues, bâtiments, végétation et littoral. Données sous <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL 1.0</a>.</li>
-                <li><a href="https://geoservices.ign.fr/rgealti" target="_blank" rel="noopener noreferrer">© IGN — RGE ALTI®</a> — relief terrestre. Données consultées le 22 octobre 2026 via la Géoplateforme. <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener noreferrer">Licence Ouverte 2.0</a>.</li>
-                <li><a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener noreferrer">Terrain Tiles — Mapzen / AWS Open Data</a> — complément du relief. Données SRTM et GMTED2010 fournies par l’U.S. Geological Survey. <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener noreferrer">Sources et licences</a>.</li>
-              </ul>
+          <Transition name="map-window" @before-leave="(el: Element) => el.setAttribute('inert', '')">
+            <section v-if="panel === 'guide'" id="map-guide" key="guide" class="map-window guide-panel" aria-labelledby="guide-title">
+              <div class="panel-title">
+                <h2 id="guide-title" ref="guideTitle" tabindex="-1">Prendre la carte en main</h2>
+                <button type="button" aria-label="Passer le guide" @click="closePanel"><GameIcon name="close" /></button>
+              </div>
+              <ol class="guide-steps">
+                <li><GameIcon name="locate" /><span class="touch-tip">Glisse avec un doigt pour déplacer la carte. Pince à deux doigts pour zoomer.</span><span class="mouse-tip">Glisse à la souris et zoome à la molette. Au clavier, utilise les flèches et les touches + et −.</span></li>
+                <li><GameIcon name="map" /><span class="touch-tip">Touche un repère ou ouvre « Les lieux » pour choisir un bâtiment.</span><span class="mouse-tip">Clique sur un repère ou ouvre « Les lieux » pour choisir un bâtiment.</span></li>
+              </ol>
+              <button type="button" class="guide-start" @click="closePanel">Explorer la carte<GameIcon name="arrow" :size="17" /></button>
+              <a class="guide-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">Carte © OpenStreetMap contributors</a>
             </section>
-          </section>
+            <section v-else-if="panel === 'places'" id="places-panel" key="places" class="map-panel" aria-labelledby="places-title">
+              <div class="panel-title"><h2 id="places-title" ref="placesTitle" tabindex="-1">Les lieux</h2><button type="button" aria-label="Fermer les lieux" @click="closePanel"><GameIcon name="close" /></button></div>
+              <p>Choisis un lieu pour le repérer et découvrir sa fiche.</p>
+              <ul><li v-for="place in worldPlaces" :key="place.id"><button type="button" class="place-row" @click="selectPlace(place.id)"><span class="place-letter" :class="{ muted: !place.available && !place.kind }"><GameIcon :name="place.icon" :size="24" /></span><span><strong>{{ place.name }}</strong><small>{{ placeStatus(place) }}</small></span><GameIcon :name="place.available || place.kind ? 'arrow' : 'lock'" :size="18" /></button></li></ul>
+            </section>
+            <section v-else-if="panel === 'help'" id="help-panel" key="help" class="map-panel help-panel" aria-labelledby="help-title">
+              <div class="panel-title"><h2 id="help-title" ref="helpTitle" tabindex="-1">À propos</h2><button type="button" aria-label="Fermer l’aide" @click="closePanel"><GameIcon name="close" /></button></div>
+              <p>Choisis un repère sur la carte ou un bâtiment dans « Les lieux ». Sa fiche indique si tu peux entrer.</p>
+              <p class="keyboard-help">Au clavier, utilise Tab pour atteindre la carte, les flèches pour la déplacer, + et − pour zoomer, et Début pour recentrer.</p>
+              <button ref="replayGuideButton" type="button" class="replay-guide" @click="showGuide">Revoir le guide<GameIcon name="arrow" :size="16" /></button>
+              <section class="map-sources" aria-labelledby="map-sources-title">
+                <h3><button id="map-sources-title" type="button" :aria-expanded="sourcesOpen" aria-controls="map-sources" @click="sourcesOpen = !sourcesOpen">La carte et ses sources<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m3 6 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" /></svg></button></h3>
+                <div id="map-sources" class="sources-collapse" :class="{ expanded: sourcesOpen }" :inert="!sourcesOpen" :aria-hidden="!sourcesOpen">
+                  <div class="sources-body">
+                    <p>Les rues, la végétation et le relief suivent la géographie réelle. Les bâtiments des projets sont imaginaires ; les autres hauteurs sont estimées quand elles ne sont pas renseignées.</p>
+                    <ul>
+                      <li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a> — rues, bâtiments, végétation et littoral. Données sous <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL 1.0</a>.</li>
+                      <li><a href="https://geoservices.ign.fr/rgealti" target="_blank" rel="noopener noreferrer">© IGN — RGE ALTI®</a> — relief terrestre. Données consultées le 22 octobre 2026 via la Géoplateforme. <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener noreferrer">Licence Ouverte 2.0</a>.</li>
+                      <li><a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener noreferrer">Terrain Tiles — Mapzen / AWS Open Data</a> — complément du relief. Données SRTM et GMTED2010 fournies par l’U.S. Geological Survey. <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener noreferrer">Sources et licences</a>.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </Transition>
           <section v-if="currentPlace && !panel" :key="currentPlace.id" ref="placeWindow" class="project-dock place-detail" aria-labelledby="place-detail-title">
             <header class="place-detail-bar">
               <GameIcon :name="currentPlace.icon" :size="26" />
@@ -303,11 +351,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 
     <footer class="game-footer">
       <span v-if="inInterior" class="interior-name">{{ inDepot ? 'QuiLivreOù · Le Dépôt Q' : inBank ? 'Memebank · Le casse du sérieux' : 'Scolo · Le dernier carton' }}</span>
-      <span class="map-attribution">
-        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
-        <a href="https://geoservices.ign.fr/rgealti" target="_blank" rel="noopener noreferrer">Relief © IGN</a>
-        <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener noreferrer">Terrain Tiles</a>
-      </span>
+      <a class="feedback-link" href="https://tally.so/r/WJzDrJ" target="_blank" rel="noopener noreferrer">Signaler un bug ou une amélioration</a>
     </footer>
     <p class="game-live" aria-live="polite">{{ liveMessage }}</p>
     <noscript>Active JavaScript pour explorer ce monde, entrer dans ses bâtiments et découvrir leurs Komisyon.</noscript>
@@ -332,8 +376,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .world-back { font-weight: 600 !important; }
 .game-stage { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #cae0ca; }
 .world-layer { position: absolute; inset: 0; }
-.map-attribution { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; column-gap: 12px; margin-left: auto; font-size: 11px; }
-.map-attribution a { display: inline-flex; align-items: center; min-height: 24px; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.feedback-link { display: inline-flex; align-items: center; min-height: 24px; margin-left: auto; color: inherit; font-size: 11px; text-decoration: underline; text-underline-offset: 2px; }
 .map-title { position: absolute; left: 30px; top: 23px; color: #143c3e; pointer-events: none; }
 .map-title h2 { margin: 0; font: 400 clamp(32px, 3.5vw, 52px)/.92 Tanker, sans-serif; letter-spacing: -.02em; }
 .map-title p { color: inherit; margin: 10px 0 0; font-size: 12px; line-height: 1.4; }
@@ -349,7 +392,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .world-loading span { max-width: 32ch; font-size: 14px; }
 .world-fallback { z-index: 2; }
 .world-fallback .game-button { min-height: 44px; padding: 10px 20px; margin-top: 12px; background: #173b3c; color: #f1ebd3; border: 0; }
-.map-panel { position: absolute; left: 22px; bottom: 75px; width: min(360px, calc(100% - 44px)); max-height: calc(100% - 100px); overflow-y: auto; overscroll-behavior: contain; overflow-wrap: anywhere; background: #173b3c; color: var(--game-paper); border: 1px solid #718a74; padding: 20px; box-shadow: 0 12px 30px #11242440; z-index: 4; scrollbar-color: #ffcf43 #173b3c; scrollbar-width: thin; }
+.map-panel, .guide-panel { position: absolute; left: 22px; bottom: 75px; width: min(360px, calc(100% - 44px)); max-height: calc(100% - 100px); overflow-y: auto; overscroll-behavior: contain; overflow-wrap: anywhere; background: #173b3c; color: var(--game-paper); border: 1px solid #718a74; padding: 20px; box-shadow: 0 12px 30px #11242440; z-index: 4; scrollbar-color: #ffcf43 #173b3c; scrollbar-width: thin; }
 .panel-title { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .panel-title h2 { color: var(--game-yellow); margin: 0; font: 400 32px/1 Tanker, sans-serif; letter-spacing: 0; }
 .panel-title button { background: none; color: var(--game-paper); display: grid; place-items: center; flex-shrink: 0; border: 0; width: 44px; height: 44px; }
@@ -361,18 +404,42 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .place-row small { display: block; color: #c9d6c6; margin-top: 4px; font-size: 11px; }
 .place-letter { display: grid; place-items: center; height: 42px; width: 42px; color: var(--game-ink); background: var(--game-yellow); font: 400 32px/1 Tanker, sans-serif; }
 .place-letter.muted { background: #a3b5a2; }
-.help-panel .demo-explanation { color: #ffda75; border-top: 1px solid #8aa79755; padding-top: 15px; }
+
 .help-panel .keyboard-help { color: #c9d6c6; font-size: 12px; }
 .help-panel { scroll-padding-top: 60px; scroll-padding-bottom: 12px; }
 .help-panel .panel-title { position: sticky; top: 0; z-index: 1; background: var(--game-ink); }
 .help-panel h3 { margin: 20px 0 10px; color: var(--game-yellow); font-size: 14px; line-height: 1.4; }
 .map-sources { border-top: 1px solid #8aa79755; margin-top: 18px; }
+.map-sources h3 { margin: 0; }
+#map-sources-title, .replay-guide { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 44px; padding: 5px 0; color: var(--game-paper); background: none; border: 0; text-align: left; }
+#map-sources-title { font-size: 13px; font-weight: 700; }
+#map-sources-title svg { transition: transform .25s ease; }
+#map-sources-title[aria-expanded=true] svg { transform: rotate(180deg); }
+.replay-guide { width: fit-content; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.sources-collapse { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .25s cubic-bezier(.2,.72,.22,1), opacity .2s ease; }
+.sources-collapse.expanded { grid-template-rows: 1fr; opacity: 1; }
+.sources-body { min-height: 0; overflow: hidden; }
+.map-window-enter-active { transition: transform .28s cubic-bezier(.16,1,.3,1), opacity .2s ease-out; }
+.map-window-leave-active { pointer-events: none; transition: transform .17s ease-in, opacity .15s ease-in; }
+.map-window-enter-from, .map-window-leave-to { opacity: 0; transform: translateY(22px); }
+.guide-panel { width: min(345px, calc(100% - 44px)); border-top: 4px solid var(--game-yellow); }
+.guide-steps { list-style: none; padding: 0; margin: 12px 0 18px; display: grid; gap: 15px; }
+.guide-steps li { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; line-height: 1.5; }
+.guide-steps svg { color: var(--game-yellow); flex-shrink: 0; margin-top: 2px; }
+.touch-tip { display: none; }
+@media (pointer: coarse) { .touch-tip { display: inline; } .mouse-tip { display: none; } }
+.guide-start { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; width: 100%; padding: 8px 14px; background: var(--game-yellow); color: var(--game-ink); font-weight: 700 !important; border: 0; }
+.guide-credit { display: inline-block; padding: 8px 0 0; color: #ced8c8; font-size: 11px; text-underline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .map-window-enter-active, .map-window-leave-active, .sources-collapse, #map-sources-title svg { transition: none; }
+  .map-window-enter-from, .map-window-leave-to { transform: none; }
+}
 .map-sources ul { margin: 12px 0 0; }
 .map-sources li { margin: 14px 0 0; font-size: 12px; line-height: 1.6; }
 .map-sources a { color: var(--game-paper); text-decoration: underline; text-underline-offset: 3px; }
 .map-sources a:hover { color: var(--game-yellow); }
 /* A non-modal window follows the selection while the map remains interactive. */
-.place-detail { position: absolute; top: 20px; right: 82px; width: 360px; max-height: calc(100% - 40px); display: flex; flex-direction: column; z-index: 4; overflow: hidden; background: var(--game-ink); color: var(--game-paper); border-radius: 2px; box-shadow: 0 18px 44px #081c16a8; animation: place-reveal .22s cubic-bezier(.16,1,.3,1); }
+.place-detail { position: absolute; left: calc(50% + 48px); top: max(12px, calc(50% - 76px)); width: min(360px, calc(50% - 118px)); max-height: calc(50% + 64px); display: flex; flex-direction: column; z-index: 4; overflow: hidden; background: var(--game-ink); color: var(--game-paper); border-radius: 2px; box-shadow: 0 18px 44px #081c16a8; animation: place-reveal .22s cubic-bezier(.16,1,.3,1); }
 .place-detail-bar { display: flex; align-items: center; gap: 12px; flex-shrink: 0; padding: 12px 8px 12px 20px; background: #37513f; color: var(--game-yellow); }
 .place-detail-bar > svg { flex-shrink: 0; }
 .place-detail-bar h2 { flex: 1; min-width: 0; margin: 0; font: 400 30px/1.05 Tanker, sans-serif; letter-spacing: .01em; overflow-wrap: anywhere; text-wrap: balance; }
@@ -398,7 +465,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
 .game-live, .game-skip { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .game-skip:focus { width: auto; height: auto; clip-path: none; left: 20px; top: 20px; margin: 0; padding: 15px; background: #ffcf43; color: #173b3c; z-index: 20; }
 @media (max-width: 1100px) {
-  .place-detail { top: auto; bottom: 76px; right: 14px; width: min(420px, calc(100% - 28px)); max-height: 45%; }
+
   .place-detail-bar { padding: 8px 8px 8px 16px; }
   .place-detail-bar h2 { font-size: 26px; }
   .place-detail-content { padding: 16px; }
@@ -418,10 +485,10 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .map-title h2 { font-size: 32px; }
   .map-title p { font-size: 10px; margin-top: 6px; }
   .map-tools { right: 12px; top: 15px; }
-  .place-detail { bottom: 68px; }
+  .place-detail { top: 50%; left: 0; right: 0; margin-inline: auto; width: min(390px, calc(100% - 28px)); max-height: calc(50% - 65px); }
   .map-tools button { height: 44px; width: 44px; }
   .map-tabs { left: 14px; bottom: 13px; }
-  .map-panel { left: 14px; bottom: 65px; width: calc(100% - 28px); padding: 16px; }
+  .map-panel, .guide-panel { left: 14px; bottom: 65px; width: calc(100% - 28px); padding: 16px; }
   .bank-curiosity { grid-column: 1 / -1; min-width: 0; }
   .enter-depot, .closed-place { grid-column: 1 / -1; min-height: 44px; width: 100%; max-width: none; font-size: 12px !important; }
   .closed-place span { font-size: 11px; }
@@ -432,7 +499,6 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .maco-game { min-height: 450px; }
   .game-header { height: 56px; }
   .game-footer { min-height: 25px; }
-  .place-detail { top: 18px; bottom: auto; right: 82px; width: min(280px, calc(50% - 130px)); max-height: calc(100% - 96px); }
 }
 @media (orientation: landscape) and (max-height: 500px) {
   .maco-game { min-height: 100svh; padding: 0; }
@@ -440,7 +506,7 @@ async function togglePanel(next: 'places' | 'help', event: MouseEvent) {
   .game-footer { min-height: 24px; padding: 0 14px; }
   .interior-name { display: none; }
   .console-topline { height: 36px; }
-  .place-detail { top: 8px; bottom: auto; right: 70px; width: min(300px, calc(50% - 102px)); max-height: calc(100% - 20px); }
+  .place-detail { left: calc(50% + 40px); right: auto; margin: 0; top: max(8px, calc(50% - 76px)); width: min(320px, calc(50% - 106px)); max-height: calc(50% + 68px); }
   .map-tools { top: 8px; right: 10px; }
   .map-title { top: 10px; }
 }

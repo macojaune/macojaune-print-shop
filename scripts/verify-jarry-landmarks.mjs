@@ -43,10 +43,11 @@ try {
     const page = await context.newPage()
     page.on('pageerror', error => errors.push(error.message))
     await page.goto(url, { waitUntil: 'domcontentloaded' })
+    await page.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
     await ready(page)
     assert.equal(await page.locator('.world-fallback').count(), 0)
     assert.equal(await page.locator('[data-project="kokolo"]').count(), 0, 'The car has no permanent marker')
-    for (const [id, name] of [['kokolo', 'La voiture à l’écart'], ['omasla', 'La cour du mas']]) {
+    for (const [id, name] of [['kokolo', 'La voiture à l’écart'], ['omasla', 'La cour du Mas']]) {
       await select(page, name)
       assert.equal(await page.locator(`[data-project="${id}"]`).getAttribute('aria-pressed'), 'true')
       assert.equal(await page.locator('.project-dock .closed-place, .project-dock .enter-depot').count(), 0, 'Discovery does not invent an interior, a mission or a closed door')
@@ -103,6 +104,7 @@ try {
   const page = await fallback.newPage()
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(url, { waitUntil: 'domcontentloaded' })
+  await page.getByRole('button', { name: 'Explorer la carte', exact: true }).click()
   await page.locator('.world-fallback').waitFor()
   await select(page, 'La voiture à l’écart')
   assert.equal(await page.locator('.project-dock .closed-place').count(), 0)
