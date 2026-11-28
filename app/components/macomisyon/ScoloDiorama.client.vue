@@ -12,8 +12,8 @@ const markers = ref([])
 const available = ref(false)
 const names = { sandale: 'Sandale', coutelas: 'Coutelas', digrain: 'Digrain' }
 const houseDescription = computed(() => props.completed.length === 3
-  ? 'La maison est vide. Le camion a emporté les derniers cartons.'
-  : 'Maison créole en coupe. La sandale est dans le salon, le coutelas dans la cuisine et le Digrain sur la galerie.')
+  ? 'Maison créole en coupe. Tout est emballé, un panneau À louer est planté dans la cour et le camion attend. Les scolos assiègent la maison.'
+  : 'Maison créole en coupe envahie de scolos : le salon, la cuisine et la galerie. ' + props.completed.length + ' arme sur 3 utilisée.')
 let world
 let panelObserver
 let panel
@@ -69,16 +69,16 @@ defineExpose({
 
 <template>
   <div class="scolo-diorama">
-    <canvas ref="canvas" aria-label="Maison du dernier carton en 3D" role="img" :aria-description="houseDescription" />
+    <canvas ref="canvas" aria-label="Maison envahie de scolos, en 3D" role="img" :aria-description="houseDescription" />
     <template v-if="available">
       <button
-        v-for="(marker, index) in markers" v-show="marker.visible && (!selected || selected === marker.id)" :key="marker.id" type="button"
+        v-for="marker in markers" v-show="marker.visible && (!selected || selected === marker.id)" :key="marker.id" type="button"
         class="scolo-marker" :class="{ chosen: selected === marker.id, packed: completed.includes(marker.id) }"
         :data-station="marker.id" :style="{ left: marker.x + 'px', top: marker.y + 'px' }"
-        :aria-label="names[marker.id] + (completed.includes(marker.id) ? ', étape accomplie' : '')"
+        :aria-label="names[marker.id] + (completed.includes(marker.id) ? ', arme utilisée' : ', à venir')"
         @click="emit('select', marker.id)"
       >
-        <span class="scolo-marker-code" aria-hidden="true">{{ completed.includes(marker.id) ? '✓' : index + 1 }}</span>
+        <span class="scolo-marker-code" aria-hidden="true">{{ completed.includes(marker.id) ? '✓' : '?' }}</span>
         <span class="scolo-marker-name">{{ names[marker.id] }}</span>
       </button>
     </template>

@@ -26,7 +26,7 @@ export const places = [
   { id: 'omasla', kind: 'discovery', icon: 'drum', name: 'La cour du Mas', description: 'Des tambours rangés, des costumes et des fanions. Les préparatifs se poursuivent dans la cour.', available: false },
   {
     id: 'scolo', interior: 'scolo', icon: 'arcade', name: 'La maison aux cartons',
-    description: 'Le camion attend. Sous la galerie, quelqu’un a laissé une sandale et un dernier carton ouvert.',
+    description: 'Des bêtes à mille pattes partout sous la galerie, et déjà quelques cartons. Quelqu’un ici est à bout.',
     enterLabel: 'Entrer dans la maison', available: true,
   },
 ]

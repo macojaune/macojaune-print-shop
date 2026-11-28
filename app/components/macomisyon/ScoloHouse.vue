@@ -1,7 +1,7 @@
 <script setup>
 import { computed, nextTick, ref } from 'vue'
 import GameIcon from './GameIcon.vue'
-import { missions } from '../../lib/macomisyon/scolo/model.js'
+import { weapons } from '../../lib/macomisyon/scolo/model.js'
 
 const props = defineProps({ state: { type: Object, required: true }, paused: Boolean })
 const scene = ref(null)
@@ -11,27 +11,28 @@ const heading = ref(null)
 const inventory = ref(null)
 const ready = ref(false)
 const unavailable = ref(false)
-const nextMission = computed(() => missions[props.state.completed.length])
+// « Trop de scolos », acte I: each validated weapon pushes the scolos into another room.
 const situation = computed(() => [
-  'Le camion attend devant la maison. Tout le salon reste à emballer.',
-  'La vaisselle est emballée. Il reste les cartons de la cuisine.',
-  'Le camion est chargé. Un dernier passage sous la galerie.',
-  'Le camion est parti. La maison est vide.',
+  'Les scolos ont pris la maison. Trois armes à essayer.',
+  'Une pièce de libérée. Les scolos se sont repliés ailleurs.',
+  'Plus qu’une pièce. Les cartons s’empilent.',
+  'Ça suffit : tout est emballé, le camion attend.',
 ][props.state.completed.length])
-const rooms = { sandale: 'Le salon', coutelas: 'La cuisine', digrain: 'La galerie' }
-const descriptions = {
-  sandale: 'Des scolos sur le dos, une sandale par terre et toute la vaisselle à emballer. Première Komisyon du déménagement.',
-  coutelas: 'Le coutelas est resté sur la table. Le camion attend les cartons de la cuisine.',
-  digrain: 'La bombe de Digrain est encore sous la galerie. Dernier carton, dernier tour de clé.',
+const upcoming = {
+  sandale: 'Les scolos ont pris le canapé. Aucune sandale en vue.',
+  coutelas: 'Le coutelas attend dans son emballage. Les scolos traînent sur le plan de travail.',
+  digrain: 'La bombe de Digrain dort dans son carton. Les scolos se promènent sur la galerie.',
 }
+const done = {
+  sandale: 'La sandale est accrochée au mur comme un trophée. Le salon est libre… pour l’instant.',
+  coutelas: 'Le coutelas est planté au mur, au centre de la cible. La cuisine respire.',
+  digrain: 'Un nuage de Digrain flotte encore sur la galerie. Plus un scolo à l’horizon.',
+}
+const status = id => props.state.completed.includes(id) ? 'completed' : 'upcoming'
 let trigger
-function status(id) {
-  if (props.state.completed.includes(id)) return 'completed'
-  return nextMission.value?.id === id ? 'open' : 'blocked'
-}
 async function open(name, id) {
   if (!panel.value) trigger = document.activeElement
-  current.value = missions.find(m => m.id === id) || null
+  current.value = weapons.find(weapon => weapon.id === id) || null
   panel.value = name
   await nextTick()
   heading.value?.focus({ preventScroll: true })
@@ -52,13 +53,13 @@ function escape(event) {
 </script>
 
 <template>
-  <section class="depot-q scolo-house" :data-completed="state.completed.length" :data-moved="state.moved" aria-label="La maison aux cartons" @keydown.esc="escape">
+  <section class="depot-q scolo-house" :data-completed="state.completed.length" :data-ready="state.ready" aria-label="La maison aux cartons" @keydown.esc="escape">
     <div class="depot-viewport">
       <MacomisyonScoloDiorama
 ref="scene" :completed="state.completed" :selected="current?.id" :paused="paused"
         @select="id => open('mission', id)" @ready="ready = true; unavailable = false" @error="unavailable = true" />
       <div v-if="unavailable" class="depot-fallback" role="status">
-        <GameIcon name="home" /><p>La vue 3D est indisponible. Ouvre les Komisyon pour préparer le déménagement.</p>
+        <GameIcon name="home" /><p>La vue 3D est indisponible. Ouvre les Komisyon pour suivre les trois armes.</p>
       </div>
       <div v-else-if="!ready" class="depot-fallback" role="status"><p>On ouvre les volets…</p></div>
       <div v-if="ready && !unavailable && !panel" class="depot-scene-tools">
@@ -70,7 +71,7 @@ ref="scene" :completed="state.completed" :selected="current?.id" :paused="paused
 
     <footer class="depot-dock">
       <div class="depot-status" aria-live="polite">
-        <div><h2>{{ state.moved ? 'On a déménagé !' : 'Le dernier carton' }}</h2><p>{{ situation }}</p></div>
+        <div><h2>{{ state.ready ? 'Ça suffit !' : 'Trop de scolos' }}</h2><p>{{ situation }}</p></div>
         <span class="depot-repair-count" :aria-label="state.completed.length + ' Komisyon accomplies sur 3'"><b>{{ state.completed.length }}</b><span>/ 3</span></span>
       </div>
       <div class="depot-dock-actions">
@@ -81,32 +82,30 @@ ref="scene" :completed="state.completed" :selected="current?.id" :paused="paused
 
     <section v-if="panel" class="depot-panel" aria-labelledby="scolo-panel-title">
       <header class="depot-panel-bar">
-        <span>{{ panel === 'inventory' ? 'Carnet de Komisyon' : panel === 'project' ? 'Fiche projet' : 'Komisyon · Étape ' + current.stage }}</span>
+        <span>{{ panel === 'inventory' ? 'Carnet de Komisyon' : panel === 'project' ? 'Fiche projet' : 'Komisyon · ' + current.room }}</span>
         <button type="button" aria-label="Fermer le panneau" @click="close"><GameIcon name="close" /></button>
       </header>
       <div class="depot-panel-content">
         <template v-if="panel === 'inventory'">
-          <h2 id="scolo-panel-title" ref="heading" tabindex="-1">Préparer le déménagement</h2>
+          <h2 id="scolo-panel-title" ref="heading" tabindex="-1">Chasser les scolos</h2>
+          <p>Chaque arme est validée par une vraie rencontre. L’arme utilisée décide du prochain mini-jeu.</p>
           <div class="depot-inventory">
-            <button v-for="m in missions" :key="m.id" type="button" :data-state="status(m.id)" :data-mission="m.id" @click="open('mission', m.id)">
-              <GameIcon :name="status(m.id) === 'completed' ? 'check' : status(m.id) === 'blocked' ? 'lock' : 'arcade'" />
-              <span class="depot-inventory-copy"><strong>{{ m.stage }} · {{ m.label }}</strong><small>{{ rooms[m.id] }} · {{ status(m.id) === 'completed' ? 'Accomplie' : status(m.id) === 'blocked' ? 'En attente' : 'À accomplir' }}</small></span>
+            <button v-for="weapon in weapons" :key="weapon.id" type="button" :data-state="status(weapon.id)" :data-mission="weapon.id" @click="open('mission', weapon.id)">
+              <GameIcon :name="status(weapon.id) === 'completed' ? 'check' : 'lock'" />
+              <span class="depot-inventory-copy"><strong>{{ weapon.label }}</strong><small>{{ weapon.room }} · {{ status(weapon.id) === 'completed' ? 'Utilisée contre un scolo' : 'À venir' }}</small></span>
             </button>
           </div>
         </template>
         <template v-else-if="panel === 'mission' && current">
           <h2 id="scolo-panel-title" ref="heading" tabindex="-1">{{ current.label }}</h2>
-          <p>{{ descriptions[current.id] }}</p>
-          <div class="depot-goal"><strong>{{ status(current.id) === 'completed' ? '1' : '0' }}<span>/ 1</span></strong><span>partie terminée</span></div>
-          <div class="depot-effect"><strong>Dans la maison</strong><p>{{ current.effect }}</p></div>
-          <a v-if="status(current.id) === 'open' && current.id !== 'digrain'" class="depot-action" href="https://scolo.marvinl.com/#run" target="_blank" rel="noopener noreferrer">Jouer sur Scolo<GameIcon name="external" /></a>
-          <p v-else-if="status(current.id) === 'open'" class="depot-waiting">Digrain arrive bientôt sur Scolo.</p>
-          <p v-else class="depot-waiting">{{ status(current.id) === 'completed' ? 'Komisyon accomplie.' : 'Termine d’abord la Komisyon ' + missions[current.stage - 2].label + '.' }}</p>
+          <p>{{ status(current.id) === 'completed' ? done[current.id] : upcoming[current.id] }}</p>
+          <p class="depot-waiting">{{ status(current.id) === 'completed' ? 'Utilisée contre un scolo : son mini-jeu est sorti.' : 'À venir : la prochaine élimination ' + current.with + ' sortira son mini-jeu.' }}</p>
+          <a v-if="status(current.id) === 'completed'" class="depot-action" href="https://scolo.marvinl.com/#run" target="_blank" rel="noopener noreferrer">Jouer sur Scolo<GameIcon name="external" /></a>
           <button type="button" class="depot-text-button" @click="open('inventory')">Toutes les Komisyon</button>
         </template>
         <template v-else>
           <h2 id="scolo-panel-title" ref="heading" tabindex="-1">Scolo · BÈT a milpat</h2>
-          <p>Sur Scolo, la dernière rencontre avec un scolopendre détermine le jeu disponible. Chaque mini-jeu terminé fait avancer le déménagement de cette maison.</p>
+          <p>Sur Scolo, la dernière rencontre avec un scolopendre détermine le jeu disponible : l’arme utilisée pour l’éliminer devient le mini-jeu. Ici, chaque arme utilisée libère une pièce… et les scolos se replient ailleurs.</p>
           <a class="depot-action" href="https://scolo.marvinl.com/#run" target="_blank" rel="noopener noreferrer">Jouer sur Scolo<GameIcon name="external" /></a>
           <a v-for="id in ['sandale', 'coutelas']" :key="id" class="depot-text-button" :href="'https://scolo.marvinl.com/?classement=' + id" target="_blank" rel="noopener noreferrer">Classement {{ id === 'sandale' ? 'Sandale' : 'Coutelas' }} ↗</a>
           <p class="depot-note">Digrain est à venir sur le site public.</p>
